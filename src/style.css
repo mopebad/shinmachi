@@ -1,0 +1,26 @@
+:root { font-family: 'Segoe UI', 'Yu Gothic', sans-serif; color: #e8f1ef; background: #081018; font-synthesis: none; }
+* { box-sizing: border-box; }
+html, body, #app { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { background: #081018; }
+canvas { display: block; }
+.hud { position: fixed; inset: 0; pointer-events: none; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; }
+.hud__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+.brand, .telemetry, .controls { background: rgba(8, 16, 24, .72); border: 1px solid rgba(197, 232, 222, .18); backdrop-filter: blur(14px); box-shadow: 0 12px 40px rgba(0,0,0,.22); }
+.brand { padding: 14px 17px; border-left: 3px solid #f06f4e; }
+.brand__eyebrow, .label { font: 500 10px Consolas, monospace; letter-spacing: .16em; text-transform: uppercase; color: #a7bcb6; }
+.brand__title { font-size: 22px; letter-spacing: .06em; margin-top: 5px; }
+.brand__sub { font-size: 11px; color: #b1c5bf; margin-top: 3px; }
+.telemetry { display: grid; grid-template-columns: repeat(3, auto); gap: 22px; padding: 13px 17px; }
+.telemetry strong { display: block; font: 500 14px Consolas, monospace; margin-top: 5px; color: #f4cc91; }
+.controls { align-self: flex-start; padding: 13px 16px; min-width: 245px; }
+.controls__row { display: flex; justify-content: space-between; gap: 22px; padding: 5px 0; font-size: 12px; color: #c8d8d3; }
+kbd { font: 11px Consolas, monospace; color: #f4cc91; }
+.cycle { pointer-events: auto; appearance: none; width: 110px; height: 3px; background: #31504f; vertical-align: middle; accent-color: #f4cc91; }
+.mode { color: #8fe0bf; }
+button, select { pointer-events: auto; border: 1px solid #52736e; background: #172a2e; color: #e0d4b6; border-radius: 3px; font: 11px Consolas, monospace; padding: 4px 7px; cursor: pointer; }
+.telemetry button { display: block; margin-top: 2px; }
+.stats { padding-top: 8px; margin-top: 5px; border-top: 1px solid #34534e; font: 10px Consolas, monospace; color: #a0b7b0; }
+.cycle { width: 130px; }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid #f4cc91; outline-offset: 3px; }
+@media (max-width: 700px) { .brand__title { font-size: 18px; } .telemetry { grid-template-columns: auto auto; } .telemetry > div:first-child { display: none; } .controls { padding: 10px; } .brand__eyebrow { letter-spacing: .04em; } }
+@media (max-width: 700px) { .hud { padding: 14px; } .telemetry { gap: 10px; } .telemetry .label { font-size: 8px; } .controls { min-width: 210px; } }
