@@ -1,11 +1,13 @@
 import * as THREE from 'three';
 
 export interface Bounds { minX: number; maxX: number; minZ: number; maxZ: number }
-export interface Doorway { x: number; z: number; sidewalkX: number }
+export interface Doorway { x: number; z: number; sidewalkX: number; business?: import('./simulation/WorldRules').Business }
+export interface Shopfront { x: number; z: number; rotation: number; width: number; business: import('./simulation/WorldRules').Business }
 export interface District {
   group: THREE.Group;
   colliders: Bounds[];
   doors: Doorway[];
+  shopfronts: Shopfront[];
   lamps: THREE.Vector3[];
   materials: {
     signs: THREE.MeshStandardMaterial;
@@ -13,6 +15,8 @@ export interface District {
     warmWindows: THREE.MeshStandardMaterial;
     lamps: THREE.MeshStandardMaterial;
     shop: THREE.MeshStandardMaterial;
+    lantern: THREE.MeshStandardMaterial;
+    businesses: Record<import('./simulation/WorldRules').Business, { surface: THREE.MeshStandardMaterial; light: THREE.MeshStandardMaterial; window: THREE.MeshStandardMaterial }>;
   };
   stats: { buildings: number; instances: number };
 }

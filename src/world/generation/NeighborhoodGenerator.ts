@@ -1,21 +1,27 @@
 import * as THREE from 'three';
-import { Bounds, District, Doorway } from '../types';
+import { Bounds, District, Doorway, Shopfront } from '../types';
 import { BuildingKit, BuildingSpec, Archetype } from './BuildingKit';
 import { CityBatch } from './CityBatch';
 import { Materials, random } from './Materials';
+import { signBusiness } from '../simulation/WorldRules';
 
 /** Metre-scale compact district. Each frontage uses the same local +Z kit convention. */
 export class NeighborhoodGenerator {
   constructor(private readonly seed = 8412) {}
   generate(): District {
     const b = new CityBatch(), m = new Materials(), rng = random(this.seed);
-    const kit = new BuildingKit(b, m, rng), colliders: Bounds[] = [], doors: Doorway[] = [], lamps: THREE.Vector3[] = [];
+    const kit = new BuildingKit(b, m, rng), colliders: Bounds[] = [], doors: Doorway[] = [], lamps: THREE.Vector3[] = [], shopfronts: Shopfront[] = [];
     let buildings = 0;
     const add = (s: BuildingSpec, main = false) => {
       kit.build(s); buildings++;
       const corners = [[-s.width / 2 - .15, .1], [s.width / 2 + .95, -s.depth]].map(([x, z]) => new THREE.Vector3(x, 0, z).applyAxisAngle(new THREE.Vector3(0, 1, 0), s.rotation).add(new THREE.Vector3(s.x, 0, s.z)));
       colliders.push({ minX: Math.min(corners[0].x, corners[1].x), maxX: Math.max(corners[0].x, corners[1].x), minZ: Math.min(corners[0].z, corners[1].z), maxZ: Math.max(corners[0].z, corners[1].z) });
-      if (main) doors.push({ x: s.x + (s.x < 0 ? .3 : -.3), z: s.z, sidewalkX: s.x < 0 ? -4.8 : 4.8 });
+      const business = s.kind === 'apartment' ? 'residential' : s.kind === 'office' ? 'office' : s.kind === 'convenience' ? 'convenience' : signBusiness(s.shop);
+      shopfronts.push({ x: s.x, z: s.z, rotation: s.rotation, width: s.width, business });
+      if (main) {
+        const point = new THREE.Vector3(s.width * .2, 0, .48).applyAxisAngle(THREE.Object3D.DEFAULT_UP, s.rotation);
+        doors.push({ x: s.x + point.x, z: s.z + point.z, sidewalkX: s.x < 0 ? -4.55 : 4.55, business });
+      }
     };
     this.roads(b, m);
     for (const side of [-1, 1]) for (const [start, end] of [[-51, -28.5], [-21.5, 4], [20.5, 61]]) {
@@ -26,7 +32,9 @@ export class NeighborhoodGenerator {
         const choice = Math.floor(rng() * 9);
         const kind: Archetype = choice < 3 ? 'izakaya' : choice < 5 ? 'retail' : choice < 7 ? 'apartment' : choice === 7 ? 'office' : 'convenience';
         const floors = kind === 'izakaya' ? 3 + Math.floor(rng() * 2) : kind === 'office' ? 6 + Math.floor(rng() * 3) : 3 + Math.floor(rng() * 4);
-        add({ x: side * (6.25 + (kind === 'apartment' ? .7 : rng() * .3)), z: cursor + width / 2, rotation: -side * Math.PI / 2, width, depth, floors, kind, palette: Math.floor(rng() * 8), shop: Math.floor(rng() * 16) }, true);
+        const x = side * (6.25 + (kind === 'apartment' ? .7 : rng() * .3)), palette = Math.floor(rng() * 8), value = Math.floor(rng() * 16);
+        const choices = kind === 'izakaya' ? [0, 1, 5, 9, 14] : [2, 6, 7, 8, 10, 11, 13, 20, 22];
+        add({ x, z: cursor + width / 2, rotation: -side * Math.PI / 2, width, depth, floors, kind, palette, shop: choices[value % choices.length] }, true);
         cursor += width + .45 + rng() * .65;
       }
     }
@@ -41,9 +49,9 @@ export class NeighborhoodGenerator {
       if (Math.abs(z - 12) < 16) continue;
       add({ x, z, rotation: i < 6 ? Math.PI / 2 : -Math.PI / 2, width: 9 + rng() * 4, depth: 8 + rng() * 7, floors: 7 + Math.floor(rng() * 9), kind: 'office', palette: 4 + i % 4, shop: 15 });
     }
-    b.origin(); this.streetProps(b, m, lamps, rng); this.railway(b, m, colliders); this.alley(b, m);
+    b.origin(); this.streetProps(b, m, lamps, rng, colliders); this.railway(b, m, colliders); this.alley(b, m);
     const group = b.finish(m.signs); group.name = `Shinmachi · seed ${this.seed}`;
-    return { group, colliders, doors, lamps, materials: { signs: m.signs, windows: m.windows, warmWindows: m.warmWindows, lamps: m.lamps, shop: m.shop }, stats: { buildings, instances: b.instances } };
+    return { group, colliders, doors, shopfronts, lamps, materials: { signs: m.signs, windows: m.windows, warmWindows: m.warmWindows, lamps: m.lamps, shop: m.shop, lantern: m.lantern, businesses: m.businesses }, stats: { buildings, instances: b.instances } };
   }
   private roads(b: CityBatch, m: Materials): void {
     b.b(m.asphalt, 0, -.12, 0, 150, .2, 150);
@@ -69,8 +77,9 @@ export class NeighborhoodGenerator {
     }
     for (let x = -65; x < 66; x += 6) if (Math.abs(x) > 8) b.b(m.yellow, x, .012, 12, 3.3, .018, .1);
     for (const z of [2.6, 21.4]) for (let x = -3.25; x < 3.5; x += .85) b.b(m.marking, x, .02, z, .45, .022, 2.45);
-    for (const x of [-7.8, 7.8]) for (let z = 8; z < 16.5; z += 1.05) b.b(m.marking, x, .02, z, 2.2, .022, .55);
-    b.b(m.marking, 1.8, .024, 24.1, 3.1, .022, .28); b.b(m.marking, -1.8, .024, 18.8, 3.1, .022, .28);
+    for (const x of [-7.8, 7.8]) for (let z = 7.4; z < 17; z += 1.05) b.b(m.marking, x, .02, z, 2.2, .022, .55);
+    b.b(m.marking, -1.8, .024, 24.1, 3.1, .022, .28); b.b(m.marking, 1.8, .024, -.3, 3.1, .022, .28);
+    b.b(m.marking, 10.2, .024, 14.2, .28, .022, 4); b.b(m.marking, -10.2, .024, 9.8, .28, .022, 4);
     b.b(m.asphalt, 44, .01, -35, 12, .03, 17);
     for (let i = 0; i < 5; i++) { b.b(m.marking, 38.4 + i * 2.5, .035, -35, .1, .02, 5); b.b(m.cream, 39.5 + i * 2.5, .14, -37, 1.4, .2, .25); }
     b.b(m.windows, 48, .95, -29, .8, 1.9, .55); b.sign(18, 48, 2.5, -28.7, 2.1, 1.2);
@@ -80,11 +89,13 @@ export class NeighborhoodGenerator {
       b.b(m.dark, 1.6, .003, z - 4, 1.1, .013, 1.8);
     }
   }
-  private streetProps(b: CityBatch, m: Materials, lamps: THREE.Vector3[], rng: () => number): void {
+  private streetProps(b: CityBatch, m: Materials, lamps: THREE.Vector3[], rng: () => number, colliders: Bounds[]): void {
+    const block = (x: number, z: number, w: number, d: number) => colliders.push({ minX: x - w / 2, maxX: x + w / 2, minZ: z - d / 2, maxZ: z + d / 2 });
     for (const side of [-1, 1]) {
       const poleX = side * 5.5;
       for (let z = -49; z <= 61; z += 18) {
         if (z > 5 && z < 20) continue;
+        block(poleX, z, .27, .27);
         b.part('cylinder', m.facades[1], poleX, 4.1, z, .12, 8.2, .12); b.b(m.dark, poleX, 7.35, z, 1.6, .12, .12);
         b.part('cylinder', m.metal, poleX + .3, 6.65, z, .28, .7, .28);
         for (const dx of [-.6, 0, .6]) {
@@ -100,14 +111,16 @@ export class NeighborhoodGenerator {
     for (const side of [-1, 1]) for (const z of [-44, -35, -14, -4, 31, 43, 54]) {
       for (const dz of [-1.2, 1.2]) b.part('cylinder', m.white, side * 3.95, .64, z + dz, .04, 1.1, .04);
       for (const y of [.45, .94]) b.b(m.white, side * 3.95, y, z, .055, .055, 2.4);
+      block(side * 3.95, z, .09, 2.5);
     }
     for (const side of [-1, 1]) for (const z of [19.4, 23.4, .5, 4.6]) {
       b.part('cylinder', m.dark, side * 4.05, .48, z, .075, .85, .075); b.part('cylinder', m.white, side * 4.05, .72, z, .078, .1, .078);
     }
-    for (const [x, z, r] of [[-5.7, 36, Math.PI / 2], [5.8, -16, -Math.PI / 2], [-5.8, -35, Math.PI / 2], [32.8, 41, -Math.PI / 2]]) { b.origin(x, z, r); this.vending(b, m); b.origin(); }
-    for (const side of [-1, 1]) for (const z of [-38, -31, -10, 28, 35, 50]) { b.origin(side * 5.6, z, side * .15); this.bicycle(b, m); b.origin(); }
+    for (const [x, z, r] of [[-5.7, 36, Math.PI / 2], [5.8, -16, -Math.PI / 2], [-5.8, -35, Math.PI / 2], [32.8, 41, -Math.PI / 2]]) { b.origin(x, z, r); this.vending(b, m); b.origin(); block(x, z, .66, 1.08); }
+    for (const side of [-1, 1]) for (const z of [-38, -31, -10, 28, 35, 50]) { b.origin(side * 5.6, z, side * .15); this.bicycle(b, m); b.origin(); block(side * 5.6, z, .5, 1.65); }
     for (const z of [-42, -14, 32, 49]) {
       b.b(m.wood, -5.3, .34, z + 1, .55, .65, .7);
+      block(-5.3, z + 1, .58, .75);
       for (let i = 0; i < 13; i++) b.part('sphere', m.green, -5.3 + (rng() - .5) * .6, .7 + rng() * .65, z + 1 + (rng() - .5) * .7, .14 + rng() * .12, .2, .14);
     }
     b.b(m.metal, 32.6, .65, -9, .9, 1.2, 2.7);
@@ -123,6 +136,19 @@ export class NeighborhoodGenerator {
     b.part('triangle', m.red, 32, 2.65, 19.51, .76, .76, 1);
     b.sign(17, 32, 2.7, 19.52, .4, .18);
     b.b(m.marking, 30, .026, 19.5, 3.8, .02, .22);
+    // Maintenance cones guard the gutter repair; delivery scooters occupy the residential edge.
+    for (const z of [-8, -6.5]) {
+      b.b(m.dark, 3.25, .045, z, .4, .07, .4);
+      b.part('cylinder', m.red, 3.25, .28, z, .14, .42, .14);
+      b.part('cylinder', m.white, 3.25, .34, z, .145, .1, .145);
+    }
+    for (const z of [34, 36]) {
+      b.b(m.dark, 32.6, .48, z, .44, .3, 1.3); b.b(m.white, 32.6, .62, z - .3, .5, .55, .7);
+      b.b(m.dark, 32.6, .9, z - .3, .4, .08, .6); b.b(m.white, 32.6, .8, z + .47, .43, .6, .16);
+      for (const dz of [-.57, .57]) b.part('cylinder', m.dark, 32.6, .25, z + dz, .22, .12, .22, 0, 0, Math.PI / 2);
+      b.b(m.metal, 32.6, 1.15, z + .5, .6, .035, .035); b.b(m.lamps, 32.6, .94, z + .58, .2, .15, .035);
+      block(32.6, z, .55, 1.6);
+    }
     for (const [x, z] of [[24, -48], [28, 58], [-26, 34]]) this.tree(b, m, x, z, rng);
     for (let i = 0; i < 4; i++) {
       const x = 39.6 + i * 2.5, z = -35;
@@ -161,6 +187,7 @@ export class NeighborhoodGenerator {
     }
     b.cable(new THREE.Vector3(-20, 3.7, -25), new THREE.Vector3(24, 3.7, -25), .5); b.sign(23, -4.6, 4.1, -24.3, 2.5, .65, Math.PI / 2);
     for (const x of [-15, -11, 13, 18]) { b.b(m.cream, x, .6, -22.9, .8, 1.2, .55); for (let i = 0; i < 6; i++) b.b(m.metal, x, .3 + i * .11, -23.2, .64, .035, .025); b.b(m.wood, x + 1, .3, -22.9, .55, .6, .5); }
+    for (const x of [-11, 13]) { b.part('cylinder', m.metal, x, 2.35, -22.8, .11, 1.6, .11); b.b(m.metal, x, 3.1, -22.8, .42, .09, .38); }
     // Human-scale alley bars: recessed entrances, wood battens, noren, menu boards.
     for (const side of [-1, 1]) for (const x of [-17, -12, 11, 16, 21]) {
       b.origin(x, -25 + side * 2.65, side > 0 ? Math.PI : 0);

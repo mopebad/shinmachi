@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { BUSINESSES, signBusiness } from '../simulation/WorldRules';
 
 type Batch = { geometry: THREE.BufferGeometry; material: THREE.Material; matrices: THREE.Matrix4[]; colors: THREE.Color[] };
 
@@ -14,6 +15,7 @@ export class CityBatch {
   private readonly transform = new THREE.Matrix4();
   private readonly signPositions: number[] = []; private readonly signUVs: number[] = [];
   private readonly signIndices: number[] = []; private readonly wirePositions: number[] = [];
+  private readonly signBusinesses: number[] = [];
   instances = 0;
 
   origin(x = 0, z = 0, rotation = 0, y = 0): void {
@@ -37,6 +39,7 @@ export class CityBatch {
     const matrix = new THREE.Matrix4().multiplyMatrices(this.transform, new THREE.Matrix4().makeRotationY(rotation).setPosition(x, y, z));
     for (const [vx, vy] of [[-w / 2, -h / 2], [w / 2, -h / 2], [w / 2, h / 2], [-w / 2, h / 2]]) {
       const p = new THREE.Vector3(vx, vy, 0).applyMatrix4(matrix); this.signPositions.push(p.x, p.y, p.z);
+      this.signBusinesses.push(BUSINESSES.indexOf(signBusiness(index)));
     }
     const u = index % 8 / 8, v = 1 - (Math.floor(index / 8) + 1) / 8, e = .001;
     this.signUVs.push(u + e, v + e, u + .125 - e, v + e, u + .125 - e, v + .125 - e, u + e, v + .125 - e);
@@ -57,6 +60,7 @@ export class CityBatch {
       mesh.castShadow = batch.geometry !== this.torus; mesh.receiveShadow = true; mesh.computeBoundingSphere(); group.add(mesh);
     }
     const geometry = new THREE.BufferGeometry(); geometry.setAttribute('position', new THREE.Float32BufferAttribute(this.signPositions, 3)); geometry.setAttribute('uv', new THREE.Float32BufferAttribute(this.signUVs, 2)); geometry.setIndex(this.signIndices); geometry.computeVertexNormals();
+    geometry.setAttribute('aBusiness', new THREE.Float32BufferAttribute(this.signBusinesses, 1));
     group.add(new THREE.Mesh(geometry, signMaterial));
     const wires = new THREE.BufferGeometry(); wires.setAttribute('position', new THREE.Float32BufferAttribute(this.wirePositions, 3)); group.add(new THREE.LineSegments(wires, new THREE.LineBasicMaterial({ color: 0x20272b })));
     return group;

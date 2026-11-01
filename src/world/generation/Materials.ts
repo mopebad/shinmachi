@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { BUSINESSES } from '../simulation/WorldRules';
+import type { Business } from '../simulation/WorldRules';
 
 /** Reproducible local textures: no asset CDN, image downloads, or font service. */
 export function random(seed: number): () => number {
@@ -121,11 +123,24 @@ export class Materials {
   readonly shop = new THREE.MeshStandardMaterial({ color: 0xd3b883, roughness: .5, emissive: 0xffc67d, emissiveIntensity: .5 });
   readonly lamps = new THREE.MeshStandardMaterial({ color: 0xffe8b7, roughness: .3, emissive: 0xffcb7c, emissiveIntensity: 3 });
   readonly lantern = new THREE.MeshStandardMaterial({ color: 0xdc6a3b, roughness: .8, emissive: 0xff722d, emissiveIntensity: .65 });
+  readonly shopGlass = new THREE.MeshStandardMaterial({ color: 0xa9c4c7, transparent: true, opacity: .12, metalness: .25, roughness: .15, depthWrite: false });
+  readonly businesses = Object.fromEntries(BUSINESSES.map(kind => [kind, {
+    surface: new THREE.MeshStandardMaterial({ color: kind === 'convenience' ? 0xd9dfd5 : kind === 'residential' ? 0xb0b3a5 : 0xc4ab83, roughness: .83, emissive: kind === 'convenience' ? 0xd2eadc : 0xe8b974, emissiveIntensity: .2 }),
+    light: new THREE.MeshStandardMaterial({ color: kind === 'convenience' ? 0xe8f6ed : 0xffd6a0, emissive: kind === 'convenience' ? 0xdfffe9 : 0xffc78a, emissiveIntensity: 1.5 }),
+    window: new THREE.MeshStandardMaterial({ color: 0xb3ad96, roughness: .3, metalness: .12, emissive: kind === 'office' ? 0xc4d9dc : 0xe9bd81, emissiveIntensity: .15 }),
+  }])) as Record<Business, { surface: THREE.MeshStandardMaterial; light: THREE.MeshStandardMaterial; window: THREE.MeshStandardMaterial }>;
   readonly signs: THREE.MeshStandardMaterial;
   readonly facades: THREE.MeshStandardMaterial[];
   constructor() {
     const atlas = signAtlas();
     this.signs = new THREE.MeshStandardMaterial({ map: atlas, emissiveMap: atlas, emissive: 0xffffff, emissiveIntensity: .4, roughness: .55, side: THREE.DoubleSide });
+    this.signs.userData.openStates = { value: new Float32Array(6).fill(1) };
+    this.signs.onBeforeCompile = shader => {
+      shader.uniforms.uOpenStates = this.signs.userData.openStates;
+      shader.vertexShader = shader.vertexShader.replace('#include <common>', '#include <common>\nattribute float aBusiness; varying float vBusiness;').replace('#include <begin_vertex>', '#include <begin_vertex>\nvBusiness=aBusiness;');
+      shader.fragmentShader = shader.fragmentShader.replace('#include <common>', '#include <common>\nuniform float uOpenStates[6]; varying float vBusiness;').replace('#include <emissivemap_fragment>', '#include <emissivemap_fragment>\ntotalEmissiveRadiance *= uOpenStates[int(vBusiness + .5)];');
+    };
+    this.signs.customProgramCacheKey = () => 'scheduled-sign-atlas-v1';
     this.facades = [0xd7d0bb, 0x9b9890, 0xb2b4ab, 0x817773, 0x637477, 0xc2b4a0, 0xadb1af, 0x6f7375].map((color, i) => new THREE.MeshStandardMaterial({ color, map: i % 2 ? this.tileMap : this.concreteMap, roughness: .87 }));
     for (const material of [...this.facades, this.pavement, this.cream, this.marking, this.wood]) worldTexture(material, .48);
     worldTexture(this.asphalt, 1.8);

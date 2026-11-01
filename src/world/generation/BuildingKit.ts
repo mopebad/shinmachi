@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { CityBatch } from './CityBatch';
 import { Materials } from './Materials';
+import { signBusiness } from '../simulation/WorldRules';
 
 export type Archetype = 'izakaya' | 'retail' | 'apartment' | 'office' | 'convenience';
 export interface BuildingSpec { x: number; z: number; rotation: number; width: number; depth: number; floors: number; kind: Archetype; palette: number; shop: number }
@@ -14,7 +15,7 @@ export class BuildingKit {
     b.origin(s.x, s.z, s.rotation);
     // Recessed retail level, upper masonry, projecting floor bands and a real roof silhouette.
     b.b(facade, 0, (h + 3) / 2, -d / 2, w, h - 3, d);
-    b.b(m.dark, 0, 1.5, -d / 2 - .35, w - .15, 3, d - .7);
+    b.b(facade, 0, 1.5, -d / 2 - 1.6, w - .15, 3, d - 3.2);
     b.b(m.pavement, 0, .14, -d / 2 + .2, w + .2, .28, d + .5);
     for (const x of [-w / 2 + .12, w / 2 - .12]) b.b(facade, x, 1.55, -.14, .25, 3.1, .65);
     for (let f = 1; f <= floors; f++) b.b(kind === 'office' ? m.metal : m.cream, 0, f * 2.85 + .15, -d / 2 + .04, w + .12, .16, d + .2);
@@ -24,7 +25,7 @@ export class BuildingKit {
       const fy = floor * 2.85 + 1.35;
       for (let col = 0; col < columns; col++) {
         const x = (col + .5) * (w - .7) / columns - (w - .7) / 2;
-        this.window(x, fy, .04, (w - 1) / columns - .15, kind === 'office' ? 1.95 : 1.55, this.rng() < .32);
+        this.window(x, fy, .04, (w - 1) / columns - .15, kind === 'office' ? 1.95 : 1.55, this.rng() < .32, m.businesses[kind === 'apartment' ? 'residential' : 'office'].window);
         if (kind !== 'office' && col === columns - 1) this.aircon(x + .12, fy - 1, .22);
       }
       if (kind === 'apartment') this.balcony(w, fy - .9, floor);
@@ -56,10 +57,10 @@ export class BuildingKit {
     b.origin();
   }
 
-  private window(x: number, y: number, z: number, w: number, h: number, lit: boolean): void {
+  private window(x: number, y: number, z: number, w: number, h: number, lit: boolean, lightMaterial?: THREE.Material): void {
     const b = this.b, m = this.m;
     b.b(m.dark, x, y, z, w + .13, h + .12, .13);
-    b.b(lit ? m.warmWindows : m.windows, x, y, z + .08, w, h, .035);
+    b.b(lit ? lightMaterial ?? m.warmWindows : m.windows, x, y, z + .08, w, h, .035);
     b.b(m.metal, x, y, z + .13, .035, h, .045);
     b.b(m.cream, x, y - h / 2 - .04, z + .17, w + .2, .1, .26);
     if (lit) { b.b(m.cream, x - w * .35, y, z + .105, w * .18, h, .018); b.b(m.cream, x + w * .35, y, z + .105, w * .18, h, .018); }
@@ -83,25 +84,56 @@ export class BuildingKit {
     } else { this.aircon(w / 2 - .65, y + .3, .35); }
   }
   private store(s: BuildingSpec): void {
-    const b = this.b, m = this.m, w = s.width, shop = s.kind === 'convenience' ? 12 : s.shop;
-    // Individual panes, door frames, handles, sill, counter, shelves and merchandise.
-    b.b(m.shop, 0, 1.35, -.2, w - .6, 2.3, .08);
+    const b = this.b, m = this.m, w = s.width, shop = s.kind === 'convenience' ? 12 : s.kind === 'apartment' || s.kind === 'office' ? 15 : s.shop;
+    const business = s.kind === 'apartment' ? 'residential' : s.kind === 'office' ? 'office' : signBusiness(shop), interior = m.businesses[business];
+    // A real 3m-deep room behind lightly reflective glass, not an opaque luminous window.
+    b.b(interior.surface, 0, 1.45, -3.1, w - .5, 2.6, .12);
+    b.b(business === 'convenience' ? m.pavement : m.wood, 0, .3, -1.5, w - .4, .12, 3.15);
+    b.b(interior.surface, 0, 2.74, -1.5, w - .4, .13, 3.1);
+    for (const x of [-w / 2 + .18, w / 2 - .18]) b.b(interior.surface, x, 1.45, -1.5, .15, 2.6, 3.1);
+    b.b(m.shopGlass, 0, 1.35, .06, w - .6, 2.3, .025);
     b.b(m.dark, 0, .35, .06, w - .5, .5, .15);
     const panes = Math.max(3, Math.round(w / 1.15));
     for (let i = 0; i <= panes; i++) b.b(m.metal, -w / 2 + .3 + i * (w - .6) / panes, 1.4, .14, .055, 2.45, .08);
     b.b(m.metal, 0, 2.55, .1, w - .45, .08, .1);
     b.b(m.dark, w * .2, 1.23, -.04, .88, 2.25, .08);
-    b.b(m.windows, w * .2, 1.3, .025, .78, 2.03, .025);
+    b.b(m.shopGlass, w * .2, 1.3, .12, .78, 2.03, .025);
     b.b(m.cream, w * .2 - .28, 1.1, .14, .035, .4, .08);
-    b.b(m.cream, -w * .18, .7, .02, w * .42, .12, .3);
-    for (let shelf = 0; shelf < 3; shelf++) {
-      b.b(m.wood, -w * .18, .8 + shelf * .42, -.01, w * .4, .045, .24);
-      for (let j = 0; j < 9; j++) {
-        const px = -w * .37 + j * w * .045, py = .94 + shelf * .42;
-        if (j % 3) { b.part('cylinder', [m.red, m.green, m.white, m.yellow][(j + shelf) % 4], px, py, .06, .065, .22, .065); b.b(m.cream, px, py + .01, .13, .08, .06, .012); }
-        else { b.b(m.white, px, py, .06, .15, .27, .12); b.b(m.red, px, py + .04, .13, .11, .035, .012); }
+    if (business === 'restaurant') {
+      b.b(m.wood, -w * .12, .82, -1.9, w * .72, .95, .58);
+      b.b(m.cream, -w * .12, 1.33, -1.85, w * .75, .1, .8);
+      for (let i = 0; i < 4; i++) {
+        const x = -w * .36 + i * w * .17;
+        b.part('cylinder', m.red, x, .84, -.94, .22, .12, .22); b.part('cylinder', m.metal, x, .53, -.94, .04, .6, .04); b.part('cylinder', m.metal, x, .32, -.94, .2, .04, .2);
+        b.part('sphere', m.cream, x, 1.42, -1.6, .13, .055, .13);
+        b.b(m.metal, x, 2.46, -1.9, .025, .42, .025); b.part('cylinder', m.dark, x, 2.23, -1.9, .23, .18, .23); b.part('cylinder', interior.light, x, 2.13, -1.9, .18, .02, .18);
       }
+      b.sign(9, -w * .2, 2.1, -3.02, w * .48, .7);
+      b.b(m.metal, w * .31, 1.05, -2.55, .75, 1.4, .65);
+    } else if (business === 'cafe') {
+      for (const x of [-w * .28, w * .24]) {
+        b.part('cylinder', m.wood, x, .93, -1.4, .5, .09, .5); b.part('cylinder', m.dark, x, .6, -1.4, .055, .6, .055);
+        for (const z of [-.75, -2]) { b.b(m.wood, x, .57, z, .45, .08, .45); b.b(m.wood, x, .88, z + (z < -1 ? -.2 : .2), .45, .6, .06); for (const dx of [-.17, .17]) b.b(m.dark, x + dx, .4, z, .025, .4, .32); }
+        b.part('cylinder', m.white, x, 1.05, -1.4, .07, .13, .07);
+      }
+      b.b(m.wood, -w * .25, 1, -2.6, w * .4, 1.3, .55); b.b(m.metal, -w * .25, 1.75, -2.6, .6, .4, .35); b.sign(2, w * .22, 2, -3.01, 1.1, .75);
+    } else if (business === 'residential' || business === 'office') {
+      b.b(m.wood, 0, .85, -2.5, w * .55, 1.05, .55);
+      for (let row = 0; row < 3; row++) for (let col = 0; col < 5; col++) b.b(m.metal, -w * .3 + col * .28, .8 + row * .28, -3, .25, .25, .05);
+      b.b(m.dark, w * .25, 1.45, -3, .8, 2.2, .05); b.b(m.metal, w * .25, 1.6, -2.95, .025, 1.8, .03);
+    } else {
+      for (let shelf = 0; shelf < 4; shelf++) {
+        b.b(m.white, -w * .18, .65 + shelf * .46, -1.65, w * .5, .055, .46);
+        for (let j = 0; j < 10; j++) { const px = -w * .39 + j * w * .046, py = .81 + shelf * .46;
+          if (j % 3) b.part('cylinder', [m.red, m.green, m.white, m.yellow][(j + shelf) % 4], px, py, -1.55, .065, .23, .065);
+          else b.b(m.white, px, py, -1.55, .15, .28, .15);
+          b.b(j % 2 ? m.red : m.cream, px, py, -1.46, .08, .04, .015);
+        }
+      }
+      b.b(m.cream, w * .3, .83, -2.15, w * .28, 1.05, .65); b.b(m.dark, w * .3, 1.46, -2.15, .35, .22, .23);
+      b.sign(20, w * .3, 2.2, -3, 1.2, .55);
     }
+    for (const x of [-w * .25, w * .25]) b.b(interior.light, x, 2.65, -1.3, w * .35, .035, .13);
     b.b(m.dark, 0, 3.06, .18, w - .25, .94, .27);
     b.sign(shop, 0, 3.06, .325, w - .43, .78);
     if (s.kind === 'izakaya' || s.kind === 'retail') {

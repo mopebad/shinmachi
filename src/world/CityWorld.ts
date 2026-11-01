@@ -8,12 +8,17 @@ import { NeighborhoodGenerator } from './generation/NeighborhoodGenerator';
 import { PlayerController, CameraMode } from './controls/PlayerController';
 import { CityActivity } from './simulation/CityActivity';
 import { District } from './types';
+import { CitySoundscape } from './audio/CitySoundscape';
+import { BUSINESSES, businessOpen, dayState, districtZone } from './simulation/WorldRules';
+import type { Business } from './simulation/WorldRules';
+import { StreetAtmosphere } from './effects/StreetAtmosphere';
 
 const LOCATIONS = [
   { name: 'Shinmachi-dori', eye: [4.7, 1.82, 43], target: [-1, 5, -25] },
   { name: 'Lantern alley', eye: [-16, 1.82, -25], target: [6, 2.3, -25] },
   { name: 'Station square', eye: [17, 1.82, -39], target: [19, 3.2, -50] },
   { name: 'District overview', eye: [44, 43, 58], target: [0, 7, -10] },
+  { name: 'Residential lane', eye: [29.1, 1.82, 43], target: [28.5, 2.5, -14] },
 ];
 
 export class CityWorld {
@@ -22,11 +27,13 @@ export class CityWorld {
   readonly renderer: THREE.WebGLRenderer;
   readonly controller: PlayerController;
   readonly activity: CityActivity;
+  readonly audio = new CitySoundscape();
+  private readonly atmosphere: StreetAtmosphere;
   private readonly district: District;
   private readonly composer: EffectComposer;
   private readonly sun = new THREE.DirectionalLight(0xffedd3, 3);
   private readonly ambient = new THREE.HemisphereLight(0xa3c5dc, 0x645c4c, 1.5);
-  private readonly practicals: { light: THREE.PointLight; power: number }[] = [];
+  private readonly practicals: { light: THREE.PointLight; power: number; business?: Business }[] = [];
   private readonly sky: THREE.Mesh<THREE.SphereGeometry, THREE.ShaderMaterial>;
   private readonly fog = new THREE.FogExp2(0x9caaa9, .008);
   private last = performance.now(); private fps = 60; private location = 0;
@@ -55,12 +62,14 @@ export class CityWorld {
     this.district = new NeighborhoodGenerator(this.readSeed()).generate(); this.scene.add(this.district.group);
     // Bounded set of non-shadowed practical lights: pools of light, not a light per sign.
     for (const position of this.district.lamps.filter((_, i) => i % 2 === 0)) this.practical(position, 0xffd4a0, 30, 15);
-    for (const side of [-1, 1]) for (const z of [-38, -12, 29, 49]) this.practical(new THREE.Vector3(side * 5.5, 2.5, z), side > 0 ? 0xffb969 : 0x80c9d5, 24, 10);
-    this.practical(new THREE.Vector3(0, 3, -25), 0xffab5c, 22, 15);
-    for (const x of [-15, -9, 12, 19]) this.practical(new THREE.Vector3(x, 2.7, -25), 0xffbc7b, 19, 9);
+    this.district.shopfronts.filter(s => Math.abs(s.x) < 9).forEach((s, i) => { if (i % 3 === 0) { const p = new THREE.Vector3(0, 2.3, -.6).applyAxisAngle(THREE.Object3D.DEFAULT_UP, s.rotation).add(new THREE.Vector3(s.x, 0, s.z)); this.practical(p, s.business === 'convenience' ? 0xc5e9d8 : 0xffcc94, 32, 11, s.business); } });
+    this.practical(new THREE.Vector3(0, 3, -25), 0xffab5c, 22, 15, 'restaurant');
+    for (const x of [-15, -9, 12, 19]) this.practical(new THREE.Vector3(x, 2.7, -25), 0xffbc7b, 19, 9, 'restaurant');
     this.practical(new THREE.Vector3(18, 3.3, -47), 0xe6fff4, 45, 17);
-    this.activity = new CityActivity(this.scene, this.district.doors);
+    this.activity = new CityActivity(this.scene, this.district);
+    this.atmosphere = new StreetAtmosphere(this.scene, this.district);
     this.controller = new PlayerController(this.camera, this.renderer.domElement, this.district.colliders);
+    this.renderer.domElement.addEventListener('pointerdown', () => { if (this.audio.status === 'start') void this.audio.start().catch(() => {}); });
     this.teleport(0);
     const target = new THREE.WebGLRenderTarget(innerWidth, innerHeight, { type: THREE.HalfFloatType }); target.samples = 2;
     this.composer = new EffectComposer(this.renderer, target); this.composer.addPass(new RenderPass(this.scene, this.camera));
@@ -71,7 +80,7 @@ export class CityWorld {
   }
   private readSeed(): number { const value = Number(new URLSearchParams(location.search).get('seed') ?? 8412); return Number.isFinite(value) ? value >>> 0 : 8412; }
   get cameraMode(): CameraMode { return this.controller.mode; }
-  get locationName(): string { return LOCATIONS[this.location].name; }
+  get locationName(): string { return this.camera.position.y > 15 ? 'District overview' : { commercial: 'Shinmachi-dori', alley: 'Lantern alley', station: 'Station square', residential: 'Residential lane' }[districtZone(this.camera.position)]; }
   get stats() { return { fps: Math.round(this.fps), drawCalls: this.renderer.info.render.calls, triangles: this.renderer.info.render.triangles, buildings: this.district.stats.buildings, ...this.activity.stats }; }
   setPlaying(value: boolean): void { this.playing = value; }
   teleport(index: number): void {
@@ -80,8 +89,8 @@ export class CityWorld {
   }
   setTime(hour: number): void {
     this.time = ((hour % 24) + 24) % 24;
-    const elevation = Math.sin((this.time - 6) / 12 * Math.PI);
-    const day = THREE.MathUtils.smoothstep(elevation, -.12, .3), dusk = 1 - THREE.MathUtils.smoothstep(Math.abs(elevation), .04, .42), night = 1 - day;
+    const state = dayState(this.time), elevation = state.elevation;
+    const day = state.daylight, dusk = state.golden, night = state.night;
     this.sun.position.set(Math.cos((this.time - 6) / 12 * Math.PI) * 90, Math.max(5, elevation * 100), -25);
     this.sun.intensity = day * (1.1 + Math.max(0, elevation) * 2.2);
     this.sun.color.setRGB(1, .94 - dusk * .29, .83 - dusk * .4);
@@ -98,11 +107,20 @@ export class CityWorld {
     const shopsOpen = this.time > 7 && this.time < 23.5 ? 1 : .28;
     mat.shop.emissiveIntensity = (.12 + night * .85) * shopsOpen;
     mat.lamps.emissiveIntensity = .6 + night * 3;
-    this.practicals.forEach(({ light, power }) => { light.intensity = power * night; });
+    mat.lantern.emissiveIntensity = businessOpen('restaurant', this.time) ? .2 + night * 1.2 : .025;
+    BUSINESSES.forEach((kind, i) => {
+      const open = businessOpen(kind, this.time), scheduled = mat.businesses[kind];
+      scheduled.surface.emissiveIntensity = open ? .08 + night * .27 : .005;
+      scheduled.light.emissiveIntensity = open ? 1.1 + night * 2 : .015;
+      const residentialAwake = this.time < 1 || this.time > 17 ? 1 : this.time < 6 ? .18 : .4;
+      scheduled.window.emissiveIntensity = kind === 'residential' ? .05 + night * residentialAwake : open ? .05 + night * .75 : .015;
+      (mat.signs.userData.openStates.value as Float32Array)[i] = open ? 1 : .025;
+    });
+    this.practicals.forEach(({ light, power, business }) => { light.intensity = power * night * (business && !businessOpen(business, this.time) ? .02 : 1); });
     this.renderer.shadowMap.needsUpdate = true;
   }
-  private practical(position: THREE.Vector3, color: number, power: number, distance: number): void {
-    const light = new THREE.PointLight(color, power, distance, 2); light.position.copy(position); this.scene.add(light); this.practicals.push({ light, power });
+  private practical(position: THREE.Vector3, color: number, power: number, distance: number, business?: Business): void {
+    const light = new THREE.PointLight(color, power, distance, 2); light.position.copy(position); this.scene.add(light); this.practicals.push({ light, power, business });
   }
   private createSky(): THREE.Mesh<THREE.SphereGeometry, THREE.ShaderMaterial> {
     const material = new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false, uniforms: { top: { value: new THREE.Color() }, horizon: { value: new THREE.Color() }, sunDirection: { value: new THREE.Vector3() }, day: { value: 1 }, dusk: { value: 0 } },
@@ -119,9 +137,9 @@ export class CityWorld {
     const tick = (now: number) => {
       const delta = Math.min((now - this.last) / 1000, .05); this.last = now;
       this.fps = THREE.MathUtils.lerp(this.fps, 1 / Math.max(.001, delta), .03);
-      this.controller.update(delta); this.activity.update(delta, this.time);
+      this.controller.update(delta); this.activity.update(delta, this.time, this.camera.position); this.atmosphere.update(delta, this.time, this.camera);
       if (this.playing) { this.time = (this.time + delta * .06) % 24; this.lightingAccumulator += delta; if (this.lightingAccumulator > .2) { this.setTime(this.time); this.lightingAccumulator = 0; } }
-      this.sky.position.copy(this.camera.position); this.renderer.info.reset(); this.composer.render(delta); requestAnimationFrame(tick);
+      this.sky.position.copy(this.camera.position); this.camera.updateMatrixWorld(); this.audio.update(delta, this.time, this.camera, this.activity.simulation); this.renderer.info.reset(); this.composer.render(delta); requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
   }

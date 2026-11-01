@@ -2,71 +2,86 @@
 
 ## Direction
 
-A compact, metre-scale, Tokyo-inspired neighborhood that rewards walking at eye level. Dense architecture and street atmosphere take precedence over map size. This is a fictional district, not a geographically accurate reconstruction of Tokyo.
+A compact, metre-scale, Tokyo-inspired neighborhood that rewards exploration at pedestrian eye level. Prioritize coherent world logic, atmosphere, audio, density and polish over map size or extreme photorealism. This is a fictional district, not a geographically accurate reconstruction of Tokyo.
 
-## Completed: neighborhood overhaul
+## Completed milestones
 
-- Seeded, tightly packed commercial frontages; a narrower lantern alley; a residential lane; cross avenue; station forecourt and elevated railway. Default seed produces 57 buildings.
-- Five reusable architectural kits: izakaya, narrow retail, apartment, office, convenience store. Variable parcels, heights, setbacks, materials, balconies, laundry, framed windows, projecting signs, stairs, downpipes, AC units, roof tanks, antennas, and HVAC.
-- Recessed storefronts with doors, handles, shelves, bottles/cartons, striped awnings, noren, menu boards, lanterns, and crates. Alley bars have their own timber frontage kit.
-- Locally generated tiled/concrete/asphalt/paving textures, glass variation, and one Japanese sign atlas. World-space surface UVs prevent stretched paving and oversized tiles. No runtime asset/font CDN.
-- Metre-scale roads and raised sidewalks, tactile strips, gutters, manholes, zebra crossings, stop bars, signal heads, guardrails, bollards, convex mirror, inverted-triangle stop sign, and coin parking with parked kei cars.
-- Utility poles, transformers, sagging overhead cables, vending machines, tube-frame bicycles, planters, modest trees, trash cage, parcel lockers, station benches, ticket machines and turnstile silhouettes.
-- ACES filmic rendering, explicit sRGB output, environment illumination, directional shadows, sky gradient/sun/stars, atmospheric haze, restrained bloom, and bounded non-shadow-casting practical lights.
-- Scrubbable and playable day/night cycle affecting sun position/color, ambient light, sky, haze, signs, windows, shop illumination and streetlights. Late-night shop lighting dims.
-- Instanced pedestrians with walking animation, sidewalk routes, selected shop/station visits, and signal-gated road crossing. Visitors pause out of view at doorways; there are no furnished enterable interiors.
-- Left-hand, opposite-direction vehicle lanes with following gaps, acceleration, stop lines, and pedestrian signal protection. Passing three-car commuter train.
-- Hour-dependent pedestrian/car density, with morning/evening peaks and lower late-night activity.
-- Smooth walking, building-footprint collision/sliding, free flight, safe return from flight, pointer lock plus drag-look fallback, and four location presets.
-- Shared primitive geometry, instanced static kits/actors, merged atlas sign geometry, cached district shadows, capped pixel ratio, and split renderer/application bundles.
+### Neighborhood architecture overhaul
+
+- Seeded dense commercial frontage, lantern alley, residential lane, cross avenue, station forecourt and elevated railway. The default visual benchmark is seed `8412` with 57 buildings.
+- Five reusable building archetypes: izakaya, narrow retail, apartment, office and convenience store. Variable parcels/heights/setbacks, framed windows, balconies/laundry, exterior stairs, roof tanks, antennas, HVAC, drainage pipes and layered signage.
+- Japanese sign atlas and locally generated concrete/tile/paving/asphalt/glass textures; world-space surface UVs prevent stretched tiles. No remote image/font dependencies.
+- Raised sidewalks and flush residential lane, tactile strips, gutters, manholes, zebra crossings, stop bars, guardrails, bollards, convex mirror, triangular stop sign and small coin parking.
+- Utility poles, transformers, sagging cables, vending machines, tube-frame bicycles, planters, trash cage, parcel lockers, compact parked cars and a recognizable station entrance.
+- ACES rendering, sRGB output, environment illumination, cached directional shadows, sky/sun/stars, haze/fog and restrained bloom. Walk/free-flight controls and location presets.
+
+### Direction upgrade — functioning city layer
+
+- Corrected reversed lane handedness in the previous prototype. Both roads now use left-hand traffic with separate north/south and east/west phases and curved left turns.
+- One shared 80-second signal state drives visible vehicle signals, pedestrian icons, movement permissions and crossing chirps. Amber/all-red buffers and occupancy interlocks protect slow-clearing traffic and crossing users.
+- Explicit pedestrian graph connects main sidewalks, station, alleys, avenue pavements and the residential edge. Four tagged zebra crossings are the only routes across moving traffic. Building and selected prop bounds validate graph edges.
+- Pedestrians wait behind curbs, align at stripe entrances, use separate directional crossing lanes, keep following space, locally separate and avoid the camera. Corridor recovery helps avoidance offsets clear roadside props.
+- Long-run review exposed an opposing-stream deadlock. Corrected crossing entry/exit behavior and added a liveness regression: a collision-free but permanently stalled junction is not a passing result.
+- Shared day-state and business-hours rules control sun/sky, sign emission, shop/interior lights, selected practical lights and office/home windows. Convenience stores stay open around the clock. Passing trains and station activity quiet between 01:00 and 05:00.
+- Shallow, furnished street-facing interiors: restaurant counters/stools/bowls/pendants, cafe tables/chairs/cups, stocked retail shelves and apartment/office lobby fixtures. Lightweight staff and patron silhouettes add restrained motion.
+- Rounded/capsule pedestrians with clothing/bag/hair/scale variation and articulated walking. Kei cars, compacts, taxis, delivery vans and small trucks have wheel/hub silhouettes, separate running/brake emission, left-turn indicators and a bounded nighttime headlight-beam pool.
+- Hour-dependent population targets with gradual spawning/retirement and vehicle boundary exits. Shop visitors now pause at clear thresholds rather than disappearing through facade geometry.
+- Original positional/zone Web Audio: traffic/tire/engine texture, distant murmur, restaurant/station activity, crossing chirps, passing train, vending and vent hum. User-gesture start, mute/volume controls and hidden-tab fading; no downloaded recordings.
+- Kitchen exhaust steam, residential scooters and gutter-maintenance cones support specific locations. Residential preset/key 5 and zone-aware naming/audio distinguish quieter areas without increasing map size.
 
 ## Architecture
 
 | Module | Responsibility |
 | --- | --- |
-| [main.ts](./src/main.ts) | Compose world and HUD. Development-only `window.__shinmachi` supports browser diagnostics without mounting another scene. |
-| [CityWorld.ts](./src/world/CityWorld.ts) | Renderer, lighting/sky, postprocessing, simulation update, clock, presets, telemetry. |
-| [types.ts](./src/world/types.ts) | Plain district contract: collision bounds, doorways, lamp positions, materials, statistics. |
-| [NeighborhoodGenerator.ts](./src/world/generation/NeighborhoodGenerator.ts) | Seeded parcel layout, street kit, railway/station, props and district data. |
-| [BuildingKit.ts](./src/world/generation/BuildingKit.ts) | Local-coordinate architectural archetypes and layered facade/roof details. |
-| [Materials.ts](./src/world/generation/Materials.ts) | Reproducible RNG, local canvas surface textures, glass and Japanese sign atlas, world-space UV shader extension. |
-| [CityBatch.ts](./src/world/generation/CityBatch.ts) | Shared geometry/material instancing, transformed kit parts, merged atlas quads, cable lines. |
-| [CityActivity.ts](./src/world/simulation/CityActivity.ts) | Lightweight deterministic agent routes, crossing controller, lane traffic, animated instanced people/cars/train. |
-| [PlayerController.ts](./src/world/controls/PlayerController.ts) | Input, smoothing, walking collision, free flight, safe teleporting. |
-| [Hud.ts](./src/ui/Hud.ts) | Time, play/pause, exploration controls/presets, compact population/FPS readout. |
+| [main.ts](./src/main.ts) | World/HUD composition; development-only `window.__shinmachi` diagnostics. |
+| [CityWorld.ts](./src/world/CityWorld.ts) | Render loop, clock, sky/lighting, postprocessing, audio/effects composition, presets and telemetry. |
+| [types.ts](./src/world/types.ts) | District contract: bounds, doors, shopfronts, lamp positions, material channels and statistics. |
+| [NeighborhoodGenerator.ts](./src/world/generation/NeighborhoodGenerator.ts) | Seeded parcels, streets, district identity, station/rail infrastructure, props and spatial metadata. |
+| [BuildingKit.ts](./src/world/generation/BuildingKit.ts) | Local-coordinate archetypes, facade/roof kits and shallow furnished interiors. |
+| [Materials.ts](./src/world/generation/Materials.ts) | Local textures, glass, sign atlas, business lighting channels and world-space UV extension. |
+| [CityBatch.ts](./src/world/generation/CityBatch.ts) | Shared primitive instancing, merged sign quads with business attributes, cable lines. |
+| [WorldRules.ts](./src/world/simulation/WorldRules.ts) | Shared signal phases, lane/turn geometry, business/service hours, day state, density and area classification. |
+| [Navigation.ts](./src/world/simulation/Navigation.ts) | Validated pedestrian graph, tagged crossings and route search. |
+| [CitySimulation.ts](./src/world/simulation/CitySimulation.ts) | Browser-independent deterministic agents, traffic interlocks, separation and gradual population changes. |
+| [CityActivity.ts](./src/world/simulation/CityActivity.ts) | Instanced actor presentation, signal heads/icons, head/brake lights and passing train. |
+| [CitySoundscape.ts](./src/world/audio/CitySoundscape.ts) | Spatial/zone mix, moving vehicle voices, hums, chirps and audio controls. |
+| [StreetAtmosphere.ts](./src/world/effects/StreetAtmosphere.ts) | Bounded steam pool and scheduled interior silhouettes. |
+| [PlayerController.ts](./src/world/controls/PlayerController.ts) | Input, smoothing, walking collision, free flight and safe mode changes. |
+| [Hud.ts](./src/ui/Hud.ts) | Small exploration/time/audio control surface and telemetry. |
 
-Generation returns plain spatial data alongside meshes. Future navigation, district, and routine systems should consume this contract instead of inferring their state from rendered geometry. The current layout is intentionally one hand-shaped district grammar with seeded variation, not a general road-graph generator.
+Generation emits plain spatial data alongside meshes. Simulation must consume that contract rather than infer rules from rendered geometry. The current map is one authored district grammar with seeded variation, not a general city-wide road generator. Navigation rejects obstructed edges; not every generated doorway is necessarily reachable.
 
 ## Validation and visual review
 
-- `npm.cmd run check` and `npm.cmd run build`; editor diagnostics checked.
-- Development server launched; browser inspected at pedestrian height during day and night, plus alley and station views.
-- Review improvements: world-space texture scaling, revised sign typography/exposure, more varied merchandise/glass, pedestrian hair/proportions and distributed spawns, detailed alley bar frontages/lanterns, and reserved station forecourt with collision-free presets.
-- Browser simulation exercise: 112 seconds in 0.1-second steps, covering two complete 52-second signal cycles. Zero red-signal pedestrian starts and zero cars in the crossing during pedestrian green; minimum same-lane car center spacing 4.4 m.
-- Identical activity seeds produced identical initial agents. At 03:00 there were 10 pedestrians/1 car; at 08:00, 63 pedestrians/9 cars.
-- All four default-seed presets checked outside building footprint collisions. Different seed layouts reproduce deterministically; retain the default seed as the visual benchmark.
-- The engine vendor bundle is approximately 504 kB minified (128 kB gzip), slightly above Vite's default 500 kB advisory. This is a non-fatal size warning, not a build error.
+- Run `npm.cmd run check`, `npm.cmd test` and `npm.cmd run build`. Eight regression tests also run in GitHub CI.
+- Tests cover left-hand lanes, continuous turn curves, conflicting-green/occupancy interlocks, crossing-only navigation, day state and business/service hours, deterministic updates, multi-cycle safety, junction liveness and vehicle footprint separation.
+- Actual generated-world browser exercise: 600 simulated seconds across a morning-to-night density transition. The reviewed run had zero wall hits, zero unmarked-road steps and zero pedestrian/vehicle footprint overlaps; vehicle exits continued and longest crossing clearance was about 12 seconds.
+- Verified all five presets outside collision bounds. Checked daylight/night sun states and cafe/restaurant/convenience schedules at 00:00, 03:00, 08:00, noon, evening and 22:00.
+- Browser audio activation produced a running context with 17 mixed voices and nonzero output; mute faded measured output close to zero. This verifies operation, not subjective speaker/headphone mastering.
+- Street-level screenshots reviewed during day/evening/night and at restaurant, alley and residential viewpoints. Review refinements included deadlock prevention, stripe-entry alignment, near-camera avoidance, scheduled practicals, brake/headlight contrast and softer steam.
+- The Three.js vendor bundle remains slightly above Vite's default 500 kB minified advisory (about 128 kB gzip). This is a non-fatal size warning, not a compile error.
 
-## Next: fidelity and simulation depth
+## Next milestones
 
-- [ ] Higher-fidelity character/vehicle silhouettes, avoidance/separation and less abrupt population changes.
-- [ ] Connected navigation graph for all lanes/alleys; full cross-avenue traffic and turning rules. Current moving cars use the main street only.
-- [ ] Proper station stairs/platform access, station stops, passenger boarding, and believable train schedules. Current train is a passing set; station is exterior-only.
-- [ ] Per-business hours, varied window occupancy, richer shop-specific interiors/displays and opening/closing animations.
-- [ ] World-collision for every prop, vehicle and agent; stairs and other walkable elevations. Current walking uses building/station/rail-pier footprint bounds only.
-- [ ] Broader architectural silhouettes: tiled pitched roofs, curved corner lots, utility yards, distinct residential entrances and larger station architecture.
-- [ ] Rain, wet-surface reflections, puddles and weather sound. Deliberately deferred to prioritize the street/architecture overhaul.
+- [ ] Protected right turns, delivery pull-ins, richer parking and destination-based traffic. Only straight/left movements are implemented now.
+- [ ] More complete crowd avoidance/social groups, richer animation/poses and higher-quality character assets. Current local separation is deliberately lightweight, not a full crowd solver.
+- [ ] Per-tenant hours, window occupancy and physical shutter/door animations; genuine NPC entry/exit. Current visits stop at thresholds; rooms are not player-enterable.
+- [ ] Station stairs/platform access, train stops, boarding and richer timetable behavior. Current station is exterior-only and trains are passing sets within a coarse service window.
+- [ ] Collision for every prop and dynamic actor, walkable stairs/elevations. Current player collision uses building/station/pier footprints and selected key props; it is not a full physics system.
+- [ ] Soundscape mastering and optional attributed high-quality recordings; genuine conversational ambience. Current voices are unintelligible procedural texture, not natural recorded speech.
+- [ ] Rain, wet-road reflections, puddles, weather sound and seasonal variation. Deferred to preserve focus on world logic and street-level quality.
+- [ ] More architectural silhouettes and authored district identity: tiled roofs, corner lots, utility yards, station clusters, shrines and office zones.
 
-## Later: expandable city
+## Longer-term city systems
 
-- District road graph and parcel subdivision, authored district templates, hierarchical/chunked instancing, LOD/culling and streaming.
-- NPC homes/workplaces, schedules, persistence, destinations, transport choices and save/replay support.
-- Additional rail routes, buses, delivery traffic and coordination with crossings.
-- Accessibility, remappable input, touch controls, audio ambience, photo mode, seasonal variation and authoring tools.
+- Road graph/parcel generation, additional district templates, chunk-level instancing/culling, LOD and streaming.
+- NPC homes/workplaces/schedules, persistence, destinations, transport choices and save/replay support.
+- Additional rail routes, buses, delivery schedules and coordinated crossings.
+- Accessibility, remappable/touch controls, photo mode, ambience authoring and world-editing tools.
 
 ## Performance guardrails
 
-- Profile CPU generation, per-frame agent work, draw calls, triangle count, GPU lighting cost, memory and load time separately.
-- Keep the number of real lights bounded; use atlas emission for most signs. Static geometry shadows are cached and refreshed when time changes; moving agents currently do not cast dynamic shadows.
-- Avoid expanding the map before adding chunk-level culling/LOD. Current static batches span the whole compact district.
-- Do not claim an integrated-GPU frame-rate target without measuring on that hardware. The HUD reports local browser observations, not a hardware-independent benchmark.
+- Measure generation, agent CPU work, draw calls, triangles, GPU lighting, memory and load time separately.
+- Bound real lights and audio voices; prefer shared geometry/instancing and atlas emission. Cache static shadows; moving actors currently use contact shadows instead of dynamic shadow maps.
+- Keep steam, interior animation and headlights pooled. Avoid scaling the map before chunk-level culling/LOD; current static batches span the compact district.
+- Do not claim hardware-independent frame rates. HUD readings describe the local browser, not an integrated-GPU benchmark.
