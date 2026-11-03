@@ -1,0 +1,39 @@
+{
+  "name": "station2-gate-in",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 136.39999999999483,
+  "eye": [
+    14.2,
+    2,
+    -45.9
+  ],
+  "quaternion": [
+    -0.16909175607445168,
+    0.11150582883034865,
+    0.01925752553021859,
+    0.9790830280803402
+  ],
+  "fov": 55,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 60,
+    "drawCalls": 442,
+    "triangles": 4423803,
+    "buildings": 57,
+    "pedestrians": 41,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T19:59:41.543Z"
+}

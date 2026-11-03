@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { createHumanGeometry } from './HumanGeometry';
-import { legPose, pedestrianSurfaceHeight } from './CharacterPose';
+import { legPose } from './CharacterPose';
+import { stationStairPose } from './StationPose';
+import { stationFootSurface } from './StationNavigation';
 import type { CitySimulation } from './CitySimulation';
 
 function cloth(): THREE.MeshStandardMaterial {
@@ -33,7 +35,7 @@ export class HumanPresentation {
     this.features = this.pool('features', new THREE.SphereGeometry(1, 10, 8), skin, 88 * 12);
     this.details = this.pool('garment details and bags', new RoundedBoxGeometry(1, 1, 1, 2, .07), fabric, 88 * 20);
     this.joints = this.pool('sleeve and trouser joints', new THREE.SphereGeometry(1, 12, 8), fabric, 88 * 6);
-    this.contacts = this.pool('contacts', new THREE.CircleGeometry(.5, 20), new THREE.MeshBasicMaterial({ color: 0x070a0c, transparent: true, opacity: .16, depthWrite: false }), 88);
+    this.contacts = this.pool('contacts', new THREE.CircleGeometry(.5, 20), new THREE.MeshBasicMaterial({ color: 0x070a0c, transparent: true, opacity: .16, depthWrite: false }), 176);
   }
   private pool(name: string, geometry: THREE.BufferGeometry, material: THREE.Material, capacity: number): THREE.InstancedMesh {
     const mesh = new THREE.InstancedMesh(geometry, material, capacity); mesh.name = name; mesh.count = 0; mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); mesh.frustumCulled = false; mesh.receiveShadow = true; this.group.add(mesh); this.pools.set(name, mesh); return mesh;
@@ -44,10 +46,11 @@ export class HumanPresentation {
   update(simulation: CitySimulation, listener?: THREE.Vector3): void {
     this.pools.forEach(p => { p.count = 0; });
     for (const p of simulation.pedestrians) {
-      if (!p.active || (listener && Math.hypot(p.x - listener.x, p.z - listener.z) < .65)) continue;
+      if (!p.active || (listener && Math.abs(p.y+1-listener.y)<1.5 && Math.hypot(p.x - listener.x, p.z - listener.z) < .65)) continue;
       const scale = p.scale * 1.08 * (p.style === 4 ? .96 : 1), swing = p.moving ? Math.sin(p.phase) * .40 : 0;
-      const legs = [legPose(swing, -1), legPose(swing, 1)], bounce = .11 - Math.min(legs[0].ankle.y, legs[1].ankle.y);
-      const surface = pedestrianSurfaceHeight(p.x, p.z), rootY = surface - .05 * scale;
+      const stair=simulation.navigation.station?stationStairPose(simulation.navigation.station.layout,p,scale):null;
+      const legs = stair?.legs??[legPose(swing, -1), legPose(swing, 1)], bounce = stair?0:.11 - Math.min(legs[0].ankle.y, legs[1].ankle.y);
+      const surface = p.y, rootY = stair?.rootY??surface - .05 * scale;
       const skin = [0xbd9275, 0xd0aa89, 0xae8065][p.id % 3], hair = p.style === 4 ? 0x77736b : p.id % 3 ? 0x211f1c : 0x48372d;
       const shirt = p.style === 0 ? 0x343d45 : p.style === 2 ? 0x938675 : p.shirt, trousers = [0x30383f, 0x3d4245, 0x3b4853][p.id % 3];
       const part = (mesh: THREE.InstancedMesh, x: number, y: number, z: number, color: number, sx = 1, sy = 1, sz = 1, pitch = 0, roll = 0) => { const cs = Math.cos(p.yaw), sn = Math.sin(p.yaw); this.put(mesh, p.x + (x * cs + z * sn) * scale, rootY + (y + bounce) * scale, p.z + (z * cs - x * sn) * scale, sx * scale, sy * scale, sz * scale, color, p.yaw, pitch, roll); };
@@ -75,7 +78,8 @@ export class HumanPresentation {
       if (p.style === 0) { part(this.details, 0, 1.20, .116, 0x656653, .034, .23, .009); for (const side of [-1, 1]) part(this.details, side * .065, 1.25, .11, 0x2c333b, .055, .20, .016, 0, side * .29); }
       if (p.style === 1 || p.style === 3) { part(this.details, 0, 1.10, -.17, 0x41483e, .25, .32, .13); for (const side of [-1, 1]) part(this.details, side * .13, 1.15, .09, 0x353b35, .023, .34, .022, 0, side * .06); }
       if (p.style === 2) { part(this.skirt, 0, .64, .005, trousers); part(this.details, .285, .66, .015, 0x735c45, .17, .23, .105); part(this.details, .285, .815, .015, 0x64523f, .115, .075, .022); part(this.details, 0, 1.52, -.077, hair, .14, .17, .055); }
-      this.put(this.contacts, p.x, surface + .003, p.z, .56 * scale, .68 * scale, 1, 0xffffff, p.yaw, -Math.PI / 2);
+      if(stair){for(const f of stair.feet){const ground=stationFootSurface(simulation.navigation.station!.layout,f.x,f.z,f.y);if(f.grounded&&ground!==null)this.put(this.contacts,f.x,ground+.003,f.z,.18*scale,.24*scale,1,0xffffff,p.yaw,-Math.PI/2);}}
+      else this.put(this.contacts, p.x, surface + .003, p.z, .56 * scale, .68 * scale, 1, 0xffffff, p.yaw, -Math.PI / 2);
     }
     this.pools.forEach(mesh => { mesh.instanceMatrix.needsUpdate = true; if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true; });
   }

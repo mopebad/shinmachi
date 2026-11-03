@@ -6,7 +6,7 @@ export function legPose(swing: number, side: number) {
   return { hip, knee, ankle, upperRotation: -upper, lowerRotation: -lower };
 }
 
-/** Visual ground contact on the existing flat roads, raised walks and marked curb approaches. */
+/** Authoritative street foot height on the existing flat roads, raised walks and marked curb approaches. */
 export function pedestrianSurfaceHeight(x: number, z: number): number {
   const ramp = (v: number, lo: number, hi: number) => { const t = Math.max(0, Math.min(1, (v - lo) / (hi - lo))); return .03 + t * t * (3 - 2 * t) * .085; };
   if (Math.abs(z + 25) < 2.15 && Math.abs(x) > 5.7) return .012;

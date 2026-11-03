@@ -6,6 +6,7 @@ import type { District } from '../types';
 import { CitySimulation, VEHICLE_PROFILES } from './CitySimulation';
 import { CROSSINGS, dayState } from './WorldRules';
 import type { Axis } from './WorldRules';
+import { StationNavigationDebug } from './StationNavigationDebug';
 
 /** Instanced presentation only. All movement and permissions come from the tested model. */
 export class CityActivity {
@@ -16,6 +17,7 @@ export class CityActivity {
   private readonly body: THREE.InstancedMesh; private readonly glass: THREE.InstancedMesh; private readonly wheels: THREE.InstancedMesh;
   private readonly headlights: THREE.InstancedMesh; private readonly taillights: THREE.InstancedMesh; private readonly rail: CommuterRail;
   private readonly brakelights: THREE.InstancedMesh;
+  private stationDebug?: StationNavigationDebug;
   private readonly beams: THREE.SpotLight[] = [];
   private readonly contacts: THREE.InstancedMesh;
   private readonly signalMaterials: Record<Axis, THREE.MeshStandardMaterial[]> = { NS: [], EW: [] };
@@ -26,7 +28,7 @@ export class CityActivity {
 
   constructor(scene: THREE.Scene, district: District) {
     scene.add(this.group); this.group.name = 'Living street presentation';
-    this.simulation = new CitySimulation({ bounds: district.colliders, doors: district.doors });
+    this.simulation = new CitySimulation({ bounds: district.colliders, doors: district.doors, station: district.station });
     const paint = new THREE.MeshStandardMaterial({ roughness: .34, metalness: .28 });
     const glass = new THREE.MeshStandardMaterial({ color: 0x4c6c78, roughness: .16, metalness: .6 });
     const box = new THREE.BoxGeometry(1, 1, 1), rounded = new RoundedBoxGeometry(1, 1, 1, 2, .08);
@@ -39,6 +41,12 @@ export class CityActivity {
     this.contacts = this.pool(new THREE.CircleGeometry(.5, 16), new THREE.MeshBasicMaterial({ color: 0x06090a, transparent: true, opacity: .18, depthWrite: false }), 110);
     for (let i = 0; i < 3; i++) { const light = new THREE.SpotLight(0xffe3bd, 0, 24, .5, .65, 2); scene.add(light, light.target); this.beams.push(light); }
     this.signals(); this.update(0, 17.25);
+    if(import.meta.env.DEV&&new URLSearchParams(location.search).get('stationDebug')==='1')this.setStationDebug(true);
+  }
+  setStationDebug(visible:boolean):void{
+    if(!import.meta.env.DEV||!this.simulation.navigation.station)return;
+    if(!this.stationDebug&&visible)this.stationDebug=new StationNavigationDebug(this.simulation,this.group);
+    if(this.stationDebug){this.stationDebug.group.visible=visible;this.stationDebug.update(this.simulation);}
   }
   get stats() { return this.simulation.stats; }
   get pedestrianGreen(): boolean { return this.simulation.signals.walk; }
@@ -52,6 +60,7 @@ export class CityActivity {
     this.simulation.update(dt, hour, listener);
     const pools = [this.body, this.glass, this.wheels, this.headlights, this.taillights, this.brakelights, this.contacts];
     pools.forEach(p => { p.count = 0; }); this.people.update(this.simulation, listener); this.drawVehicles(); this.rail.update(this.simulation.trainX, hour);
+    this.stationDebug?.update(this.simulation);
     pools.forEach(p => { p.instanceMatrix.needsUpdate = true; if (p.instanceColor) p.instanceColor.needsUpdate = true; });
     const night = dayState(hour).night;
     this.headlightMaterial.emissiveIntensity = .4 + night * 3.2; this.tailMaterial.emissiveIntensity = .25 + night * .65; this.brakeMaterial.emissiveIntensity = 1.8 + night * 2;

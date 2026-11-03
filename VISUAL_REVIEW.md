@@ -1,5 +1,7 @@
 # Visual review — ranked discrepancies and corrective pass
 
+> Latest scoped delivery: [Station Development 2](./quality/STATION_DEVELOPMENT_2.md) adds actual NPC station journeys. Twelve real browser captures follow pedestrian 8 through entry, gates, both stair directions, waiting and city reentry; optional live overlays show connectivity, ownership and states. Render review verified tread contact, immediate idle stance and opposing stair flows. The original architecture and historical visual rankings below are preserved.
+
 > Latest scoped delivery: [Station Development 1](./quality/STATION_DEVELOPMENT_1.md) replaces disconnected station decoration with a continuous street-to-platform layout. Actual entrance, concourse, gates, stairs/rests, platform and structural exterior captures were inspected; the [plan/section](./quality/station1-layout.svg) documents connectivity. Review corrections included a ticket-area tree conflict, intermediate stair rests and low hanging platform signs. Passenger AI and boarding remain pending. Historical visual rankings below are preserved.
 
 > Subsequent scoped work: [Japanese signage and the 青空マート branch](./quality/KONBINI_REVIEW.md) continues the unfinished `4e7afa3` working state. It addresses sign distortion/contrast and one store, with actual before/after close-ups, day/overnight views, 24 passing tests and new measurements. The historical ranking and earlier pass evidence below remain intact.

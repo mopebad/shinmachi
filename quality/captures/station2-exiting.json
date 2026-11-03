@@ -1,0 +1,39 @@
+{
+  "name": "station2-exiting",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 271.3666666666669,
+  "eye": [
+    17.1,
+    2.4,
+    -41.8
+  ],
+  "quaternion": [
+    -0.09571648196541183,
+    0.27617476546442005,
+    0.027653166597089524,
+    0.9559294724915595
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 60,
+    "drawCalls": 557,
+    "triangles": 5107691,
+    "buildings": 57,
+    "pedestrians": 39,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T19:59:45.423Z"
+}

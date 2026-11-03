@@ -1,5 +1,7 @@
 # Station Development 1 — architecture and physical connectivity
 
+> Subsequent [Station Development 2](./STATION_DEVELOPMENT_2.md) implements actual NPC traversal on this architecture, includes forecourt paving in the surface contract and closes its small sidewalk gap. This document and its images/measurements remain the historical architecture milestone; its original pending-navigation statements describe that stage.
+
 Completed 3 November 2026. Scope: one coherent elevated Shinmachi Station, its rendered architecture and spatial contract. The incoming signage/convenience-store work and unrelated simulation systems were preserved. No passenger AI, boarding, stopping logic or timetable work is included.
 
 ## Audit before changes

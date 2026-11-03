@@ -1,0 +1,39 @@
+{
+  "name": "station2-entering",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 130.8666666666618,
+  "eye": [
+    17.1,
+    2.4,
+    -41.8
+  ],
+  "quaternion": [
+    -0.0778323200421988,
+    -0.15143409512627504,
+    -0.011962000822950772,
+    0.985325710273738
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 60,
+    "drawCalls": 511,
+    "triangles": 4460573,
+    "buildings": 57,
+    "pedestrians": 41,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T19:59:41.149Z"
+}

@@ -28,7 +28,7 @@ export function stationDetails(b: CityBatch, m: Materials): { group: THREE.Group
 
   for(const s of spatial.surfaces) {
     if(s.id==='lower-landing')continue; // Already part of the concourse floor, with separate semantic metadata.
-    rect(s.kind==='tread'?m.pavement:m.cream,s.minX,s.maxX,s.minZ,s.maxZ,s.y,s.thickness);
+    rect(s.kind==='tread'||s.id.startsWith('forecourt-')||s.id==='street-connection'?m.pavement:m.cream,s.minX,s.maxX,s.minZ,s.maxZ,s.y,s.thickness);
     if(s.kind==='tread'){
       const flight=spatial.flights.find(f=>s.id.startsWith(f.id))!,x=flight.to.x>flight.from.x?s.minX+.02:s.maxX-.02;
       b.b(m.yellow,x,s.y+.005,(s.minZ+s.maxZ)/2,.027,.01,s.maxZ-s.minZ-.12);
@@ -108,7 +108,6 @@ export function stationDetails(b: CityBatch, m: Materials): { group: THREE.Group
     for(const dx of [-.7,.7])b.b(m.metal,x+dx,p+.24,-48.25,.055,.48,.36);
   }
   // Existing forecourt and its street connections stay at the original ground elevation.
-  b.b(m.pavement,16,.025,-43,18,.18,12.5);
   for(const x of [10,23]){b.b(m.wood,x,.6,-42,2,.14,.5);b.b(m.wood,x,.95,-42.2,2,.6,.1);for(const dx of [-.7,.7])b.b(m.metal,x+dx,.3,-42,.08,.6,.4);}
   // A textured guide route joins the unchanged forecourt to the wide gate and stair approach.
   b.b(m.yellow,16.4,c.groundY+.012,-47.15,5.8,.018,.25);

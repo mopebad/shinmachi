@@ -1,0 +1,39 @@
+{
+  "name": "station2-ascending",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 141.7666666666612,
+  "eye": [
+    14.1,
+    2.1,
+    -49.7
+  ],
+  "quaternion": [
+    -0.04470071039750416,
+    -0.627607828824814,
+    -0.03613387164634169,
+    0.7764049220655463
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 60,
+    "drawCalls": 455,
+    "triangles": 4360491,
+    "buildings": 57,
+    "pedestrians": 41,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T19:59:42.381Z"
+}

@@ -7,7 +7,7 @@ out.push('<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1130" vie
 text(45,50,'SHINMACHI / STATION SPATIAL CONTRACT',27);text(45,80,'Metres. Derived directly from StationLayout.ts. Single existing track retained; no passenger AI or boarding.',17);
 function plan(ox,oy,scale,upper){
   const X=x=>ox+(x-8)*scale,Z=z=>oy+(z+55.5)*scale;
-  for(const r of s.surfaces.filter(r=>r.kind==='landing'||(upper?r.kind==='platform':r.kind==='concourse')))out.push('<rect x="'+X(r.minX)+'" y="'+Z(r.minZ)+'" width="'+(r.maxX-r.minX)*scale+'" height="'+(r.maxZ-r.minZ)*scale+'" fill="'+colors[r.kind]+'" stroke="#91b3b5" stroke-width="1"/>');
+  for(const r of s.surfaces.filter(r=>!r.id.startsWith('forecourt-')&&r.id!=='street-connection'&&(r.kind==='landing'||(upper?r.kind==='platform':r.kind==='concourse'))))out.push('<rect x="'+X(r.minX)+'" y="'+Z(r.minZ)+'" width="'+(r.maxX-r.minX)*scale+'" height="'+(r.maxZ-r.minZ)*scale+'" fill="'+colors[r.kind]+'" stroke="#91b3b5" stroke-width="1"/>');
   for(const f of s.flights)for(const t of f.treads)out.push('<rect x="'+X(t.minX)+'" y="'+Z(t.minZ)+'" width="'+(t.maxX-t.minX)*scale+'" height="'+(t.maxZ-t.minZ)*scale+'" fill="'+(f.id.startsWith('lower')?'#dfb46c':'#e58060')+'" stroke="#1e3440" stroke-width=".8"/>');
   for(const b of s.boxes.filter(b=>b.collision&&(upper?b.maxY>STATION.platformY&&b.minY<STATION.platformY+1.65:b.minY<.3&&b.minX<26)))out.push('<rect x="'+X(b.minX)+'" y="'+Z(b.minZ)+'" width="'+Math.max(1,(b.maxX-b.minX)*scale)+'" height="'+Math.max(1,(b.maxZ-b.minZ)*scale)+'" fill="#c5d0cf" opacity=".8"/>');
   const path=(upper?s.journey.filter(p=>p.y>=STATION.platformY-.001):s.journey.filter(p=>p.x>9&&p.y<=STATION.groundY+.001)).map(p=>X(p.x)+','+Z(p.z)).join(' ');

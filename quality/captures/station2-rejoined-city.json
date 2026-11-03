@@ -1,0 +1,39 @@
+{
+  "name": "station2-rejoined-city",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 273.33333333333513,
+  "eye": [
+    12,
+    3,
+    -40
+  ],
+  "quaternion": [
+    -0.16302035262729875,
+    -0.20289763822490797,
+    -0.034278742558202735,
+    0.9649258421457341
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 60,
+    "drawCalls": 580,
+    "triangles": 5123391,
+    "buildings": 57,
+    "pedestrians": 39,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T19:59:45.732Z"
+}

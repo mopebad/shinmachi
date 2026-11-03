@@ -1,0 +1,39 @@
+{
+  "name": "station2-upper-stairs",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 158.93333333332689,
+  "eye": [
+    23.9,
+    6.25,
+    -50.2
+  ],
+  "quaternion": [
+    0.03548533342099511,
+    0.6044453402556699,
+    -0.026966273017817968,
+    0.7953989199607558
+  ],
+  "fov": 55,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 60,
+    "drawCalls": 595,
+    "triangles": 5239387,
+    "buildings": 57,
+    "pedestrians": 41,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T19:59:42.908Z"
+}

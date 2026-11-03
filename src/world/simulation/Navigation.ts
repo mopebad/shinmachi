@@ -1,9 +1,12 @@
 import type { Bounds, Doorway } from '../types.ts';
 import { CROSSINGS } from './WorldRules.ts';
 import type { Point } from './WorldRules.ts';
+import { StationNavigation } from './StationNavigation.ts';
+import type { StationTraversal } from './StationNavigation.ts';
+import type { StationSpatial } from '../generation/StationLayout.ts';
 
-export interface NavNode extends Point { id: number; area: 'commercial' | 'alley' | 'station' | 'residential'; door?: Doorway }
-export interface NavEdge { to: number; crossing?: string }
+export interface NavNode extends Point { y: number; id: number; area: 'commercial' | 'alley' | 'station' | 'residential'; door?: Doorway; station?: string }
+export interface NavEdge { to: number; crossing?: string; station?: StationTraversal }
 export const pointBlocked = (p: Point, bounds: Bounds[], radius = .19) => bounds.some(b => p.x > b.minX - radius && p.x < b.maxX + radius && p.z > b.minZ - radius && p.z < b.maxZ + radius);
 export function segmentClear(a: Point, b: Point, bounds: Bounds[], radius = .19): boolean {
   const steps = Math.ceil(Math.hypot(a.x - b.x, a.z - b.z) * 6);
@@ -14,8 +17,9 @@ export function segmentClear(a: Point, b: Point, bounds: Bounds[], radius = .19)
 export class Navigation {
   readonly nodes: NavNode[] = [];
   readonly edges = new Map<number, NavEdge[]>();
-  constructor(bounds: Bounds[], doors: Doorway[]) {
-    const add = (x: number, z: number, area: NavNode['area'] = 'commercial', door?: Doorway) => { const id = this.nodes.length; this.nodes.push({ x, z, id, area, door }); this.edges.set(id, []); return id; };
+  readonly station?: StationNavigation;
+  constructor(bounds: Bounds[], doors: Doorway[], station?: StationSpatial) {
+    const add = (x: number, z: number, area: NavNode['area'] = 'commercial', door?: Doorway) => { const id = this.nodes.length; this.nodes.push({ x, y:.115, z, id, area, door }); this.edges.set(id, []); return id; };
     const link = (a: number, b: number, crossing?: string) => {
       if (!segmentClear(this.nodes[a], this.nodes[b], bounds)) return;
       this.edges.get(a)!.push({ to: b, crossing }); this.edges.get(b)!.push({ to: a, crossing });
@@ -60,6 +64,13 @@ export class Navigation {
       const nearest = sameSide.sort((a, b) => Math.abs(a.z - door.z) - Math.abs(b.z - door.z))[0]; if (!nearest) continue;
       const approach = add(door.sidewalkX, door.z), destination = add(door.x, door.z, 'commercial', door);
       link(nearest.id, approach); link(approach, destination);
+    }
+    if(station){
+      const anchor=this.nodes.find(n=>n.x===station.nodes.forecourt.x&&n.z===station.nodes.forecourt.z)!;
+      this.station=new StationNavigation(this.nodes,this.edges,station,anchor.id);
+      const street=this.nodes.find(n=>n.x===station.nodes.street.x&&n.z===station.nodes.street.z)!,exit=this.nodes[this.station.exitAnchor];
+      if(!segmentClear(exit,street,bounds))throw new Error('Station exit cannot reach the existing public sidewalk');
+      this.edges.get(exit.id)!.push({to:street.id});this.edges.get(street.id)!.push({to:exit.id});
     }
   }
   path(from: number, to: number): number[] {

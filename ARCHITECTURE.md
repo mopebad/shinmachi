@@ -1,10 +1,18 @@
 # Architecture
 
+## Station Development 2
+
+[StationNavigation.ts](./src/world/simulation/StationNavigation.ts) extends the existing graph with directed 3D station links derived from the station surfaces, gates, treads, landings and waiting regions. Nodes carry Y; edges carry traversal type, speed, phase, flight/gate identity and reservation resources. A separate forecourt exit reconnects to the existing public sidewalk. [StationTraffic.ts](./src/world/simulation/StationTraffic.ts) runs deterministic station errands inside the same 30 Hz CitySimulation step: pavement approach, entrance, reserved gate, paid circulation, stair ascent, reserved waiting destination, descent, exit gate and public reentry. Gate/turn ownership, bounded demand, service hours and closure draining are explicit; no separate passenger population is spawned.
+
+Pedestrians now have authoritative X/Y/Z. Street heights retain their existing curb/alley rules. [HumanPresentation.ts](./src/world/simulation/HumanPresentation.ts) reads that position, while [StationPose.ts](./src/world/simulation/StationPose.ts) places feet on real treads with connected two-bone legs. Existing city exterior routes retain their footprint reservation; station travelers validate height-bearing obstacles/surfaces. The existing forecourt paving is part of the shared contract, with one narrow apron correcting its gap to the sidewalk. Rail/traffic logic, buildings, stores, signs, lighting, audio and HUD are unchanged.
+
+[The handoff](./quality/STATION_DEVELOPMENT_2.md) records 31 passing tests, 35 completed generated-world visits, actual live-journey images, measured waits and limits. [StationNavigationDebug.ts](./src/world/simulation/StationNavigationDebug.ts) supplies an optional development overlay with live paths, state labels, waiting slots and gate ownership. Boarding, train stops and timetables remain pending.
+
 ## Station Development 1
 
 [StationLayout.ts](./src/world/generation/StationLayout.ts) now owns the station's metre-scale surfaces, structural bounds, gates, four stair flights/rests, named 3D nodes, circulation/waiting regions, platform edge and explicit connections. [StationDetails.ts](./src/world/generation/StationDetails.ts) renders that same contract. The retained track center is z = -57; the 53.5 m platform top is y = 7.455, matching the unchanged train door sill. [The plan/section](./quality/station1-layout.svg) and [exported spatial data](./quality/station1-spatial.json) derive directly from source.
 
-Generation provides separate player collision bounds and `District.station`; obstacles appended by the existing street layer are copied into the player list before controller creation. [PlayerController.ts](./src/world/controls/PlayerController.ts) follows authored station surfaces with bounded step changes and height-aware local obstacles, making the complete street-to-platform route walkable in both directions. Existing city NPCs retain flat navigation and the original station reservation/destination; no passenger behavior is implemented. Railway movement, camera presets, traffic, signage/store work, global lighting and HUD retain their existing behavior. [The handoff](./quality/STATION_DEVELOPMENT_1.md) records dimensions, references, actual captures, tests and future navigation limits.
+Generation provides separate player collision bounds and `District.station`; obstacles appended by the existing street layer are copied into the player list before controller creation. [PlayerController.ts](./src/world/controls/PlayerController.ts) follows authored station surfaces with bounded step changes and height-aware local obstacles, making the complete street-to-platform route walkable in both directions. This architecture milestone initially retained flat NPC navigation; Station Development 2 above supplies actual passenger traversal. Railway movement, camera presets, traffic, signage/store work, global lighting and HUD retain their existing behavior. [The architecture handoff](./quality/STATION_DEVELOPMENT_1.md) preserves its dimensions, references, captures and original validation boundary.
 
 ## Completed signage/store continuation
 
@@ -61,7 +69,7 @@ Runtime loading flattens compatible model primitives by material, then instances
 - The bounded practical light set still influences many material shaders. More point lights should not be the default method for increasing richness.
 - General district primitive batches span the compact map; per-building culling/streaming and distant actor LOD remain future work.
 - Actor meshes remain stylized and are a major visual gap at close range. They require a dedicated character and animation pass.
-- The railway is elevated and passing-only. Station stairs/platforms are now walkable by the player; ground-level crossing interlocks, passenger navigation, station stops and boarding are pending.
+- The railway is elevated and passing-only. Station stairs/platforms support player walking and basic NPC round-trip visits; ground-level crossing interlocks, station stops and boarding are pending.
 - Steam is tinted billboard geometry, not volumetric fluid simulation. Wet roads use an approximation, not fully rough ray-traced reflection. Rainfall and drying are pending.
 - Shop thresholds are functional destinations; door entry/exit, per-tenant occupancy and player-enterable rooms are pending.
 

@@ -29,6 +29,10 @@ export function createStationLayout(): StationSpatial {
   const surfaces: StationSurface[] = [], boxes: StationBox[] = [];
   const surface = (id: string, kind: StationSurface['kind'], minX: number, maxX: number, minZ: number, maxZ: number, y: number, thickness = .28) => { const s = { id, kind, minX, maxX, minZ, maxZ, y, thickness }; surfaces.push(s); return s; };
   const box = (id: string, material: StationBox['material'], minX: number, maxX: number, minZ: number, maxZ: number, minY: number, maxY: number, collision = true) => boxes.push({ id, material, minX, maxX, minZ, maxZ, minY, maxY, collision });
+  // Existing forecourt paving is part of the walkable contract. The narrow apron closes its gap to the sidewalk.
+  surface('forecourt-west','concourse',7,9.6,-49.25,-36.75,g,.18);
+  surface('forecourt-front','concourse',9.6,25,-46.4,-36.75,g,.18);
+  surface('street-connection','concourse',5.65,7,-46.6,-44.4,g,.18);
   surface('concourse-floor','concourse',9.6,25.6,-53.1,-46.4,g,.18);
   surface('lower-landing','landing',13.2,c.stairStartX,-50.8,-49,g,.2);
   surface('return-landing','landing',c.stairEndX,c.landingEndX,c.openingMinZ,c.openingMaxZ,mid,.25);
@@ -117,9 +121,9 @@ export function createStationLayout(): StationSpatial {
     if(id in stairEnds){const f=flights[stairEnds[id]];for(const t of f.treads)journey.push(point((t.minX+t.maxX)/2,t.y,(t.minZ+t.maxZ)/2));}
     journey.push(nodes[id]);
   }
-  return {id:'shinmachi-station',bounds:{minX:7.8,maxX:61.7,minZ:-55.5,maxZ:-45.8},surfaces,boxes,flights,areas,gates,nodes,connections,journey,
+  return {id:'shinmachi-station',bounds:{minX:5.65,maxX:61.7,minZ:-55.5,maxZ:-36.75},surfaces,boxes,flights,areas,gates,nodes,connections,journey,
     platformEdges:[{id:'platform-1-track-edge',a:point(c.platformMinX,p,c.platformEdgeZ),b:point(c.platformMaxX,p,c.platformEdgeZ),inward:point(0,0,1),warningWidth:.3}],
-    // Flat city agents retain their original exterior station boundary until multi-level navigation is implemented.
+    // Exterior city routes retain their boundary; station travelers use the height-bearing traversal graph.
     npcReservation:[{minX:12.9,maxX:25.1,minZ:-54,maxZ:-49.5}]
   };
 }

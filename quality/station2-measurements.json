@@ -1,0 +1,1224 @@
+{
+  "seed": 8412,
+  "generatedWorld": {
+    "openSeconds": 1200,
+    "drainSeconds": 600,
+    "hour": 18.5,
+    "wallHits": 0,
+    "unmarkedRoadSamples": 0,
+    "pedestrianVehicleOverlaps": 0,
+    "vehicleExits": 294,
+    "invalidPositions": 0,
+    "gateConflicts": 0,
+    "passengerOverlaps": 0,
+    "maxVerticalStep": 0.023561083913713254,
+    "maxStep": 0.044989834383365235,
+    "minimumPassengerDistance": 0.5602641322101758,
+    "open": {
+      "started": 35,
+      "completed": 27,
+      "failures": 0,
+      "invalidMoves": 0,
+      "maxActive": 7,
+      "maxMovingWait": 11.033333333333305,
+      "maxGateWait": 11.033333333333305,
+      "maxStairWait": 5.933333333333322,
+      "maxVisitSeconds": 402.1999999996342,
+      "maxWaiting": 4,
+      "transitions": {
+        "approaching": 35,
+        "entering": 32,
+        "gate-in": 32,
+        "paid": 59,
+        "ascending": 32,
+        "platform": 28,
+        "waiting": 27,
+        "returning": 27,
+        "descending": 27,
+        "gate-out": 27,
+        "exiting": 27
+      }
+    },
+    "afterClosure": {
+      "started": 35,
+      "completed": 35,
+      "failures": 0,
+      "invalidMoves": 0,
+      "maxActive": 7,
+      "maxMovingWait": 11.033333333333305,
+      "maxGateWait": 11.033333333333305,
+      "maxStairWait": 7.033333333333318,
+      "maxVisitSeconds": 402.1999999996342,
+      "maxWaiting": 4,
+      "transitions": {
+        "approaching": 35,
+        "entering": 35,
+        "gate-in": 35,
+        "paid": 70,
+        "ascending": 35,
+        "platform": 35,
+        "waiting": 35,
+        "returning": 35,
+        "descending": 35,
+        "gate-out": 35,
+        "exiting": 35
+      }
+    },
+    "remainingVisitors": [],
+    "remainingReservations": [],
+    "completedJourneys": [
+      {
+        "visit": 4,
+        "pedestrian": 40,
+        "seconds": 159.3666666666576,
+        "originNode": 48,
+        "rejoinedNode": 247,
+        "waitedSeconds": 16.599999999999984,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 3,
+        "pedestrian": 47,
+        "seconds": 236.50000000004238,
+        "originNode": 27,
+        "rejoinedNode": 247,
+        "waitedSeconds": 33.9666666666673,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 1,
+        "pedestrian": 44,
+        "seconds": 271.76666666672645,
+        "originNode": 63,
+        "rejoinedNode": 247,
+        "waitedSeconds": 23.666666666667002,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 5,
+        "pedestrian": 27,
+        "seconds": 265.13333333340177,
+        "originNode": 31,
+        "rejoinedNode": 247,
+        "waitedSeconds": 24.500000000000377,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 2,
+        "pedestrian": 34,
+        "seconds": 358.033333333465,
+        "originNode": 21,
+        "rejoinedNode": 247,
+        "waitedSeconds": 18.966666666666768,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 7,
+        "pedestrian": 61,
+        "seconds": 311.50000000015285,
+        "originNode": 63,
+        "rejoinedNode": 247,
+        "waitedSeconds": 18.533333333333413,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 8,
+        "pedestrian": 39,
+        "seconds": 302.9000000001635,
+        "originNode": 52,
+        "rejoinedNode": 247,
+        "waitedSeconds": 15.899999999999954,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 6,
+        "pedestrian": 33,
+        "seconds": 376.93333333350876,
+        "originNode": 87,
+        "rejoinedNode": 247,
+        "waitedSeconds": 20.533333333333513,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 10,
+        "pedestrian": 66,
+        "seconds": 186.9333333334821,
+        "originNode": 26,
+        "rejoinedNode": 247,
+        "waitedSeconds": 29.166666666667275,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 12,
+        "pedestrian": 64,
+        "seconds": 224.8666666667263,
+        "originNode": 49,
+        "rejoinedNode": 247,
+        "waitedSeconds": 16.76666666666666,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 9,
+        "pedestrian": 51,
+        "seconds": 357.80000000012,
+        "originNode": 69,
+        "rejoinedNode": 247,
+        "waitedSeconds": 32.433333333334055,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 15,
+        "pedestrian": 3,
+        "seconds": 180.2333333332225,
+        "originNode": 26,
+        "rejoinedNode": 247,
+        "waitedSeconds": 21.600000000000232,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 11,
+        "pedestrian": 56,
+        "seconds": 367.2333333332739,
+        "originNode": 87,
+        "rejoinedNode": 247,
+        "waitedSeconds": 26.80000000000049,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 17,
+        "pedestrian": 25,
+        "seconds": 222.79999999979736,
+        "originNode": 49,
+        "rejoinedNode": 247,
+        "waitedSeconds": 23.500000000000327,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 13,
+        "pedestrian": 28,
+        "seconds": 315.0333333331789,
+        "originNode": 1,
+        "rejoinedNode": 247,
+        "waitedSeconds": 19.066666666666773,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 14,
+        "pedestrian": 35,
+        "seconds": 307.7666666664422,
+        "originNode": 30,
+        "rejoinedNode": 247,
+        "waitedSeconds": 26.366666666667136,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 16,
+        "pedestrian": 62,
+        "seconds": 302.5666666664014,
+        "originNode": 17,
+        "rejoinedNode": 247,
+        "waitedSeconds": 22.433333333333607,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 18,
+        "pedestrian": 38,
+        "seconds": 317.66666666637775,
+        "originNode": 44,
+        "rejoinedNode": 247,
+        "waitedSeconds": 21.400000000000222,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 21,
+        "pedestrian": 42,
+        "seconds": 183.2999999998333,
+        "originNode": 26,
+        "rejoinedNode": 247,
+        "waitedSeconds": 20.000000000000153,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 24,
+        "pedestrian": 5,
+        "seconds": 173.69999999984202,
+        "originNode": 38,
+        "rejoinedNode": 247,
+        "waitedSeconds": 15.699999999999955,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 25,
+        "pedestrian": 49,
+        "seconds": 214.1999999998052,
+        "originNode": 73,
+        "rejoinedNode": 247,
+        "waitedSeconds": 25.40000000000042,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 19,
+        "pedestrian": 54,
+        "seconds": 402.1999999996342,
+        "originNode": 67,
+        "rejoinedNode": 247,
+        "waitedSeconds": 34.70000000000059,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 22,
+        "pedestrian": 24,
+        "seconds": 299.433333333061,
+        "originNode": 2,
+        "rejoinedNode": 247,
+        "waitedSeconds": 22.433333333333607,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 20,
+        "pedestrian": 41,
+        "seconds": 366.06666666633373,
+        "originNode": 8,
+        "rejoinedNode": 247,
+        "waitedSeconds": 23.766666666667007,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 26,
+        "pedestrian": 36,
+        "seconds": 186.6999999998302,
+        "originNode": 49,
+        "rejoinedNode": 247,
+        "waitedSeconds": 25.233333333333746,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 23,
+        "pedestrian": 19,
+        "seconds": 321.6999999997074,
+        "originNode": 34,
+        "rejoinedNode": 247,
+        "waitedSeconds": 25.366666666667086,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 27,
+        "pedestrian": 56,
+        "seconds": 272.26666666641904,
+        "originNode": 63,
+        "rejoinedNode": 247,
+        "waitedSeconds": 20.666666666666853,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 31,
+        "pedestrian": 59,
+        "seconds": 204.16666666648098,
+        "originNode": 29,
+        "rejoinedNode": 247,
+        "waitedSeconds": 0.03333333333333333,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 28,
+        "pedestrian": 25,
+        "seconds": 339.3999999996913,
+        "originNode": 20,
+        "rejoinedNode": 247,
+        "waitedSeconds": 0.03333333333333333,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 30,
+        "pedestrian": 6,
+        "seconds": 281.03333333307774,
+        "originNode": 4,
+        "rejoinedNode": 247,
+        "waitedSeconds": 0.03333333333333333,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 33,
+        "pedestrian": 47,
+        "seconds": 229.6666666664578,
+        "originNode": 77,
+        "rejoinedNode": 247,
+        "waitedSeconds": 0.03333333333333333,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 34,
+        "pedestrian": 63,
+        "seconds": 253.53333333310275,
+        "originNode": 36,
+        "rejoinedNode": 247,
+        "waitedSeconds": 0.03333333333333333,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 29,
+        "pedestrian": 46,
+        "seconds": 346.8333333330179,
+        "originNode": 34,
+        "rejoinedNode": 247,
+        "waitedSeconds": 0.03333333333333333,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 32,
+        "pedestrian": 32,
+        "seconds": 281.6333333330772,
+        "originNode": 17,
+        "rejoinedNode": 247,
+        "waitedSeconds": 0.03333333333333333,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-3",
+        "exitGate": "wide-gate"
+      },
+      {
+        "visit": 35,
+        "pedestrian": 39,
+        "seconds": 242.89999999977908,
+        "originNode": 52,
+        "rejoinedNode": 247,
+        "waitedSeconds": 0.03333333333333333,
+        "states": [
+          "approaching",
+          "entering",
+          "gate-in",
+          "paid",
+          "ascending",
+          "platform",
+          "waiting",
+          "returning",
+          "descending",
+          "paid",
+          "gate-out",
+          "exiting"
+        ],
+        "entranceGate": "gate-2",
+        "exitGate": "wide-gate"
+      }
+    ],
+    "simulatedSeconds": 1799.999999999013
+  },
+  "captures": [
+    {
+      "saved": "quality/captures/station2-entering.png"
+    },
+    {
+      "saved": "quality/captures/station2-gate-in.png"
+    },
+    {
+      "saved": "quality/captures/station2-gate-debug.png"
+    },
+    {
+      "saved": "quality/captures/station2-ascending.png"
+    },
+    {
+      "saved": "quality/captures/station2-upper-stairs.png"
+    },
+    {
+      "saved": "quality/captures/station2-waiting.png"
+    },
+    {
+      "saved": "quality/captures/station2-platform-debug.png"
+    },
+    {
+      "saved": "quality/captures/station2-network-debug.png"
+    },
+    {
+      "saved": "quality/captures/station2-descending.png"
+    },
+    {
+      "saved": "quality/captures/station2-gate-out.png"
+    },
+    {
+      "saved": "quality/captures/station2-exiting.png"
+    },
+    {
+      "saved": "quality/captures/station2-rejoined-city.png"
+    }
+  ],
+  "journey": [
+    {
+      "name": "station2-entering",
+      "clock": 130.8666666666618,
+      "pedestrian": 8,
+      "visit": 4,
+      "state": "entering",
+      "position": [
+        19,
+        0.115,
+        -46.44450933700986
+      ],
+      "paid": false,
+      "flight": null,
+      "gateOwners": []
+    },
+    {
+      "name": "station2-gate-in",
+      "clock": 136.39999999999483,
+      "pedestrian": 8,
+      "visit": 4,
+      "state": "gate-in",
+      "position": [
+        13.6,
+        0.115,
+        -48.03321478882454
+      ],
+      "paid": false,
+      "flight": null,
+      "gateOwners": [
+        [
+          "gate:gate-3",
+          8
+        ]
+      ]
+    },
+    {
+      "name": "station2-gate-debug",
+      "clock": 136.39999999999483,
+      "pedestrian": 8,
+      "visit": 4,
+      "state": "gate-in",
+      "position": [
+        13.6,
+        0.115,
+        -48.03321478882454
+      ],
+      "paid": false,
+      "flight": null,
+      "gateOwners": [
+        [
+          "gate:gate-3",
+          8
+        ]
+      ]
+    },
+    {
+      "name": "station2-ascending",
+      "clock": 141.7666666666612,
+      "pedestrian": 8,
+      "visit": 4,
+      "state": "ascending",
+      "position": [
+        16.619038983684657,
+        1.002361454703947,
+        -50.24
+      ],
+      "paid": true,
+      "flight": "lower-flight-a",
+      "gateOwners": []
+    },
+    {
+      "name": "station2-upper-stairs",
+      "clock": 158.93333333332689,
+      "pedestrian": 8,
+      "visit": 4,
+      "state": "ascending",
+      "position": [
+        17.92864914683808,
+        6.004110235192667,
+        -51.86
+      ],
+      "paid": true,
+      "flight": "upper-flight-b",
+      "gateOwners": []
+    },
+    {
+      "name": "station2-waiting",
+      "clock": 190.8666666666584,
+      "pedestrian": 8,
+      "visit": 4,
+      "state": "waiting",
+      "position": [
+        45.80000000000002,
+        7.455,
+        -54.150000000000006
+      ],
+      "paid": true,
+      "flight": null,
+      "gateOwners": []
+    },
+    {
+      "name": "station2-platform-debug",
+      "clock": 190.8666666666584,
+      "pedestrian": 8,
+      "visit": 4,
+      "state": "waiting",
+      "position": [
+        45.80000000000002,
+        7.455,
+        -54.150000000000006
+      ],
+      "paid": true,
+      "flight": null,
+      "gateOwners": []
+    },
+    {
+      "name": "station2-network-debug",
+      "clock": 190.8666666666584,
+      "pedestrian": 8,
+      "visit": 4,
+      "state": "waiting",
+      "position": [
+        45.80000000000002,
+        7.455,
+        -54.150000000000006
+      ],
+      "paid": true,
+      "flight": null,
+      "gateOwners": []
+    },
+    {
+      "name": "station2-descending",
+      "clock": 241.06666666665555,
+      "pedestrian": 8,
+      "visit": 4,
+      "state": "descending",
+      "position": [
+        16.529267092279593,
+        6.7930091814645,
+        -52.540000000000006
+      ],
+      "paid": true,
+      "flight": "upper-flight-b",
+      "gateOwners": []
+    },
+    {
+      "name": "station2-gate-out",
+      "clock": 267.0666666666635,
+      "pedestrian": 8,
+      "visit": 4,
+      "state": "gate-out",
+      "position": [
+        10.95,
+        0.115,
+        -48.86678521117547
+      ],
+      "paid": true,
+      "flight": null,
+      "gateOwners": [
+        [
+          "gate:wide-gate",
+          8
+        ]
+      ]
+    },
+    {
+      "name": "station2-exiting",
+      "clock": 271.3666666666669,
+      "pedestrian": 8,
+      "visit": 4,
+      "state": "exiting",
+      "position": [
+        13.843106905640996,
+        0.115,
+        -46.6
+      ],
+      "paid": false,
+      "flight": null,
+      "gateOwners": []
+    },
+    {
+      "name": "station2-rejoined-city",
+      "clock": 273.33333333333513,
+      "pedestrian": 8,
+      "visit": 4,
+      "state": "city",
+      "position": [
+        14.2,
+        0.115,
+        -45
+      ],
+      "paid": false,
+      "flight": null,
+      "gateOwners": []
+    }
+  ],
+  "followedVisit": {
+    "visit": 4,
+    "pedestrian": 8,
+    "seconds": 151.7666666666724,
+    "originNode": 48,
+    "rejoinedNode": 247,
+    "waitedSeconds": 16.599999999999984,
+    "states": [
+      "approaching",
+      "entering",
+      "gate-in",
+      "paid",
+      "ascending",
+      "platform",
+      "waiting",
+      "returning",
+      "descending",
+      "paid",
+      "gate-out",
+      "exiting"
+    ],
+    "entranceGate": "gate-3",
+    "exitGate": "wide-gate"
+  },
+  "renderedPeople": {
+    "count": 39,
+    "torsoCount": 39,
+    "maxPositionError": 0.000002157918640743197
+  },
+  "renderedSurfaces": {
+    "samples": 59,
+    "maxTopError": 0.02100000366568565
+  },
+  "cameraPresets": [
+    {
+      "index": 0,
+      "safe": true
+    },
+    {
+      "index": 1,
+      "safe": true
+    },
+    {
+      "index": 2,
+      "safe": true
+    },
+    {
+      "index": 3,
+      "safe": true
+    },
+    {
+      "index": 4,
+      "safe": true
+    },
+    {
+      "index": 5,
+      "safe": true
+    },
+    {
+      "index": 6,
+      "safe": true
+    },
+    {
+      "index": 7,
+      "safe": true
+    }
+  ],
+  "failedShaderLinks": 0,
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "performance": {
+    "unavailable": "Review tab is hidden; frame timing omitted."
+  },
+  "browserErrors": []
+}

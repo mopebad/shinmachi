@@ -1,5 +1,9 @@
 # Asset manifest
 
+## Station Development 2
+
+[StationNavigation.ts](./src/world/simulation/StationNavigation.ts), [StationTraffic.ts](./src/world/simulation/StationTraffic.ts) and [StationPose.ts](./src/world/simulation/StationPose.ts) add original traversal/reservation logic and procedural tread foot placement using the existing instanced character meshes. Station paving is represented by shared authored surfaces, including one small original apron joining the existing sidewalk. [The optional debug overlay](./src/world/simulation/StationNavigationDebug.ts) draws original lines, markers and state labels in development only. No downloaded asset, font, recording, new dependency or real light is introduced. [The handoff and actual scene evidence](./quality/STATION_DEVELOPMENT_2.md) record behavior and limits.
+
 ## Station Development 1
 
 [StationLayout.ts](./src/world/generation/StationLayout.ts) and [StationDetails.ts](./src/world/generation/StationDetails.ts) add original station geometry, surfaces, supports, fixtures and local measured bilingual wayfinding using existing materials/system fonts and instanced batches. The [plan/section](./quality/station1-layout.svg) is generated from the same original spatial data. No downloaded station image, railway logo, font file, new real light or dependency is used at runtime.

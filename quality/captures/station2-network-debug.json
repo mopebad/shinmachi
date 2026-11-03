@@ -1,0 +1,39 @@
+{
+  "name": "station2-network-debug",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 190.8666666666584,
+  "eye": [
+    27,
+    18,
+    -34
+  ],
+  "quaternion": [
+    -0.3108369228819238,
+    0.1889808989567151,
+    0.06320861406393531,
+    0.9293391729131647
+  ],
+  "fov": 62,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 60,
+    "drawCalls": 642,
+    "triangles": 5128307,
+    "buildings": 57,
+    "pedestrians": 39,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T19:59:44.077Z"
+}

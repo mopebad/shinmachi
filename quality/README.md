@@ -1,6 +1,17 @@
 # Repeatable visual review
 
-The latest bounded task is [Station Development 1](./STATION_DEVELOPMENT_1.md). Generate its source-derived debug SVG and spatial JSON from the repository root:
+The latest bounded task is [Station Development 2](./STATION_DEVELOPMENT_2.md). In a freshly loaded page on the existing development server, run:
+
+```js
+const stationReview = await (await import('/tools/station2-browser-checks.mjs')).review();
+console.log(JSON.stringify(stationReview, null, 2));
+```
+
+This validates 1,200 open seconds and a 600-second closure drain against actual generated district bounds, then follows one live NPC through 12 actual 1080p captures. It checks gate ownership, physical movement, separation, city safety/liveness, rendered support surfaces, simulation/presentation alignment and camera starts. [The saved result](./station2-measurements.json) includes lifecycle histories, waits and capture observations. A hidden tab skips frame timing instead of waiting indefinitely or claiming a benchmark.
+
+Enable the optional development overlay with `?stationDebug=1`, or `window.__shinmachi.activity.setStationDebug(true)`; pass `false` to hide it. It shows graph connections, flights, waiting destinations, passenger paths/state labels and free/occupied gates. No HUD controls are added. [The navigation export](./station2-navigation.json) records the actual generated graph used in the reviewed run.
+
+The architecture milestone is [Station Development 1](./STATION_DEVELOPMENT_1.md). Generate its source-derived debug SVG and spatial JSON from the repository root:
 
 ```text
 node --experimental-strip-types tools/build-station-debug.mjs

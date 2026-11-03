@@ -6,7 +6,7 @@ export interface Shopfront { x: number; z: number; rotation: number; width: numb
 export interface District {
   group: THREE.Group;
   colliders: Bounds[];
-  /** Existing flat city simulation keeps its reservation bounds; player station collision is height-aware. */
+  /** Exterior city routes keep footprint bounds; station pedestrians and the player use height-aware traversal. */
   playerColliders?: Bounds[];
   station?: import('./generation/StationLayout').StationSpatial;
   doors: Doorway[];

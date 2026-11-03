@@ -4,9 +4,13 @@
 
 A compact, metre-scale, Tokyo-inspired neighborhood that rewards exploration at pedestrian eye level. Pursue the photographic Tokyo evening references through coherent construction, materials, light, audio, density and polish while retaining a compact real-time environment. This is a fictional district, not a geographically accurate reconstruction of Tokyo.
 
-## Latest bounded delivery: station architecture
+## Latest bounded delivery: station passenger navigation
 
-[Station Development 1](./quality/STATION_DEVELOPMENT_1.md) completes a continuous, player-walkable street → sheltered concourse → gates → four stair flights/rests → elevated platform. One source contract supplies rendered surfaces, obstacles, entrances, gates, landings, waiting areas and future navigation links. The original track/train, flat city NPC navigation, corrected signage, convenience store and broader systems are retained. All 28 tests, TypeScript checks and production build pass; actual route walking, day/night screenshots and a source-derived plan/section were reviewed. Multi-level passenger navigation is the next station task; boarding, train stops and schedules remain pending. This does not start unrelated roadmap work.
+[Station Development 2](./quality/STATION_DEVELOPMENT_2.md) adds real city-population station visits through connected 3D lanes, exclusive fare gates, both stair directions, platform waiting and public-sidewalk reentry. The actual generated-world run completed 27 visits in 1,200 open seconds and all 35 started visits after closure, with no invalid moves, gate conflicts, passenger overlaps or street-safety failures. All 31 tests, TypeScript checks and the production build pass; a live NPC journey and optional navigation overlay were captured and inspected. Train boarding, stops and schedules remain outside this task.
+
+## Station architecture milestone
+
+[Station Development 1](./quality/STATION_DEVELOPMENT_1.md) completed a continuous, player-walkable street → sheltered concourse → gates → four stair flights/rests → elevated platform. One source contract supplies rendered surfaces, obstacles, entrances, gates, landings, waiting areas and navigation links. Its 28-test architecture evidence is retained; the subsequent passenger milestone above extends that contract. The original track/train, corrected signage, convenience store and broader systems are preserved. This does not start unrelated roadmap work.
 
 ## Latest visual correction
 
@@ -115,7 +119,8 @@ Generation emits plain spatial data alongside meshes. Simulation must consume th
 - [ ] More complete crowd avoidance/social groups, richer animation/poses and higher-quality character assets. Current local separation is deliberately lightweight, not a full crowd solver.
 - [ ] Per-tenant hours, window occupancy and physical shutter/door animations; genuine NPC entry/exit. Current visits stop at thresholds; rooms are not player-enterable.
 - [x] Station architectural continuity, player stairs/platform access and explicit multi-level spatial metadata. See [Station Development 1](./quality/STATION_DEVELOPMENT_1.md).
-- [ ] Multi-level NPC station navigation, train stops, boarding and richer timetable behavior. Trains remain passing sets within a coarse service window; gate furniture and platform screens are static.
+- [x] Multi-level NPC station visits: city approach, reserved gate passage, stair ascent/descent, platform waiting and public reentry. See [Station Development 2](./quality/STATION_DEVELOPMENT_2.md).
+- [ ] Train stops, boarding and richer timetable behavior. Trains remain passing sets within a coarse service window; gate furniture and platform screens are static.
 - [ ] Collision for every prop and dynamic actor, general walkable elevations/physics. The station now has authored surface support and height-aware local obstacles; the wider city retains footprint collision.
 - [ ] Soundscape mastering and optional attributed high-quality recordings; genuine conversational ambience. Current voices are unintelligible procedural texture, not natural recorded speech.
 - [ ] Rainfall, weather sound, dynamic water accumulation and seasonal variation. Static after-rain road reflections and dry/damp controls are implemented; weather simulation is not.

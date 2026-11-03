@@ -1,0 +1,39 @@
+{
+  "name": "station2-gate-debug",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 136.39999999999483,
+  "eye": [
+    17,
+    5.5,
+    -43.5
+  ],
+  "quaternion": [
+    -0.26872253338953106,
+    0.304632715345877,
+    0.09002407219395606,
+    0.9093309492232888
+  ],
+  "fov": 62,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 60,
+    "drawCalls": 535,
+    "triangles": 5140981,
+    "buildings": 57,
+    "pedestrians": 41,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T19:59:42.015Z"
+}

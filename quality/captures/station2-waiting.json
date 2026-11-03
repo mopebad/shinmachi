@@ -1,0 +1,39 @@
+{
+  "name": "station2-waiting",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 190.8666666666584,
+  "eye": [
+    48.80000000000002,
+    9.5,
+    -50.8
+  ],
+  "quaternion": [
+    -0.1309957990304047,
+    0.3535768812990882,
+    0.050081589319571386,
+    0.9248325924503429
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 60,
+    "drawCalls": 451,
+    "triangles": 4294773,
+    "buildings": 57,
+    "pedestrians": 39,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T19:59:43.401Z"
+}
