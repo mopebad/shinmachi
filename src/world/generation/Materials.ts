@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { BUSINESSES } from '../simulation/WorldRules';
 import type { Business } from '../simulation/WorldRules';
+import { surfaceTextures, createSignAtlas } from './SurfaceTextures';
 
 /** Reproducible local textures: no asset CDN, image downloads, or font service. */
 export function random(seed: number): () => number {
@@ -8,30 +9,7 @@ export function random(seed: number): () => number {
   return () => { state += 0x6D2B79F5; let t = state; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
 }
 
-function surface(kind: 'concrete' | 'tile' | 'asphalt' | 'metal' | 'paving'): THREE.CanvasTexture {
-  const canvas = document.createElement('canvas'); canvas.width = canvas.height = 256;
-  const c = canvas.getContext('2d')!; const rng = random(9831);
-  c.fillStyle = kind === 'asphalt' ? '#888b8b' : '#d9d6d0'; c.fillRect(0, 0, 256, 256);
-  for (let i = 0; i < 18000; i++) {
-    const shade = Math.floor(90 + rng() * 160);
-    c.fillStyle = `rgba(${shade},${shade},${shade},${kind === 'asphalt' ? .5 : .16})`;
-    c.fillRect(rng() * 256, rng() * 256, 1 + rng() * 2, 1 + rng() * 2);
-  }
-  if (kind === 'tile' || kind === 'paving') {
-    c.strokeStyle = kind === 'tile' ? '#a4a4a0' : '#929591'; c.lineWidth = kind === 'tile' ? 1 : 2;
-    const step = kind === 'tile' ? 32 : 64;
-    for (let y = 0; y <= 256; y += step) for (let x = -step; x <= 256; x += step) c.strokeRect(x + (y / step % 2) * step / 2, y, step, step);
-  }
-  if (kind === 'concrete') {
-    c.strokeStyle = '#b3b3ad'; c.lineWidth = 1; c.strokeRect(1, 1, 254, 254);
-    for (const x of [16, 240]) for (const y of [16, 240]) { c.fillStyle = '#aaa9a2'; c.beginPath(); c.arc(x, y, 2.2, 0, 7); c.fill(); }
-    for (let i = 0; i < 35; i++) { c.fillStyle = 'rgba(85,80,70,.035)'; c.fillRect(rng() * 256, 0, rng() * 6, 256); }
-  }
-  if (kind === 'metal') { c.strokeStyle = '#9c9d99'; for (let y = 0; y < 256; y += 6) { c.beginPath(); c.moveTo(0, y); c.lineTo(256, y); c.stroke(); } }
-  const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace;
-  texture.wrapS = texture.wrapT = THREE.RepeatWrapping; texture.repeat.set(kind === 'asphalt' ? 18 : 3, kind === 'asphalt' ? 24 : 4); texture.anisotropy = 4;
-  return texture;
-}
+function surface(kind: 'concrete' | 'tile' | 'asphalt' | 'metal' | 'paving' | 'wood'): THREE.CanvasTexture { return surfaceTextures(kind).map; }
 
 export const SHOP_NAMES = [
   ['新町食堂', 'SHINMACHI DINING', '#e8d4a0', '#282820'], ['らーめん', 'RAMEN · OPEN LATE', '#c73e27', '#fff0ce'],
@@ -52,29 +30,6 @@ export const SHOP_NAMES = [
   ['営業中', 'OPEN', '#f2d0a3', '#b73e2d'], ['新町通り', 'SHINMACHI DORI', '#275b88', '#fff9e8'],
 ];
 
-function signAtlas(): THREE.CanvasTexture {
-  const canvas = document.createElement('canvas'); canvas.width = canvas.height = 2048;
-  const c = canvas.getContext('2d')!;
-  SHOP_NAMES.forEach(([title, subtitle, bg, fg], i) => {
-    const x = (i % 8) * 256, y = Math.floor(i / 8) * 256;
-    c.fillStyle = bg; c.fillRect(x, y, 256, 256);
-    c.strokeStyle = fg; c.lineWidth = 3; c.strokeRect(x + 8, y + 8, 240, 240);
-    c.fillStyle = fg; c.textAlign = 'center'; c.textBaseline = 'middle';
-    if (i >= 24 && i <= 29) {
-      const chars = Array.from(title); c.font = `bold ${Math.min(65, 210 / chars.length)}px "Yu Gothic", Meiryo, sans-serif`;
-      chars.forEach((char, j) => { c.save(); c.translate(x + 128, y + 30 + (j + .5) * 196 / chars.length); c.scale(4, 1); c.fillText(char, 0, 0, 58); c.restore(); });
-    } else {
-      c.font = `bold ${title.length > 6 ? 23 : 28}px "Yu Gothic", Meiryo, sans-serif`;
-      c.save(); c.translate(x + 128, y + 88); c.scale(1, 5.3); c.fillText(title, 0, 0, 228); c.restore();
-      c.font = 'bold 12px sans-serif'; c.save(); c.translate(x + 128, y + 190); c.scale(1, 1.7); c.fillText(subtitle, 0, 0, 226); c.restore();
-      c.fillRect(x + 22, y + 216, 212, 4);
-      c.font = '11px sans-serif'; c.fillText(i === 16 ? 'JR   山手線  /  EAST EXIT' : 'SHINMACHI   •   東京', x + 128, y + 237);
-    }
-  });
-  const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 8;
-  return texture;
-}
-
 /** Per-instance world-space UVs keep tiles metre-sized on long roads and tall buildings. */
 function worldTexture(material: THREE.MeshStandardMaterial, scale = .5): void {
   material.onBeforeCompile = shader => {
@@ -88,9 +43,17 @@ function worldTexture(material: THREE.MeshStandardMaterial, scale = .5): void {
         #endif
         textureWorld = modelMatrix * textureWorld;
         textureNormal = abs(normalize(mat3(modelMatrix) * textureNormal));
-        if(textureNormal.y > .5) vMapUv = textureWorld.xz * ${scale.toFixed(3)};
-        else if(textureNormal.x > .5) vMapUv = textureWorld.zy * ${scale.toFixed(3)};
-        else vMapUv = textureWorld.xy * ${scale.toFixed(3)};
+        vec2 surfaceUv;
+        if(textureNormal.y > .5) surfaceUv = textureWorld.xz * ${scale.toFixed(3)};
+        else if(textureNormal.x > .5) surfaceUv = textureWorld.zy * ${scale.toFixed(3)};
+        else surfaceUv = textureWorld.xy * ${scale.toFixed(3)};
+        vMapUv = surfaceUv;
+        #ifdef USE_BUMPMAP
+          vBumpMapUv = surfaceUv;
+        #endif
+        #ifdef USE_ROUGHNESSMAP
+          vRoughnessMapUv = surfaceUv;
+        #endif
       #endif`);
   };
   material.customProgramCacheKey = () => `world-uv-${scale}`;
@@ -107,12 +70,12 @@ function glassTexture(): THREE.CanvasTexture {
 
 export class Materials {
   readonly concreteMap = surface('concrete'); readonly tileMap = surface('tile');
-  readonly asphalt = new THREE.MeshStandardMaterial({ color: 0x454b50, map: surface('asphalt'), roughness: .86 });
-  readonly pavement = new THREE.MeshStandardMaterial({ color: 0xb5b5a8, map: surface('paving'), roughness: .95 });
+  readonly asphalt = new THREE.MeshStandardMaterial({ color: 0xd4d7d9, map: surface('asphalt'), bumpMap: surfaceTextures('asphalt').bump, bumpScale: .018, roughnessMap: surfaceTextures('asphalt').roughness, roughness: .96 });
+  readonly pavement = new THREE.MeshStandardMaterial({ color: 0xd6d5cb, map: surface('paving'), bumpMap: surfaceTextures('paving').bump, bumpScale: .028, roughnessMap: surfaceTextures('paving').roughness, roughness: 1 });
   readonly metal = new THREE.MeshStandardMaterial({ color: 0x555f61, metalness: .65, roughness: .5 });
   readonly dark = new THREE.MeshStandardMaterial({ color: 0x252d32, roughness: .7 });
   readonly cream = new THREE.MeshStandardMaterial({ color: 0xd9d3ba, map: this.concreteMap, roughness: .9 });
-  readonly wood = new THREE.MeshStandardMaterial({ color: 0x654733, map: surface('metal'), roughness: .85 });
+  readonly wood = new THREE.MeshStandardMaterial({ color: 0x78634e, map: surface('wood'), bumpMap: surfaceTextures('wood').bump, bumpScale: .025, roughness: .88 });
   readonly red = new THREE.MeshStandardMaterial({ color: 0xa93226, roughness: .65 });
   readonly green = new THREE.MeshStandardMaterial({ color: 0x226c55, roughness: .7 });
   readonly white = new THREE.MeshStandardMaterial({ color: 0xe0dfd4, roughness: .75 });
@@ -132,7 +95,7 @@ export class Materials {
   readonly signs: THREE.MeshStandardMaterial;
   readonly facades: THREE.MeshStandardMaterial[];
   constructor() {
-    const atlas = signAtlas();
+  const atlas = createSignAtlas(SHOP_NAMES);
     this.signs = new THREE.MeshStandardMaterial({ map: atlas, emissiveMap: atlas, emissive: 0xffffff, emissiveIntensity: .4, roughness: .55, side: THREE.DoubleSide });
     this.signs.userData.openStates = { value: new Float32Array(6).fill(1) };
     this.signs.onBeforeCompile = shader => {
@@ -141,8 +104,8 @@ export class Materials {
       shader.fragmentShader = shader.fragmentShader.replace('#include <common>', '#include <common>\nuniform float uOpenStates[6]; varying float vBusiness;').replace('#include <emissivemap_fragment>', '#include <emissivemap_fragment>\ntotalEmissiveRadiance *= uOpenStates[int(vBusiness + .5)];');
     };
     this.signs.customProgramCacheKey = () => 'scheduled-sign-atlas-v1';
-    this.facades = [0xd7d0bb, 0x9b9890, 0xb2b4ab, 0x817773, 0x637477, 0xc2b4a0, 0xadb1af, 0x6f7375].map((color, i) => new THREE.MeshStandardMaterial({ color, map: i % 2 ? this.tileMap : this.concreteMap, roughness: .87 }));
+    this.facades = [0xd7d0bb, 0x9b9890, 0xb2b4ab, 0x817773, 0x637477, 0xc2b4a0, 0xadb1af, 0x6f7375].map((color, i) => new THREE.MeshStandardMaterial({ color, map: i % 2 ? this.tileMap : this.concreteMap, bumpMap: surfaceTextures(i % 2 ? 'tile' : 'concrete').bump, bumpScale: .025, roughnessMap: surfaceTextures(i % 2 ? 'tile' : 'concrete').roughness, roughness: .98 }));
     for (const material of [...this.facades, this.pavement, this.cream, this.marking, this.wood]) worldTexture(material, .48);
-    worldTexture(this.asphalt, 1.8);
+    worldTexture(this.asphalt, .26);
   }
 }

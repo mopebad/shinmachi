@@ -1,19 +1,21 @@
 import type * as THREE from 'three';
 import type { CitySimulation } from '../simulation/CitySimulation';
+import { trafficVoiceMix } from './AudioMix';
 import { businessOpen, dayState, districtZone, railServiceOpen, seededRandom } from '../simulation/WorldRules';
 
-interface Voice { gain: GainNode; panner?: PannerNode; filter: BiquadFilterNode; engine?: OscillatorNode }
+interface Voice { gain: GainNode; panner?: PannerNode; filter: BiquadFilterNode; engine?: OscillatorNode; engineGain?: GainNode; source?: AudioBufferSourceNode; vehicleId?: number }
 /** Original, locally synthesized ambience. Nothing plays until a user gesture resumes Web Audio. */
 export class CitySoundscape {
   private context?: AudioContext;
   private master?: GainNode;
   private analyser?: AnalyserNode;
   private noise?: AudioBuffer;
+  private roadNoise?: AudioBuffer;
   private murmur?: AudioBuffer;
   private readonly voices = new Map<string, Voice>();
   private readonly traffic: Voice[] = [];
   private enabled = true;
-  private volume = .42;
+  private volume = .3;
   private lastBeep = -1;
   private seconds = 0;
   private audible = false;
@@ -21,7 +23,7 @@ export class CitySoundscape {
   get status(): 'start' | 'on' | 'muted' { return !this.enabled ? 'muted' : this.context?.state === 'running' ? 'on' : 'start'; }
   get diagnostics() {
     const data = new Float32Array(256); this.analyser?.getFloatTimeDomainData(data);
-    return { state: this.context?.state ?? 'not-started', enabled: this.enabled, volume: this.volume, voices: this.voices.size + this.traffic.length, audible: this.audible, rms: Math.sqrt(data.reduce((sum, x) => sum + x * x, 0) / data.length) };
+    return { state: this.context?.state ?? 'not-started', enabled: this.enabled, volume: this.volume, voices: this.voices.size + this.traffic.length, trafficAssignments: this.traffic.map(v => v.vehicleId ?? null), trafficGain: this.traffic.reduce((total, v) => total + v.gain.gain.value + (v.engineGain?.gain.value ?? 0), 0), audible: this.audible, rms: Math.sqrt(data.reduce((sum, x) => sum + x * x, 0) / data.length) };
   }
   async start(): Promise<void> {
     this.enabled = true;
@@ -39,6 +41,9 @@ export class CitySoundscape {
     const buffer = this.noise = ctx.createBuffer(1, ctx.sampleRate * 4, ctx.sampleRate), samples = buffer.getChannelData(0), rng = seededRandom(5129);
     let brown = 0;
     for (let i = 0; i < samples.length; i++) { brown = (brown + (rng() * 2 - 1) * .025) / 1.025; samples[i] = brown * 3; }
+    this.roadNoise = ctx.createBuffer(1, ctx.sampleRate * 4, ctx.sampleRate);
+    const road = this.roadNoise.getChannelData(0); let softened = 0;
+    for (let i = 0; i < road.length; i++) { const white = rng() * 2 - 1; softened = softened * .82 + white * .18; road[i] = white * .24 + softened * .4; }
     // Unintelligible syllabic/formant texture, not a recording or generated dialogue.
     this.murmur = ctx.createBuffer(1, ctx.sampleRate * 4, ctx.sampleRate); const chatter = this.murmur.getChannelData(0), phases = [0, .7, 1.3];
     for (let i = 0; i < chatter.length; i++) {
@@ -58,10 +63,10 @@ export class CitySoundscape {
     this.voices.set('restaurantEast', this.voice(760, 'bandpass', { x: 16, y: 1.5, z: -25 }));
     this.voices.set('train', this.voice(330, 'lowpass', { x: 0, y: 8, z: -57 }, 105));
     for (const [x, z] of [[-5.7, 36], [5.8, -16], [32.8, 41]]) {
-      const v = this.voice(160, 'lowpass', { x, y: 1, z }, 60); v.gain.gain.value = .045; v.panner!.refDistance = 1.2; this.voices.set(`vending:${x}`, v);
+      const v = this.voice(160, 'lowpass', { x, y: 1, z }, 60); v.gain.gain.value = .012; v.panner!.refDistance = 1.2; this.voices.set(`vending:${x}`, v);
     }
-    const vent = this.voice(210, 'lowpass', { x: -10, y: 2, z: -24 }, 95); vent.gain.gain.value = .045; vent.panner!.refDistance = 1.5; this.voices.set('vent', vent);
-    for (let i = 0; i < 6; i++) this.traffic.push(this.voice(900, 'lowpass', { x: 0, y: .7, z: 0 }, 55));
+    const vent = this.voice(210, 'lowpass', { x: -10, y: 2, z: -24 }, 95); vent.gain.gain.value = .012; vent.panner!.refDistance = 1.5; this.voices.set('vent', vent);
+    for (let i = 0; i < 4; i++) this.traffic.push(this.trafficVoice(i));
   }
   private voice(frequency: number, type: BiquadFilterType, point?: { x: number; y: number; z: number }, engineHz?: number): Voice {
     const ctx = this.context!, source = ctx.createBufferSource(); source.buffer = type === 'bandpass' && frequency >= 600 ? this.murmur! : this.noise!; source.loop = true; source.playbackRate.value = .8 + this.voices.size * .023;
@@ -73,8 +78,19 @@ export class CitySoundscape {
       panner.positionX.value = point.x; panner.positionY.value = point.y; panner.positionZ.value = point.z; gain.connect(panner).connect(this.master!);
     } else gain.connect(this.master!);
     let engine: OscillatorNode | undefined;
-    if (engineHz) { engine = ctx.createOscillator(); engine.type = 'triangle'; engine.frequency.value = engineHz; const trim = ctx.createGain(); trim.gain.value = .13; engine.connect(trim).connect(filter); engine.start(); }
-    source.start(); return { gain, panner, filter, engine };
+    if (engineHz) { engine = ctx.createOscillator(); engine.type = 'sine'; engine.frequency.value = engineHz; const trim = ctx.createGain(); trim.gain.value = .035; engine.connect(trim).connect(filter); engine.start(); }
+    source.start(0, (this.voices.size * .317) % 3.8); return { gain, panner, filter, engine, source };
+  }
+  private trafficVoice(index: number): Voice {
+    const ctx = this.context!, source = ctx.createBufferSource(); source.buffer = this.roadNoise!; source.loop = true;
+    const highpass = ctx.createBiquadFilter(); highpass.type = 'highpass'; highpass.frequency.value = 600; highpass.Q.value = .5;
+    const filter = ctx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 1600; filter.Q.value = .4;
+    const gain = ctx.createGain(), engineGain = ctx.createGain(), panner = ctx.createPanner(); gain.gain.value = engineGain.gain.value = 0;
+    panner.panningModel = 'HRTF'; panner.rolloffFactor = 0; panner.positionY.value = .7;
+    source.connect(highpass).connect(filter).connect(gain).connect(panner).connect(this.master!);
+    const engine = ctx.createOscillator(); engine.setPeriodicWave(ctx.createPeriodicWave(new Float32Array(5), new Float32Array([0, 1, .18, .07, .03]))); engine.frequency.value = 44 + index * 2;
+    engine.connect(engineGain).connect(panner); engine.start(); source.start(0, index * .791);
+    return { gain, engineGain, panner, engine, filter, source };
   }
   update(dt: number, hour: number, camera: THREE.Camera, sim: CitySimulation): void {
     const ctx = this.context; if (!ctx || !this.master) return;
@@ -88,19 +104,29 @@ export class CitySoundscape {
     if (!audible) return;
     const residential = districtZone(p) === 'residential' ? 1 : 0, night = dayState(hour).night;
     const set = (name: string, value: number) => this.voices.get(name)!.gain.gain.setTargetAtTime(value, now, .3);
-    set('city', (.07 - night * .025) * (residential ? .6 : 1));
-    set('distant', (.07 + sim.stats.vehicles * .004) * (residential ? .35 : 1));
+    set('city', (.022 - night * .008) * (residential ? .6 : 1));
+    set('distant', .018 * (residential ? .35 : 1));
     const chatter = (.75 + Math.sin(this.seconds * 1.6) * .12 + Math.sin(this.seconds * 2.7) * .1);
-    set('crowd', Math.min(.17, sim.stats.pedestrians * .002) * chatter);
-    set('station', .11 * (railServiceOpen(hour) ? 1 : .1) * (.8 + Math.sin(this.seconds * .7) * .2));
-    for (const name of ['restaurantWest', 'restaurantEast']) set(name, businessOpen('restaurant', hour) ? .12 * chatter * (night ? 1 : .6) : .004);
-    const train = this.voices.get('train')!; train.panner!.positionX.value = sim.trainX - 13.5;
-    set('train', railServiceOpen(hour) && sim.trainX > -85 && sim.trainX < 125 ? .32 * (.85 + Math.sin(this.seconds * 21) * .15) : 0);
-    const nearby = sim.vehicles.filter(c => c.active).sort((a, b) => Math.hypot(a.x - p.x, a.z - p.z) - Math.hypot(b.x - p.x, b.z - p.z)).slice(0, 6);
-    this.traffic.forEach((v, i) => {
-      const c = nearby[i]; v.gain.gain.setTargetAtTime(c ? .06 + c.speed * .025 : 0, now, .15);
-      if (c) { v.panner!.positionX.value = c.x; v.panner!.positionZ.value = c.z; v.engine!.frequency.setTargetAtTime(42 + c.speed * 11 + (c.kind === 'truck' ? -8 : 12), now, .2); v.filter.frequency.setTargetAtTime(250 + c.speed * 190, now, .2); }
-    });
+    set('crowd', Math.min(.065, sim.stats.pedestrians * .0009) * chatter);
+    set('station', .045 * (railServiceOpen(hour) ? 1 : .1) * (.8 + Math.sin(this.seconds * .7) * .2));
+    for (const name of ['restaurantWest', 'restaurantEast']) set(name, businessOpen('restaurant', hour) ? .055 * chatter * (night ? 1 : .6) : .004);
+    const train = this.voices.get('train')!; train.panner!.positionX.value = sim.trainX;
+    set('train', railServiceOpen(hour) && sim.trainX > -85 && sim.trainX < 125 ? .13 * (.85 + Math.sin(this.seconds * 21) * .15) : 0);
+    // Stable IDs keep a passing car attached to its own voice instead of jumping on every sort.
+    const nearby = sim.vehicles.filter(c => c.active && Math.hypot(c.x - p.x, c.z - p.z) < 32).sort((a, b) => Math.hypot(a.x - p.x, a.z - p.z) - Math.hypot(b.x - p.x, b.z - p.z));
+    const assigned = new Set(this.traffic.map(v => v.vehicleId));
+    for (const v of this.traffic) {
+      let car = nearby.find(c => c.id === v.vehicleId);
+      if (!car && v.vehicleId !== undefined) {
+        v.gain.gain.setTargetAtTime(0, now, .09); v.engineGain!.gain.setTargetAtTime(0, now, .09);
+        if (v.gain.gain.value + v.engineGain!.gain.value < .0001) { assigned.delete(v.vehicleId); v.vehicleId = undefined; }
+        else continue;
+      }
+      if (!car) { car = nearby.find(c => !assigned.has(c.id)); if (car) { v.vehicleId = car.id; assigned.add(car.id); } }
+      const mix = trafficVoiceMix(car?.kind ?? 'compact', car?.speed ?? 0, car ? Math.hypot(car.x - p.x, car.z - p.z) : Infinity);
+      v.gain.gain.setTargetAtTime(mix.tireGain, now, .12); v.engineGain!.gain.setTargetAtTime(mix.engineGain, now, .12);
+      if (car) { v.panner!.positionX.setTargetAtTime(car.x, now, .04); v.panner!.positionZ.setTargetAtTime(car.z, now, .04); v.engine!.frequency.setTargetAtTime(mix.engineHz + car.id % 5, now, .18); v.filter.frequency.setTargetAtTime(mix.tireLowpassHz, now, .18); v.source!.playbackRate.setTargetAtTime(mix.playbackRate + car.id % 7 * .013, now, .18); }
+    }
     const tick = Math.floor(sim.clock / .9);
     if (sim.signals.walk && tick !== this.lastBeep) { this.lastBeep = tick; this.beep(now, tick % 2 ? 7.8 : -4.55, tick % 2 ? 12 : 21.4); }
   }

@@ -3,6 +3,8 @@ import { Bounds, District, Doorway, Shopfront } from '../types';
 import { BuildingKit, BuildingSpec, Archetype } from './BuildingKit';
 import { CityBatch } from './CityBatch';
 import { Materials, random } from './Materials';
+import { stationDetails } from './StationDetails';
+import { addRailwayDetails } from './RailwayDetails';
 import { signBusiness } from '../simulation/WorldRules';
 
 /** Metre-scale compact district. Each frontage uses the same local +Z kit convention. */
@@ -39,6 +41,7 @@ export class NeighborhoodGenerator {
       }
     }
     for (const side of [-1, 1]) for (const z of [-42, -33, -16, -6, 29, 40, 51]) {
+      if (side === -1 && z === -42) continue; // Keep the station forecourt clear of the rear apartment wall.
       add({ x: 30 + side * 3.8, z: z + rng(), rotation: -side * Math.PI / 2, width: 6.8 + rng(), depth: side < 0 ? 5.6 : 9, floors: 2 + Math.floor(rng() * 3), kind: 'apartment', palette: Math.floor(rng() * 4), shop: 10 });
     }
     for (const side of [-1, 1]) for (const x of [-48, -38, -28, 43, 53]) {
@@ -49,8 +52,9 @@ export class NeighborhoodGenerator {
       if (Math.abs(z - 12) < 16) continue;
       add({ x, z, rotation: i < 6 ? Math.PI / 2 : -Math.PI / 2, width: 9 + rng() * 4, depth: 8 + rng() * 7, floors: 7 + Math.floor(rng() * 9), kind: 'office', palette: 4 + i % 4, shop: 15 });
     }
-    b.origin(); this.streetProps(b, m, lamps, rng, colliders); this.railway(b, m, colliders); this.alley(b, m);
-    const group = b.finish(m.signs); group.name = `Shinmachi · seed ${this.seed}`;
+    b.origin(); this.streetProps(b, m, lamps, rng, colliders); this.railway(b, m, colliders); addRailwayDetails(b, m); this.alley(b, m);
+    const station = stationDetails(b, m);
+    const group = b.finish(m.signs); group.add(station); group.name = `Shinmachi · seed ${this.seed}`;
     return { group, colliders, doors, shopfronts, lamps, materials: { signs: m.signs, windows: m.windows, warmWindows: m.warmWindows, lamps: m.lamps, shop: m.shop, lantern: m.lantern, businesses: m.businesses }, stats: { buildings, instances: b.instances } };
   }
   private roads(b: CityBatch, m: Materials): void {
@@ -217,7 +221,8 @@ export class NeighborhoodGenerator {
       for (const z of [-59.3, -54.7]) b.b(m.metal, x, 9.1, z, .08, 5, .08); b.b(m.metal, x, 11.5, -57, .09, .09, 4.8);
       if (x < 60) b.cable(new THREE.Vector3(x, 10.8, -57), new THREE.Vector3(x + 15, 10.8, -57), .3);
     }
-    b.b(m.facades[0], 19, 2.2, -51.7, 12, 4.4, 4.2); b.b(m.dark, 19, 1.7, -49.54, 7, 3.3, .05);
+    for (const x of [13.1, 24.9]) b.b(m.facades[0], x, 2.2, -51.7, .25, 4.4, 4.2);
+    b.b(m.businesses.convenience.surface, 19, 2.2, -53.7, 12, 4.4, .18);
     b.b(m.pavement, 16, .025, -43, 18, .18, 12.5);
     b.b(m.yellow, 16, .126, -46.2, 17, .012, .3);
     for (const x of [14.2, 23.8]) b.b(m.facades[2], x, 2, -49, .65, 4, 1.5);

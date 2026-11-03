@@ -1,8 +1,9 @@
 import * as THREE from 'three';
+import { CommuterRail } from './CommuterRail';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import type { District } from '../types';
 import { CitySimulation, VEHICLE_PROFILES } from './CitySimulation';
-import { CROSSINGS, dayState, railServiceOpen } from './WorldRules';
+import { CROSSINGS, dayState } from './WorldRules';
 import type { Axis } from './WorldRules';
 
 /** Instanced presentation only. All movement and permissions come from the tested model. */
@@ -13,7 +14,7 @@ export class CityActivity {
   private readonly torso: THREE.InstancedMesh; private readonly limbs: THREE.InstancedMesh;
   private readonly skin: THREE.InstancedMesh; private readonly hair: THREE.InstancedMesh; private readonly details: THREE.InstancedMesh;
   private readonly body: THREE.InstancedMesh; private readonly glass: THREE.InstancedMesh; private readonly wheels: THREE.InstancedMesh;
-  private readonly headlights: THREE.InstancedMesh; private readonly taillights: THREE.InstancedMesh; private readonly train: THREE.InstancedMesh;
+  private readonly headlights: THREE.InstancedMesh; private readonly taillights: THREE.InstancedMesh; private readonly rail: CommuterRail;
   private readonly brakelights: THREE.InstancedMesh;
   private readonly beams: THREE.SpotLight[] = [];
   private readonly contacts: THREE.InstancedMesh;
@@ -39,7 +40,7 @@ export class CityActivity {
     this.wheels = this.pool(new THREE.CylinderGeometry(1, 1, 1, 16), new THREE.MeshStandardMaterial({ roughness: .92 }), 20 * 8);
     this.headlights = this.pool(box, this.headlightMaterial, 20 * 5); this.taillights = this.pool(box, this.tailMaterial, 20 * 4);
     this.brakelights = this.pool(box, this.brakeMaterial, 20 * 4);
-    this.train = this.pool(box, paint, 320);
+    this.rail = new CommuterRail(scene);
     this.contacts = this.pool(new THREE.CircleGeometry(.5, 16), new THREE.MeshBasicMaterial({ color: 0x06090a, transparent: true, opacity: .18, depthWrite: false }), 110);
     for (let i = 0; i < 3; i++) { const light = new THREE.SpotLight(0xffe3bd, 0, 24, .5, .65, 2); scene.add(light, light.target); this.beams.push(light); }
     this.signals(); this.update(0, 17.25);
@@ -54,14 +55,14 @@ export class CityActivity {
   }
   update(dt: number, hour: number, listener?: THREE.Vector3): void {
     this.simulation.update(dt, hour, listener);
-    const pools = [this.torso, this.limbs, this.skin, this.hair, this.details, this.body, this.glass, this.wheels, this.headlights, this.taillights, this.brakelights, this.train, this.contacts];
-    pools.forEach(p => { p.count = 0; }); this.drawPeople(); this.drawVehicles(); this.drawTrain();
+    const pools = [this.torso, this.limbs, this.skin, this.hair, this.details, this.body, this.glass, this.wheels, this.headlights, this.taillights, this.brakelights, this.contacts];
+    pools.forEach(p => { p.count = 0; }); this.drawPeople(); this.drawVehicles(); this.rail.update(this.simulation.trainX, hour);
     pools.forEach(p => { p.instanceMatrix.needsUpdate = true; if (p.instanceColor) p.instanceColor.needsUpdate = true; });
     const night = dayState(hour).night;
     this.headlightMaterial.emissiveIntensity = .4 + night * 3.2; this.tailMaterial.emissiveIntensity = .25 + night * .65; this.brakeMaterial.emissiveIntensity = 1.8 + night * 2;
     const nearby = this.simulation.vehicles.filter(c => c.active).sort((a, b) => Math.hypot(a.x - (listener?.x ?? 0), a.z - (listener?.z ?? 0)) - Math.hypot(b.x - (listener?.x ?? 0), b.z - (listener?.z ?? 0)));
     this.beams.forEach((light, i) => { const c = nearby[i]; light.intensity = c ? night * 35 : 0; if (c) { const front = VEHICLE_PROFILES[c.kind].length / 2; light.position.set(c.x + Math.sin(c.yaw) * front, .72, c.z + Math.cos(c.yaw) * front); light.target.position.set(c.x + Math.sin(c.yaw) * (front + 10), .05, c.z + Math.cos(c.yaw) * (front + 10)); } });
-    for (const axis of ['NS', 'EW'] as const) this.signalMaterials[axis].forEach((m, i) => { m.emissiveIntensity = this.simulation.signals[axis === 'NS' ? 'ns' : 'ew'] === ['red', 'amber', 'green'][i] ? 3 : .012; });
+    for (const axis of ['NS', 'EW'] as const) this.signalMaterials[axis].forEach((m, i) => { const active = this.simulation.signals[axis === 'NS' ? 'ns' : 'ew'] === ['red', 'amber', 'green'][i]; m.color.setHex(active ? [0xf44335, 0xf1bf46, 0x39cda5][i] : 0x172321); m.emissiveIntensity = active ? 3 : 0; });
     this.pedestrianMaterials.forEach((m, i) => { const s = this.simulation.signals, green = s.walk || (s.clearance && Math.floor(this.simulation.clock * 3) % 2 === 0); m.emissiveIntensity = (i === 1 ? green : !s.walk && !s.clearance) ? 2.5 : .015; });
   }
   private drawPeople(): void {
@@ -120,16 +121,6 @@ export class CityActivity {
       if (c.kind === 'taxi') { part(this.headlights, 0, h + .15, -.05, .48, .18, .22, 0xf4d698); for (const side of [-1, 1]) part(this.body, side * w * .505, .82, 0, .025, .14, l * .65, 0x306859); }
       if (c.route.turn && !c.committed) part(this.headlights, -w * .5, .78, l * .38, .03, .12, .16, Math.floor(this.simulation.clock * 2) % 2 ? 0xffbd52 : 0x654b24);
       this.put(this.contacts, c.x, .035, c.z, w + .3, l + .4, 1, 0xffffff, c.yaw, -Math.PI / 2);
-    }
-  }
-  private drawTrain(): void {
-    if (!railServiceOpen(this.simulation.hour)) return;
-    for (let car = 0; car < 3; car++) {
-      const x = this.simulation.trainX - car * 13.5;
-      const add = (lx: number, y: number, z: number, w: number, h: number, d: number, color: number) => this.put(this.train, x + lx, y, -57 + z, w, h, d, color);
-      add(0, 8.25, 0, 12.8, 2.1, 2.65, 0xbfc6c3); add(0, 9.37, 0, 12.7, .2, 2.7, 0x697575);
-      for (const side of [-1, 1]) { add(0, 7.85, side * 1.34, 12.7, .33, .025, 0x5c946b); for (let j = -5; j <= 5; j += 1.25) add(j, 8.58, side * 1.35, .83, .83, .03, 0x526b70); for (const j of [-3.4, 3.4]) { add(j, 8.15, side * 1.37, .95, 1.8, .025, 0x8d9c99); add(j, 8.6, side * 1.39, .65, .64, .025, 0x304950); } }
-      add(0, 9.65, 0, 2.2, .38, 1.3, 0x737d78);
     }
   }
   private signals(): void {

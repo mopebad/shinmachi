@@ -6,3 +6,5 @@
 - Business names and district geography are fictional. Railway/station styling is inspired by Japanese urban infrastructure and is not an official railway operator asset.
 - Three.js and its bundled example utilities are used under their MIT license; dependency license files are retained in the installed packages. Vite and TypeScript remain development dependencies.
 - Future external assets must have an explicit license/attribution entry here, be stored locally, and have a procedural fallback before they are integrated.
+
+- The November 2026 visual pass adds original procedural skyline/tower geometry, commuter train windows with illustrated passenger silhouettes, station wayfinding and area-map canvases, four sign aspect layouts, material bump/roughness maps and a road reflection mask. No external reference photographs are included in the app. The train and line identities remain fictional.

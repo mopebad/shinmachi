@@ -1,6 +1,6 @@
 # Shinmachi / 新町
 
-A dense, fictional Tokyo-inspired neighborhood built with Three.js, TypeScript and Vite. Walk the commercial street, lantern alley, residential lane, and station forecourt while pedestrians, left-hand traffic, and an elevated commuter train move through the district.
+A dense, fictional Tokyo-inspired neighborhood built with Three.js, TypeScript and Vite. Walk the commercial street, lantern alley, residential lane, and station forecourt while pedestrians, left-hand traffic, and a detailed elevated commuter train move through the district. The default evening view looks toward a fictional orange lattice broadcast tower, with optional after-rain street reflections.
 
 ## Start locally
 
@@ -27,6 +27,8 @@ The production build is emitted to `dist`. Preview normally uses port 4173. No e
 - Click the scene to capture the mouse; Escape releases it. Drag-look remains available when pointer lock is unavailable.
 - WASD moves. Walk speed is 2.7 m/s; Shift runs at 5 m/s.
 - F switches to flight; V returns to walking. In flight, Space rises and Shift descends.
+- 6: Akane tower avenue; 7: railway approach. H hides/restores controls. The lens slider adjusts the field of view from 35 to 80 degrees.
+- After hours, Blue hour and Daylight presets set the clock; Street surface switches dry/after-rain, and Road reflections can be disabled to reduce rendering work.
 - 1: commercial street; 2: lantern alley; 3: station square; 4: aerial overview; 5: residential lane. The location selector provides the same shortcuts.
 - Scrub the time slider or use Play/Pause. When playing, one real second advances 3.6 simulated minutes. Traffic and signals continue moving when the time-of-day clock is paused.
 - Use `?seed=1234` in the URL to vary parcels, archetypes and materials. Default seed `8412` is the reviewed benchmark.
@@ -40,6 +42,8 @@ Density targets change by time of day. People retire via destinations and cars l
 
 Street-facing rooms have visible depth, counters, stools/tables, stocked shelves, lobby fixtures, ceiling lights and lightweight staff/patron silhouettes. Audio is original procedural synthesis, not downloaded recordings. It is an initial soundscape, not natural recorded dialogue or a final mastered mix.
 
-The station remains an exterior landmark; shops are not player-enterable. Collisions cover building/station/rail-pier footprints and selected key props, not every object or dynamic agent. Walking NPCs have local separation and simple graph routes, not full-life routines. Rain/wet-road reflections, train boarding/stops, right turns, full crowd avoidance and map streaming remain future work.
+The station remains an exterior landmark; shops are not player-enterable. Collisions cover building/station/rail-pier footprints and selected key props, not every object or dynamic agent. Walking NPCs have local separation and simple graph routes, not full-life routines. Rainfall/weather audio, train boarding/stops, right turns, full crowd avoidance and map streaming remain future work. Station stairs and platform details are visual; player access remains exterior-only.
 
-See [ROADMAP.md](./ROADMAP.md) for architecture, completed features, validation results and remaining milestones; [ASSETS.md](./ASSETS.md) records asset provenance.
+Traffic sound now uses four stable spatial vehicle voices with separate quiet engines and tire hiss, distance fade to silence at 32 m, and a reduced background mix. Sound still uses original procedural synthesis rather than recorded Tokyo audio.
+
+See [VISUAL_PLAN.md](./VISUAL_PLAN.md) for the photographic direction and implementation plan. See [ROADMAP.md](./ROADMAP.md) for architecture, completed features, validation results and remaining milestones; [ASSETS.md](./ASSETS.md) records asset provenance.

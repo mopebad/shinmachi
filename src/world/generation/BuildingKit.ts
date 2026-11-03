@@ -39,7 +39,7 @@ export class BuildingKit {
       for (let f = 1; f < floors; f++) for (let j = 0; j < Math.floor(d / 3.1); j++) {
         const z = -1.9 - j * 2.7;
         b.b(m.dark, side * (w / 2 + .01), f * 2.85 + 1.3, z, .09, 1.6, 1.1);
-        b.b(this.rng() > .7 ? m.warmWindows : m.windows, side * (w / 2 + .065), f * 2.85 + 1.3, z, .04, 1.4, .95);
+        b.b(this.rng() > .72 ? m.businesses[kind === 'apartment' ? 'residential' : 'office'].window : m.windows, side * (w / 2 + .065), f * 2.85 + 1.3, z, .04, 1.4, .95);
         b.b(m.metal, side * (w / 2 + .1), f * 2.85 + 1.3, z, .045, 1.43, .04);
       }
     }
@@ -61,6 +61,8 @@ export class BuildingKit {
     const b = this.b, m = this.m;
     b.b(m.dark, x, y, z, w + .13, h + .12, .13);
     b.b(lit ? lightMaterial ?? m.warmWindows : m.windows, x, y, z + .08, w, h, .035);
+    for (const side of [-1, 1]) b.b(m.metal, x + side * (w / 2 + .025), y, z + .14, .055, h + .1, .13);
+    b.b(m.metal, x, y + h / 2, z + .14, w + .12, .06, .13);
     b.b(m.metal, x, y, z + .13, .035, h, .045);
     b.b(m.cream, x, y - h / 2 - .04, z + .17, w + .2, .1, .26);
     if (lit) { b.b(m.cream, x - w * .35, y, z + .105, w * .18, h, .018); b.b(m.cream, x + w * .35, y, z + .105, w * .18, h, .018); }

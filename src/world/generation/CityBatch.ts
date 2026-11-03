@@ -41,8 +41,9 @@ export class CityBatch {
       const p = new THREE.Vector3(vx, vy, 0).applyMatrix4(matrix); this.signPositions.push(p.x, p.y, p.z);
       this.signBusinesses.push(BUSINESSES.indexOf(signBusiness(index)));
     }
-    const u = index % 8 / 8, v = 1 - (Math.floor(index / 8) + 1) / 8, e = .001;
-    this.signUVs.push(u + e, v + e, u + .125 - e, v + e, u + .125 - e, v + .125 - e, u + e, v + .125 - e);
+    const slot = index + (w / h > 2.2 ? 0 : w / h < .3 ? 96 : w / h < .65 ? 64 : 32);
+    const u = slot % 16 / 16, v = 1 - (Math.floor(slot / 16) + 1) / 8, e = .0007;
+    this.signUVs.push(u + e, v + e, u + .0625 - e, v + e, u + .0625 - e, v + .125 - e, u + e, v + .125 - e);
     this.signIndices.push(start, start + 1, start + 2, start, start + 2, start + 3);
   }
   cable(a: THREE.Vector3, b: THREE.Vector3, sag = .7): void {

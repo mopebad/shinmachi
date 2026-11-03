@@ -11,24 +11,34 @@ import { District } from './types';
 import { CitySoundscape } from './audio/CitySoundscape';
 import { BUSINESSES, businessOpen, dayState, districtZone } from './simulation/WorldRules';
 import type { Business } from './simulation/WorldRules';
+import { CityBackdrop } from './generation/CityBackdrop';
+import { StreetReflections } from './effects/StreetReflections';
+import { photographicPass } from './effects/PhotographicPass';
 import { StreetAtmosphere } from './effects/StreetAtmosphere';
 
 const LOCATIONS = [
-  { name: 'Shinmachi-dori', eye: [4.7, 1.82, 43], target: [-1, 5, -25] },
-  { name: 'Lantern alley', eye: [-16, 1.82, -25], target: [6, 2.3, -25] },
-  { name: 'Station square', eye: [17, 1.82, -39], target: [19, 3.2, -50] },
-  { name: 'District overview', eye: [44, 43, 58], target: [0, 7, -10] },
-  { name: 'Residential lane', eye: [29.1, 1.82, 43], target: [28.5, 2.5, -14] },
+  { name: 'Shinmachi-dori', eye: [4.7, 1.82, 43], target: [-1, 5, -25], fov: 60 },
+  { name: 'Lantern alley', eye: [-16, 1.82, -25], target: [6, 2.3, -25], fov: 58 },
+  { name: 'Station square', eye: [17, 1.82, -39], target: [19, 3.4, -49], fov: 56 },
+  { name: 'District overview', eye: [44, 43, 58], target: [0, 7, -10], fov: 60 },
+  { name: 'Residential lane', eye: [29.1, 1.82, 43], target: [28.5, 2.5, -14], fov: 58 },
+  { name: 'Akane tower avenue', eye: [4.65, 1.82, 36], target: [-7, 25, -214], fov: 48 },
+  { name: 'Railway approach', eye: [8.5, 1.82, -38.5], target: [-2, 8.2, -57], fov: 54 },
 ];
 
 export class CityWorld {
   readonly scene = new THREE.Scene();
-  readonly camera = new THREE.PerspectiveCamera(65, innerWidth / innerHeight, .08, 320);
+  readonly camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, .08, 650);
   readonly renderer: THREE.WebGLRenderer;
   readonly controller: PlayerController;
   readonly activity: CityActivity;
   readonly audio = new CitySoundscape();
   private readonly atmosphere: StreetAtmosphere;
+  private readonly backdrop: CityBackdrop;
+  private readonly reflections: StreetReflections;
+  private readonly finish = photographicPass();
+  weather: 'dry' | 'damp' = 'damp';
+  reflectionsEnabled = true;
   private readonly district: District;
   private readonly composer: EffectComposer;
   private readonly sun = new THREE.DirectionalLight(0xffedd3, 3);
@@ -38,7 +48,7 @@ export class CityWorld {
   private readonly fog = new THREE.FogExp2(0x9caaa9, .008);
   private last = performance.now(); private fps = 60; private location = 0;
   private lightingAccumulator = 0;
-  time = 17.25;
+  time = 20.5;
   playing = false;
 
   constructor(container: HTMLElement) {
@@ -60,8 +70,10 @@ export class CityWorld {
     this.scene.add(this.sun, this.sun.target, this.ambient);
     this.sky = this.createSky(); this.scene.add(this.sky);
     this.district = new NeighborhoodGenerator(this.readSeed()).generate(); this.scene.add(this.district.group);
+    this.backdrop = new CityBackdrop(this.scene);
+    this.reflections = new StreetReflections(this.scene);
     // Bounded set of non-shadowed practical lights: pools of light, not a light per sign.
-    for (const position of this.district.lamps.filter((_, i) => i % 2 === 0)) this.practical(position, 0xffd4a0, 30, 15);
+    for (const position of this.district.lamps.filter((_, i) => i % 2 === 0)) this.practical(position, 0xe3eee8, 36, 15);
     this.district.shopfronts.filter(s => Math.abs(s.x) < 9).forEach((s, i) => { if (i % 3 === 0) { const p = new THREE.Vector3(0, 2.3, -.6).applyAxisAngle(THREE.Object3D.DEFAULT_UP, s.rotation).add(new THREE.Vector3(s.x, 0, s.z)); this.practical(p, s.business === 'convenience' ? 0xc5e9d8 : 0xffcc94, 32, 11, s.business); } });
     this.practical(new THREE.Vector3(0, 3, -25), 0xffab5c, 22, 15, 'restaurant');
     for (const x of [-15, -9, 12, 19]) this.practical(new THREE.Vector3(x, 2.7, -25), 0xffbc7b, 19, 9, 'restaurant');
@@ -70,23 +82,28 @@ export class CityWorld {
     this.atmosphere = new StreetAtmosphere(this.scene, this.district);
     this.controller = new PlayerController(this.camera, this.renderer.domElement, this.district.colliders);
     this.renderer.domElement.addEventListener('pointerdown', () => { if (this.audio.status === 'start') void this.audio.start().catch(() => {}); });
-    this.teleport(0);
+    this.teleport(5);
     const target = new THREE.WebGLRenderTarget(innerWidth, innerHeight, { type: THREE.HalfFloatType }); target.samples = 2;
     this.composer = new EffectComposer(this.renderer, target); this.composer.addPass(new RenderPass(this.scene, this.camera));
-    this.composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth / 2, innerHeight / 2), .19, .45, 1.25)); this.composer.addPass(new OutputPass());
+    this.composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth / 2, innerHeight / 2), .25, .5, 1.05)); this.composer.addPass(new OutputPass()); this.composer.addPass(this.finish);
     window.addEventListener('resize', () => { this.camera.aspect = innerWidth / innerHeight; this.camera.updateProjectionMatrix(); this.renderer.setSize(innerWidth, innerHeight); this.composer.setSize(innerWidth, innerHeight); });
     document.addEventListener('visibilitychange', () => { this.last = performance.now(); });
     this.setTime(this.time);
   }
   private readSeed(): number { const value = Number(new URLSearchParams(location.search).get('seed') ?? 8412); return Number.isFinite(value) ? value >>> 0 : 8412; }
   get cameraMode(): CameraMode { return this.controller.mode; }
-  get locationName(): string { return this.camera.position.y > 15 ? 'District overview' : { commercial: 'Shinmachi-dori', alley: 'Lantern alley', station: 'Station square', residential: 'Residential lane' }[districtZone(this.camera.position)]; }
+  get locationIndex(): number { return this.location; }
+  get locationName(): string { if (this.location === 5 && this.camera.position.distanceTo(new THREE.Vector3(...LOCATIONS[5].eye)) < 3) return 'Akane tower avenue'; if (this.location === 6 && this.camera.position.z < -36) return 'Railway approach'; return this.camera.position.y > 15 ? 'District overview' : { commercial: 'Shinmachi-dori', alley: 'Lantern alley', station: 'Station square', residential: 'Residential lane' }[districtZone(this.camera.position)]; }
   get stats() { return { fps: Math.round(this.fps), drawCalls: this.renderer.info.render.calls, triangles: this.renderer.info.render.triangles, buildings: this.district.stats.buildings, ...this.activity.stats }; }
   setPlaying(value: boolean): void { this.playing = value; }
   teleport(index: number): void {
     this.location = THREE.MathUtils.clamp(index, 0, LOCATIONS.length - 1); const location = LOCATIONS[this.location];
-    this.controller.setMode(index === 3 ? 'fly' : 'walk'); this.controller.teleport(new THREE.Vector3(...location.eye), new THREE.Vector3(...location.target));
+    this.setFov(location.fov);
+    this.controller.setMode(this.location === 3 ? 'fly' : 'walk'); this.controller.teleport(new THREE.Vector3(...location.eye), new THREE.Vector3(...location.target));
   }
+  setFov(value: number): void { this.camera.fov = THREE.MathUtils.clamp(value, 35, 80); this.camera.updateProjectionMatrix(); }
+  setWeather(value: 'dry' | 'damp'): void { this.weather = value; this.reflections.setWetness(value === 'damp' && this.reflectionsEnabled ? .64 : 0); }
+  setReflections(value: boolean): void { this.reflectionsEnabled = value; this.setWeather(this.weather); }
   setTime(hour: number): void {
     this.time = ((hour % 24) + 24) % 24;
     const state = dayState(this.time), elevation = state.elevation;
@@ -94,16 +111,18 @@ export class CityWorld {
     this.sun.position.set(Math.cos((this.time - 6) / 12 * Math.PI) * 90, Math.max(5, elevation * 100), -25);
     this.sun.intensity = day * (1.1 + Math.max(0, elevation) * 2.2);
     this.sun.color.setRGB(1, .94 - dusk * .29, .83 - dusk * .4);
-    this.ambient.intensity = .34 + day * 1.65; this.ambient.color.set(day > .5 ? 0xb6d2e5 : 0x7b92bd);
-    this.scene.environmentIntensity = .13 + day * .22;
-    this.fog.color.set(0x101c30).lerp(new THREE.Color(0xb4c5cf), day).lerp(new THREE.Color(0xc59177), dusk * .3 * day);
-    this.fog.density = .0065 + night * .003;
+    this.ambient.intensity = .22 + day * 1.65; this.ambient.color.set(day > .5 ? 0xb6d2e5 : 0x73899e);
+    this.scene.environmentIntensity = .19 + day * .22;
+    this.renderer.toneMappingExposure = .97 + night * .17;
+    this.backdrop.update(this.time, night);
+    this.fog.color.set(0x111e2d).lerp(new THREE.Color(0xb4c5cf), day).lerp(new THREE.Color(0xc59177), dusk * .3 * day);
+    this.fog.density = .0028 + night * .0007;
     const uniforms = this.sky.material.uniforms;
     uniforms.top.value.set(0x071329).lerp(new THREE.Color(0x5784ab), day);
     uniforms.horizon.value.copy(this.fog.color); uniforms.sunDirection.value.copy(this.sun.position).normalize(); uniforms.day.value = day; uniforms.dusk.value = dusk;
     const mat = this.district.materials;
-    mat.signs.emissiveIntensity = .12 + night * .85; mat.warmWindows.emissiveIntensity = .12 + night * 1.25;
-    mat.windows.emissiveIntensity = .04 + night * .23;
+    mat.signs.emissiveIntensity = .06 + night * 1.1; mat.warmWindows.emissiveIntensity = .12 + night * 1.25;
+    mat.windows.emissiveIntensity = .005 + night * .012;
     const shopsOpen = this.time > 7 && this.time < 23.5 ? 1 : .28;
     mat.shop.emissiveIntensity = (.12 + night * .85) * shopsOpen;
     mat.lamps.emissiveIntensity = .6 + night * 3;
@@ -131,7 +150,7 @@ export class CityWorld {
         col+=vec3(1.,.86,.63)*smoothstep(.9994,.9998,sun)*day*2.;
         float star=step(.9992,fract(sin(dot(floor(p.xz*850.),vec2(12.9898,78.233)))*43758.5453));
         col+=star*(1.-day)*smoothstep(.15,.5,h)*.16; gl_FragColor=vec4(col,1.); }` });
-    const sky = new THREE.Mesh(new THREE.SphereGeometry(260, 24, 16), material); sky.frustumCulled = false; return sky;
+    const sky = new THREE.Mesh(new THREE.SphereGeometry(600, 24, 16), material); sky.frustumCulled = false; return sky;
   }
   start(): void {
     const tick = (now: number) => {
@@ -139,6 +158,7 @@ export class CityWorld {
       this.fps = THREE.MathUtils.lerp(this.fps, 1 / Math.max(.001, delta), .03);
       this.controller.update(delta); this.activity.update(delta, this.time, this.camera.position); this.atmosphere.update(delta, this.time, this.camera);
       if (this.playing) { this.time = (this.time + delta * .06) % 24; this.lightingAccumulator += delta; if (this.lightingAccumulator > .2) { this.setTime(this.time); this.lightingAccumulator = 0; } }
+      this.reflections.update(this.camera); this.finish.uniforms.seconds.value = now / 1000;
       this.sky.position.copy(this.camera.position); this.camera.updateMatrixWorld(); this.audio.update(delta, this.time, this.camera, this.activity.simulation); this.renderer.info.reset(); this.composer.render(delta); requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
