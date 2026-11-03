@@ -1,0 +1,38 @@
+{
+  "name": "review2-street-before",
+  "view": "nightlife",
+  "preset": 7,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 1446.2666666660086,
+  "eye": [
+    -18.8,
+    1.82,
+    -25
+  ],
+  "quaternion": [
+    0.02009159979257884,
+    -0.7068212840724131,
+    0.02009159979257884,
+    0.7068212840724131
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "stats": {
+    "fps": 240,
+    "drawCalls": 430,
+    "triangles": 2673187,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T08:23:40.411Z"
+}

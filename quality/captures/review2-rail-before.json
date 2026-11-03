@@ -1,0 +1,38 @@
+{
+  "name": "review2-rail-before",
+  "view": "elevatedRail",
+  "preset": 6,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 1446.3999999993418,
+  "eye": [
+    8.5,
+    1.82,
+    -38.5
+  ],
+  "quaternion": [
+    0.14036933551783393,
+    0.25255442341301665,
+    -0.03705813805927682,
+    0.9566291900545268
+  ],
+  "fov": 54,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "stats": {
+    "fps": 224,
+    "drawCalls": 384,
+    "triangles": 2615439,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T08:23:40.703Z"
+}

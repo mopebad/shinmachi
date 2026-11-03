@@ -1,0 +1,38 @@
+{
+  "name": "review2-tower-before",
+  "view": "tower",
+  "preset": 5,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 1446.3333333326752,
+  "eye": [
+    4.65,
+    1.82,
+    36
+  ],
+  "quaternion": [
+    0.046149080157741475,
+    0.02325623462242359,
+    -0.0010746904453790708,
+    0.9986632340244771
+  ],
+  "fov": 48,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "stats": {
+    "fps": 229,
+    "drawCalls": 583,
+    "triangles": 2687151,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T08:23:40.563Z"
+}

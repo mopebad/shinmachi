@@ -1,0 +1,38 @@
+{
+  "name": "review2-commercial-before",
+  "view": "commercial",
+  "preset": 0,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 1446.4999999993418,
+  "eye": [
+    4.7,
+    1.82,
+    43
+  ],
+  "quaternion": [
+    0.023261337608258003,
+    0.04179049953395925,
+    -0.0009732171516890708,
+    0.9988551031905241
+  ],
+  "fov": 60,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "stats": {
+    "fps": 210,
+    "drawCalls": 592,
+    "triangles": 2687927,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T08:23:41.006Z"
+}
