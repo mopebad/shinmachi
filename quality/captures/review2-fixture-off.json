@@ -1,0 +1,39 @@
+{
+  "name": "review2-fixture-off",
+  "view": "nightlife",
+  "preset": 7,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 215.26666666665702,
+  "eye": [
+    -13.2,
+    1.82,
+    -27.1
+  ],
+  "quaternion": [
+    0,
+    0.9721069849642392,
+    -0.23453786428578308,
+    0
+  ],
+  "fov": 38,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": false,
+  "stats": {
+    "fps": 240,
+    "drawCalls": 410,
+    "triangles": 3936179,
+    "buildings": 57,
+    "pedestrians": 50,
+    "vehicles": 10
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T09:09:09.300Z"
+}

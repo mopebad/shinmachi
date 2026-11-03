@@ -18,3 +18,22 @@ For performance, use a 1920 × 1080 browser viewport at pixel ratio 1. Allow the
 Review the primary reference alongside the before and after images. List the three to five most visible differences, make targeted changes, then repeat. [QUALITY_REPORT.md](../QUALITY_REPORT.md) records the actual results and limitations.
 
 The capture middleware only runs in Vite development mode; production builds do not expose a filesystem-writing endpoint.
+
+## Ranked visual-review pass
+
+The latest review is [VISUAL_REVIEW.md](../VISUAL_REVIEW.md). The `review2-*` captures retain its before/after evidence; [review2-measurements.json](./review2-measurements.json) stores browser intervals, GPU timer queries, the controlled contact pixel check and simulation results.
+
+For an explicit static fixture study:
+
+```js
+city.setContactShading(false);
+await city.captureBenchmark('fixture-off', 'nightlife', 21, {
+  eye: [-13.2, 1.82, -27.1], target: [-13.2, 4.1, -22.65], fov: 38
+});
+city.setContactShading(true);
+await city.captureBenchmark('fixture-on', 'nightlife', 21, {
+  eye: [-13.2, 1.82, -27.1], target: [-13.2, 4.1, -22.65], fov: 38
+});
+```
+
+An optional fourth capture argument supplies a study framing without changing any gameplay camera preset. The contact effect also has a URL opt-out, `?ao=0`. Existing road-reflection controls remain separate.

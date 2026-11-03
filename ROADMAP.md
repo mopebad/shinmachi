@@ -4,6 +4,10 @@
 
 A compact, metre-scale, Tokyo-inspired neighborhood that rewards exploration at pedestrian eye level. Pursue the photographic Tokyo evening references through coherent construction, materials, light, audio, density and polish while retaining a compact real-time environment. This is a fictional district, not a geographically accurate reconstruction of Tokyo.
 
+## Latest visual correction
+
+[VISUAL_REVIEW.md](./VISUAL_REVIEW.md) ranks ten observed discrepancies against the three reference photographs using immersion, street visibility, feasibility and estimated rendering cost. Its top three are implemented: anatomically proportioned clothed people with connected/grounded joints, bounded half-resolution contact occlusion, and layered urban massing/window occupancy with nearer office setbacks. All 20 tests and the production build pass; actual before/after images and measured rendering cost are recorded in the review. The eight presets, routes, traffic, schedules, audio and elevated train remain functional. Other visual gaps remain open rather than being described as completed.
+
 ## Production delivery sequence
 
 The attached production brief supersedes the earlier small evening pass. Current delivery is **Pass 1**, focused on an authored nightlife street rather than a UI redesign. Audit and contracts: [ARCHITECTURE.md](./ARCHITECTURE.md). Reference analysis: [VISUAL_TARGETS.md](./VISUAL_TARGETS.md). Actual results and known issues: [QUALITY_REPORT.md](./QUALITY_REPORT.md). Asset provenance: [ASSET_MANIFEST.md](./ASSET_MANIFEST.md).

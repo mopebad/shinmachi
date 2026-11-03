@@ -1,0 +1,39 @@
+{
+  "name": "review2-residential-after",
+  "view": "residential",
+  "preset": 4,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 8.299999999999999,
+  "eye": [
+    29.1,
+    1.82,
+    43
+  ],
+  "quaternion": [
+    0.005964180974059099,
+    0.00526284561098664,
+    -0.000031389556686537776,
+    0.9999683645076376
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 99,
+    "drawCalls": 767,
+    "triangles": 5373225,
+    "buildings": 57,
+    "pedestrians": 46,
+    "vehicles": 12
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T09:04:51.191Z"
+}

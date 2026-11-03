@@ -1,0 +1,39 @@
+{
+  "name": "review2-tower-after",
+  "view": "tower",
+  "preset": 5,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 8.1,
+  "eye": [
+    4.65,
+    1.82,
+    36
+  ],
+  "quaternion": [
+    0.046149080157741475,
+    0.02325623462242359,
+    -0.0010746904453790708,
+    0.9986632340244771
+  ],
+  "fov": 48,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 92,
+    "drawCalls": 830,
+    "triangles": 5405927,
+    "buildings": 57,
+    "pedestrians": 46,
+    "vehicles": 12
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T09:04:50.763Z"
+}

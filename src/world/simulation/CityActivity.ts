@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { CommuterRail } from './CommuterRail';
-import { legPose } from './CharacterPose';
+import { HumanPresentation } from './HumanPresentation';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import type { District } from '../types';
 import { CitySimulation, VEHICLE_PROFILES } from './CitySimulation';
@@ -12,8 +12,7 @@ export class CityActivity {
   readonly group = new THREE.Group();
   readonly simulation: CitySimulation;
   private readonly object = new THREE.Object3D(); private readonly tint = new THREE.Color();
-  private readonly torso: THREE.InstancedMesh; private readonly limbs: THREE.InstancedMesh;
-  private readonly skin: THREE.InstancedMesh; private readonly hair: THREE.InstancedMesh; private readonly details: THREE.InstancedMesh;
+  readonly people: HumanPresentation;
   private readonly body: THREE.InstancedMesh; private readonly glass: THREE.InstancedMesh; private readonly wheels: THREE.InstancedMesh;
   private readonly headlights: THREE.InstancedMesh; private readonly taillights: THREE.InstancedMesh; private readonly rail: CommuterRail;
   private readonly brakelights: THREE.InstancedMesh;
@@ -28,15 +27,10 @@ export class CityActivity {
   constructor(scene: THREE.Scene, district: District) {
     scene.add(this.group); this.group.name = 'Living street presentation';
     this.simulation = new CitySimulation({ bounds: district.colliders, doors: district.doors });
-    const soft = new THREE.MeshStandardMaterial({ roughness: .86 });
     const paint = new THREE.MeshStandardMaterial({ roughness: .34, metalness: .28 });
     const glass = new THREE.MeshStandardMaterial({ color: 0x4c6c78, roughness: .16, metalness: .6 });
     const box = new THREE.BoxGeometry(1, 1, 1), rounded = new RoundedBoxGeometry(1, 1, 1, 2, .08);
-    this.torso = this.pool(new THREE.CapsuleGeometry(.5, .6, 3, 8), soft, 88);
-    this.limbs = this.pool(new THREE.CapsuleGeometry(.5, .6, 3, 6), soft, 88 * 6);
-    this.skin = this.pool(new THREE.SphereGeometry(1, 10, 8), soft, 88 * 9);
-    this.hair = this.pool(new THREE.SphereGeometry(1, 10, 8, 0, Math.PI * 2, 0, Math.PI * .48), soft, 88);
-    this.details = this.pool(rounded, soft, 88 * 10);
+    this.people = new HumanPresentation(this.group);
     this.body = this.pool(rounded, paint, 20 * 12); this.glass = this.pool(box, glass, 20 * 8);
     this.wheels = this.pool(new THREE.CylinderGeometry(1, 1, 1, 16), new THREE.MeshStandardMaterial({ roughness: .92 }), 20 * 8);
     this.headlights = this.pool(box, this.headlightMaterial, 20 * 5); this.taillights = this.pool(box, this.tailMaterial, 20 * 4);
@@ -52,12 +46,12 @@ export class CityActivity {
     const mesh = new THREE.InstancedMesh(geometry, material, capacity); mesh.count = 0; mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); mesh.frustumCulled = false; mesh.receiveShadow = true; this.group.add(mesh); return mesh;
   }
   private put(mesh: THREE.InstancedMesh, x: number, y: number, z: number, w: number, h: number, d: number, color = 0xffffff, yaw = 0, rx = 0, rz = 0): void {
-    const index = mesh.count++; this.object.position.set(x, y, z); this.object.scale.set(w, h, d); this.object.rotation.set(rx, yaw, rz); this.object.updateMatrix(); mesh.setMatrixAt(index, this.object.matrix); mesh.setColorAt(index, this.tint.setHex(color));
+    const index = mesh.count++; this.object.position.set(x, y, z); this.object.scale.set(w, h, d); this.object.rotation.set(rx, yaw, rz, 'YXZ'); this.object.updateMatrix(); mesh.setMatrixAt(index, this.object.matrix); mesh.setColorAt(index, this.tint.setHex(color));
   }
   update(dt: number, hour: number, listener?: THREE.Vector3): void {
     this.simulation.update(dt, hour, listener);
-    const pools = [this.torso, this.limbs, this.skin, this.hair, this.details, this.body, this.glass, this.wheels, this.headlights, this.taillights, this.brakelights, this.contacts];
-    pools.forEach(p => { p.count = 0; }); this.drawPeople(listener); this.drawVehicles(); this.rail.update(this.simulation.trainX, hour);
+    const pools = [this.body, this.glass, this.wheels, this.headlights, this.taillights, this.brakelights, this.contacts];
+    pools.forEach(p => { p.count = 0; }); this.people.update(this.simulation, listener); this.drawVehicles(); this.rail.update(this.simulation.trainX, hour);
     pools.forEach(p => { p.instanceMatrix.needsUpdate = true; if (p.instanceColor) p.instanceColor.needsUpdate = true; });
     const night = dayState(hour).night;
     this.headlightMaterial.emissiveIntensity = .4 + night * 3.2; this.tailMaterial.emissiveIntensity = .25 + night * .65; this.brakeMaterial.emissiveIntensity = 1.8 + night * 2;
@@ -65,36 +59,6 @@ export class CityActivity {
     this.beams.forEach((light, i) => { const c = nearby[i]; light.intensity = c ? night * 35 : 0; if (c) { const front = VEHICLE_PROFILES[c.kind].length / 2; light.position.set(c.x + Math.sin(c.yaw) * front, .72, c.z + Math.cos(c.yaw) * front); light.target.position.set(c.x + Math.sin(c.yaw) * (front + 10), .05, c.z + Math.cos(c.yaw) * (front + 10)); } });
     for (const axis of ['NS', 'EW'] as const) this.signalMaterials[axis].forEach((m, i) => { const active = this.simulation.signals[axis === 'NS' ? 'ns' : 'ew'] === ['red', 'amber', 'green'][i]; m.color.setHex(active ? [0xf44335, 0xf1bf46, 0x39cda5][i] : 0x172321); m.emissiveIntensity = active ? 3 : 0; });
     this.pedestrianMaterials.forEach((m, i) => { const s = this.simulation.signals, green = s.walk || (s.clearance && Math.floor(this.simulation.clock * 3) % 2 === 0); m.emissiveIntensity = (i === 1 ? green : !s.walk && !s.clearance) ? 2.5 : .015; });
-  }
-  private drawPeople(listener?: THREE.Vector3): void {
-    for (const p of this.simulation.pedestrians) {
-      if (!p.active || (listener && Math.hypot(p.x - listener.x, p.z - listener.z) < 1.05)) continue;
-      const scale = p.scale * (p.style === 4 ? .94 : 1), swing = p.moving ? Math.sin(p.phase) * .46 : 0;
-      const skin = [0xc69877, 0xd3ae8a, 0xb88d70][p.id % 3];
-      const part = (mesh: THREE.InstancedMesh, lx: number, y: number, lz: number, w: number, h: number, d: number, color: number, rx = 0) => {
-        const cs = Math.cos(p.yaw), sn = Math.sin(p.yaw); this.put(mesh, p.x + (lx * cs + lz * sn) * scale, .13 + y * scale, p.z + (lz * cs - lx * sn) * scale, w * scale, h * scale, d * scale, color, p.yaw, rx);
-      };
-      part(this.torso, 0, 1.08, 0, .36, .54 / 1.6, .235, p.shirt);
-      part(this.details, 0, .79, 0, .3, p.style === 2 ? .23 : .13, .22, p.style === 2 ? p.shirt : 0x343941);
-      for (const side of [-1, 1]) {
-        const { hip, knee, ankle, upperRotation, lowerRotation } = legPose(swing, side);
-        part(this.limbs, side * .09, (hip.y + knee.y) / 2, (hip.z + knee.z) / 2, .115, .34 / 1.6, .13, 0x323a43, upperRotation);
-        part(this.limbs, side * .09, (knee.y + ankle.y) / 2, (knee.z + ankle.z) / 2, .1, .34 / 1.6, .12, 0x323a43, lowerRotation);
-        part(this.details, side * .09, ankle.y - .015, ankle.z + .04, .14, .1, .24, 0x202529);
-        const arm = side * swing * .7;
-        part(this.limbs, side * .23, 1.28 - Math.cos(arm) * .24, -Math.sin(arm) * .24, .1, .48 / 1.6, .11, p.shirt, arm);
-        part(this.skin, side * .24, 1.28 - Math.cos(arm) * .48, -Math.sin(arm) * .48, .055, .07, .055, skin);
-      }
-      part(this.skin, 0, 1.49, .012, .12, .165, .12, skin);
-      part(this.hair, 0, 1.52, 0, .126, .157, .126, p.style === 4 ? 0x88847b : p.id % 3 ? 0x272522 : 0x584537);
-      for (const side of [-1, 1]) part(this.skin, side * .043, 1.52, .124, .013, .009, .007, 0x302923);
-      part(this.skin, 0, 1.47, .135, .019, .03, .023, skin);
-      for (let fringe = -1; fringe <= 1; fringe++) part(this.skin, fringe * .055, 1.565 + Math.abs(fringe) * .01, .094, .035, .037, .045, p.style === 4 ? 0x88847b : p.id % 3 ? 0x272522 : 0x584537);
-      if (p.style === 0) part(this.details, 0, 1.09, .128, .045, .25, .018, 0x334b5b);
-      if (p.style === 1 || p.style === 3) { part(this.details, 0, 1.05, -.19, .27, .35, .14, 0x4e514a); part(this.details, -.12, 1.14, -.1, .035, .42, .04, 0x252c30); }
-      if (p.style === 2) part(this.details, .29, .7, .02, .18, .22, .11, 0x735f4e);
-      this.put(this.contacts, p.x, .14, p.z, .62, .75, 1, 0xffffff, 0, -Math.PI / 2);
-    }
   }
   private drawVehicles(): void {
     for (const c of this.simulation.vehicles) {

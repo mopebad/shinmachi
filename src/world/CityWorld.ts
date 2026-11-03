@@ -16,6 +16,7 @@ import { CityBackdrop } from './generation/CityBackdrop';
 import { StreetReflections } from './effects/StreetReflections';
 import { photographicPass } from './effects/PhotographicPass';
 import { StreetAtmosphere } from './effects/StreetAtmosphere';
+import { ContactShading } from './effects/ContactShading';
 
 export const LOCATIONS = [
   { name: 'Shinmachi-dori', eye: [4.7, 1.82, 43], target: [-1, 5, -25], fov: 60 },
@@ -42,6 +43,7 @@ export class CityWorld {
   private readonly backdrop: CityBackdrop;
   private readonly reflections: StreetReflections;
   private readonly finish = photographicPass();
+  private readonly contactShading: ContactShading;
   weather: 'dry' | 'damp' = 'damp';
   reflectionsEnabled = true;
   private readonly district: District;
@@ -91,6 +93,8 @@ export class CityWorld {
     this.teleport(Number(new URLSearchParams(location.search).get('view') ?? 7));
     const target = new THREE.WebGLRenderTarget(innerWidth, innerHeight, { type: THREE.HalfFloatType }); target.samples = 2;
     this.composer = new EffectComposer(this.renderer, target); this.composer.addPass(new RenderPass(this.scene, this.camera));
+    this.contactShading = new ContactShading(this.scene, this.camera, innerWidth, innerHeight); this.composer.addPass(this.contactShading);
+    this.contactShading.enabled = new URLSearchParams(location.search).get('ao') !== '0';
     this.composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth / 2, innerHeight / 2), .25, .5, 1.05)); this.composer.addPass(new OutputPass()); this.composer.addPass(this.finish);
     window.addEventListener('resize', () => { this.camera.aspect = innerWidth / innerHeight; this.camera.updateProjectionMatrix(); this.renderer.setSize(innerWidth, innerHeight); this.composer.setSize(innerWidth, innerHeight); });
     document.addEventListener('visibilitychange', () => { this.last = performance.now(); });
@@ -110,19 +114,21 @@ export class CityWorld {
   setFov(value: number): void { this.camera.fov = THREE.MathUtils.clamp(value, 35, 80); this.camera.updateProjectionMatrix(); }
   setWeather(value: 'dry' | 'damp'): void { this.weather = value; this.reflections.setWetness(value === 'damp' && this.reflectionsEnabled ? .64 : 0); }
   setReflections(value: boolean): void { this.reflectionsEnabled = value; this.setWeather(this.weather); }
+  setContactShading(value: boolean): void { this.contactShading.enabled = value; }
   /** Development capture of actual render output, independent of browser screenshot scaling. */
-  async captureBenchmark(name: string, view: keyof typeof REVIEW_VIEWS = 'nightlife', hour = 21): Promise<unknown> {
+  async captureBenchmark(name: string, view: keyof typeof REVIEW_VIEWS = 'nightlife', hour = 21, framing?: { eye: [number, number, number]; target: [number, number, number]; fov: number }): Promise<unknown> {
     if (!import.meta.env.DEV) throw new Error('Review capture requires the local development server');
     if (!/^[a-z0-9-]{1,70}$/.test(name)) throw new Error('Use a short lowercase capture name');
     await this.assetsReady;
     if (this.nightlife.assets.errors.length) throw new Error(this.nightlife.assets.errors.join('\n'));
     this.teleport(REVIEW_VIEWS[view]); this.setPlaying(false); this.setTime(hour);
+    if (framing) { this.controller.teleport(new THREE.Vector3(...framing.eye), new THREE.Vector3(...framing.target)); this.setFov(framing.fov); }
     const size = this.renderer.getSize(new THREE.Vector2()), ratio = this.renderer.getPixelRatio(), aspect = this.camera.aspect;
     this.renderer.setPixelRatio(1); this.composer.setPixelRatio(1); this.renderer.setSize(1920, 1080, false); this.composer.setSize(1920, 1080);
     this.camera.aspect = 16 / 9; this.camera.updateProjectionMatrix(); this.camera.updateMatrixWorld(); this.reflections.update(this.camera);
     this.renderer.info.reset(); this.composer.render(0);
     const png = this.renderer.domElement.toDataURL('image/png');
-    const metadata = { name, view, preset: REVIEW_VIEWS[view], seed: this.readSeed(), hour, simulationClock: this.activity.simulation.clock, eye: this.camera.position.toArray(), quaternion: this.camera.quaternion.toArray(), fov: this.camera.fov, width: 1920, height: 1080, pixelRatio: 1, surface: this.weather, reflections: this.reflectionsEnabled, stats: this.stats, assets: { loaded: this.nightlife.assets.loaded, errors: this.nightlife.assets.errors }, capturedAt: new Date().toISOString() };
+    const metadata = { name, view, preset: REVIEW_VIEWS[view], seed: this.readSeed(), hour, simulationClock: this.activity.simulation.clock, eye: this.camera.position.toArray(), quaternion: this.camera.quaternion.toArray(), fov: this.camera.fov, width: 1920, height: 1080, pixelRatio: 1, surface: this.weather, reflections: this.reflectionsEnabled, contactShading: this.contactShading.enabled, stats: this.stats, assets: { loaded: this.nightlife.assets.loaded, errors: this.nightlife.assets.errors }, capturedAt: new Date().toISOString() };
     this.renderer.setPixelRatio(ratio); this.composer.setPixelRatio(ratio); this.renderer.setSize(size.x, size.y, false); this.composer.setSize(size.x, size.y); this.camera.aspect = aspect; this.camera.updateProjectionMatrix();
     const response = await fetch(`${import.meta.env.BASE_URL}__review/capture`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, png, metadata }) });
     if (!response.ok) throw new Error(`Review capture failed: ${response.status}`); return response.json();

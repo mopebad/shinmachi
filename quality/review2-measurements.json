@@ -1,0 +1,119 @@
+{
+  "view": "nightlife",
+  "seed": 8412,
+  "hour": 21,
+  "viewport": [
+    1920,
+    1080
+  ],
+  "pixelRatio": 1,
+  "wetReflections": true,
+  "gpu": "NVIDIA GeForce RTX 5070 Ti via ANGLE/D3D11",
+  "browser": "VS Code Electron 43.8.3 / Chrome 150.0.7871.250 on Windows",
+  "before": {
+    "frames": 1198,
+    "elapsedMs": 5001,
+    "aggregateFps": 239.5520895820836,
+    "medianMs": 4.2,
+    "p95Ms": 4.3,
+    "p99Ms": 4.3,
+    "worstMs": 8.3,
+    "calls": 318,
+    "triangles": 1935857
+  },
+  "afterContactOff": {
+    "frames": 1197,
+    "elapsedMs": 5001.1,
+    "aggregateFps": 239.34734358441256,
+    "medianMs": 4.2,
+    "p95Ms": 4.3,
+    "p99Ms": 4.3,
+    "worstMs": 8.3,
+    "calls": 316,
+    "triangles": 2974917
+  },
+  "afterContactOn": {
+    "frames": 1184,
+    "elapsedMs": 5001,
+    "aggregateFps": 236.75264947010598,
+    "medianMs": 4.2,
+    "p95Ms": 4.3,
+    "p99Ms": 8.3,
+    "worstMs": 8.5,
+    "calls": 461,
+    "triangles": 4453819
+  },
+  "gpuTimerQueries": {
+    "extension": "EXT_disjoint_timer_query_webgl2",
+    "disjoint": false,
+    "offMs": [
+      2.916896,
+      3.357248,
+      2.490944,
+      2.378816,
+      2.299712,
+      3.073856,
+      4.372992,
+      2.854112
+    ],
+    "onMs": [
+      3.15472,
+      2.915936,
+      2.865536,
+      3.210592,
+      3.108384,
+      3.175328,
+      3.575552,
+      3.131968
+    ],
+    "medianOffMs": 2.885504,
+    "medianOnMs": 3.143344,
+    "note": "Small eight-sample trial per state; full composer GPU elapsed time. Does not separately isolate people and massing changes."
+  },
+  "contactPixelCheck": {
+    "eye": [
+      -13.2,
+      1.82,
+      -27.1
+    ],
+    "target": [
+      -13.2,
+      4.1,
+      -22.65
+    ],
+    "fov": 38,
+    "roi": [
+      250,
+      180,
+      1650,
+      900
+    ],
+    "identicalPoseAndLighting": true,
+    "meanRgbOff": 28.8276309523742,
+    "meanRgbOn": 26.9781421957694,
+    "darkenedPixelsOver3Fraction": 0.21272321428571428,
+    "maxRgbDrop": 39.66666666666667,
+    "note": "Arithmetic RGB brightness from synchronous GPU buffer reads; not physical luminance."
+  },
+  "simulation": {
+    "seconds": 600,
+    "hours": [
+      18.5,
+      23
+    ],
+    "wallHits": 0,
+    "unmarkedRoadSteps": 0,
+    "pedestrianVehicleOverlapsRadius025": 0,
+    "vehicleExits": 117,
+    "invalidPresets": [],
+    "poolIssuesAt88People": [],
+    "assetErrors": [],
+    "failedShaderLinks": 0
+  },
+  "notes": [
+    "rAF interval samples are largely refresh-capped.",
+    "Actor positions/population vary between live samples.",
+    "Screenshot metadata may include a cached shadow refresh.",
+    "Other GPUs/browsers and long thermal runs were not tested."
+  ]
+}

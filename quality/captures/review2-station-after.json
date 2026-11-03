@@ -1,0 +1,39 @@
+{
+  "name": "review2-station-after",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 8.366666666666665,
+  "eye": [
+    17,
+    1.82,
+    -39
+  ],
+  "quaternion": [
+    0.0764055276027024,
+    -0.09824674688499402,
+    0.007565638179019687,
+    0.9921958139385657
+  ],
+  "fov": 56,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 101,
+    "drawCalls": 472,
+    "triangles": 4659949,
+    "buildings": 57,
+    "pedestrians": 46,
+    "vehicles": 12
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T09:04:51.328Z"
+}

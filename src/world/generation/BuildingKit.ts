@@ -12,20 +12,23 @@ export class BuildingKit {
   build(s: BuildingSpec): void {
     const { width: w, depth: d, floors, kind } = s, h = floors * 2.85 + .3;
     const b = this.b, m = this.m, facade = m.facades[s.palette % m.facades.length];
+    const stepped = kind === 'office' && floors >= 7, upperStart = stepped ? h - 5.7 : h, upperW = stepped ? w * .78 : w, upperD = stepped ? d * .84 : d, upperFront = stepped ? -.5 : 0;
     b.origin(s.x, s.z, s.rotation);
     // Recessed retail level, upper masonry, projecting floor bands and a real roof silhouette.
-    b.b(facade, 0, (h + 3) / 2, -d / 2, w, h - 3, d);
+    b.b(facade, 0, (upperStart + 3) / 2, -d / 2, w, upperStart - 3, d);
+    if (stepped) b.b(facade, 0, (h + upperStart) / 2, upperFront - upperD / 2, upperW, h - upperStart, upperD);
     b.b(facade, 0, 1.5, -d / 2 - 1.6, w - .15, 3, d - 3.2);
     b.b(m.pavement, 0, .14, -d / 2 + .2, w + .2, .28, d + .5);
     for (const x of [-w / 2 + .12, w / 2 - .12]) b.b(facade, x, 1.55, -.14, .25, 3.1, .65);
-    for (let f = 1; f <= floors; f++) b.b(kind === 'office' ? m.metal : m.cream, 0, f * 2.85 + .15, -d / 2 + .04, w + .12, .16, d + .2);
+    for (let f = 1; f <= floors; f++) { const upper = f * 2.85 + .15 > upperStart, fw = upper ? upperW : w, fd = upper ? upperD : d, front = upper ? upperFront : 0; b.b(kind === 'office' ? m.metal : m.cream, 0, f * 2.85 + .15, front - fd / 2 + .04, fw + .12, .16, fd + .2); }
 
     const columns = Math.max(2, Math.floor(w / 1.7));
     for (let floor = 1; floor < floors; floor++) {
       const fy = floor * 2.85 + 1.35;
+      const fw = fy > upperStart ? upperW : w, front = fy > upperStart ? upperFront : 0;
       for (let col = 0; col < columns; col++) {
-        const x = (col + .5) * (w - .7) / columns - (w - .7) / 2;
-        this.window(x, fy, .04, (w - 1) / columns - .15, kind === 'office' ? 1.95 : 1.55, this.rng() < .32, m.businesses[kind === 'apartment' ? 'residential' : 'office'].window);
+        const x = (col + .5) * (fw - .7) / columns - (fw - .7) / 2;
+        this.window(x, fy, front + .04, (fw - 1) / columns - .15, kind === 'office' ? 1.95 : 1.55, this.rng() < .32, m.businesses[kind === 'apartment' ? 'residential' : 'office'].window);
         if (kind !== 'office' && col === columns - 1) this.aircon(x + .12, fy - 1, .22);
       }
       if (kind === 'apartment') this.balcony(w, fy - .9, floor);
@@ -37,22 +40,23 @@ export class BuildingKit {
     // Side elevations are detailed too: alleys expose these, not only the street facade.
     for (const side of [-1, 1]) {
       for (let f = 1; f < floors; f++) for (let j = 0; j < Math.floor(d / 3.1); j++) {
-        const z = -1.9 - j * 2.7;
-        b.b(m.dark, side * (w / 2 + .01), f * 2.85 + 1.3, z, .09, 1.6, 1.1);
-        b.b(this.rng() > .72 ? m.businesses[kind === 'apartment' ? 'residential' : 'office'].window : m.windows, side * (w / 2 + .065), f * 2.85 + 1.3, z, .04, 1.4, .95);
-        b.b(m.metal, side * (w / 2 + .1), f * 2.85 + 1.3, z, .045, 1.43, .04);
+        const upper = f * 2.85 + 1.3 > upperStart, fw = upper ? upperW : w, fd = upper ? upperD : d, front = upper ? upperFront : 0, z = upper ? front - (j + .5) * fd / Math.floor(d / 3.1) : -1.9 - j * 2.7;
+        b.b(m.dark, side * (fw / 2 + .01), f * 2.85 + 1.3, z, .09, 1.6, 1.1);
+        b.b(this.rng() > .72 ? m.businesses[kind === 'apartment' ? 'residential' : 'office'].window : m.windows, side * (fw / 2 + .065), f * 2.85 + 1.3, z, .04, 1.4, .95);
+        b.b(m.metal, side * (fw / 2 + .1), f * 2.85 + 1.3, z, .045, 1.43, .04);
       }
     }
     // Downpipes, conduit, utility cabinets and address plaque.
-    b.part('cylinder', m.metal, w / 2 - .17, h / 2, .15, .045, h, .045);
+    b.part('cylinder', m.metal, w / 2 - .17, upperStart / 2, .15, .045, upperStart, .045);
+    if (stepped) b.part('cylinder', m.metal, upperW / 2 - .17, (upperStart + h) / 2, upperFront + .15, .045, h - upperStart, .045);
     b.b(m.cream, w / 2 - .45, .78, .22, .4, .5, .18);
     for (let i = 0; i < 3; i++) b.b(m.metal, w / 2 - .45 + i * .09, 1.3, .13, .018, 1, .03);
     b.sign(31, w / 2 - .36, 2.15, .2, .45, .33);
     if (kind === 'office') {
-      for (let i = 0; i <= columns; i++) b.b(m.metal, -w / 2 + i * w / columns, h / 2 + 1.5, .18, .09, h - 3, .16);
+      for (let i = 0; i <= columns; i++) { b.b(m.metal, -w / 2 + i * w / columns, upperStart / 2 + 1.5, .18, .09, upperStart - 3, .16); if (stepped) b.b(m.metal, -upperW / 2 + i * upperW / columns, (upperStart + h) / 2, upperFront + .18, .09, h - upperStart, .16); }
     }
     this.store(s);
-    this.roof(w, d, h, kind);
+    this.roof(upperW, upperD, h, kind, upperFront);
     if (kind === 'apartment' || (s.palette % 3 === 0 && floors < 6)) this.stairs(w, d, floors);
     b.origin();
   }
@@ -172,22 +176,22 @@ export class BuildingKit {
       for (let j = 0; j < 4; j++) b.part('sphere', m.green, -w / 2 + .45 + i * .5 + j % 2 * .2, .52, .6 + Math.floor(j / 2) * .2, .12, .1, .12);
     }
   }
-  private roof(w: number, d: number, h: number, kind: Archetype): void {
+  private roof(w: number, d: number, h: number, kind: Archetype, front = 0): void {
     const b = this.b, m = this.m;
-    b.b(m.dark, 0, h + .08, -d / 2, w + .1, .16, d + .1);
-    for (const z of [0, -d]) b.b(m.cream, 0, h + .3, z, w + .12, .5, .16);
-    for (const x of [-w / 2, w / 2]) b.b(m.cream, x, h + .3, -d / 2, .14, .5, d);
-    b.b(m.facades[1], w * .15, h + .85, -d + 2.2, w * .43, 1.7, 2.8);
-    b.b(m.metal, w * .15, h + 1.75, -d + 2.2, w * .43 + .2, .15, 3);
-    for (let i = 0; i < 2; i++) { b.b(m.cream, -w * .24, h + .4, -2 - i * 1.7, .9, .7, 1.15); b.part('cylinder', m.dark, -w * .24, h + .77, -2 - i * 1.7, .3, .04, .3); }
+    b.b(m.dark, 0, h + .08, front - d / 2, w + .1, .16, d + .1);
+    for (const z of [front, front - d]) b.b(m.cream, 0, h + .3, z, w + .12, .5, .16);
+    for (const x of [-w / 2, w / 2]) b.b(m.cream, x, h + .3, front - d / 2, .14, .5, d);
+    b.b(m.facades[1], w * .15, h + .85, front - d + 2.2, w * .43, 1.7, 2.8);
+    b.b(m.metal, w * .15, h + 1.75, front - d + 2.2, w * .43 + .2, .15, 3);
+    for (let i = 0; i < 2; i++) { b.b(m.cream, -w * .24, h + .4, front - 2 - i * 1.7, .9, .7, 1.15); b.part('cylinder', m.dark, -w * .24, h + .77, front - 2 - i * 1.7, .3, .04, .3); }
     if (kind === 'apartment' || this.rng() > .45) {
-      for (const x of [-.55, .55]) for (const z of [-.55, .55]) b.b(m.metal, x, h + .55, -d / 2 + z, .07, 1.1, .07);
-      b.part('cylinder', m.cream, 0, h + 1.7, -d / 2, .9, 1.3, .9);
-      b.part('cylinder', m.metal, 0, h + 2.38, -d / 2, .95, .09, .95);
-      for (const y of [h + 1.2, h + 2.1]) b.part('cylinder', m.metal, 0, y, -d / 2, .915, .04, .915);
+      for (const x of [-.55, .55]) for (const z of [-.55, .55]) b.b(m.metal, x, h + .55, front - d / 2 + z, .07, 1.1, .07);
+      b.part('cylinder', m.cream, 0, h + 1.7, front - d / 2, .9, 1.3, .9);
+      b.part('cylinder', m.metal, 0, h + 2.38, front - d / 2, .95, .09, .95);
+      for (const y of [h + 1.2, h + 2.1]) b.part('cylinder', m.metal, 0, y, front - d / 2, .915, .04, .915);
     }
-    b.part('cylinder', m.metal, -w * .35, h + 1.8, -d + 1, .025, 3.6, .025);
-    for (let i = 0; i < 5; i++) b.b(m.metal, -w * .35, h + 2.1, -d + .3 + i * .32, 1.25 - i * .14, .026, .025);
+    b.part('cylinder', m.metal, -w * .35, h + 1.8, front - d + 1, .025, 3.6, .025);
+    for (let i = 0; i < 5; i++) b.b(m.metal, -w * .35, h + 2.1, front - d + .3 + i * .32, 1.25 - i * .14, .026, .025);
   }
   private stairs(w: number, d: number, floors: number): void {
     const b = this.b, m = this.m, count = Math.min(3, floors - 1);

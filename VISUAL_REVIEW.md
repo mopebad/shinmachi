@@ -29,4 +29,61 @@ The missing crossing will remain clearly documented. No warning hardware will be
 
 ## Verification results
 
-Implementation, before/after observations, measurements and outstanding validation will be recorded here after the running application has been checked.
+### 1 — People: visible improvement, not photoreal character production
+
+[Before](./quality/captures/review2-street-before.png) → [after](./quality/captures/review2-people-after.png).
+
+The old head was approximately 0.24 m wide × 0.33 m high before actor scaling. The new jaw/cheek/nose mesh is 0.16 × 0.23 m, with a fitted irregular hairline and ears. Tailored shoulders/waist, tapered trousers and sleeves, palms, shoes, skirts, collars and bags replace the egg-and-capsule outline. Cloth uses shared weave/bump material; skin and hair have separate roughness. Joints use yaw-before-pitch transforms and connected positions. Feet now follow asphalt/raised pavement, with a planted stance and continuous marked-curb approaches.
+
+The actual browser captures show smaller heads and recognisable garment silhouettes at street scale; the previous round-headed toy outline is substantially reduced. They still look like authored low-detail characters, especially close to the camera. Faces, hair diversity and fully rigged animation remain below the photographs. No photoreal character claim is made.
+
+Validation: metre/proportion and finite-geometry tests, exact walking-segment tests, curb-height continuity, an 88-person render-pool stress check with zero capacity/NaN errors, and actual moving/standing people in the running street. The existing simulation, routes and schedules remain authoritative.
+
+### 2 — Contact depth: restrained, measurable and switchable
+
+[Disabled](./quality/captures/review2-fixture-off.png) → [enabled](./quality/captures/review2-fixture-on.png). This close study looks across the alley at a condenser, wall services and ledges. Both images use the same framing and lighting; a separate synchronous GPU-buffer comparison held geometry/pose and grain timing fixed.
+
+The first trial was too subtle. The accepted half-resolution GTAO uses a 0.8 m radius, 0.9 m depth thickness, twelve samples, denoising and a 0.55 blend. The comparison shows darker recesses behind the condenser and brackets, under ledges and between wall services. The controlled region's mean RGB brightness (arithmetic channel mean) changed from 28.83 to 26.98 on an 8-bit scale, with about 21.3% of pixels darkening by more than three levels. This measures local occlusion, not a change in exposure.
+
+Transparent glazing, steam, sky, ground-contact sprites and the planar reflector are excluded from its depth render; their prior visibility is restored afterward. Unit tests cover that restoration. The effect improves contact but does not implement shadowed point lights, ray-traced rough reflections or volumetric light transport. `?ao=0` disables it, and development inspection can call `setContactShading(false)`.
+
+Inspection also exposed condensers mounted through a balcony slab; those mounts now sit above the slab instead. The current asset placements remain outside pedestrian circulation.
+
+### 3 — Urban layers and massing: more convincing depth, still procedural
+
+[Tower before](./quality/captures/review2-tower-before.png) → [tower after](./quality/captures/review2-tower-after.png); [overview before](./quality/captures/review2-overview-before.png) → [overview after](./quality/captures/review2-overview-after.png).
+
+The repeated slab background is replaced by 77 protected background parcels across four depth layers and five massing families: stepped towers, framed glass shafts, offset volumes, slabs and crowned buildings. Occupancy groups rooms/floors instead of independent bright squares, with warm/neutral/cool channels, blinds, side elevations and rooftop equipment. A cross-street layer now appears beyond the nightlife lane. Ordinary taller office buildings also gain two-floor setbacks inside their existing footprints, preserving the number of layout RNG draws. The existing tower gains finer intermediate lattice members within its original silhouette.
+
+The tower is now framed by taller/differently occupied buildings instead of isolated white checkerboards, and the overview reveals multiple roof/height profiles. The nearby camera and street layout are retained. This is still a compact fictional district: buildings remain less individually authored than Reference B, the landmark is not a surveyed Tokyo Tower reconstruction, and skyline detail remains procedural.
+
+Validation: deterministic parcel tests, five-family/height variation, exclusion of playable space, the road corridor and tower foundations, unchanged safe camera starts, and actual tower/overview/nightlife captures. The background adds no navigation or collision obstacles.
+
+## Preservation and performance checks
+
+- All **20 tests** pass; TypeScript and production build pass. Vite retains the existing non-fatal vendor chunk-size advisory.
+- A fresh generated-world run covered 600 simulated seconds, 18:30 → 23:00: zero pedestrian wall hits, zero unmarked-road steps, zero sampled pedestrian/vehicle overlaps using a 0.25 m pedestrian radius, and 117 vehicle exits.
+- All eight presets start outside collision envelopes. Render pools support 88 people without overflow or non-finite matrices. All three GLB families load and all reviewed shader programs link.
+- Daylight local practicals switch off; overnight steam closes and the train hides at 03:00. Dry/damp and explicit reflection controls still work. Existing audio logic and its four mix regressions are retained.
+- Actual regression captures include [commercial](./quality/captures/review2-commercial-after.png), [station](./quality/captures/review2-station-after.png), [residential](./quality/captures/review2-residential-after.png), [daylight](./quality/captures/review2-day-after.png) and [passing elevated train](./quality/captures/review2-rail-after.png). The unchanged illustrated train windows and missing ground crossing remain visible limitations.
+
+At 1920 × 1080, pixel ratio 1, wet reflections on and 21:00 with active agents, the available RTX 5070 Ti / Electron browser produced these five-second samples after warm-up:
+
+| State | Aggregate FPS | Median / p95 / p99 interval | Sampled calls / triangles |
+| --- | ---: | --- | --- |
+| Before this correction | 239.55 | 4.2 / 4.3 / 4.3 ms | 318 / 1,935,857 |
+| New people/massing, contact off | 239.35 | 4.2 / 4.3 / 4.3 ms | 316 / 2,974,917 |
+| All corrections, contact on | 236.75 | 4.2 / 4.3 / 8.3 ms | 461 / 4,453,819 |
+
+The browser is largely refresh-capped here. Similar median FPS does **not** mean free GPU work. Contact shading added approximately 145 draw calls and 1.48 million submitted triangles in the on/off samples. GPU timer-query trials (eight samples/state, no disjoint result) measured median full-composer GPU time of 2.89 ms off and 3.14 ms on; the small samples ranged 2.30–4.37 ms and 2.87–3.58 ms respectively. These are local observations, not universal cost guarantees. The actor count/culling can vary slightly between live samples, and clock changes can trigger an extra cached-shadow refresh in screenshot metadata.
+
+Raw observations are retained in [the review measurements](./quality/review2-measurements.json). The off switch preserves a cheaper rendering path for machines where the added pass is unsuitable.
+
+## Validation limits and remaining discrepancies
+
+- Other GPUs, mobile browsers, Firefox/Safari and long-duration GPU thermal behavior were not tested. The GPU timing trial is small, and individual people-versus-massing GPU costs were not isolated.
+- ANGLE emitted a non-fatal potentially-uninitialized-variable warning while compiling the upstream GTAO shader. The program linked and rendered; zero failed shader links were found. Cross-driver behavior remains unverified.
+- The Reference C ground crossing cannot be validated because it is still not implemented. The elevated route was checked as an elevated route, including passing/service behavior.
+- Ambient occlusion is a screen-space approximation: off-screen occluders, true area-light shadowing and fine transparent-object shadows are not represented. The before/after images show local grounding, not physically complete lighting.
+- Dynamic crowd poses differ between general street captures; only the dedicated synchronous contact-shading pixel check held pose and timing identical. No image was painted over or substituted with a reference photograph.
+- The first three ranked gaps are mitigated, not eliminated. Character realism, nearby facade variety, vehicles, material wear, signage/atmosphere, train interiors and the ground crossing still need further production work. The review has not reclassified those as completed systems.

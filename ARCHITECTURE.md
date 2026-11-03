@@ -58,3 +58,11 @@ Runtime loading flattens compatible model primitives by material, then instances
 Tests cover actual source behavior, imported GLB validity, the first-teleport camera regression and safe alley destination links. Browser review must still inspect the rendered world. The development capture endpoint stores actual 1920 × 1080 canvas output and metadata; raw rAF sampling reports median, p95/p99 and aggregate FPS separately from the HUD display.
 
 See [VISUAL_TARGETS.md](./VISUAL_TARGETS.md), [QUALITY_REPORT.md](./QUALITY_REPORT.md), [ASSET_MANIFEST.md](./ASSET_MANIFEST.md) and [ROADMAP.md](./ROADMAP.md).
+
+## Subsequent visual correction
+
+[HumanGeometry.ts](./src/world/simulation/HumanGeometry.ts) supplies metre-scale tailored lofts and anatomical heads. [HumanPresentation.ts](./src/world/simulation/HumanPresentation.ts) instances them using the same deterministic pedestrian state; [CharacterPose.ts](./src/world/simulation/CharacterPose.ts) supplies connected joints and ground contact. The simulation's X/Z footprints and routes are unchanged.
+
+[ContactShading.ts](./src/world/effects/ContactShading.ts) adds half-resolution GTAO before bloom. It excludes transparent effects, sky and the planar reflector from normal/depth rendering and restores visibility afterward. It adds a geometry pass; disable it with `?ao=0` or the development world method. It is not a replacement for physically complete local shadows.
+
+[SkylineLayout.ts](./src/world/generation/SkylineLayout.ts) generates protected background parcels, consumed by the existing backdrop renderer. Five massing families, grouped occupancy and cross-street layers replace the former identical slab grid. Higher office roofs in the existing building kit receive setbacks without changing footprint metadata or RNG draw counts. [VISUAL_REVIEW.md](./VISUAL_REVIEW.md) records measured cost and limitations.

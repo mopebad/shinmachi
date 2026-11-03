@@ -32,3 +32,9 @@ Three.js, including GLTFLoader, GLTFExporter and example geometry/utilities, is 
 ## Future asset intake
 
 For a future imported third-party asset, record the exact source URL, author, license, attribution text, modifications, local file and runtime use before integration. Validate dimensions, normals, material count, animation and compressed texture support. Missing assets must be visible in load diagnostics and must not silently turn into a claimed completed system.
+
+## Visual-review correction assets
+
+[HumanGeometry.ts](./src/world/simulation/HumanGeometry.ts) adds original metre-scale lofted garment, head, hand, shoe and hair meshes; [HumanPresentation.ts](./src/world/simulation/HumanPresentation.ts) adds a local cloth weave/bump map and instanced clothing details. These are original procedural assets, not downloaded or scanned characters. They retain shared materials and geometry.
+
+[SkylineLayout.ts](./src/world/generation/SkylineLayout.ts) and the backdrop add original background massing, facade/occupancy patterns and tower lattice detail. [ContactShading.ts](./src/world/effects/ContactShading.ts) uses Three.js GTAOPass under the existing Three.js MIT dependency license. No new external asset, recording, package dependency or font redistribution is introduced.

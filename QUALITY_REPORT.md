@@ -1,3 +1,5 @@
+> Latest work: [the ranked visual review and corrective pass](./VISUAL_REVIEW.md) compares fresh browser captures with all three references, implements its top three priorities, and records 20 passing tests plus updated visual/GPU evidence. This file retains the earlier production Pass 1 results.
+
 # Quality report — production Pass 1
 
 ## Delivery

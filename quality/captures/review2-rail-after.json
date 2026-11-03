@@ -1,0 +1,39 @@
+{
+  "name": "review2-rail-after",
+  "view": "elevatedRail",
+  "preset": 6,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 122.7999999999956,
+  "eye": [
+    8.5,
+    1.82,
+    -38.5
+  ],
+  "quaternion": [
+    0.14036933551783393,
+    0.25255442341301665,
+    -0.03705813805927682,
+    0.9566291900545268
+  ],
+  "fov": 54,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 240,
+    "drawCalls": 559,
+    "triangles": 5397145,
+    "buildings": 57,
+    "pedestrians": 50,
+    "vehicles": 10
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T09:06:46.216Z"
+}

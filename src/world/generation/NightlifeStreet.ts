@@ -108,7 +108,7 @@ export class NightlifeStreet {
         const p = world(-w * .32, 2.07, .55); putAsset('paper-lantern', p.x, p.y, p.z, yaw, .66);
         b.b(m.metal, -w * .32, 2.85, .27, .04, .06, .68);
       }
-      if (index % 2 === 0) { const p = world(w * .29, 3.8, .2); putAsset('ac-condenser', p.x, p.y, p.z, yaw, 1); b.b(m.metal, w * .29, 3.76, .3, .9, .06, .6); }
+      if (index % 2 === 0) { const mountY = index % 3 === 0 ? 4.04 : 3.8, p = world(w * .29, mountY, .2); putAsset('ac-condenser', p.x, p.y, p.z, yaw, 1); b.b(m.metal, w * .29, mountY - .04, .3, .9, .06, .6); }
       if (index < 6 && index % 2 === 0) { const p = world(-w * .28, 4.05, .15); putAsset('twin-street-lamp', p.x, p.y, p.z, yaw, 1); }
       // Posters and decals occupy walls, not pedestrian circulation space.
       this.sign(b, 'posters', w * .34, 1.4, .22, .52, 1.5);
