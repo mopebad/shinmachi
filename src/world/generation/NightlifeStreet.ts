@@ -140,7 +140,7 @@ export class NightlifeStreet {
     practical(-7.9, 4.4, -26.25, 0xff6630, 16, 7); practical(-16, 3.4, -23.3, 0xffbc74, 14, 7); practical(-12.2, 3.5, -26.7, 0xffcb91, 12, 6); practical(13.2, 3.4, -23.2, 0x9bcaca, 13, 8);
     scene.add(this.group);
   }
-  private sign(b: CityBatch, theme: string, x: number, y: number, z: number, w: number, h: number, yaw = 0): void { b.b(this.materials.signMaterial(theme, w / h), x, y, z, w, h, .025, yaw); }
+  private sign(b: CityBatch, theme: string, x: number, y: number, z: number, w: number, h: number, yaw = 0): void { b.panel(this.materials.signMaterial(theme, w / h), x, y, z, w, h, yaw); }
   private blade(b: CityBatch, theme: string, x: number, y: number, z: number, w: number, h: number, edge: THREE.Material, bulbs: boolean): void {
     const m = this.materials, yaw = -Math.PI / 2;
     b.b(m.metal, x, y, z, .25, h + .19, w + .18); this.sign(b, theme, x - .14, y, z, w, h, yaw); this.sign(b, theme, x + .14, y, z, w, h, -yaw);

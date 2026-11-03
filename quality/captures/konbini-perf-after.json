@@ -1,0 +1,39 @@
+{
+  "name": "konbini-perf-after",
+  "view": "commercial",
+  "preset": 0,
+  "seed": 8412,
+  "hour": 20.5,
+  "simulationClock": 143.0333333333278,
+  "eye": [
+    -0.8,
+    1.82,
+    44.3
+  ],
+  "quaternion": [
+    0.003996133618607833,
+    -0.46701102219877255,
+    0.002110556591676534,
+    0.8842399457227846
+  ],
+  "fov": 55,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 204,
+    "drawCalls": 684,
+    "triangles": 5571801,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T17:40:21.048Z"
+}

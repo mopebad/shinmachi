@@ -1,0 +1,39 @@
+{
+  "name": "station1-gates-first",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 80.43333333333135,
+  "eye": [
+    12.3,
+    1.82,
+    -46.8
+  ],
+  "quaternion": [
+    -0.08517127074928628,
+    0,
+    0,
+    0.9963663255243786
+  ],
+  "fov": 65,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 197,
+    "drawCalls": 450,
+    "triangles": 4790493,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T18:09:40.042Z"
+}

@@ -17,6 +17,7 @@ import { StreetReflections } from './effects/StreetReflections';
 import { photographicPass } from './effects/PhotographicPass';
 import { StreetAtmosphere } from './effects/StreetAtmosphere';
 import { ContactShading } from './effects/ContactShading';
+import { signEmission } from './generation/SignLayout';
 
 export const LOCATIONS = [
   { name: 'Shinmachi-dori', eye: [4.7, 1.82, 43], target: [-1, 5, -25], fov: 60 },
@@ -84,11 +85,14 @@ export class CityWorld {
     this.district.shopfronts.filter(s => Math.abs(s.x) < 9).forEach((s, i) => { if (i % 3 === 0) { const p = new THREE.Vector3(0, 2.3, -.6).applyAxisAngle(THREE.Object3D.DEFAULT_UP, s.rotation).add(new THREE.Vector3(s.x, 0, s.z)); this.practical(p, s.business === 'convenience' ? 0xc5e9d8 : 0xffcc94, 32, 11, s.business); } });
     this.practical(new THREE.Vector3(0, 3, -25), 0xffab5c, 22, 15, 'restaurant');
     this.practical(new THREE.Vector3(18, 3.3, -47), 0xe6fff4, 45, 17);
+    const streetColliderStart = this.district.colliders.length;
     this.nightlife = new NightlifeStreet(this.scene, this.district);
+    // Preserve obstacles appended after generation in the separate station-aware player list.
+    this.district.playerColliders?.push(...this.district.colliders.slice(streetColliderStart));
     this.assetsReady = this.nightlife.ready.then(() => { this.nightlife.update(this.time); this.renderer.shadowMap.needsUpdate = true; });
     this.activity = new CityActivity(this.scene, this.district);
     this.atmosphere = new StreetAtmosphere(this.scene, this.district, this.nightlife.exhausts);
-    this.controller = new PlayerController(this.camera, this.renderer.domElement, this.district.colliders);
+    this.controller = new PlayerController(this.camera, this.renderer.domElement, this.district.playerColliders ?? this.district.colliders, this.district.station);
     this.renderer.domElement.addEventListener('pointerdown', () => { if (this.audio.status === 'start') void this.audio.start().catch(() => {}); });
     this.teleport(Number(new URLSearchParams(location.search).get('view') ?? 7));
     const target = new THREE.WebGLRenderTarget(innerWidth, innerHeight, { type: THREE.HalfFloatType }); target.samples = 2;
@@ -167,7 +171,7 @@ export class CityWorld {
     uniforms.top.value.set(0x071329).lerp(new THREE.Color(0x5784ab), day);
     uniforms.horizon.value.copy(this.fog.color); uniforms.sunDirection.value.copy(this.sun.position).normalize(); uniforms.day.value = day; uniforms.dusk.value = dusk;
     const mat = this.district.materials;
-    mat.signs.emissiveIntensity = .06 + night * 1.1; mat.warmWindows.emissiveIntensity = .12 + night * 1.25;
+    mat.signs.emissiveIntensity = signEmission(night); mat.warmWindows.emissiveIntensity = .12 + night * 1.25;
     mat.windows.emissiveIntensity = .005 + night * .012;
     const shopsOpen = this.time > 7 && this.time < 23.5 ? 1 : .28;
     mat.shop.emissiveIntensity = (.12 + night * .85) * shopsOpen;

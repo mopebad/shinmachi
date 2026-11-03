@@ -6,6 +6,7 @@ import { Materials, random } from './Materials';
 import { stationDetails } from './StationDetails';
 import { addRailwayDetails } from './RailwayDetails';
 import { signBusiness } from '../simulation/WorldRules';
+import { STATION } from './StationLayout';
 
 /** Metre-scale compact district. Each frontage uses the same local +Z kit convention. */
 export class NeighborhoodGenerator {
@@ -13,8 +14,10 @@ export class NeighborhoodGenerator {
   generate(): District {
     const b = new CityBatch(), m = new Materials(), rng = random(this.seed);
     const kit = new BuildingKit(b, m, rng), colliders: Bounds[] = [], doors: Doorway[] = [], lamps: THREE.Vector3[] = [], shopfronts: Shopfront[] = [];
-    let buildings = 0;
+    let buildings = 0, heroStoreBuilt = false;
     const add = (s: BuildingSpec, main = false) => {
+      // Select one existing main-street convenience branch without drawing RNG or moving any parcel/threshold.
+      if (!heroStoreBuilt && main && s.kind === 'convenience' && s.x > 0 && s.z > 20.5) { s.heroStore = true; heroStoreBuilt = true; }
       kit.build(s); buildings++;
       const corners = [[-s.width / 2 - .15, .1], [s.width / 2 + .95, -s.depth]].map(([x, z]) => new THREE.Vector3(x, 0, z).applyAxisAngle(new THREE.Vector3(0, 1, 0), s.rotation).add(new THREE.Vector3(s.x, 0, s.z)));
       colliders.push({ minX: Math.min(corners[0].x, corners[1].x), maxX: Math.max(corners[0].x, corners[1].x), minZ: Math.min(corners[0].z, corners[1].z), maxZ: Math.max(corners[0].z, corners[1].z) });
@@ -53,9 +56,12 @@ export class NeighborhoodGenerator {
       add({ x, z, rotation: i < 6 ? Math.PI / 2 : -Math.PI / 2, width: 9 + rng() * 4, depth: 8 + rng() * 7, floors: 7 + Math.floor(rng() * 9), kind: 'office', palette: 4 + i % 4, shop: 15 });
     }
     b.origin(); this.streetProps(b, m, lamps, rng, colliders); this.railway(b, m, colliders); addRailwayDetails(b, m);
-    const station = stationDetails(b, m);
-    const group = b.finish(m.signs); group.add(station); group.name = `Shinmachi · seed ${this.seed}`;
-    return { group, colliders, doors, shopfronts, lamps, materials: { signs: m.signs, windows: m.windows, warmWindows: m.warmWindows, lamps: m.lamps, shop: m.shop, lantern: m.lantern, businesses: m.businesses }, stats: { buildings, instances: b.instances } };
+    const station = stationDetails(b, m), playerColliders = [...colliders];
+    colliders.push(...station.spatial.npcReservation);
+    // Only actual ground structure augments the existing flat navigation obstacles. Upper guards are height-aware.
+    colliders.push(...station.spatial.boxes.filter(box=>box.collision&&box.minY<.3).map(({minX,maxX,minZ,maxZ})=>({minX,maxX,minZ,maxZ})));
+    const group = b.finish(m.signs); group.add(station.group); group.name = `Shinmachi · seed ${this.seed}`;
+    return { group, colliders, playerColliders, station: station.spatial, doors, shopfronts, lamps, materials: { signs: m.signs, windows: m.windows, warmWindows: m.warmWindows, lamps: m.lamps, shop: m.shop, lantern: m.lantern, businesses: m.businesses }, stats: { buildings, instances: b.instances } };
   }
   private roads(b: CityBatch, m: Materials): void {
     b.b(m.asphalt, 0, -.12, 0, 150, .2, 150);
@@ -153,7 +159,7 @@ export class NeighborhoodGenerator {
       b.b(m.metal, 32.6, 1.15, z + .5, .6, .035, .035); b.b(m.lamps, 32.6, .94, z + .58, .2, .15, .035);
       block(32.6, z, .55, 1.6);
     }
-    for (const [x, z] of [[24, -48], [28, 58], [-26, 34]]) this.tree(b, m, x, z, rng);
+    for (const [x, z] of [[24, -40.4], [28, 58], [-26, 34]]) this.tree(b, m, x, z, rng);
     for (let i = 0; i < 4; i++) {
       const x = 39.6 + i * 2.5, z = -35;
       b.b(i % 2 ? m.white : m.facades[4], x, .65, z, 1.55, .7, 3.1); b.b(m.windows, x, 1.2, z + .15, 1.4, .6, 1.8); b.b(i % 2 ? m.white : m.facades[4], x, 1.55, z + .15, 1.5, .12, 1.9);
@@ -184,7 +190,9 @@ export class NeighborhoodGenerator {
   }
   private railway(b: CityBatch, m: Materials, colliders: Bounds[]): void {
     b.b(m.facades[1], 0, 6.2, -57, 142, .9, 6.5);
-    for (const z of [-60.15, -53.85]) b.b(m.cream, 0, 7, z, 142, 1.2, .24);
+    b.b(m.cream, 0, 7, -60.15, 142, 1.2, .24);
+    // The south parapet stops at the platform; it no longer cuts across the stair access.
+    for(const [a,c] of [[-71,STATION.platformMinX],[STATION.platformMaxX,71]]) b.b(m.cream,(a+c)/2,7,-53.85,c-a,1.2,.24);
     for (let x = -65; x <= 65; x += 16) {
       if (Math.abs(x) < 5) continue;
       b.b(m.facades[1], x, 3, -57, 1.2, 6, 2.6); b.b(m.facades[1], x, 5.5, -57, 3.8, .8, 3.8); colliders.push({ minX: x - .7, maxX: x + .7, minZ: -58.4, maxZ: -55.6 });
@@ -195,20 +203,6 @@ export class NeighborhoodGenerator {
       for (const z of [-59.3, -54.7]) b.b(m.metal, x, 9.1, z, .08, 5, .08); b.b(m.metal, x, 11.5, -57, .09, .09, 4.8);
       if (x < 60) b.cable(new THREE.Vector3(x, 10.8, -57), new THREE.Vector3(x + 15, 10.8, -57), .3);
     }
-    for (const x of [13.1, 24.9]) b.b(m.facades[0], x, 2.2, -51.7, .25, 4.4, 4.2);
-    b.b(m.businesses.convenience.surface, 19, 2.2, -53.7, 12, 4.4, .18);
-    b.b(m.pavement, 16, .025, -43, 18, .18, 12.5);
-    b.b(m.yellow, 16, .126, -46.2, 17, .012, .3);
-    for (const x of [14.2, 23.8]) b.b(m.facades[2], x, 2, -49, .65, 4, 1.5);
-    b.b(m.metal, 19, 4.35, -49.4, 13.4, .3, 5.7); b.b(m.green, 19, 3.55, -46.48, 12.8, .95, .16); b.sign(16, 19, 3.55, -46.38, 8.2, .84); b.b(m.lamps, 19, 4.12, -47.8, 11, .04, .2);
-    for (const x of [16.5, 18, 19.5, 21]) { b.b(m.metal, x, .65, -48.8, .38, 1.15, 1.5); b.b(m.windows, x + .3, .75, -48.7, .3, .45, .04); }
-    for (const x of [15, 22.5]) {
-      b.b(m.green, x, 1, -49.4, .9, 1.8, .16); b.b(m.windows, x, 1.35, -49.29, .65, .5, .02); b.b(m.yellow, x, .9, -49.28, .45, .15, .02);
-      b.sign(16, x, 2.4, -49.28, 1.1, .55);
-    }
-    for (const x of [16, 18.5, 21]) b.b(m.lamps, x, 3.95, -48.4, 1.9, .025, .13);
-    for (let x = 14; x < 24; x += 1.1) b.b(m.yellow, x, .13, -47, .5, .02, .55);
-    for (const x of [10, 23]) { b.b(m.wood, x, .6, -42, 2, .14, .5); b.b(m.wood, x, .95, -42.2, 2, .6, .1); for (const dx of [-.7, .7]) b.b(m.metal, x + dx, .3, -42, .08, .6, .4); }
-    colliders.push({ minX: 12.9, maxX: 25.1, minZ: -54, maxZ: -49.5 }); b.sign(23, 0, 6.13, -53.65, 6.2, .65);
+    b.sign(23, 0, 6.13, -53.65, 6.2, .65);
   }
 }

@@ -1,0 +1,39 @@
+{
+  "name": "konbini-station-after",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 20.5,
+  "simulationClock": 143.33333333332777,
+  "eye": [
+    17,
+    1.82,
+    -39
+  ],
+  "quaternion": [
+    0.0764055276027024,
+    -0.09824674688499402,
+    0.007565638179019687,
+    0.9921958139385657
+  ],
+  "fov": 56,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 206,
+    "drawCalls": 491,
+    "triangles": 4841299,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T17:40:21.436Z"
+}

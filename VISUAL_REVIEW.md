@@ -1,5 +1,9 @@
 # Visual review — ranked discrepancies and corrective pass
 
+> Latest scoped delivery: [Station Development 1](./quality/STATION_DEVELOPMENT_1.md) replaces disconnected station decoration with a continuous street-to-platform layout. Actual entrance, concourse, gates, stairs/rests, platform and structural exterior captures were inspected; the [plan/section](./quality/station1-layout.svg) documents connectivity. Review corrections included a ticket-area tree conflict, intermediate stair rests and low hanging platform signs. Passenger AI and boarding remain pending. Historical visual rankings below are preserved.
+
+> Subsequent scoped work: [Japanese signage and the 青空マート branch](./quality/KONBINI_REVIEW.md) continues the unfinished `4e7afa3` working state. It addresses sign distortion/contrast and one store, with actual before/after close-ups, day/overnight views, 24 passing tests and new measurements. The historical ranking and earlier pass evidence below remain intact.
+
 ## Evidence and ranking method
 
 This review starts from fresh actual 1920 × 1080 browser renders at seed 8412 and 21:00: [street](./quality/captures/review2-street-before.png), [tower](./quality/captures/review2-tower-before.png), [railway](./quality/captures/review2-rail-before.png), [overview](./quality/captures/review2-overview-before.png) and [commercial street](./quality/captures/review2-commercial-before.png). The actual [nightlife](./references/01-neon-street.png), [tower](./references/02-tokyo-tower.png) and [crossing](./references/03-rail-crossing.png) reference photographs were inspected again. This is an assessment of visible gaps, not a list of earlier completed features.

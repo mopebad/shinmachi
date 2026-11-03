@@ -1,5 +1,17 @@
 # Architecture
 
+## Station Development 1
+
+[StationLayout.ts](./src/world/generation/StationLayout.ts) now owns the station's metre-scale surfaces, structural bounds, gates, four stair flights/rests, named 3D nodes, circulation/waiting regions, platform edge and explicit connections. [StationDetails.ts](./src/world/generation/StationDetails.ts) renders that same contract. The retained track center is z = -57; the 53.5 m platform top is y = 7.455, matching the unchanged train door sill. [The plan/section](./quality/station1-layout.svg) and [exported spatial data](./quality/station1-spatial.json) derive directly from source.
+
+Generation provides separate player collision bounds and `District.station`; obstacles appended by the existing street layer are copied into the player list before controller creation. [PlayerController.ts](./src/world/controls/PlayerController.ts) follows authored station surfaces with bounded step changes and height-aware local obstacles, making the complete street-to-platform route walkable in both directions. Existing city NPCs retain flat navigation and the original station reservation/destination; no passenger behavior is implemented. Railway movement, camera presets, traffic, signage/store work, global lighting and HUD retain their existing behavior. [The handoff](./quality/STATION_DEVELOPMENT_1.md) records dimensions, references, actual captures, tests and future navigation limits.
+
+## Completed signage/store continuation
+
+[SignCatalog.ts](./src/world/generation/SignCatalog.ts) owns stable business identities and store notices; [SignLayout.ts](./src/world/generation/SignLayout.ts) supplies browser-independent dimensions, packing, measured text placement and bounded emission; [SignTextures.ts](./src/world/generation/SignTextures.ts) rasterizes actual-aspect faces after [CityBatch.ts](./src/world/generation/CityBatch.ts) records their metre sizes. Each page remains a merged mesh with the existing per-vertex business/schedule attributes. Nightlife signs also use measured fitting and exact ratios, with flat instanced face geometry.
+
+[ConvenienceStore.ts](./src/world/generation/ConvenienceStore.ts) authors one existing branch. The generator flags the first positive-X main-street convenience parcel south of z=20.5 without consuming RNG; [BuildingKit.ts](./src/world/generation/BuildingKit.ts) reserves the deeper room inside that parcel. Other parcels, collision metadata, door coordinates, camera presets and simulation systems retain their contracts. Fixtures and packages use shared instanced batches with no added real lights. [The handoff](./quality/KONBINI_REVIEW.md) records validation, allocation cost, scope and limitations.
+
 ## Production audit and immediate scope
 
 The current delivery is production **Pass 1**, focused on Reference A and a substantially richer nightlife street. The existing project is retained. The initial checkpoint is `e1d972b`; the earlier playable simulation and evening world are preserved there.
@@ -49,7 +61,7 @@ Runtime loading flattens compatible model primitives by material, then instances
 - The bounded practical light set still influences many material shaders. More point lights should not be the default method for increasing richness.
 - General district primitive batches span the compact map; per-building culling/streaming and distant actor LOD remain future work.
 - Actor meshes remain stylized and are a major visual gap at close range. They require a dedicated character and animation pass.
-- The railway is elevated and passing-only. Ground-level crossing interlocks, station stops, boarding and walkable platforms are pending.
+- The railway is elevated and passing-only. Station stairs/platforms are now walkable by the player; ground-level crossing interlocks, passenger navigation, station stops and boarding are pending.
 - Steam is tinted billboard geometry, not volumetric fluid simulation. Wet roads use an approximation, not fully rough ray-traced reflection. Rainfall and drying are pending.
 - Shop thresholds are functional destinations; door entry/exit, per-tenant occupancy and player-enterable rooms are pending.
 

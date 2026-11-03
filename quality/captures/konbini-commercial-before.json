@@ -1,0 +1,39 @@
+{
+  "name": "konbini-commercial-before",
+  "view": "commercial",
+  "preset": 0,
+  "seed": 8412,
+  "hour": 20.5,
+  "simulationClock": 56.533333333332706,
+  "eye": [
+    4.7,
+    1.82,
+    43
+  ],
+  "quaternion": [
+    0.023261337608258003,
+    0.04179049953395925,
+    -0.0009732171516890708,
+    0.9988551031905241
+  ],
+  "fov": 60,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 240,
+    "drawCalls": 845,
+    "triangles": 5619143,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 10
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T17:08:51.435Z"
+}

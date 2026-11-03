@@ -1,0 +1,39 @@
+{
+  "name": "station1-exterior-first",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 80.66666666666467,
+  "eye": [
+    34,
+    15,
+    -33
+  ],
+  "quaternion": [
+    -0.22243214287111981,
+    0.22367207755277688,
+    0.05250910609852952,
+    0.9474901251821677
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 182,
+    "drawCalls": 582,
+    "triangles": 5536787,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T18:09:40.619Z"
+}

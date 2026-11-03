@@ -1,0 +1,39 @@
+{
+  "name": "konbini-sign-before",
+  "view": "commercial",
+  "preset": 0,
+  "seed": 8412,
+  "hour": 20.5,
+  "simulationClock": 56.6333333333327,
+  "eye": [
+    1.7,
+    2.6,
+    39.31
+  ],
+  "quaternion": [
+    0.03369647468593506,
+    -0.7063034387525946,
+    0.03369647468593506,
+    0.7063034387525946
+  ],
+  "fov": 35,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 227,
+    "drawCalls": 392,
+    "triangles": 4696981,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 10
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T17:08:51.704Z"
+}

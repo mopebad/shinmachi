@@ -1,0 +1,136 @@
+{
+  "seed": 8412,
+  "captures": [
+    {
+      "saved": "quality/captures/station1-entrance-after.png"
+    },
+    {
+      "saved": "quality/captures/station1-concourse-after.png"
+    },
+    {
+      "saved": "quality/captures/station1-gates-after.png"
+    },
+    {
+      "saved": "quality/captures/station1-stairs-after.png"
+    },
+    {
+      "saved": "quality/captures/station1-rest-after.png"
+    },
+    {
+      "saved": "quality/captures/station1-landing-after.png"
+    },
+    {
+      "saved": "quality/captures/station1-upper-landing-after.png"
+    },
+    {
+      "saved": "quality/captures/station1-platform-after.png"
+    },
+    {
+      "saved": "quality/captures/station1-exterior-after.png"
+    },
+    {
+      "saved": "quality/captures/station1-entrance-night-after.png"
+    },
+    {
+      "saved": "quality/captures/station1-platform-night-after.png"
+    },
+    {
+      "saved": "quality/captures/station1-railway-after.png"
+    }
+  ],
+  "station": {
+    "surfaces": 51,
+    "flights": 4,
+    "risers": 42,
+    "gates": 3,
+    "platformY": 7.455,
+    "platformLength": 53.5
+  },
+  "playerWalk": {
+    "completedBothWays": true,
+    "updateTicks": 2795,
+    "end": [
+      4.568601665126083,
+      1.82,
+      -45.9999762579167
+    ]
+  },
+  "renderedHeadroom": {
+    "raySamples": 64,
+    "minimumMetres": 2.890238106115943
+  },
+  "cameraPresets": [
+    {
+      "index": 0,
+      "safe": true
+    },
+    {
+      "index": 1,
+      "safe": true
+    },
+    {
+      "index": 2,
+      "safe": true
+    },
+    {
+      "index": 3,
+      "safe": true
+    },
+    {
+      "index": 4,
+      "safe": true
+    },
+    {
+      "index": 5,
+      "safe": true
+    },
+    {
+      "index": 6,
+      "safe": true
+    },
+    {
+      "index": 7,
+      "safe": true
+    }
+  ],
+  "platformBuildingOverlaps": [],
+  "missingPlayerCityObstacles": [],
+  "generatedWorld": {
+    "seconds": 600,
+    "walls": 0,
+    "unmarkedRoadSamples": 0,
+    "pedestrianVehicleOverlaps": 0,
+    "vehicleExits": 114
+  },
+  "failedShaderLinks": 0,
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "performance": {
+    "frames": 1198,
+    "elapsedMs": 5000.999999999999,
+    "aggregateFps": 239.55208958208362,
+    "medianMs": 4.199999999999818,
+    "p95Ms": 4.299999999999272,
+    "p99Ms": 4.300000000001091,
+    "worstMs": 8.300000000001091,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "renderPixelRatio": 1,
+    "devicePixelRatio": 1,
+    "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.144.1 Chrome/150.0.7871.250 Electron/43.8.3 Safari/537.36",
+    "stats": {
+      "fps": 240,
+      "drawCalls": 405,
+      "triangles": 3852303,
+      "buildings": 57,
+      "pedestrians": 51,
+      "vehicles": 12
+    },
+    "note": "Browser frame intervals; does not isolate GPU execution time."
+  }
+}

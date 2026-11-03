@@ -1,4 +1,4 @@
-> Latest work: [the ranked visual review and corrective pass](./VISUAL_REVIEW.md) compares fresh browser captures with all three references, implements its top three priorities, and records 20 passing tests plus updated visual/GPU evidence. This file retains the earlier production Pass 1 results.
+> Latest work: [Station Development 1](./quality/STATION_DEVELOPMENT_1.md) completes continuous station architecture and player access with shared future-navigation metadata. TypeScript, all 28 tests and production build pass. Actual walking up/down, all eight camera starts, 12 rendered views, a plan/section and a safe 600-second generated-world run were validated; [measurements](./quality/station1-measurements.json) record the evidence. Passenger AI/boarding remain pending. [The signage/convenience-store continuation](./quality/KONBINI_REVIEW.md), [earlier ranked visual pass](./VISUAL_REVIEW.md) and Pass 1 results below are preserved as historical evidence.
 
 # Quality report — production Pass 1
 

@@ -1,0 +1,39 @@
+{
+  "name": "station1-platform-night-after",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 20.5,
+  "simulationClock": 8.799999999999997,
+  "eye": [
+    32,
+    9.16,
+    -53.9
+  ],
+  "quaternion": [
+    -0.0034044698228012536,
+    -0.7070985854781676,
+    -0.0034044698228012536,
+    0.7070985854781677
+  ],
+  "fov": 65,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 127,
+    "drawCalls": 355,
+    "triangles": 4378065,
+    "buildings": 57,
+    "pedestrians": 46,
+    "vehicles": 12
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T18:47:56.100Z"
+}

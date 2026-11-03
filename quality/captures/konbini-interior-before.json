@@ -1,0 +1,39 @@
+{
+  "name": "konbini-interior-before",
+  "view": "commercial",
+  "preset": 0,
+  "seed": 8412,
+  "hour": 20.5,
+  "simulationClock": 56.69999999999936,
+  "eye": [
+    4.9,
+    1.65,
+    39.1
+  ],
+  "quaternion": [
+    -0.026589799978670788,
+    -0.7831938225076343,
+    -0.033572358401718835,
+    0.6203009879681968
+  ],
+  "fov": 65,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 221,
+    "drawCalls": 398,
+    "triangles": 4696987,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 10
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T17:08:51.818Z"
+}

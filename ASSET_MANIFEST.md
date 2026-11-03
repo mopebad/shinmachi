@@ -1,5 +1,17 @@
 # Asset manifest
 
+## Station Development 1
+
+[StationLayout.ts](./src/world/generation/StationLayout.ts) and [StationDetails.ts](./src/world/generation/StationDetails.ts) add original station geometry, surfaces, supports, fixtures and local measured bilingual wayfinding using existing materials/system fonts and instanced batches. The [plan/section](./quality/station1-layout.svg) is generated from the same original spatial data. No downloaded station image, railway logo, font file, new real light or dependency is used at runtime.
+
+[Station reference provenance](./references/station/README.md) records official Tokyu station maps/renewal material, entrance/platform photographs, source URLs, attribution, license status and inspection limits. Copyrighted local research copies stay outside production assets and carry no assumed redistribution license. An attempted Commons gate photograph was rate-limited and is not saved or represented as inspected.
+
+## Signage/convenience-store continuation
+
+[SignCatalog.ts](./src/world/generation/SignCatalog.ts), [SignLayout.ts](./src/world/generation/SignLayout.ts) and [SignTextures.ts](./src/world/generation/SignTextures.ts) replace the square sign atlas with original actual-aspect raster layouts and existing system Japanese fonts. [ConvenienceStore.ts](./src/world/generation/ConvenienceStore.ts) adds original instanced fixtures, rice-ball geometry, packaging illustrations/labels and fictional 青空マート branding. Four 256×320 product maps and two bounded sign pages are generated locally; no downloaded photograph, chain logo, font file or new dependency is used at runtime.
+
+[Store reference provenance](./references/stores/README.md) distinguishes four inherited previews with unrecorded source rights from the newly downloaded Tokyu Livable Lawson reference. All are reference-only, with no claimed redistribution license. [The scoped handoff](./quality/KONBINI_REVIEW.md) records browser evidence and allocation limits.
+
 ## Original imported models
 
 All three models below are authored from original project code. They contain no downloaded meshes, raster textures, redistributed font files, recordings or third-party branding. Units are metres, +Y is up. No separate third-party asset license is required; these are project-authored assets.

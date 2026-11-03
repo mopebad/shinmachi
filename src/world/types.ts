@@ -6,6 +6,9 @@ export interface Shopfront { x: number; z: number; rotation: number; width: numb
 export interface District {
   group: THREE.Group;
   colliders: Bounds[];
+  /** Existing flat city simulation keeps its reservation bounds; player station collision is height-aware. */
+  playerColliders?: Bounds[];
+  station?: import('./generation/StationLayout').StationSpatial;
   doors: Doorway[];
   shopfronts: Shopfront[];
   lamps: THREE.Vector3[];

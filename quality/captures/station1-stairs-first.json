@@ -1,0 +1,39 @@
+{
+  "name": "station1-stairs-first",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 80.49999999999801,
+  "eye": [
+    14.1,
+    1.82,
+    -49.9
+  ],
+  "quaternion": [
+    0.10752066611409407,
+    -0.6988843297416114,
+    0.10752066611409404,
+    0.6988843297416115
+  ],
+  "fov": 65,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 190,
+    "drawCalls": 427,
+    "triangles": 4743877,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T18:09:40.181Z"
+}

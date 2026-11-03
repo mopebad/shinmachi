@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import { BUSINESSES } from '../simulation/WorldRules';
 import type { Business } from '../simulation/WorldRules';
-import { surfaceTextures, createSignAtlas } from './SurfaceTextures';
+import { surfaceTextures } from './SurfaceTextures';
+export { SHOP_NAMES } from './SignCatalog';
 
 /** Reproducible local textures: no asset CDN, image downloads, or font service. */
 export function random(seed: number): () => number {
@@ -11,24 +12,6 @@ export function random(seed: number): () => number {
 
 function surface(kind: 'concrete' | 'tile' | 'asphalt' | 'metal' | 'paving' | 'wood'): THREE.CanvasTexture { return surfaceTextures(kind).map; }
 
-export const SHOP_NAMES = [
-  ['新町食堂', 'SHINMACHI DINING', '#e8d4a0', '#282820'], ['らーめん', 'RAMEN · OPEN LATE', '#c73e27', '#fff0ce'],
-  ['喫茶 月光', 'COFFEE & KISSA', '#174c48', '#eddeb5'], ['まるや商店', 'FRESH FOOD MARKET', '#f5eee0', '#286649'],
-  ['カラオケ', 'KARAOKE  3F', '#b2385b', '#fff4d1'], ['居酒屋 鳥吉', 'YAKITORI · SAKE', '#272a28', '#efc77c'],
-  ['新町薬局', 'PHARMACY', '#eeeacb', '#31826d'], ['ゲーム館', 'GAME / ELECTRONICS', '#234a8b', '#f1f5eb'],
-  ['東京カメラ', 'TOKYO CAMERA', '#c8352d', '#fff0dd'], ['蕎麦  田中', 'SOBA · SINCE 1968', '#ded7bc', '#293b32'],
-  ['本と珈琲', 'BOOKS & COFFEE', '#394c44', '#efe2b7'], ['サクラ不動産', 'SAKURA REAL ESTATE', '#e5ded1', '#31649a'],
-  ['青空マート', 'AOZORA MART  24H', '#f4f0df', '#147a66'], ['美容室 花', 'HAIR STUDIO  2F', '#ac666d', '#fff2da'],
-  ['焼肉 牛亭', 'YAKINIKU  2F', '#6a2424', '#f5d399'], ['新町ビル', 'SHINMACHI BUILDING', '#233642', '#c8e0dc'],
-  ['新町駅', 'SHINMACHI STATION', '#f0ede1', '#285e4a'], ['止まれ', 'STOP', '#b52e2d', '#fff4e1'],
-  ['P  駐車場', 'PARKING  ¥300 / 30 MIN', '#173a5e', '#ffdc5c'], ['自転車置場', 'BICYCLE PARKING', '#e5e4d5', '#325b55'],
-  ['お弁当', 'BENTO · TAKE AWAY', '#de8b30', '#fff2d9'], ['たこ焼', 'TAKOYAKI', '#d95031', '#ffedd0'],
-  ['古書 新町堂', 'USED BOOKS', '#beaa7e', '#3b3328'], ['東口商店街', 'SHINMACHI SHOPPING STREET', '#214c4e', '#f5d49a'],
-  ['らーめん', '', '#e3472e', '#fff1d0'], ['居酒屋', '', '#eac795', '#502a22'],
-  ['カラオケ', '', '#c94972', '#fff5ec'], ['電気館', '', '#194683', '#e9ebcd'],
-  ['焼肉', '', '#a93431', '#ffe5a8'], ['喫茶', '', '#34645d', '#eddec0'],
-  ['営業中', 'OPEN', '#f2d0a3', '#b73e2d'], ['新町通り', 'SHINMACHI DORI', '#275b88', '#fff9e8'],
-];
 
 /** Per-instance world-space UVs keep tiles metre-sized on long roads and tall buildings. */
 export function worldTexture(material: THREE.MeshStandardMaterial, scale = .5): void {
@@ -95,8 +78,8 @@ export class Materials {
   readonly signs: THREE.MeshStandardMaterial;
   readonly facades: THREE.MeshStandardMaterial[];
   constructor() {
-  const atlas = createSignAtlas(SHOP_NAMES);
-    this.signs = new THREE.MeshStandardMaterial({ map: atlas, emissiveMap: atlas, emissive: 0xffffff, emissiveIntensity: .08, roughness: .55, side: THREE.DoubleSide });
+    // Face atlases are generated after the kit records actual physical sign sizes.
+    this.signs = new THREE.MeshStandardMaterial({ color: 0xc9c9c9, emissive: 0xffffff, emissiveIntensity: .4, roughness: .85 });
     this.signs.userData.openStates = { value: new Float32Array(6).fill(1) };
     this.signs.onBeforeCompile = shader => {
       shader.uniforms.uOpenStates = this.signs.userData.openStates;

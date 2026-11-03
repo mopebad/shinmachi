@@ -1,0 +1,39 @@
+{
+  "name": "station1-platform-first",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 80.63333333333134,
+  "eye": [
+    12.4,
+    9.16,
+    -53.9
+  ],
+  "quaternion": [
+    -0.005128867198220066,
+    -0.7070881803009176,
+    -0.005128867198220066,
+    0.7070881803009177
+  ],
+  "fov": 65,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 185,
+    "drawCalls": 420,
+    "triangles": 4716731,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T18:09:40.471Z"
+}

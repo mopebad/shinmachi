@@ -1,0 +1,39 @@
+{
+  "name": "station1-rest-after",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 8.433333333333332,
+  "eye": [
+    19.05,
+    3.567619,
+    -49.9
+  ],
+  "quaternion": [
+    0.045078481802455245,
+    -0.7056684281434062,
+    0.045078481802455245,
+    0.7056684281434062
+  ],
+  "fov": 65,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 116,
+    "drawCalls": 394,
+    "triangles": 4459275,
+    "buildings": 57,
+    "pedestrians": 46,
+    "vehicles": 12
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T18:47:55.169Z"
+}

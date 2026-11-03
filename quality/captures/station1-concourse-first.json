@@ -1,0 +1,39 @@
+{
+  "name": "station1-concourse-first",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 80.39999999999802,
+  "eye": [
+    18.6,
+    1.82,
+    -46.8
+  ],
+  "quaternion": [
+    -0.01947798778839457,
+    0.6020162565451592,
+    0.014692273706398182,
+    0.7981110022674819
+  ],
+  "fov": 65,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 201,
+    "drawCalls": 627,
+    "triangles": 5628891,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T18:09:39.893Z"
+}

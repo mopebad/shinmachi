@@ -4,7 +4,13 @@
 
 A compact, metre-scale, Tokyo-inspired neighborhood that rewards exploration at pedestrian eye level. Pursue the photographic Tokyo evening references through coherent construction, materials, light, audio, density and polish while retaining a compact real-time environment. This is a fictional district, not a geographically accurate reconstruction of Tokyo.
 
+## Latest bounded delivery: station architecture
+
+[Station Development 1](./quality/STATION_DEVELOPMENT_1.md) completes a continuous, player-walkable street → sheltered concourse → gates → four stair flights/rests → elevated platform. One source contract supplies rendered surfaces, obstacles, entrances, gates, landings, waiting areas and future navigation links. The original track/train, flat city NPC navigation, corrected signage, convenience store and broader systems are retained. All 28 tests, TypeScript checks and production build pass; actual route walking, day/night screenshots and a source-derived plan/section were reviewed. Multi-level passenger navigation is the next station task; boarding, train stops and schedules remain pending. This does not start unrelated roadmap work.
+
 ## Latest visual correction
+
+The unfinished signage/convenience-store continuation is now delivered. [The scoped handoff](./quality/KONBINI_REVIEW.md) records the preserved incoming refactor, actual-aspect measured Japanese signs, one authored 青空マート branch, reference provenance, 24 passing tests, actual day/night browser images and generated-world/performance results. This completes that bounded task; it does not start Pass 2 or change the broader sequence below.
 
 [VISUAL_REVIEW.md](./VISUAL_REVIEW.md) ranks ten observed discrepancies against the three reference photographs using immersion, street visibility, feasibility and estimated rendering cost. Its top three are implemented: anatomically proportioned clothed people with connected/grounded joints, bounded half-resolution contact occlusion, and layered urban massing/window occupancy with nearer office setbacks. All 20 tests and the production build pass; actual before/after images and measured rendering cost are recorded in the review. The eight presets, routes, traffic, schedules, audio and elevated train remain functional. Other visual gaps remain open rather than being described as completed.
 
@@ -20,7 +26,7 @@ The attached production brief supersedes the earlier small evening pass. Current
 6. **Pass 6:** more varied skyline layers, believable background districts/road continuity and stronger individual district identity.
 7. **Pass 7:** integrated regression/capture review, performance optimization, accessibility and final polish.
 
-The original seven presets retain their transforms; **8 / Yoto nightlife street** is added and is the current starting view. The reference crossing is not delivered in Pass 1, and static station detail is not boarding or player access.
+The original seven presets retain their transforms; **8 / Yoto nightlife street** is added and is the current starting view. The reference crossing is not delivered in Pass 1. Subsequent Station Development 1 adds player access, while boarding remains pending.
 
 ## Photographic direction and execution
 
@@ -32,7 +38,7 @@ See [VISUAL_PLAN.md](./VISUAL_PLAN.md) for the reference analysis, ordered imple
 - Four-car stainless commuter train with green stripes, illuminated passenger-window textures, hand straps, doors, destination displays, bogies, roof vents, pantographs and end lights. The existing passing-train/service-hours model remains authoritative.
 - Added elevated maintenance paths, guardrails, underside bracing, catenary hangers and porcelain insulators. At-grade crossing barriers remain deferred until a real ground-level route has safety interlocks.
 - Replaced stretched sign use with four aspect-appropriate atlas layouts: wide, square, portrait and narrow portrait. Station lettering/map/route boards are drawn at their final physical proportions.
-- Opened the station's previously solid facade into a shallow concourse, cleared the conflicting apartment wall from its forecourt, and added ticket-machine/gate details, visible return stairs, a furnished platform, canopy and lights. Station access/boarding are still future simulation work; the player collision envelope remains exterior-only.
+- Opened the station's previously solid facade into a shallow concourse, cleared the conflicting apartment wall from its forecourt, and added ticket-machine/gate details, visible return stairs, a furnished platform, canopy and lights. This historical pass was exterior-only; subsequent [Station Development 1](./quality/STATION_DEVELOPMENT_1.md) replaces its disconnected architecture with continuous player access. Boarding remains pending.
 - Added local aggregate/grout/weathering maps with aligned colour, bump and roughness channels; darker unoccupied windows, window reveals and restrained evening light. Original material and texture generation remain deterministic.
 - Added optional after-rain surfaces with one 768px planar reflection and a procedural broken-puddle mask, plus dry/reflection-off controls. This adds a second scene render when enabled; it is not rainfall or screen-space reflection.
 - Added lighting presets, adjustable lens, collapsible controls and H to hide controls, with subtle display-space grain/vignette.
@@ -108,8 +114,9 @@ Generation emits plain spatial data alongside meshes. Simulation must consume th
 - [ ] Protected right turns, delivery pull-ins, richer parking and destination-based traffic. Only straight/left movements are implemented now.
 - [ ] More complete crowd avoidance/social groups, richer animation/poses and higher-quality character assets. Current local separation is deliberately lightweight, not a full crowd solver.
 - [ ] Per-tenant hours, window occupancy and physical shutter/door animations; genuine NPC entry/exit. Current visits stop at thresholds; rooms are not player-enterable.
-- [ ] Station stairs/platform access, train stops, boarding and richer timetable behavior. Current station is exterior-only and trains are passing sets within a coarse service window.
-- [ ] Collision for every prop and dynamic actor, walkable stairs/elevations. Current player collision uses building/station/pier footprints and selected key props; it is not a full physics system.
+- [x] Station architectural continuity, player stairs/platform access and explicit multi-level spatial metadata. See [Station Development 1](./quality/STATION_DEVELOPMENT_1.md).
+- [ ] Multi-level NPC station navigation, train stops, boarding and richer timetable behavior. Trains remain passing sets within a coarse service window; gate furniture and platform screens are static.
+- [ ] Collision for every prop and dynamic actor, general walkable elevations/physics. The station now has authored surface support and height-aware local obstacles; the wider city retains footprint collision.
 - [ ] Soundscape mastering and optional attributed high-quality recordings; genuine conversational ambience. Current voices are unintelligible procedural texture, not natural recorded speech.
 - [ ] Rainfall, weather sound, dynamic water accumulation and seasonal variation. Static after-rain road reflections and dry/damp controls are implemented; weather simulation is not.
 - [ ] More architectural silhouettes and authored district identity: tiled roofs, corner lots, utility yards, station clusters, shrines and office zones.

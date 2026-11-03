@@ -1,0 +1,39 @@
+{
+  "name": "konbini-store-first",
+  "view": "commercial",
+  "preset": 0,
+  "seed": 8412,
+  "hour": 20.5,
+  "simulationClock": 10.933333333333323,
+  "eye": [
+    -0.8,
+    1.82,
+    44.3
+  ],
+  "quaternion": [
+    0.004113766880246255,
+    -0.4668683986384897,
+    0.0021718377388534197,
+    0.8843145698198256
+  ],
+  "fov": 55,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 197,
+    "drawCalls": 631,
+    "triangles": 5384997,
+    "buildings": 57,
+    "pedestrians": 48,
+    "vehicles": 12
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T17:28:39.076Z"
+}

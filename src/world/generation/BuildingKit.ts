@@ -2,9 +2,11 @@ import * as THREE from 'three';
 import { CityBatch } from './CityBatch';
 import { Materials } from './Materials';
 import { signBusiness } from '../simulation/WorldRules';
+import { storefrontSign } from './SignCatalog';
+import { buildConvenienceStore, KONBINI_ROOM_DEPTH } from './ConvenienceStore';
 
 export type Archetype = 'izakaya' | 'retail' | 'apartment' | 'office' | 'convenience';
-export interface BuildingSpec { x: number; z: number; rotation: number; width: number; depth: number; floors: number; kind: Archetype; palette: number; shop: number }
+export interface BuildingSpec { x: number; z: number; rotation: number; width: number; depth: number; floors: number; kind: Archetype; palette: number; shop: number; heroStore?: boolean }
 
 export class BuildingKit {
   constructor(private readonly b: CityBatch, private readonly m: Materials, private readonly rng: () => number) {}
@@ -17,7 +19,8 @@ export class BuildingKit {
     // Recessed retail level, upper masonry, projecting floor bands and a real roof silhouette.
     b.b(facade, 0, (upperStart + 3) / 2, -d / 2, w, upperStart - 3, d);
     if (stepped) b.b(facade, 0, (h + upperStart) / 2, upperFront - upperD / 2, upperW, h - upperStart, upperD);
-    b.b(facade, 0, 1.5, -d / 2 - 1.6, w - .15, 3, d - 3.2);
+    const roomDepth = s.heroStore ? KONBINI_ROOM_DEPTH : 3.2;
+    b.b(facade, 0, 1.5, -(d + roomDepth) / 2, w - .15, 3, d - roomDepth);
     b.b(m.pavement, 0, .14, -d / 2 + .2, w + .2, .28, d + .5);
     for (const x of [-w / 2 + .12, w / 2 - .12]) b.b(facade, x, 1.55, -.14, .25, 3.1, .65);
     for (let f = 1; f <= floors; f++) { const upper = f * 2.85 + .15 > upperStart, fw = upper ? upperW : w, fd = upper ? upperD : d, front = upper ? upperFront : 0; b.b(kind === 'office' ? m.metal : m.cream, 0, f * 2.85 + .15, front - fd / 2 + .04, fw + .12, .16, fd + .2); }
@@ -29,7 +32,7 @@ export class BuildingKit {
       for (let col = 0; col < columns; col++) {
         const x = (col + .5) * (fw - .7) / columns - (fw - .7) / 2;
         this.window(x, fy, front + .04, (fw - 1) / columns - .15, kind === 'office' ? 1.95 : 1.55, this.rng() < .32, m.businesses[kind === 'apartment' ? 'residential' : 'office'].window);
-        if (kind !== 'office' && col === columns - 1) this.aircon(x + .12, fy - 1, .22);
+        if (kind !== 'office' && col === columns - 1 && !(s.heroStore && floor === 1)) this.aircon(x + .12, fy - 1, .22);
       }
       if (kind === 'apartment') this.balcony(w, fy - .9, floor);
       if ((kind === 'retail' || kind === 'izakaya') && floor < 3) {
@@ -49,9 +52,11 @@ export class BuildingKit {
     // Downpipes, conduit, utility cabinets and address plaque.
     b.part('cylinder', m.metal, w / 2 - .17, upperStart / 2, .15, .045, upperStart, .045);
     if (stepped) b.part('cylinder', m.metal, upperW / 2 - .17, (upperStart + h) / 2, upperFront + .15, .045, h - upperStart, .045);
-    b.b(m.cream, w / 2 - .45, .78, .22, .4, .5, .18);
-    for (let i = 0; i < 3; i++) b.b(m.metal, w / 2 - .45 + i * .09, 1.3, .13, .018, 1, .03);
-    b.sign(31, w / 2 - .36, 2.15, .2, .45, .33);
+    if (!s.heroStore) {
+      b.b(m.cream, w / 2 - .45, .78, .22, .4, .5, .18);
+      for (let i = 0; i < 3; i++) b.b(m.metal, w / 2 - .45 + i * .09, 1.3, .13, .018, 1, .03);
+      b.sign(31, w / 2 - .36, 2.15, .2, .45, .33);
+    }
     if (kind === 'office') {
       for (let i = 0; i <= columns; i++) { b.b(m.metal, -w / 2 + i * w / columns, upperStart / 2 + 1.5, .18, .09, upperStart - 3, .16); if (stepped) b.b(m.metal, -upperW / 2 + i * upperW / columns, (upperStart + h) / 2, upperFront + .18, .09, h - upperStart, .16); }
     }
@@ -90,7 +95,8 @@ export class BuildingKit {
     } else { this.aircon(w / 2 - .65, y + .3, .35); }
   }
   private store(s: BuildingSpec): void {
-    const b = this.b, m = this.m, w = s.width, shop = s.kind === 'convenience' ? 12 : s.kind === 'apartment' || s.kind === 'office' ? 15 : s.shop;
+    if (s.heroStore) { buildConvenienceStore(this.b, this.m, s.width); return; }
+    const b = this.b, m = this.m, w = s.width, shop = storefrontSign(s.kind, s.shop);
     const business = s.kind === 'apartment' ? 'residential' : s.kind === 'office' ? 'office' : signBusiness(shop), interior = m.businesses[business];
     // A real 3m-deep room behind lightly reflective glass, not an opaque luminous window.
     b.b(interior.surface, 0, 1.45, -3.1, w - .5, 2.6, .12);
@@ -114,7 +120,7 @@ export class BuildingKit {
         b.part('sphere', m.cream, x, 1.42, -1.6, .13, .055, .13);
         b.b(m.metal, x, 2.46, -1.9, .025, .42, .025); b.part('cylinder', m.dark, x, 2.23, -1.9, .23, .18, .23); b.part('cylinder', interior.light, x, 2.13, -1.9, .18, .02, .18);
       }
-      b.sign(9, -w * .2, 2.1, -3.02, w * .48, .7);
+      b.sign(shop, -w * .2, 2.1, -3.02, w * .48, .7);
       b.b(m.metal, w * .31, 1.05, -2.55, .75, 1.4, .65);
     } else if (business === 'cafe') {
       for (const x of [-w * .28, w * .24]) {
@@ -122,7 +128,7 @@ export class BuildingKit {
         for (const z of [-.75, -2]) { b.b(m.wood, x, .57, z, .45, .08, .45); b.b(m.wood, x, .88, z + (z < -1 ? -.2 : .2), .45, .6, .06); for (const dx of [-.17, .17]) b.b(m.dark, x + dx, .4, z, .025, .4, .32); }
         b.part('cylinder', m.white, x, 1.05, -1.4, .07, .13, .07);
       }
-      b.b(m.wood, -w * .25, 1, -2.6, w * .4, 1.3, .55); b.b(m.metal, -w * .25, 1.75, -2.6, .6, .4, .35); b.sign(2, w * .22, 2, -3.01, 1.1, .75);
+      b.b(m.wood, -w * .25, 1, -2.6, w * .4, 1.3, .55); b.b(m.metal, -w * .25, 1.75, -2.6, .6, .4, .35); b.sign(shop, w * .22, 2, -3.01, 1.1, .75);
     } else if (business === 'residential' || business === 'office') {
       b.b(m.wood, 0, .85, -2.5, w * .55, 1.05, .55);
       for (let row = 0; row < 3; row++) for (let col = 0; col < 5; col++) b.b(m.metal, -w * .3 + col * .28, .8 + row * .28, -3, .25, .25, .05);
@@ -137,7 +143,7 @@ export class BuildingKit {
         }
       }
       b.b(m.cream, w * .3, .83, -2.15, w * .28, 1.05, .65); b.b(m.dark, w * .3, 1.46, -2.15, .35, .22, .23);
-      b.sign(20, w * .3, 2.2, -3, 1.2, .55);
+      b.sign(shop, w * .3, 2.2, -3, 1.2, .55);
     }
     for (const x of [-w * .25, w * .25]) b.b(interior.light, x, 2.65, -1.3, w * .35, .035, .13);
     b.b(m.dark, 0, 3.06, .18, w - .25, .94, .27);
@@ -159,9 +165,8 @@ export class BuildingKit {
       b.b(m.lamps, 0, 2.4, .35, w - 1, .035, .06);
     }
     if (s.kind !== 'apartment' && s.kind !== 'office') {
-      const index = 24 + s.shop % 6;
       b.b(m.dark, w / 2 - .15, 5.5, .75, .77, 3.35, .28);
-      b.sign(index, w / 2 - .15, 5.5, .9, .7, 3.2);
+      b.sign(shop, w / 2 - .15, 5.5, .9, .7, 3.2);
       // Projecting double-sided blade sign, seen down the street.
       b.b(m.metal, -w / 2 + .35, 4.5, .62, .07, .08, 1.5);
       b.b(m.dark, -w / 2 + .35, 4.15, 1.3, .17, 1.15, .85);
@@ -170,7 +175,7 @@ export class BuildingKit {
     }
     // Menu easel and crates are part of the street-facing kit.
     b.part('box', m.wood, -w * .34, .55, .9, .55, 1, .09, -.12);
-    b.sign(s.shop, -w * .34, .59, 1.01, .45, .7);
+    b.sign(shop, -w * .34, .59, 1.01, .45, .7);
     if (s.kind === 'convenience' || s.shop === 3) for (let i = 0; i < 3; i++) {
       b.b(m.wood, -w / 2 + .6 + i * .5, .28, .75, .44, .4, .6);
       for (let j = 0; j < 4; j++) b.part('sphere', m.green, -w / 2 + .45 + i * .5 + j % 2 * .2, .52, .6 + Math.floor(j / 2) * .2, .12, .1, .12);

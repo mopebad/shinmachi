@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import type { Bounds } from '../types.ts';
+import { STATION, stationBodyBlocked, stationSupport } from '../generation/StationLayout.ts';
+import type { StationSpatial } from '../generation/StationLayout.ts';
 
 export type CameraMode = 'walk' | 'fly';
 export class PlayerController {
@@ -11,8 +13,10 @@ export class PlayerController {
   private readonly direction = new THREE.Vector3();
   private readonly safe = new THREE.Vector3(4.7, 1.82, 43);
   private yaw = 0; private pitch = 0; private dragging = false;
-  constructor(camera: THREE.PerspectiveCamera, canvas: HTMLCanvasElement, colliders: Bounds[] = []) {
-    this.camera = camera; this.colliders = colliders;
+  private footY: number = STATION.groundY;
+  private readonly station?: StationSpatial;
+  constructor(camera: THREE.PerspectiveCamera, canvas: HTMLCanvasElement, colliders: Bounds[] = [], station?: StationSpatial) {
+    this.camera = camera; this.colliders = colliders; this.station = station;
     canvas.tabIndex = 0; canvas.setAttribute('aria-label', 'City view. Click to look; WASD to walk, F to fly, V to walk, Escape to release.');
     canvas.addEventListener('click', () => { canvas.focus(); if (document.pointerLockElement !== canvas) { const result = canvas.requestPointerLock(); if (result) result.catch(() => { /* Drag-to-look remains available. */ }); } });
     canvas.addEventListener('pointerdown', () => { this.dragging = true; }); window.addEventListener('pointerup', () => { this.dragging = false; });
@@ -33,14 +37,21 @@ export class PlayerController {
   }
   setMode(mode: CameraMode): void {
     this.mode = mode; this.velocity.set(0, 0, 0);
-    if (mode === 'walk') { if (this.blocked(this.camera.position.x, this.camera.position.z)) this.camera.position.copy(this.safe); this.camera.position.y = 1.82; }
+    if (mode === 'walk') {
+      this.footY = this.station ? stationSupport(this.station,this.camera.position.x,this.camera.position.z,this.camera.position.y-1.705) ?? STATION.groundY : STATION.groundY;
+      if (this.blocked(this.camera.position.x, this.camera.position.z)) { this.camera.position.copy(this.safe); this.footY=this.safe.y-1.705; }
+      this.camera.position.y = this.footY + 1.705;
+    }
   }
   teleport(position: THREE.Vector3, target: THREE.Vector3): void {
     this.camera.rotation.order = 'YXZ'; this.camera.position.copy(position); this.camera.lookAt(target);
     this.yaw = this.camera.rotation.y; this.pitch = this.camera.rotation.x; this.velocity.set(0, 0, 0); this.keys.clear();
+    this.footY = position.y - 1.705;
     if (!this.blocked(position.x, position.z) && this.mode === 'walk') this.safe.copy(position);
   }
   private blocked(x: number, z: number): boolean {
+    const support = this.station ? stationSupport(this.station,x,z,this.footY) : STATION.groundY;
+    if(support===null || this.station && stationBodyBlocked(this.station,x,z,support))return true;
     return this.colliders.some(b => x > b.minX - .25 && x < b.maxX + .25 && z > b.minZ - .25 && z < b.maxZ + .25);
   }
   update(dt: number): void {
@@ -54,7 +65,8 @@ export class PlayerController {
     const p = this.camera.position, dx = this.velocity.x * dt, dz = this.velocity.z * dt;
     if (this.mode === 'fly' || !this.blocked(p.x + dx, p.z)) p.x += dx;
     if (this.mode === 'fly' || !this.blocked(p.x, p.z + dz)) p.z += dz;
-    p.y = this.mode === 'fly' ? THREE.MathUtils.clamp(p.y + this.velocity.y * dt, .6, 90) : 1.82;
+    if(this.mode==='walk') { this.footY=this.station ? stationSupport(this.station,p.x,p.z,this.footY) ?? this.footY : STATION.groundY; p.y=this.footY+1.705; }
+    else p.y=THREE.MathUtils.clamp(p.y+this.velocity.y*dt,.6,90);
     p.x = THREE.MathUtils.clamp(p.x, -66, 66); p.z = THREE.MathUtils.clamp(p.z, -66, 66);
     if (this.mode === 'walk' && !this.blocked(p.x, p.z)) this.safe.copy(p);
   }

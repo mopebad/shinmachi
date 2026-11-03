@@ -1,0 +1,2893 @@
+{
+  "id": "shinmachi-station",
+  "bounds": {
+    "minX": 7.8,
+    "maxX": 61.7,
+    "minZ": -55.5,
+    "maxZ": -45.8
+  },
+  "surfaces": [
+    {
+      "id": "concourse-floor",
+      "kind": "concourse",
+      "minX": 9.6,
+      "maxX": 25.6,
+      "minZ": -53.1,
+      "maxZ": -46.4,
+      "y": 0.115,
+      "thickness": 0.18
+    },
+    {
+      "id": "lower-landing",
+      "kind": "landing",
+      "minX": 13.2,
+      "maxX": 15.2,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 0.115,
+      "thickness": 0.2
+    },
+    {
+      "id": "return-landing",
+      "kind": "landing",
+      "minX": 23.21,
+      "maxX": 25.21,
+      "minZ": -53.1,
+      "maxZ": -49,
+      "y": 3.785,
+      "thickness": 0.25
+    },
+    {
+      "id": "platform-trackside",
+      "kind": "platform",
+      "minX": 8,
+      "maxX": 61.5,
+      "minZ": -55.5,
+      "maxZ": -53.1,
+      "y": 7.455,
+      "thickness": 0.28
+    },
+    {
+      "id": "platform-rear",
+      "kind": "platform",
+      "minX": 8,
+      "maxX": 61.5,
+      "minZ": -49,
+      "maxZ": -47.7,
+      "y": 7.455,
+      "thickness": 0.28
+    },
+    {
+      "id": "platform-west",
+      "kind": "platform",
+      "minX": 8,
+      "maxX": 15.2,
+      "minZ": -53.1,
+      "maxZ": -49,
+      "y": 7.455,
+      "thickness": 0.28
+    },
+    {
+      "id": "platform-east",
+      "kind": "platform",
+      "minX": 25.21,
+      "maxX": 61.5,
+      "minZ": -53.1,
+      "maxZ": -49,
+      "y": 7.455,
+      "thickness": 0.28
+    },
+    {
+      "id": "lower-rest",
+      "kind": "landing",
+      "minX": 18.3,
+      "maxX": 19.8,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 1.8626190476190476,
+      "thickness": 0.25
+    },
+    {
+      "id": "upper-rest",
+      "kind": "landing",
+      "minX": 18.3,
+      "maxX": 19.8,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 5.707380952380952,
+      "thickness": 0.25
+    },
+    {
+      "id": "lower-flight-a-tread-1",
+      "kind": "tread",
+      "minX": 15.2,
+      "maxX": 15.51,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 0.2897619047619048,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-a-tread-2",
+      "kind": "tread",
+      "minX": 15.51,
+      "maxX": 15.82,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 0.4645238095238095,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-a-tread-3",
+      "kind": "tread",
+      "minX": 15.819999999999999,
+      "maxX": 16.13,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 0.6392857142857142,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-a-tread-4",
+      "kind": "tread",
+      "minX": 16.13,
+      "maxX": 16.439999999999998,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 0.814047619047619,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-a-tread-5",
+      "kind": "tread",
+      "minX": 16.439999999999998,
+      "maxX": 16.749999999999996,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 0.9888095238095238,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-a-tread-6",
+      "kind": "tread",
+      "minX": 16.75,
+      "maxX": 17.06,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 1.1635714285714285,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-a-tread-7",
+      "kind": "tread",
+      "minX": 17.06,
+      "maxX": 17.369999999999997,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 1.3383333333333334,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-a-tread-8",
+      "kind": "tread",
+      "minX": 17.369999999999997,
+      "maxX": 17.679999999999996,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 1.513095238095238,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-a-tread-9",
+      "kind": "tread",
+      "minX": 17.68,
+      "maxX": 17.99,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 1.6878571428571427,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-a-tread-10",
+      "kind": "tread",
+      "minX": 17.99,
+      "maxX": 18.299999999999997,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 1.8626190476190476,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-b-tread-1",
+      "kind": "tread",
+      "minX": 19.8,
+      "maxX": 20.11,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 2.0373809523809525,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-b-tread-2",
+      "kind": "tread",
+      "minX": 20.11,
+      "maxX": 20.419999999999998,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 2.212142857142857,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-b-tread-3",
+      "kind": "tread",
+      "minX": 20.42,
+      "maxX": 20.73,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 2.386904761904762,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-b-tread-4",
+      "kind": "tread",
+      "minX": 20.73,
+      "maxX": 21.04,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 2.5616666666666665,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-b-tread-5",
+      "kind": "tread",
+      "minX": 21.04,
+      "maxX": 21.349999999999998,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 2.736428571428571,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-b-tread-6",
+      "kind": "tread",
+      "minX": 21.35,
+      "maxX": 21.66,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 2.911190476190476,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-b-tread-7",
+      "kind": "tread",
+      "minX": 21.66,
+      "maxX": 21.97,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 3.085952380952381,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-b-tread-8",
+      "kind": "tread",
+      "minX": 21.97,
+      "maxX": 22.279999999999998,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 3.2607142857142857,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-b-tread-9",
+      "kind": "tread",
+      "minX": 22.28,
+      "maxX": 22.59,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 3.4354761904761904,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-b-tread-10",
+      "kind": "tread",
+      "minX": 22.59,
+      "maxX": 22.9,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 3.6102380952380955,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "lower-flight-b-tread-11",
+      "kind": "tread",
+      "minX": 22.900000000000002,
+      "maxX": 23.21,
+      "minZ": -50.8,
+      "maxZ": -49,
+      "y": 3.785,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-a-tread-1",
+      "kind": "tread",
+      "minX": 22.900000000000002,
+      "maxX": 23.21,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 3.959761904761905,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-a-tread-2",
+      "kind": "tread",
+      "minX": 22.590000000000003,
+      "maxX": 22.900000000000002,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 4.1345238095238095,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-a-tread-3",
+      "kind": "tread",
+      "minX": 22.28,
+      "maxX": 22.59,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 4.309285714285714,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-a-tread-4",
+      "kind": "tread",
+      "minX": 21.970000000000002,
+      "maxX": 22.28,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 4.484047619047619,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-a-tread-5",
+      "kind": "tread",
+      "minX": 21.660000000000004,
+      "maxX": 21.970000000000002,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 4.6588095238095235,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-a-tread-6",
+      "kind": "tread",
+      "minX": 21.35,
+      "maxX": 21.66,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 4.833571428571428,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-a-tread-7",
+      "kind": "tread",
+      "minX": 21.040000000000003,
+      "maxX": 21.35,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 5.008333333333334,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-a-tread-8",
+      "kind": "tread",
+      "minX": 20.73,
+      "maxX": 21.04,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 5.183095238095238,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-a-tread-9",
+      "kind": "tread",
+      "minX": 20.42,
+      "maxX": 20.73,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 5.357857142857143,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-a-tread-10",
+      "kind": "tread",
+      "minX": 20.110000000000003,
+      "maxX": 20.42,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 5.532619047619048,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-a-tread-11",
+      "kind": "tread",
+      "minX": 19.8,
+      "maxX": 20.11,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 5.707380952380952,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-b-tread-1",
+      "kind": "tread",
+      "minX": 17.990000000000002,
+      "maxX": 18.3,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 5.882142857142857,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-b-tread-2",
+      "kind": "tread",
+      "minX": 17.680000000000003,
+      "maxX": 17.990000000000002,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 6.056904761904762,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-b-tread-3",
+      "kind": "tread",
+      "minX": 17.37,
+      "maxX": 17.68,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 6.2316666666666665,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-b-tread-4",
+      "kind": "tread",
+      "minX": 17.060000000000002,
+      "maxX": 17.37,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 6.406428571428571,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-b-tread-5",
+      "kind": "tread",
+      "minX": 16.750000000000004,
+      "maxX": 17.060000000000002,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 6.581190476190477,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-b-tread-6",
+      "kind": "tread",
+      "minX": 16.44,
+      "maxX": 16.75,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 6.755952380952381,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-b-tread-7",
+      "kind": "tread",
+      "minX": 16.130000000000003,
+      "maxX": 16.44,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 6.930714285714286,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-b-tread-8",
+      "kind": "tread",
+      "minX": 15.820000000000002,
+      "maxX": 16.130000000000003,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 7.105476190476191,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-b-tread-9",
+      "kind": "tread",
+      "minX": 15.51,
+      "maxX": 15.82,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 7.280238095238095,
+      "thickness": 0.17476190476190476
+    },
+    {
+      "id": "upper-flight-b-tread-10",
+      "kind": "tread",
+      "minX": 15.200000000000001,
+      "maxX": 15.510000000000002,
+      "minZ": -53.1,
+      "maxZ": -51.300000000000004,
+      "y": 7.455,
+      "thickness": 0.17476190476190476
+    }
+  ],
+  "boxes": [
+    {
+      "id": "rest-rail--49.9--1",
+      "material": "glass",
+      "minX": 18.3,
+      "maxX": 19.8,
+      "minZ": -50.824999999999996,
+      "maxZ": -50.775,
+      "minY": 1.8626190476190476,
+      "maxY": 2.8826190476190474,
+      "collision": true
+    },
+    {
+      "id": "rest-rail--49.9-1",
+      "material": "glass",
+      "minX": 18.3,
+      "maxX": 19.8,
+      "minZ": -49.025,
+      "maxZ": -48.975,
+      "minY": 1.8626190476190476,
+      "maxY": 2.8826190476190474,
+      "collision": true
+    },
+    {
+      "id": "rest-rail--52.2--1",
+      "material": "glass",
+      "minX": 18.3,
+      "maxX": 19.8,
+      "minZ": -53.125,
+      "maxZ": -53.075,
+      "minY": 5.707380952380952,
+      "maxY": 6.727380952380953,
+      "collision": true
+    },
+    {
+      "id": "rest-rail--52.2-1",
+      "material": "glass",
+      "minX": 18.3,
+      "maxX": 19.8,
+      "minZ": -51.325,
+      "maxZ": -51.275000000000006,
+      "minY": 5.707380952380952,
+      "maxY": 6.727380952380953,
+      "collision": true
+    },
+    {
+      "id": "rest-support",
+      "material": "concrete",
+      "minX": 18.96,
+      "maxX": 19.14,
+      "minZ": -51.14,
+      "maxZ": -50.96,
+      "minY": 0.115,
+      "maxY": 5.457380952380952,
+      "collision": true
+    },
+    {
+      "id": "rest-crosshead--49.9",
+      "material": "concrete",
+      "minX": 18.9,
+      "maxX": 19.2,
+      "minZ": -51.14,
+      "maxZ": -49,
+      "minY": 1.4326190476190477,
+      "maxY": 1.6126190476190476,
+      "collision": false
+    },
+    {
+      "id": "rest-crosshead--52.2",
+      "material": "concrete",
+      "minX": 18.9,
+      "maxX": 19.2,
+      "minZ": -53.1,
+      "maxZ": -50.96,
+      "minY": 5.277380952380953,
+      "maxY": 5.457380952380952,
+      "collision": false
+    },
+    {
+      "id": "west-wall",
+      "material": "wall",
+      "minX": 9.45,
+      "maxX": 9.65,
+      "minZ": -53.2,
+      "maxZ": -46.4,
+      "minY": 0.115,
+      "maxY": 7.175,
+      "collision": true
+    },
+    {
+      "id": "east-wall",
+      "material": "wall",
+      "minX": 25.5,
+      "maxX": 25.7,
+      "minZ": -53.2,
+      "maxZ": -46.4,
+      "minY": 0.115,
+      "maxY": 7.175,
+      "collision": true
+    },
+    {
+      "id": "ticket-wall",
+      "material": "wall",
+      "minX": 18.4,
+      "maxX": 25.6,
+      "minZ": -49.14,
+      "maxZ": -48.94,
+      "minY": 0.115,
+      "maxY": 3.9,
+      "collision": true
+    },
+    {
+      "id": "paid-rear-wall",
+      "material": "wall",
+      "minX": 9.6,
+      "maxX": 15.2,
+      "minZ": -53.25,
+      "maxZ": -53.05,
+      "minY": 0.115,
+      "maxY": 3.3,
+      "collision": true
+    },
+    {
+      "id": "paid-ceiling",
+      "material": "roof",
+      "minX": 9.65,
+      "maxX": 15.2,
+      "minZ": -53.05,
+      "maxZ": -49,
+      "minY": 3.18,
+      "maxY": 3.3,
+      "collision": false
+    },
+    {
+      "id": "gate-return",
+      "material": "steel",
+      "minX": 14.45,
+      "maxX": 14.54,
+      "minZ": -49,
+      "maxZ": -48.4,
+      "minY": 0.115,
+      "maxY": 1.25,
+      "collision": true
+    },
+    {
+      "id": "gate-west-divider",
+      "material": "steel",
+      "minX": 9.65,
+      "maxX": 10.1,
+      "minZ": -48.51,
+      "maxZ": -48.39,
+      "minY": 0.115,
+      "maxY": 1.25,
+      "collision": true
+    },
+    {
+      "id": "ticket-roof",
+      "material": "roof",
+      "minX": 9.3,
+      "maxX": 25.9,
+      "minZ": -49,
+      "maxZ": -45.8,
+      "minY": 4.02,
+      "maxY": 4.24,
+      "collision": false
+    },
+    {
+      "id": "entrance-beam",
+      "material": "steel",
+      "minX": 9.3,
+      "maxX": 25.9,
+      "minZ": -46.07,
+      "maxZ": -45.85,
+      "minY": 3.2,
+      "maxY": 3.9,
+      "collision": false
+    },
+    {
+      "id": "foyer-column-9.8",
+      "material": "concrete",
+      "minX": 9.64,
+      "maxX": 9.96,
+      "minZ": -46.7,
+      "maxZ": -46.38,
+      "minY": 0.115,
+      "maxY": 4.02,
+      "collision": true
+    },
+    {
+      "id": "foyer-column-15",
+      "material": "concrete",
+      "minX": 14.84,
+      "maxX": 15.16,
+      "minZ": -46.7,
+      "maxZ": -46.38,
+      "minY": 0.115,
+      "maxY": 4.02,
+      "collision": true
+    },
+    {
+      "id": "foyer-column-25.2",
+      "material": "concrete",
+      "minX": 25.04,
+      "maxX": 25.36,
+      "minZ": -46.7,
+      "maxZ": -46.38,
+      "minY": 0.115,
+      "maxY": 4.02,
+      "collision": true
+    },
+    {
+      "id": "support-8.5--54.3",
+      "material": "concrete",
+      "minX": 8.24,
+      "maxX": 8.76,
+      "minZ": -54.58,
+      "maxZ": -54.019999999999996,
+      "minY": 0.115,
+      "maxY": 6.94,
+      "collision": true
+    },
+    {
+      "id": "footing-8.5--54.3",
+      "material": "concrete",
+      "minX": 8.08,
+      "maxX": 8.92,
+      "minZ": -54.739999999999995,
+      "maxZ": -53.86,
+      "minY": -0.08,
+      "maxY": 0.22,
+      "collision": true
+    },
+    {
+      "id": "support-8.5--48.15",
+      "material": "concrete",
+      "minX": 8.24,
+      "maxX": 8.76,
+      "minZ": -48.43,
+      "maxZ": -47.87,
+      "minY": 0.115,
+      "maxY": 6.94,
+      "collision": true
+    },
+    {
+      "id": "footing-8.5--48.15",
+      "material": "concrete",
+      "minX": 8.08,
+      "maxX": 8.92,
+      "minZ": -48.589999999999996,
+      "maxZ": -47.71,
+      "minY": -0.08,
+      "maxY": 0.22,
+      "collision": true
+    },
+    {
+      "id": "support-25.2--54.3",
+      "material": "concrete",
+      "minX": 24.939999999999998,
+      "maxX": 25.46,
+      "minZ": -54.58,
+      "maxZ": -54.019999999999996,
+      "minY": 0.115,
+      "maxY": 6.94,
+      "collision": true
+    },
+    {
+      "id": "footing-25.2--54.3",
+      "material": "concrete",
+      "minX": 24.779999999999998,
+      "maxX": 25.62,
+      "minZ": -54.739999999999995,
+      "maxZ": -53.86,
+      "minY": -0.08,
+      "maxY": 0.22,
+      "collision": true
+    },
+    {
+      "id": "support-25.2--48.15",
+      "material": "concrete",
+      "minX": 24.939999999999998,
+      "maxX": 25.46,
+      "minZ": -48.43,
+      "maxZ": -47.87,
+      "minY": 0.115,
+      "maxY": 6.94,
+      "collision": true
+    },
+    {
+      "id": "footing-25.2--48.15",
+      "material": "concrete",
+      "minX": 24.779999999999998,
+      "maxX": 25.62,
+      "minZ": -48.589999999999996,
+      "maxZ": -47.71,
+      "minY": -0.08,
+      "maxY": 0.22,
+      "collision": true
+    },
+    {
+      "id": "support-37.2--54.3",
+      "material": "concrete",
+      "minX": 36.940000000000005,
+      "maxX": 37.46,
+      "minZ": -54.58,
+      "maxZ": -54.019999999999996,
+      "minY": 0.115,
+      "maxY": 6.94,
+      "collision": true
+    },
+    {
+      "id": "footing-37.2--54.3",
+      "material": "concrete",
+      "minX": 36.78,
+      "maxX": 37.620000000000005,
+      "minZ": -54.739999999999995,
+      "maxZ": -53.86,
+      "minY": -0.08,
+      "maxY": 0.22,
+      "collision": true
+    },
+    {
+      "id": "support-37.2--48.15",
+      "material": "concrete",
+      "minX": 36.940000000000005,
+      "maxX": 37.46,
+      "minZ": -48.43,
+      "maxZ": -47.87,
+      "minY": 0.115,
+      "maxY": 6.94,
+      "collision": true
+    },
+    {
+      "id": "footing-37.2--48.15",
+      "material": "concrete",
+      "minX": 36.78,
+      "maxX": 37.620000000000005,
+      "minZ": -48.589999999999996,
+      "maxZ": -47.71,
+      "minY": -0.08,
+      "maxY": 0.22,
+      "collision": true
+    },
+    {
+      "id": "support-49.2--54.3",
+      "material": "concrete",
+      "minX": 48.940000000000005,
+      "maxX": 49.46,
+      "minZ": -54.58,
+      "maxZ": -54.019999999999996,
+      "minY": 0.115,
+      "maxY": 6.94,
+      "collision": true
+    },
+    {
+      "id": "footing-49.2--54.3",
+      "material": "concrete",
+      "minX": 48.78,
+      "maxX": 49.620000000000005,
+      "minZ": -54.739999999999995,
+      "maxZ": -53.86,
+      "minY": -0.08,
+      "maxY": 0.22,
+      "collision": true
+    },
+    {
+      "id": "support-49.2--48.15",
+      "material": "concrete",
+      "minX": 48.940000000000005,
+      "maxX": 49.46,
+      "minZ": -48.43,
+      "maxZ": -47.87,
+      "minY": 0.115,
+      "maxY": 6.94,
+      "collision": true
+    },
+    {
+      "id": "footing-49.2--48.15",
+      "material": "concrete",
+      "minX": 48.78,
+      "maxX": 49.620000000000005,
+      "minZ": -48.589999999999996,
+      "maxZ": -47.71,
+      "minY": -0.08,
+      "maxY": 0.22,
+      "collision": true
+    },
+    {
+      "id": "support-61--54.3",
+      "material": "concrete",
+      "minX": 60.74,
+      "maxX": 61.26,
+      "minZ": -54.58,
+      "maxZ": -54.019999999999996,
+      "minY": 0.115,
+      "maxY": 6.94,
+      "collision": true
+    },
+    {
+      "id": "footing-61--54.3",
+      "material": "concrete",
+      "minX": 60.58,
+      "maxX": 61.42,
+      "minZ": -54.739999999999995,
+      "maxZ": -53.86,
+      "minY": -0.08,
+      "maxY": 0.22,
+      "collision": true
+    },
+    {
+      "id": "support-61--48.15",
+      "material": "concrete",
+      "minX": 60.74,
+      "maxX": 61.26,
+      "minZ": -48.43,
+      "maxZ": -47.87,
+      "minY": 0.115,
+      "maxY": 6.94,
+      "collision": true
+    },
+    {
+      "id": "footing-61--48.15",
+      "material": "concrete",
+      "minX": 60.58,
+      "maxX": 61.42,
+      "minZ": -48.589999999999996,
+      "maxZ": -47.71,
+      "minY": -0.08,
+      "maxY": 0.22,
+      "collision": true
+    },
+    {
+      "id": "platform-girder--54.3",
+      "material": "concrete",
+      "minX": 8,
+      "maxX": 61.5,
+      "minZ": -54.519999999999996,
+      "maxZ": -54.08,
+      "minY": 6.72,
+      "maxY": 7.175,
+      "collision": false
+    },
+    {
+      "id": "platform-girder--48.15",
+      "material": "concrete",
+      "minX": 8,
+      "maxX": 61.5,
+      "minZ": -48.37,
+      "maxZ": -47.93,
+      "minY": 6.72,
+      "maxY": 7.175,
+      "collision": false
+    },
+    {
+      "id": "platform-crosshead-8.5",
+      "material": "concrete",
+      "minX": 8.27,
+      "maxX": 8.73,
+      "minZ": -55.5,
+      "maxZ": -47.7,
+      "minY": 6.71,
+      "maxY": 7.175,
+      "collision": false
+    },
+    {
+      "id": "platform-crosshead-25.2",
+      "material": "concrete",
+      "minX": 24.97,
+      "maxX": 25.43,
+      "minZ": -55.5,
+      "maxZ": -47.7,
+      "minY": 6.71,
+      "maxY": 7.175,
+      "collision": false
+    },
+    {
+      "id": "platform-crosshead-37.2",
+      "material": "concrete",
+      "minX": 36.970000000000006,
+      "maxX": 37.43,
+      "minZ": -55.5,
+      "maxZ": -47.7,
+      "minY": 6.71,
+      "maxY": 7.175,
+      "collision": false
+    },
+    {
+      "id": "platform-crosshead-49.2",
+      "material": "concrete",
+      "minX": 48.970000000000006,
+      "maxX": 49.43,
+      "minZ": -55.5,
+      "maxZ": -47.7,
+      "minY": 6.71,
+      "maxY": 7.175,
+      "collision": false
+    },
+    {
+      "id": "platform-crosshead-61",
+      "material": "concrete",
+      "minX": 60.77,
+      "maxX": 61.23,
+      "minZ": -55.5,
+      "maxZ": -47.7,
+      "minY": 6.71,
+      "maxY": 7.175,
+      "collision": false
+    },
+    {
+      "id": "well-guard--53.1",
+      "material": "glass",
+      "minX": 15.2,
+      "maxX": 25.21,
+      "minZ": -53.135,
+      "maxZ": -53.065000000000005,
+      "minY": 7.455,
+      "maxY": 8.555,
+      "collision": true
+    },
+    {
+      "id": "well-guard--49",
+      "material": "glass",
+      "minX": 15.2,
+      "maxX": 25.21,
+      "minZ": -49.035,
+      "maxZ": -48.965,
+      "minY": 7.455,
+      "maxY": 8.555,
+      "collision": true
+    },
+    {
+      "id": "well-east-guard",
+      "material": "glass",
+      "minX": 25.175,
+      "maxX": 25.245,
+      "minZ": -53.1,
+      "maxZ": -49,
+      "minY": 7.455,
+      "maxY": 8.555,
+      "collision": true
+    },
+    {
+      "id": "well-west-lower-guard",
+      "material": "glass",
+      "minX": 15.165,
+      "maxX": 15.235,
+      "minZ": -50.85,
+      "maxZ": -49,
+      "minY": 7.455,
+      "maxY": 8.555,
+      "collision": true
+    },
+    {
+      "id": "return-east-guard",
+      "material": "glass",
+      "minX": 25.175,
+      "maxX": 25.245,
+      "minZ": -53.1,
+      "maxZ": -49,
+      "minY": 3.785,
+      "maxY": 4.885,
+      "collision": true
+    },
+    {
+      "id": "return-guard--53.1",
+      "material": "glass",
+      "minX": 23.21,
+      "maxX": 25.21,
+      "minZ": -53.135,
+      "maxZ": -53.065000000000005,
+      "minY": 3.785,
+      "maxY": 4.885,
+      "collision": true
+    },
+    {
+      "id": "return-guard--49",
+      "material": "glass",
+      "minX": 23.21,
+      "maxX": 25.21,
+      "minZ": -49.035,
+      "maxZ": -48.965,
+      "minY": 3.785,
+      "maxY": 4.885,
+      "collision": true
+    },
+    {
+      "id": "track-edge-screen",
+      "material": "glass",
+      "minX": 8,
+      "maxX": 61.5,
+      "minZ": -55.415,
+      "maxZ": -55.365,
+      "minY": 7.455,
+      "maxY": 8.575,
+      "collision": true
+    },
+    {
+      "id": "rear-guard",
+      "material": "glass",
+      "minX": 8,
+      "maxX": 61.5,
+      "minZ": -47.765,
+      "maxZ": -47.715,
+      "minY": 7.455,
+      "maxY": 8.555,
+      "collision": true
+    },
+    {
+      "id": "platform-end-8",
+      "material": "glass",
+      "minX": 7.97,
+      "maxX": 8.03,
+      "minZ": -55.39,
+      "maxZ": -47.74,
+      "minY": 7.455,
+      "maxY": 8.555,
+      "collision": true
+    },
+    {
+      "id": "platform-end-61.5",
+      "material": "glass",
+      "minX": 61.47,
+      "maxX": 61.53,
+      "minZ": -55.39,
+      "maxZ": -47.74,
+      "minY": 7.455,
+      "maxY": 8.555,
+      "collision": true
+    },
+    {
+      "id": "canopy-post-8.5--53.35",
+      "material": "steel",
+      "minX": 8.415,
+      "maxX": 8.585,
+      "minZ": -53.435,
+      "maxZ": -53.265,
+      "minY": 7.455,
+      "maxY": 10.78,
+      "collision": true
+    },
+    {
+      "id": "canopy-post-8.5--48.15",
+      "material": "steel",
+      "minX": 8.415,
+      "maxX": 8.585,
+      "minZ": -48.235,
+      "maxZ": -48.065,
+      "minY": 7.455,
+      "maxY": 10.78,
+      "collision": true
+    },
+    {
+      "id": "canopy-post-25.2--53.35",
+      "material": "steel",
+      "minX": 25.115,
+      "maxX": 25.285,
+      "minZ": -53.435,
+      "maxZ": -53.265,
+      "minY": 7.455,
+      "maxY": 10.78,
+      "collision": true
+    },
+    {
+      "id": "canopy-post-25.2--48.15",
+      "material": "steel",
+      "minX": 25.115,
+      "maxX": 25.285,
+      "minZ": -48.235,
+      "maxZ": -48.065,
+      "minY": 7.455,
+      "maxY": 10.78,
+      "collision": true
+    },
+    {
+      "id": "canopy-post-37.2--53.35",
+      "material": "steel",
+      "minX": 37.115,
+      "maxX": 37.285000000000004,
+      "minZ": -53.435,
+      "maxZ": -53.265,
+      "minY": 7.455,
+      "maxY": 10.78,
+      "collision": true
+    },
+    {
+      "id": "canopy-post-37.2--48.15",
+      "material": "steel",
+      "minX": 37.115,
+      "maxX": 37.285000000000004,
+      "minZ": -48.235,
+      "maxZ": -48.065,
+      "minY": 7.455,
+      "maxY": 10.78,
+      "collision": true
+    },
+    {
+      "id": "canopy-post-49.2--53.35",
+      "material": "steel",
+      "minX": 49.115,
+      "maxX": 49.285000000000004,
+      "minZ": -53.435,
+      "maxZ": -53.265,
+      "minY": 7.455,
+      "maxY": 10.78,
+      "collision": true
+    },
+    {
+      "id": "canopy-post-49.2--48.15",
+      "material": "steel",
+      "minX": 49.115,
+      "maxX": 49.285000000000004,
+      "minZ": -48.235,
+      "maxZ": -48.065,
+      "minY": 7.455,
+      "maxY": 10.78,
+      "collision": true
+    },
+    {
+      "id": "canopy-post-61--53.35",
+      "material": "steel",
+      "minX": 60.915,
+      "maxX": 61.085,
+      "minZ": -53.435,
+      "maxZ": -53.265,
+      "minY": 7.455,
+      "maxY": 10.78,
+      "collision": true
+    },
+    {
+      "id": "canopy-post-61--48.15",
+      "material": "steel",
+      "minX": 60.915,
+      "maxX": 61.085,
+      "minZ": -48.235,
+      "maxZ": -48.065,
+      "minY": 7.455,
+      "maxY": 10.78,
+      "collision": true
+    },
+    {
+      "id": "canopy",
+      "material": "roof",
+      "minX": 7.8,
+      "maxX": 61.7,
+      "minZ": -55.3,
+      "maxZ": -47.4,
+      "minY": 10.91,
+      "maxY": 11.05,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-8.5",
+      "material": "steel",
+      "minX": 8.455,
+      "maxX": 8.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-11.5",
+      "material": "steel",
+      "minX": 11.455,
+      "maxX": 11.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-14.5",
+      "material": "steel",
+      "minX": 14.455,
+      "maxX": 14.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-17.5",
+      "material": "steel",
+      "minX": 17.455,
+      "maxX": 17.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-20.5",
+      "material": "steel",
+      "minX": 20.455,
+      "maxX": 20.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-23.5",
+      "material": "steel",
+      "minX": 23.455,
+      "maxX": 23.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-26.5",
+      "material": "steel",
+      "minX": 26.455,
+      "maxX": 26.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-29.5",
+      "material": "steel",
+      "minX": 29.455,
+      "maxX": 29.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-32.5",
+      "material": "steel",
+      "minX": 32.455,
+      "maxX": 32.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-35.5",
+      "material": "steel",
+      "minX": 35.455,
+      "maxX": 35.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-38.5",
+      "material": "steel",
+      "minX": 38.455,
+      "maxX": 38.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-41.5",
+      "material": "steel",
+      "minX": 41.455,
+      "maxX": 41.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-44.5",
+      "material": "steel",
+      "minX": 44.455,
+      "maxX": 44.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-47.5",
+      "material": "steel",
+      "minX": 47.455,
+      "maxX": 47.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-50.5",
+      "material": "steel",
+      "minX": 50.455,
+      "maxX": 50.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-53.5",
+      "material": "steel",
+      "minX": 53.455,
+      "maxX": 53.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-56.5",
+      "material": "steel",
+      "minX": 56.455,
+      "maxX": 56.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "canopy-beam-59.5",
+      "material": "steel",
+      "minX": 59.455,
+      "maxX": 59.545,
+      "minZ": -55.25,
+      "maxZ": -47.45,
+      "minY": 10.7,
+      "maxY": 10.91,
+      "collision": false
+    },
+    {
+      "id": "railway-mast-15",
+      "minX": 14.96,
+      "maxX": 15.04,
+      "minZ": -54.74,
+      "maxZ": -54.66,
+      "minY": 6.6,
+      "maxY": 11.6,
+      "material": "steel",
+      "collision": true,
+      "renderedByRailway": true
+    },
+    {
+      "id": "railway-mast-30",
+      "minX": 29.96,
+      "maxX": 30.04,
+      "minZ": -54.74,
+      "maxZ": -54.66,
+      "minY": 6.6,
+      "maxY": 11.6,
+      "material": "steel",
+      "collision": true,
+      "renderedByRailway": true
+    },
+    {
+      "id": "railway-mast-45",
+      "minX": 44.96,
+      "maxX": 45.04,
+      "minZ": -54.74,
+      "maxZ": -54.66,
+      "minY": 6.6,
+      "maxY": 11.6,
+      "material": "steel",
+      "collision": true,
+      "renderedByRailway": true
+    },
+    {
+      "id": "railway-mast-60",
+      "minX": 59.96,
+      "maxX": 60.04,
+      "minZ": -54.74,
+      "maxZ": -54.66,
+      "minY": 6.6,
+      "maxY": 11.6,
+      "material": "steel",
+      "collision": true,
+      "renderedByRailway": true
+    },
+    {
+      "id": "gate-body-0",
+      "material": "gate",
+      "minX": 10.06,
+      "maxX": 10.38,
+      "minZ": -49.25,
+      "maxZ": -47.65,
+      "minY": 0.115,
+      "maxY": 1.135,
+      "collision": true
+    },
+    {
+      "id": "gate-body-1",
+      "material": "gate",
+      "minX": 11.49,
+      "maxX": 11.81,
+      "minZ": -49.25,
+      "maxZ": -47.65,
+      "minY": 0.115,
+      "maxY": 1.135,
+      "collision": true
+    },
+    {
+      "id": "gate-body-2",
+      "material": "gate",
+      "minX": 12.79,
+      "maxX": 13.11,
+      "minZ": -49.25,
+      "maxZ": -47.65,
+      "minY": 0.115,
+      "maxY": 1.135,
+      "collision": true
+    },
+    {
+      "id": "gate-body-3",
+      "material": "gate",
+      "minX": 14.09,
+      "maxX": 14.41,
+      "minZ": -49.25,
+      "maxZ": -47.65,
+      "minY": 0.115,
+      "maxY": 1.135,
+      "collision": true
+    },
+    {
+      "id": "ticket-machine-21.7",
+      "material": "steel",
+      "minX": 21.25,
+      "maxX": 22.15,
+      "minZ": -48.915,
+      "maxZ": -48.285,
+      "minY": 0.115,
+      "maxY": 2.285,
+      "collision": true
+    },
+    {
+      "id": "ticket-machine-23.15",
+      "material": "steel",
+      "minX": 22.7,
+      "maxX": 23.599999999999998,
+      "minZ": -48.915,
+      "maxZ": -48.285,
+      "minY": 0.115,
+      "maxY": 2.285,
+      "collision": true
+    },
+    {
+      "id": "stair-glazing-plinth",
+      "material": "wall",
+      "minX": 15.2,
+      "maxX": 23.7,
+      "minZ": -49.02,
+      "maxZ": -48.92,
+      "minY": 0.115,
+      "maxY": 1.885,
+      "collision": true
+    },
+    {
+      "id": "landing-leg-23.45--52.85",
+      "material": "concrete",
+      "minX": 23.36,
+      "maxX": 23.54,
+      "minZ": -52.940000000000005,
+      "maxZ": -52.76,
+      "minY": 0.115,
+      "maxY": 3.535,
+      "collision": true
+    },
+    {
+      "id": "landing-leg-23.45--49.25",
+      "material": "concrete",
+      "minX": 23.36,
+      "maxX": 23.54,
+      "minZ": -49.34,
+      "maxZ": -49.16,
+      "minY": 0.115,
+      "maxY": 3.535,
+      "collision": true
+    },
+    {
+      "id": "landing-leg-24.95--52.85",
+      "material": "concrete",
+      "minX": 24.86,
+      "maxX": 25.04,
+      "minZ": -52.940000000000005,
+      "maxZ": -52.76,
+      "minY": 0.115,
+      "maxY": 3.535,
+      "collision": true
+    },
+    {
+      "id": "landing-leg-24.95--49.25",
+      "material": "concrete",
+      "minX": 24.86,
+      "maxX": 25.04,
+      "minZ": -49.34,
+      "maxZ": -49.16,
+      "minY": 0.115,
+      "maxY": 3.535,
+      "collision": true
+    },
+    {
+      "id": "bench-seat-29",
+      "material": "wood",
+      "minX": 28,
+      "maxX": 30,
+      "minZ": -48.49,
+      "maxZ": -48.01,
+      "minY": 7.89,
+      "maxY": 7.98,
+      "collision": true
+    },
+    {
+      "id": "bench-back-29",
+      "material": "wood",
+      "minX": 28,
+      "maxX": 30,
+      "minZ": -48.0625,
+      "maxZ": -47.9975,
+      "minY": 7.96,
+      "maxY": 8.51,
+      "collision": true
+    },
+    {
+      "id": "bench-seat-41",
+      "material": "wood",
+      "minX": 40,
+      "maxX": 42,
+      "minZ": -48.49,
+      "maxZ": -48.01,
+      "minY": 7.89,
+      "maxY": 7.98,
+      "collision": true
+    },
+    {
+      "id": "bench-back-41",
+      "material": "wood",
+      "minX": 40,
+      "maxX": 42,
+      "minZ": -48.0625,
+      "maxZ": -47.9975,
+      "minY": 7.96,
+      "maxY": 8.51,
+      "collision": true
+    },
+    {
+      "id": "bench-seat-53",
+      "material": "wood",
+      "minX": 52,
+      "maxX": 54,
+      "minZ": -48.49,
+      "maxZ": -48.01,
+      "minY": 7.89,
+      "maxY": 7.98,
+      "collision": true
+    },
+    {
+      "id": "bench-back-53",
+      "material": "wood",
+      "minX": 52,
+      "maxX": 54,
+      "minZ": -48.0625,
+      "maxZ": -47.9975,
+      "minY": 7.96,
+      "maxY": 8.51,
+      "collision": true
+    }
+  ],
+  "flights": [
+    {
+      "id": "lower-flight-a",
+      "from": {
+        "x": 15.2,
+        "y": 0.115,
+        "z": -49.9
+      },
+      "to": {
+        "x": 18.3,
+        "y": 1.8626190476190476,
+        "z": -49.9
+      },
+      "width": 1.8,
+      "risers": 10,
+      "going": 0.31,
+      "rise": 0.17476190476190476,
+      "treads": [
+        {
+          "id": "lower-flight-a-tread-1",
+          "kind": "tread",
+          "minX": 15.2,
+          "maxX": 15.51,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 0.2897619047619048,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-a-tread-2",
+          "kind": "tread",
+          "minX": 15.51,
+          "maxX": 15.82,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 0.4645238095238095,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-a-tread-3",
+          "kind": "tread",
+          "minX": 15.819999999999999,
+          "maxX": 16.13,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 0.6392857142857142,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-a-tread-4",
+          "kind": "tread",
+          "minX": 16.13,
+          "maxX": 16.439999999999998,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 0.814047619047619,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-a-tread-5",
+          "kind": "tread",
+          "minX": 16.439999999999998,
+          "maxX": 16.749999999999996,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 0.9888095238095238,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-a-tread-6",
+          "kind": "tread",
+          "minX": 16.75,
+          "maxX": 17.06,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 1.1635714285714285,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-a-tread-7",
+          "kind": "tread",
+          "minX": 17.06,
+          "maxX": 17.369999999999997,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 1.3383333333333334,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-a-tread-8",
+          "kind": "tread",
+          "minX": 17.369999999999997,
+          "maxX": 17.679999999999996,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 1.513095238095238,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-a-tread-9",
+          "kind": "tread",
+          "minX": 17.68,
+          "maxX": 17.99,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 1.6878571428571427,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-a-tread-10",
+          "kind": "tread",
+          "minX": 17.99,
+          "maxX": 18.299999999999997,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 1.8626190476190476,
+          "thickness": 0.17476190476190476
+        }
+      ]
+    },
+    {
+      "id": "lower-flight-b",
+      "from": {
+        "x": 19.8,
+        "y": 1.8626190476190476,
+        "z": -49.9
+      },
+      "to": {
+        "x": 23.21,
+        "y": 3.785,
+        "z": -49.9
+      },
+      "width": 1.8,
+      "risers": 11,
+      "going": 0.31,
+      "rise": 0.17476190476190476,
+      "treads": [
+        {
+          "id": "lower-flight-b-tread-1",
+          "kind": "tread",
+          "minX": 19.8,
+          "maxX": 20.11,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 2.0373809523809525,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-b-tread-2",
+          "kind": "tread",
+          "minX": 20.11,
+          "maxX": 20.419999999999998,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 2.212142857142857,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-b-tread-3",
+          "kind": "tread",
+          "minX": 20.42,
+          "maxX": 20.73,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 2.386904761904762,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-b-tread-4",
+          "kind": "tread",
+          "minX": 20.73,
+          "maxX": 21.04,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 2.5616666666666665,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-b-tread-5",
+          "kind": "tread",
+          "minX": 21.04,
+          "maxX": 21.349999999999998,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 2.736428571428571,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-b-tread-6",
+          "kind": "tread",
+          "minX": 21.35,
+          "maxX": 21.66,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 2.911190476190476,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-b-tread-7",
+          "kind": "tread",
+          "minX": 21.66,
+          "maxX": 21.97,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 3.085952380952381,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-b-tread-8",
+          "kind": "tread",
+          "minX": 21.97,
+          "maxX": 22.279999999999998,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 3.2607142857142857,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-b-tread-9",
+          "kind": "tread",
+          "minX": 22.28,
+          "maxX": 22.59,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 3.4354761904761904,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-b-tread-10",
+          "kind": "tread",
+          "minX": 22.59,
+          "maxX": 22.9,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 3.6102380952380955,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "lower-flight-b-tread-11",
+          "kind": "tread",
+          "minX": 22.900000000000002,
+          "maxX": 23.21,
+          "minZ": -50.8,
+          "maxZ": -49,
+          "y": 3.785,
+          "thickness": 0.17476190476190476
+        }
+      ]
+    },
+    {
+      "id": "upper-flight-a",
+      "from": {
+        "x": 23.21,
+        "y": 3.785,
+        "z": -52.2
+      },
+      "to": {
+        "x": 19.8,
+        "y": 5.707380952380952,
+        "z": -52.2
+      },
+      "width": 1.8,
+      "risers": 11,
+      "going": 0.31,
+      "rise": 0.17476190476190476,
+      "treads": [
+        {
+          "id": "upper-flight-a-tread-1",
+          "kind": "tread",
+          "minX": 22.900000000000002,
+          "maxX": 23.21,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 3.959761904761905,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-a-tread-2",
+          "kind": "tread",
+          "minX": 22.590000000000003,
+          "maxX": 22.900000000000002,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 4.1345238095238095,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-a-tread-3",
+          "kind": "tread",
+          "minX": 22.28,
+          "maxX": 22.59,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 4.309285714285714,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-a-tread-4",
+          "kind": "tread",
+          "minX": 21.970000000000002,
+          "maxX": 22.28,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 4.484047619047619,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-a-tread-5",
+          "kind": "tread",
+          "minX": 21.660000000000004,
+          "maxX": 21.970000000000002,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 4.6588095238095235,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-a-tread-6",
+          "kind": "tread",
+          "minX": 21.35,
+          "maxX": 21.66,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 4.833571428571428,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-a-tread-7",
+          "kind": "tread",
+          "minX": 21.040000000000003,
+          "maxX": 21.35,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 5.008333333333334,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-a-tread-8",
+          "kind": "tread",
+          "minX": 20.73,
+          "maxX": 21.04,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 5.183095238095238,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-a-tread-9",
+          "kind": "tread",
+          "minX": 20.42,
+          "maxX": 20.73,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 5.357857142857143,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-a-tread-10",
+          "kind": "tread",
+          "minX": 20.110000000000003,
+          "maxX": 20.42,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 5.532619047619048,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-a-tread-11",
+          "kind": "tread",
+          "minX": 19.8,
+          "maxX": 20.11,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 5.707380952380952,
+          "thickness": 0.17476190476190476
+        }
+      ]
+    },
+    {
+      "id": "upper-flight-b",
+      "from": {
+        "x": 18.3,
+        "y": 5.707380952380952,
+        "z": -52.2
+      },
+      "to": {
+        "x": 15.2,
+        "y": 7.455,
+        "z": -52.2
+      },
+      "width": 1.8,
+      "risers": 10,
+      "going": 0.31,
+      "rise": 0.17476190476190476,
+      "treads": [
+        {
+          "id": "upper-flight-b-tread-1",
+          "kind": "tread",
+          "minX": 17.990000000000002,
+          "maxX": 18.3,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 5.882142857142857,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-b-tread-2",
+          "kind": "tread",
+          "minX": 17.680000000000003,
+          "maxX": 17.990000000000002,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 6.056904761904762,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-b-tread-3",
+          "kind": "tread",
+          "minX": 17.37,
+          "maxX": 17.68,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 6.2316666666666665,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-b-tread-4",
+          "kind": "tread",
+          "minX": 17.060000000000002,
+          "maxX": 17.37,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 6.406428571428571,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-b-tread-5",
+          "kind": "tread",
+          "minX": 16.750000000000004,
+          "maxX": 17.060000000000002,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 6.581190476190477,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-b-tread-6",
+          "kind": "tread",
+          "minX": 16.44,
+          "maxX": 16.75,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 6.755952380952381,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-b-tread-7",
+          "kind": "tread",
+          "minX": 16.130000000000003,
+          "maxX": 16.44,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 6.930714285714286,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-b-tread-8",
+          "kind": "tread",
+          "minX": 15.820000000000002,
+          "maxX": 16.130000000000003,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 7.105476190476191,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-b-tread-9",
+          "kind": "tread",
+          "minX": 15.51,
+          "maxX": 15.82,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 7.280238095238095,
+          "thickness": 0.17476190476190476
+        },
+        {
+          "id": "upper-flight-b-tread-10",
+          "kind": "tread",
+          "minX": 15.200000000000001,
+          "maxX": 15.510000000000002,
+          "minZ": -53.1,
+          "maxZ": -51.300000000000004,
+          "y": 7.455,
+          "thickness": 0.17476190476190476
+        }
+      ]
+    }
+  ],
+  "areas": [
+    {
+      "id": "east-entrance",
+      "kind": "entrance",
+      "minX": 15.5,
+      "maxX": 22,
+      "minZ": -46.7,
+      "maxZ": -46.1,
+      "y": 0.115
+    },
+    {
+      "id": "unpaid-concourse",
+      "kind": "circulation",
+      "minX": 15.6,
+      "maxX": 22,
+      "minZ": -48.75,
+      "maxZ": -46.4,
+      "y": 0.115
+    },
+    {
+      "id": "ticket-approach",
+      "kind": "circulation",
+      "minX": 10.4,
+      "maxX": 14.1,
+      "minZ": -47.6,
+      "maxZ": -46.5,
+      "y": 0.115
+    },
+    {
+      "id": "paid-circulation",
+      "kind": "circulation",
+      "minX": 10.4,
+      "maxX": 15.2,
+      "minZ": -50.8,
+      "maxZ": -49.25,
+      "y": 0.115
+    },
+    {
+      "id": "upper-landing",
+      "kind": "landing",
+      "minX": 13.2,
+      "maxX": 15.2,
+      "minZ": -53.1,
+      "maxZ": -51.3,
+      "y": 7.455
+    },
+    {
+      "id": "waiting-west",
+      "kind": "waiting",
+      "minX": 9,
+      "maxX": 12.7,
+      "minZ": -54.6,
+      "maxZ": -53.7,
+      "y": 7.455
+    },
+    {
+      "id": "waiting-east",
+      "kind": "waiting",
+      "minX": 26,
+      "maxX": 59.5,
+      "minZ": -54.6,
+      "maxZ": -53.7,
+      "y": 7.455
+    }
+  ],
+  "gates": [
+    {
+      "id": "wide-gate",
+      "center": {
+        "x": 10.95,
+        "y": 0.115,
+        "z": -48.45
+      },
+      "width": 1.05,
+      "depth": 1.6,
+      "accessible": true
+    },
+    {
+      "id": "gate-2",
+      "center": {
+        "x": 12.3,
+        "y": 0.115,
+        "z": -48.45
+      },
+      "width": 0.9,
+      "depth": 1.6,
+      "accessible": false
+    },
+    {
+      "id": "gate-3",
+      "center": {
+        "x": 13.6,
+        "y": 0.115,
+        "z": -48.45
+      },
+      "width": 0.9,
+      "depth": 1.6,
+      "accessible": false
+    }
+  ],
+  "nodes": {
+    "street": {
+      "x": 4.55,
+      "y": 0.115,
+      "z": -46
+    },
+    "forecourt": {
+      "x": 17,
+      "y": 0.115,
+      "z": -46
+    },
+    "entrance": {
+      "x": 19,
+      "y": 0.115,
+      "z": -46.4
+    },
+    "concourse": {
+      "x": 19,
+      "y": 0.115,
+      "z": -48
+    },
+    "unpaidTurn": {
+      "x": 16,
+      "y": 0.115,
+      "z": -47.1
+    },
+    "gateApproach": {
+      "x": 13.6,
+      "y": 0.115,
+      "z": -47.3
+    },
+    "gate": {
+      "x": 13.6,
+      "y": 0.115,
+      "z": -48.45
+    },
+    "paid": {
+      "x": 13.6,
+      "y": 0.115,
+      "z": -49.45
+    },
+    "stairFoot": {
+      "x": 14.2,
+      "y": 0.115,
+      "z": -49.9
+    },
+    "lowerStart": {
+      "x": 15.2,
+      "y": 0.115,
+      "z": -49.9
+    },
+    "lowerRestA": {
+      "x": 18.3,
+      "y": 1.8626190476190476,
+      "z": -49.9
+    },
+    "lowerRestB": {
+      "x": 19.8,
+      "y": 1.8626190476190476,
+      "z": -49.9
+    },
+    "lowerTop": {
+      "x": 23.21,
+      "y": 3.785,
+      "z": -49.9
+    },
+    "returnA": {
+      "x": 24.21,
+      "y": 3.785,
+      "z": -49.9
+    },
+    "returnB": {
+      "x": 24.21,
+      "y": 3.785,
+      "z": -52.2
+    },
+    "upperStart": {
+      "x": 23.21,
+      "y": 3.785,
+      "z": -52.2
+    },
+    "upperRestA": {
+      "x": 19.8,
+      "y": 5.707380952380952,
+      "z": -52.2
+    },
+    "upperRestB": {
+      "x": 18.3,
+      "y": 5.707380952380952,
+      "z": -52.2
+    },
+    "upperTop": {
+      "x": 15.2,
+      "y": 7.455,
+      "z": -52.2
+    },
+    "upperLanding": {
+      "x": 14.2,
+      "y": 7.455,
+      "z": -52.2
+    },
+    "platformAccess": {
+      "x": 14.2,
+      "y": 7.455,
+      "z": -53.8
+    },
+    "waiting": {
+      "x": 27,
+      "y": 7.455,
+      "z": -53.8
+    }
+  },
+  "connections": [
+    {
+      "from": "street",
+      "to": "forecourt",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "forecourt",
+      "to": "entrance",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "entrance",
+      "to": "concourse",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "concourse",
+      "to": "unpaidTurn",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "unpaidTurn",
+      "to": "gateApproach",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "gateApproach",
+      "to": "gate",
+      "kind": "gate",
+      "width": 0.9
+    },
+    {
+      "from": "gate",
+      "to": "paid",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "paid",
+      "to": "stairFoot",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "stairFoot",
+      "to": "lowerStart",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "lowerStart",
+      "to": "lowerRestA",
+      "kind": "stairs",
+      "width": 1.8
+    },
+    {
+      "from": "lowerRestA",
+      "to": "lowerRestB",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "lowerRestB",
+      "to": "lowerTop",
+      "kind": "stairs",
+      "width": 1.8
+    },
+    {
+      "from": "lowerTop",
+      "to": "returnA",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "returnA",
+      "to": "returnB",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "returnB",
+      "to": "upperStart",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "upperStart",
+      "to": "upperRestA",
+      "kind": "stairs",
+      "width": 1.8
+    },
+    {
+      "from": "upperRestA",
+      "to": "upperRestB",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "upperRestB",
+      "to": "upperTop",
+      "kind": "stairs",
+      "width": 1.8
+    },
+    {
+      "from": "upperTop",
+      "to": "upperLanding",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "upperLanding",
+      "to": "platformAccess",
+      "kind": "walk",
+      "width": 1.8
+    },
+    {
+      "from": "platformAccess",
+      "to": "waiting",
+      "kind": "walk",
+      "width": 1.8
+    }
+  ],
+  "journey": [
+    {
+      "x": 4.55,
+      "y": 0.115,
+      "z": -46
+    },
+    {
+      "x": 17,
+      "y": 0.115,
+      "z": -46
+    },
+    {
+      "x": 19,
+      "y": 0.115,
+      "z": -46.4
+    },
+    {
+      "x": 19,
+      "y": 0.115,
+      "z": -48
+    },
+    {
+      "x": 16,
+      "y": 0.115,
+      "z": -47.1
+    },
+    {
+      "x": 13.6,
+      "y": 0.115,
+      "z": -47.3
+    },
+    {
+      "x": 13.6,
+      "y": 0.115,
+      "z": -48.45
+    },
+    {
+      "x": 13.6,
+      "y": 0.115,
+      "z": -49.45
+    },
+    {
+      "x": 14.2,
+      "y": 0.115,
+      "z": -49.9
+    },
+    {
+      "x": 15.2,
+      "y": 0.115,
+      "z": -49.9
+    },
+    {
+      "x": 15.355,
+      "y": 0.2897619047619048,
+      "z": -49.9
+    },
+    {
+      "x": 15.665,
+      "y": 0.4645238095238095,
+      "z": -49.9
+    },
+    {
+      "x": 15.974999999999998,
+      "y": 0.6392857142857142,
+      "z": -49.9
+    },
+    {
+      "x": 16.284999999999997,
+      "y": 0.814047619047619,
+      "z": -49.9
+    },
+    {
+      "x": 16.595,
+      "y": 0.9888095238095238,
+      "z": -49.9
+    },
+    {
+      "x": 16.905,
+      "y": 1.1635714285714285,
+      "z": -49.9
+    },
+    {
+      "x": 17.214999999999996,
+      "y": 1.3383333333333334,
+      "z": -49.9
+    },
+    {
+      "x": 17.525,
+      "y": 1.513095238095238,
+      "z": -49.9
+    },
+    {
+      "x": 17.835,
+      "y": 1.6878571428571427,
+      "z": -49.9
+    },
+    {
+      "x": 18.144999999999996,
+      "y": 1.8626190476190476,
+      "z": -49.9
+    },
+    {
+      "x": 18.3,
+      "y": 1.8626190476190476,
+      "z": -49.9
+    },
+    {
+      "x": 19.8,
+      "y": 1.8626190476190476,
+      "z": -49.9
+    },
+    {
+      "x": 19.955,
+      "y": 2.0373809523809525,
+      "z": -49.9
+    },
+    {
+      "x": 20.265,
+      "y": 2.212142857142857,
+      "z": -49.9
+    },
+    {
+      "x": 20.575000000000003,
+      "y": 2.386904761904762,
+      "z": -49.9
+    },
+    {
+      "x": 20.884999999999998,
+      "y": 2.5616666666666665,
+      "z": -49.9
+    },
+    {
+      "x": 21.195,
+      "y": 2.736428571428571,
+      "z": -49.9
+    },
+    {
+      "x": 21.505000000000003,
+      "y": 2.911190476190476,
+      "z": -49.9
+    },
+    {
+      "x": 21.814999999999998,
+      "y": 3.085952380952381,
+      "z": -49.9
+    },
+    {
+      "x": 22.125,
+      "y": 3.2607142857142857,
+      "z": -49.9
+    },
+    {
+      "x": 22.435000000000002,
+      "y": 3.4354761904761904,
+      "z": -49.9
+    },
+    {
+      "x": 22.744999999999997,
+      "y": 3.6102380952380955,
+      "z": -49.9
+    },
+    {
+      "x": 23.055,
+      "y": 3.785,
+      "z": -49.9
+    },
+    {
+      "x": 23.21,
+      "y": 3.785,
+      "z": -49.9
+    },
+    {
+      "x": 24.21,
+      "y": 3.785,
+      "z": -49.9
+    },
+    {
+      "x": 24.21,
+      "y": 3.785,
+      "z": -52.2
+    },
+    {
+      "x": 23.21,
+      "y": 3.785,
+      "z": -52.2
+    },
+    {
+      "x": 23.055,
+      "y": 3.959761904761905,
+      "z": -52.2
+    },
+    {
+      "x": 22.745000000000005,
+      "y": 4.1345238095238095,
+      "z": -52.2
+    },
+    {
+      "x": 22.435000000000002,
+      "y": 4.309285714285714,
+      "z": -52.2
+    },
+    {
+      "x": 22.125,
+      "y": 4.484047619047619,
+      "z": -52.2
+    },
+    {
+      "x": 21.815000000000005,
+      "y": 4.6588095238095235,
+      "z": -52.2
+    },
+    {
+      "x": 21.505000000000003,
+      "y": 4.833571428571428,
+      "z": -52.2
+    },
+    {
+      "x": 21.195,
+      "y": 5.008333333333334,
+      "z": -52.2
+    },
+    {
+      "x": 20.884999999999998,
+      "y": 5.183095238095238,
+      "z": -52.2
+    },
+    {
+      "x": 20.575000000000003,
+      "y": 5.357857142857143,
+      "z": -52.2
+    },
+    {
+      "x": 20.265,
+      "y": 5.532619047619048,
+      "z": -52.2
+    },
+    {
+      "x": 19.955,
+      "y": 5.707380952380952,
+      "z": -52.2
+    },
+    {
+      "x": 19.8,
+      "y": 5.707380952380952,
+      "z": -52.2
+    },
+    {
+      "x": 18.3,
+      "y": 5.707380952380952,
+      "z": -52.2
+    },
+    {
+      "x": 18.145000000000003,
+      "y": 5.882142857142857,
+      "z": -52.2
+    },
+    {
+      "x": 17.835,
+      "y": 6.056904761904762,
+      "z": -52.2
+    },
+    {
+      "x": 17.525,
+      "y": 6.2316666666666665,
+      "z": -52.2
+    },
+    {
+      "x": 17.215000000000003,
+      "y": 6.406428571428571,
+      "z": -52.2
+    },
+    {
+      "x": 16.905,
+      "y": 6.581190476190477,
+      "z": -52.2
+    },
+    {
+      "x": 16.595,
+      "y": 6.755952380952381,
+      "z": -52.2
+    },
+    {
+      "x": 16.285000000000004,
+      "y": 6.930714285714286,
+      "z": -52.2
+    },
+    {
+      "x": 15.975000000000001,
+      "y": 7.105476190476191,
+      "z": -52.2
+    },
+    {
+      "x": 15.665,
+      "y": 7.280238095238095,
+      "z": -52.2
+    },
+    {
+      "x": 15.355,
+      "y": 7.455,
+      "z": -52.2
+    },
+    {
+      "x": 15.2,
+      "y": 7.455,
+      "z": -52.2
+    },
+    {
+      "x": 14.2,
+      "y": 7.455,
+      "z": -52.2
+    },
+    {
+      "x": 14.2,
+      "y": 7.455,
+      "z": -53.8
+    },
+    {
+      "x": 27,
+      "y": 7.455,
+      "z": -53.8
+    }
+  ],
+  "platformEdges": [
+    {
+      "id": "platform-1-track-edge",
+      "a": {
+        "x": 8,
+        "y": 7.455,
+        "z": -55.5
+      },
+      "b": {
+        "x": 61.5,
+        "y": 7.455,
+        "z": -55.5
+      },
+      "inward": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      },
+      "warningWidth": 0.3
+    }
+  ],
+  "npcReservation": [
+    {
+      "minX": 12.9,
+      "maxX": 25.1,
+      "minZ": -54,
+      "maxZ": -49.5
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+  "captures": [
+    {
+      "saved": "quality/captures/konbini-commercial-after.png"
+    },
+    {
+      "saved": "quality/captures/konbini-day-after.png"
+    },
+    {
+      "saved": "quality/captures/konbini-interior-after.png"
+    },
+    {
+      "saved": "quality/captures/konbini-nightlife-after.png"
+    },
+    {
+      "saved": "quality/captures/konbini-sign-after.png"
+    },
+    {
+      "saved": "quality/captures/konbini-store-after.png"
+    },
+    {
+      "saved": "quality/captures/konbini-vertical-after.png"
+    },
+    {
+      "saved": "quality/captures/konbini-perf-after.png"
+    },
+    {
+      "saved": "quality/captures/konbini-store-day-after.png"
+    },
+    {
+      "saved": "quality/captures/konbini-store-overnight-after.png"
+    },
+    {
+      "saved": "quality/captures/konbini-station-after.png"
+    },
+    {
+      "saved": "quality/captures/konbini-residential-after.png"
+    }
+  ],
+  "checks": {
+    "signs": {
+      "measuredTextRuns": 293,
+      "pages": [
+        [
+          4096,
+          4096
+        ],
+        [
+          4096,
+          2048
+        ]
+      ],
+      "rgbaWithMipmapsMiB": 128
+    },
+    "nightlifeTextureBudget": {
+      "previousEstimatedPixels": 47670528,
+      "currentPixels": 9280512,
+      "note": "Previous pixels reconstructed from the committed 768px/clamped-ratio policy for the same material keys; not a before GPU memory measurement."
+    },
+    "presets": [
+      {
+        "index": 0,
+        "safe": true
+      },
+      {
+        "index": 1,
+        "safe": true
+      },
+      {
+        "index": 2,
+        "safe": true
+      },
+      {
+        "index": 3,
+        "safe": true
+      },
+      {
+        "index": 4,
+        "safe": true
+      },
+      {
+        "index": 5,
+        "safe": true
+      },
+      {
+        "index": 6,
+        "safe": true
+      },
+      {
+        "index": 7,
+        "safe": true
+      }
+    ],
+    "failedShaderLinks": 0,
+    "overnight": {
+      "storeOpen": 1,
+      "cafeOpen": 0.02500000037252903,
+      "trainVisible": false
+    },
+    "surfaceControls": true,
+    "generatedWorld": {
+      "seconds": 600,
+      "wallHits": 0,
+      "unmarkedRoad": 0,
+      "vehicleOverlaps": 0,
+      "exits": 114,
+      "maxCrossingSeconds": 11.766666666665998,
+      "buildings": 57
+    }
+  },
+  "performance": {
+    "frames": 876,
+    "elapsedMs": 5001,
+    "aggregateFps": 175.1649670065987,
+    "medianMs": 4.2000000000116415,
+    "p95Ms": 8.400000000023283,
+    "p99Ms": 12.5,
+    "worstMs": 12.60000000000582,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "renderPixelRatio": 1,
+    "devicePixelRatio": 1,
+    "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "stats": {
+      "fps": 200,
+      "drawCalls": 504,
+      "triangles": 4563781,
+      "buildings": 57,
+      "pedestrians": 54,
+      "vehicles": 11
+    },
+    "note": "Browser frame intervals; does not isolate GPU execution time."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "konbini-nightlife-after",
+  "view": "nightlife",
+  "preset": 7,
+  "seed": 8412,
+  "hour": 20.5,
+  "simulationClock": 142.66666666666114,
+  "eye": [
+    -18.8,
+    1.82,
+    -25
+  ],
+  "quaternion": [
+    0.020091599792578838,
+    -0.7068212840724131,
+    0.020091599792578834,
+    0.7068212840724131
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 197,
+    "drawCalls": 660,
+    "triangles": 5570939,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T17:40:20.559Z"
+}

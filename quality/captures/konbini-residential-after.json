@@ -1,0 +1,39 @@
+{
+  "name": "konbini-residential-after",
+  "view": "residential",
+  "preset": 4,
+  "seed": 8412,
+  "hour": 20.5,
+  "simulationClock": 143.39999999999444,
+  "eye": [
+    29.1,
+    1.82,
+    43
+  ],
+  "quaternion": [
+    0.005964180974059099,
+    0.00526284561098664,
+    -0.000031389556686537776,
+    0.9999683645076376
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 208,
+    "drawCalls": 767,
+    "triangles": 5593807,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T17:40:21.532Z"
+}

@@ -1,0 +1,39 @@
+{
+  "name": "station1-landing-first",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 80.56666666666467,
+  "eye": [
+    22.7,
+    5.49,
+    -50.1
+  ],
+  "quaternion": [
+    0.036220281465222826,
+    0.5640593626407643,
+    -0.02477710313617214,
+    0.8245672936686578
+  ],
+  "fov": 70,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 188,
+    "drawCalls": 608,
+    "triangles": 5607937,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T18:09:40.326Z"
+}

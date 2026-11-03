@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import { worldTexture } from './Materials';
+import { fittedRun, signDimensions, verticalRuns } from './SignLayout';
+import { drawRun, measureSignInk } from './SignTextures';
 
 type Surface = 'brick' | 'plaster' | 'tile' | 'wood' | 'metal' | 'grille' | 'cloth';
 const hash = (x: number, y: number, seed: number) => { let h = Math.imul(x ^ seed, 374761393) ^ Math.imul(y, 668265263); h = Math.imul(h ^ h >>> 13, 1274126177); return ((h ^ h >>> 16) >>> 0) / 4294967295; };
@@ -34,9 +36,10 @@ const THEMES: Record<string, string[]> = {
   bar: ['夜灯', 'BAR', '小さな夜の店', '#292b27', '#d4c1a0'],
 };
 function signTexture(theme: string, ratio: number): THREE.CanvasTexture {
-  const c = canvas(Math.round(768 * Math.max(1, ratio)), Math.round(768 * Math.max(1, 1 / ratio))), p = c.getContext('2d')!, w = c.width, h = c.height;
+  const size = signDimensions(ratio * 3, 3), c = canvas(size.width, size.height), p = c.getContext('2d')!, w = c.width, h = c.height;
   const font = '"Yu Mincho", "MS PMincho", serif';
-  const text = (s: string, x: number, y: number, size: number, color: string, max = w * .85) => { p.font = `800 ${size}px ${font}`; p.fillStyle = color; p.textAlign = 'center'; p.textBaseline = 'middle'; p.save(); p.beginPath(); p.rect(w * .045, h * .025, w * .91, h * .95); p.clip(); p.fillText(s, x, y, max); p.restore(); };
+  const measure = (s: string, size: number) => measureSignInk(p, s, size, font);
+  const text = (s: string, x: number, y: number, size: number, color: string, max = w * .85) => { p.save(); p.textAlign = 'left'; p.textBaseline = 'alphabetic'; p.fillStyle = color; drawRun(p, fittedRun(s, { x: x - max / 2, y: y - size * .65, width: max, height: size * 1.3 }, size, measure), font); p.restore(); };
   if (theme === 'menu') {
     p.fillStyle = '#c6baa0'; p.fillRect(0, 0, w, h); text('夜灯の献立', w / 2, h * .12, Math.min(w * .14, h * .08), '#672f25');
     const items = [['拉麺', '¥850'], ['味噌拉麺', '¥950'], ['焼餃子', '¥480'], ['炭火焼鳥', '¥550'], ['冷奴', '¥350'], ['生麦酒', '¥580'], ['夜の定食', '¥980']];
@@ -48,7 +51,7 @@ function signTexture(theme: string, ratio: number): THREE.CanvasTexture {
   } else {
     const [title, kicker, footer, bg, ink] = THEMES[theme] ?? THEMES.bar;
     p.fillStyle = bg; p.fillRect(0, 0, w, h); p.strokeStyle = ink; p.lineWidth = Math.min(w, h) * .016; p.strokeRect(w * .045, h * .025, w * .91, h * .95);
-    if (ratio < .78) { const chars = Array.from(title), size = Math.min(w * .62, h * .62 / Math.max(1, chars.length * 1.1)), step = size * 1.1; chars.forEach((ch, i) => text(ch, w / 2, h * .51 - (chars.length - 1) * step / 2 + i * step, size, ink)); text(kicker, w / 2, h * .115, Math.min(w / (Math.max(1, kicker.length) * 1.2), h * .045), ink); text(footer, w / 2, h * .91, w * .085, ink); }
+    if (ratio < .78) { p.fillStyle = ink; verticalRuns(title, { x: w * .16, y: h * .2, width: w * .68, height: h * .6 }, measure).forEach(run => drawRun(p, run, font)); text(kicker, w / 2, h * .115, Math.min(w / (Math.max(1, kicker.length) * 1.2), h * .045), ink); text(footer, w / 2, h * .91, w * .085, ink); }
     else { text(kicker, w / 2, h * .19, Math.min(h * .105, w * .075), ink); text(title, w / 2, h * .51, Math.min(h * .38, w * .82 / Math.max(1, title.length * 1.04)), ink); text(footer, w / 2, h * .84, h * .08, ink); }
   }
   const edge = p.createLinearGradient(0, 0, 0, h); edge.addColorStop(0, 'rgba(5,10,7,.17)'); edge.addColorStop(.2, 'rgba(255,230,160,.025)'); edge.addColorStop(1, 'rgba(5,8,5,.2)'); p.fillStyle = edge; p.fillRect(0, 0, w, h);
@@ -74,7 +77,8 @@ export class NightlifeMaterials {
     this.setNight(1, true);
   }
   signMaterial(theme: string, ratio: number): THREE.MeshStandardMaterial {
-    const r = Math.max(.25, Math.min(4, ratio)), key = `${theme}:${r.toFixed(3)}`, existing = this.signs.get(key); if (existing) return existing;
+    if (!Number.isFinite(ratio) || ratio <= 0) throw new RangeError('Positive sign ratio required');
+    const r = ratio, key = `${theme}:${r.toFixed(5)}`, existing = this.signs.get(key); if (existing) return existing;
     const map = signTexture(theme, r), material = new THREE.MeshStandardMaterial({ map, emissiveMap: map, emissive: 0xffffff, roughness: .72, metalness: .02 });
     const strength = ({ theatre: .62, izakaya: .46, ramen: .42, karaoke: .46, coffee: .34, bar: .4, menu: .015, posters: 0, stickers: 0 } as Record<string, number>)[theme] ?? .4;
     this.emission.push({ material, strength, closed: .025 }); this.signs.set(key, material); this.setNight(this.night, this.open); return material;

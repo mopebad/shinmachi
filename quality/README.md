@@ -1,5 +1,22 @@
 # Repeatable visual review
 
+The latest bounded task is [Station Development 1](./STATION_DEVELOPMENT_1.md). Generate its source-derived debug SVG and spatial JSON from the repository root:
+
+```text
+node --experimental-strip-types tools/build-station-debug.mjs
+```
+
+Then run the existing development task, keep the browser tab visible, and execute:
+
+```js
+const stationReview = await (await import('/tools/station-browser-checks.mjs')).review();
+console.log(JSON.stringify(stationReview, null, 2));
+```
+
+This saves 12 actual canvas views plus the debug PNG and checks real player walking up/down, rendered headroom at all route waypoints, original camera starts, platform/building separation, shader links, loaded assets, a 600-second generated-world simulation and station frame timing at 1920 × 1080 / pixel ratio 1. [station1-measurements.json](./station1-measurements.json) is the recorded result. The review is development-only and does not enter the production bundle. A hidden tab is reported as unavailable timing rather than treated as benchmark evidence.
+
+The previous [signage/store review](./KONBINI_REVIEW.md) and its inherited `konbini-*-before` captures are retained. With a dedicated local Chrome CDP page at port 9333, `node tools/konbini-review.mjs --review` regenerates matching `*-after` images plus actual-font, schedule, surface, generated-world and performance checks in [konbini-measurements.json](./konbini-measurements.json). Keep the temporary browser profile outside the workspace to avoid development reloads from profile writes.
+
 Run the existing development task. In the browser console, with the tab visible:
 
 ```js

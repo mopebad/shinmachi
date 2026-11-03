@@ -1,0 +1,39 @@
+{
+  "name": "station1-railway-after",
+  "view": "elevatedRail",
+  "preset": 6,
+  "seed": 8412,
+  "hour": 20.5,
+  "simulationClock": 8.866666666666664,
+  "eye": [
+    8.5,
+    1.82,
+    -38.5
+  ],
+  "quaternion": [
+    0.14036933551783393,
+    0.25255442341301665,
+    -0.03705813805927682,
+    0.9566291900545268
+  ],
+  "fov": 54,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 126,
+    "drawCalls": 567,
+    "triangles": 5321257,
+    "buildings": 57,
+    "pedestrians": 46,
+    "vehicles": 12
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T18:47:56.247Z"
+}

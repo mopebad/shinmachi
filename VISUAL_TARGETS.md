@@ -1,5 +1,9 @@
 # Visual targets
 
+## Signage and convenience-store target
+
+The completed bounded continuation is reviewed in [KONBINI_REVIEW.md](./quality/KONBINI_REVIEW.md). [Five inspected reference images](./references/stores/README.md) inform a shallow fascia, slim glazing, a visible stocked room and near-entry services while retaining fictional 青空マート branding. [The store exterior](./quality/captures/konbini-store-after.png), [interior](./quality/captures/konbini-interior-after.png), [fascia](./quality/captures/konbini-sign-after.png) and [vertical signs](./quality/captures/konbini-vertical-after.png) are the acceptance evidence. Physical dimensions drive text texture ratios; measured glyph bounds fit inside safe margins without stretching. The branch remains exterior-only under the existing simulation contract.
+
 ## Reference analysis
 
 All three actual supplied PNGs were inspected. Their filenames differ from the JPG names in the brief.

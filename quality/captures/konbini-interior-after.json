@@ -1,0 +1,39 @@
+{
+  "name": "konbini-interior-after",
+  "view": "commercial",
+  "preset": 0,
+  "seed": 8412,
+  "hour": 20.5,
+  "simulationClock": 142.59999999999448,
+  "eye": [
+    4.9,
+    1.65,
+    39.1
+  ],
+  "quaternion": [
+    -0.026589799978670888,
+    -0.7831938225076337,
+    -0.03357235840171888,
+    0.6203009879681978
+  ],
+  "fov": 65,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 192,
+    "drawCalls": 505,
+    "triangles": 4774203,
+    "buildings": 57,
+    "pedestrians": 54,
+    "vehicles": 11
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T17:40:20.446Z"
+}
