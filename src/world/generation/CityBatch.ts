@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { BUSINESSES, signBusiness } from '../simulation/WorldRules';
+import { signAtlasUv } from './SurfaceTextures';
 
 type Batch = { geometry: THREE.BufferGeometry; material: THREE.Material; matrices: THREE.Matrix4[]; colors: THREE.Color[] };
 
@@ -41,9 +42,7 @@ export class CityBatch {
       const p = new THREE.Vector3(vx, vy, 0).applyMatrix4(matrix); this.signPositions.push(p.x, p.y, p.z);
       this.signBusinesses.push(BUSINESSES.indexOf(signBusiness(index)));
     }
-    const slot = index + (w / h > 2.2 ? 0 : w / h < .3 ? 96 : w / h < .65 ? 64 : 32);
-    const u = slot % 16 / 16, v = 1 - (Math.floor(slot / 16) + 1) / 8, e = .0007;
-    this.signUVs.push(u + e, v + e, u + .0625 - e, v + e, u + .0625 - e, v + .125 - e, u + e, v + .125 - e);
+    this.signUVs.push(...signAtlasUv(index, w / h));
     this.signIndices.push(start, start + 1, start + 2, start, start + 2, start + 3);
   }
   cable(a: THREE.Vector3, b: THREE.Vector3, sag = .7): void {

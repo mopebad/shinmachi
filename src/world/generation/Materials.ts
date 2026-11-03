@@ -96,7 +96,7 @@ export class Materials {
   readonly facades: THREE.MeshStandardMaterial[];
   constructor() {
   const atlas = createSignAtlas(SHOP_NAMES);
-    this.signs = new THREE.MeshStandardMaterial({ map: atlas, emissiveMap: atlas, emissive: 0xffffff, emissiveIntensity: .4, roughness: .55, side: THREE.DoubleSide });
+    this.signs = new THREE.MeshStandardMaterial({ map: atlas, emissiveMap: atlas, emissive: 0xffffff, emissiveIntensity: .08, roughness: .55, side: THREE.DoubleSide });
     this.signs.userData.openStates = { value: new Float32Array(6).fill(1) };
     this.signs.onBeforeCompile = shader => {
       shader.uniforms.uOpenStates = this.signs.userData.openStates;
