@@ -1,0 +1,38 @@
+{
+  "name": "alley-pass1",
+  "view": "alley",
+  "preset": 1,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 264.69999999999493,
+  "eye": [
+    -16,
+    1.82,
+    -25
+  ],
+  "quaternion": [
+    0.00771251555621971,
+    -0.707064719176254,
+    0.00771251555621971,
+    0.7070647191762541
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "stats": {
+    "fps": 229,
+    "drawCalls": 404,
+    "triangles": 2616675,
+    "buildings": 57,
+    "pedestrians": 50,
+    "vehicles": 10
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T07:59:35.484Z"
+}

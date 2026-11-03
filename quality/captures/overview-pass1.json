@@ -1,0 +1,38 @@
+{
+  "name": "overview-pass1",
+  "view": "overview",
+  "preset": 3,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 264.86666666666173,
+  "eye": [
+    44,
+    43,
+    58
+  ],
+  "quaternion": [
+    -0.19910476948616557,
+    0.27705172932561767,
+    0.05879847533405199,
+    0.9381590320110638
+  ],
+  "fov": 60,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "stats": {
+    "fps": 213,
+    "drawCalls": 592,
+    "triangles": 2646931,
+    "buildings": 57,
+    "pedestrians": 50,
+    "vehicles": 10
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T07:59:35.882Z"
+}

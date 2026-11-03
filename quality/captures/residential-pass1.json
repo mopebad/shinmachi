@@ -1,0 +1,38 @@
+{
+  "name": "residential-pass1",
+  "view": "residential",
+  "preset": 4,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 264.76666666666165,
+  "eye": [
+    29.1,
+    1.82,
+    43
+  ],
+  "quaternion": [
+    0.005964180974059099,
+    0.00526284561098664,
+    -0.000031389556686537776,
+    0.9999683645076376
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "stats": {
+    "fps": 224,
+    "drawCalls": 538,
+    "triangles": 2643883,
+    "buildings": 57,
+    "pedestrians": 50,
+    "vehicles": 10
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T07:59:35.613Z"
+}

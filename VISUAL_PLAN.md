@@ -1,3 +1,5 @@
+> This records the earlier evening reference pass. The current production brief and Pass 1 delivery are documented in [VISUAL_TARGETS.md](./VISUAL_TARGETS.md), [ARCHITECTURE.md](./ARCHITECTURE.md), [ROADMAP.md](./ROADMAP.md) and [QUALITY_REPORT.md](./QUALITY_REPORT.md).
+
 # Shinmachi: photographic realism plan
 
 ## Reference and intent

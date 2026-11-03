@@ -2,6 +2,13 @@
 
 A dense, fictional Tokyo-inspired neighborhood built with Three.js, TypeScript and Vite. Walk the commercial street, lantern alley, residential lane, and station forecourt while pedestrians, left-hand traffic, and a detailed elevated commuter train move through the district. The default evening view looks toward a fictional orange lattice broadcast tower, with optional after-rain street reflections.
 
+
+## Production Pass 1
+
+The default view is now **8 / Yoto nightlife street**: an authored commercial alley with a theatre marquee, twelve distinct frontages, original GLB props and furnished rooms. Keys 1-7 preserve their previous viewpoints. The new shop thresholds participate in the existing navigation and business-hour rules; rooms remain exterior-only.
+
+Run `npm.cmd run assets:build` to regenerate the original lantern, condenser and wall-lamp GLBs. See [ARCHITECTURE.md](./ARCHITECTURE.md), [VISUAL_TARGETS.md](./VISUAL_TARGETS.md), [QUALITY_REPORT.md](./QUALITY_REPORT.md), [ASSET_MANIFEST.md](./ASSET_MANIFEST.md), and the [capture guide](./quality/README.md). The quality report includes actual before/after 1080p captures and measured browser frame intervals.
+
 ## Start locally
 
 Use Node.js 22.6 or newer (validated locally with Node 25.9; CI uses Node 22). From this directory:

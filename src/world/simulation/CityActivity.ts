@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { CommuterRail } from './CommuterRail';
+import { legPose } from './CharacterPose';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import type { District } from '../types';
 import { CitySimulation, VEHICLE_PROFILES } from './CitySimulation';
@@ -33,7 +34,7 @@ export class CityActivity {
     const box = new THREE.BoxGeometry(1, 1, 1), rounded = new RoundedBoxGeometry(1, 1, 1, 2, .08);
     this.torso = this.pool(new THREE.CapsuleGeometry(.5, .6, 3, 8), soft, 88);
     this.limbs = this.pool(new THREE.CapsuleGeometry(.5, .6, 3, 6), soft, 88 * 6);
-    this.skin = this.pool(new THREE.SphereGeometry(1, 10, 8), soft, 88 * 3);
+    this.skin = this.pool(new THREE.SphereGeometry(1, 10, 8), soft, 88 * 9);
     this.hair = this.pool(new THREE.SphereGeometry(1, 10, 8, 0, Math.PI * 2, 0, Math.PI * .48), soft, 88);
     this.details = this.pool(rounded, soft, 88 * 10);
     this.body = this.pool(rounded, paint, 20 * 12); this.glass = this.pool(box, glass, 20 * 8);
@@ -56,7 +57,7 @@ export class CityActivity {
   update(dt: number, hour: number, listener?: THREE.Vector3): void {
     this.simulation.update(dt, hour, listener);
     const pools = [this.torso, this.limbs, this.skin, this.hair, this.details, this.body, this.glass, this.wheels, this.headlights, this.taillights, this.brakelights, this.contacts];
-    pools.forEach(p => { p.count = 0; }); this.drawPeople(); this.drawVehicles(); this.rail.update(this.simulation.trainX, hour);
+    pools.forEach(p => { p.count = 0; }); this.drawPeople(listener); this.drawVehicles(); this.rail.update(this.simulation.trainX, hour);
     pools.forEach(p => { p.instanceMatrix.needsUpdate = true; if (p.instanceColor) p.instanceColor.needsUpdate = true; });
     const night = dayState(hour).night;
     this.headlightMaterial.emissiveIntensity = .4 + night * 3.2; this.tailMaterial.emissiveIntensity = .25 + night * .65; this.brakeMaterial.emissiveIntensity = 1.8 + night * 2;
@@ -65,9 +66,9 @@ export class CityActivity {
     for (const axis of ['NS', 'EW'] as const) this.signalMaterials[axis].forEach((m, i) => { const active = this.simulation.signals[axis === 'NS' ? 'ns' : 'ew'] === ['red', 'amber', 'green'][i]; m.color.setHex(active ? [0xf44335, 0xf1bf46, 0x39cda5][i] : 0x172321); m.emissiveIntensity = active ? 3 : 0; });
     this.pedestrianMaterials.forEach((m, i) => { const s = this.simulation.signals, green = s.walk || (s.clearance && Math.floor(this.simulation.clock * 3) % 2 === 0); m.emissiveIntensity = (i === 1 ? green : !s.walk && !s.clearance) ? 2.5 : .015; });
   }
-  private drawPeople(): void {
+  private drawPeople(listener?: THREE.Vector3): void {
     for (const p of this.simulation.pedestrians) {
-      if (!p.active) continue;
+      if (!p.active || (listener && Math.hypot(p.x - listener.x, p.z - listener.z) < 1.05)) continue;
       const scale = p.scale * (p.style === 4 ? .94 : 1), swing = p.moving ? Math.sin(p.phase) * .46 : 0;
       const skin = [0xc69877, 0xd3ae8a, 0xb88d70][p.id % 3];
       const part = (mesh: THREE.InstancedMesh, lx: number, y: number, lz: number, w: number, h: number, d: number, color: number, rx = 0) => {
@@ -76,17 +77,19 @@ export class CityActivity {
       part(this.torso, 0, 1.08, 0, .36, .54 / 1.6, .235, p.shirt);
       part(this.details, 0, .79, 0, .3, p.style === 2 ? .23 : .13, .22, p.style === 2 ? p.shirt : 0x343941);
       for (const side of [-1, 1]) {
-        const leg = swing * side, knee = Math.max(0, -leg) * 1.1;
-        part(this.limbs, side * .09, .64, Math.sin(leg) * .14, .115, .34 / 1.6, .13, 0x323a43, leg);
-        part(this.limbs, side * .09, .31 + .02 * Math.abs(swing), Math.sin(leg) * .28 + Math.sin(leg + knee) * .13, .1, .34 / 1.6, .12, 0x323a43, leg + knee);
-        part(this.details, side * .09, .105 + Math.max(0, -leg) * .06, .04 + Math.sin(leg) * .26, .14, .1, .24, 0x202529);
-        part(this.limbs, side * .23, 1.03, -side * swing * .13, .1, .48 / 1.6, .11, p.shirt, -side * swing * .7);
-        part(this.skin, side * .24, .78, -side * swing * .23, .055, .07, .055, skin);
+        const { hip, knee, ankle, upperRotation, lowerRotation } = legPose(swing, side);
+        part(this.limbs, side * .09, (hip.y + knee.y) / 2, (hip.z + knee.z) / 2, .115, .34 / 1.6, .13, 0x323a43, upperRotation);
+        part(this.limbs, side * .09, (knee.y + ankle.y) / 2, (knee.z + ankle.z) / 2, .1, .34 / 1.6, .12, 0x323a43, lowerRotation);
+        part(this.details, side * .09, ankle.y - .015, ankle.z + .04, .14, .1, .24, 0x202529);
+        const arm = side * swing * .7;
+        part(this.limbs, side * .23, 1.28 - Math.cos(arm) * .24, -Math.sin(arm) * .24, .1, .48 / 1.6, .11, p.shirt, arm);
+        part(this.skin, side * .24, 1.28 - Math.cos(arm) * .48, -Math.sin(arm) * .48, .055, .07, .055, skin);
       }
       part(this.skin, 0, 1.49, .012, .12, .165, .12, skin);
       part(this.hair, 0, 1.52, 0, .126, .157, .126, p.style === 4 ? 0x88847b : p.id % 3 ? 0x272522 : 0x584537);
-      for (const side of [-1, 1]) part(this.details, side * .043, 1.52, .124, .019, .014, .008, 0x302923);
-      part(this.details, 0, 1.47, .135, .027, .044, .023, skin);
+      for (const side of [-1, 1]) part(this.skin, side * .043, 1.52, .124, .013, .009, .007, 0x302923);
+      part(this.skin, 0, 1.47, .135, .019, .03, .023, skin);
+      for (let fringe = -1; fringe <= 1; fringe++) part(this.skin, fringe * .055, 1.565 + Math.abs(fringe) * .01, .094, .035, .037, .045, p.style === 4 ? 0x88847b : p.id % 3 ? 0x272522 : 0x584537);
       if (p.style === 0) part(this.details, 0, 1.09, .128, .045, .25, .018, 0x334b5b);
       if (p.style === 1 || p.style === 3) { part(this.details, 0, 1.05, -.19, .27, .35, .14, 0x4e514a); part(this.details, -.12, 1.14, -.1, .035, .42, .04, 0x252c30); }
       if (p.style === 2) part(this.details, .29, .7, .02, .18, .22, .11, 0x735f4e);

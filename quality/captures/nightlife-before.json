@@ -1,0 +1,21 @@
+{
+  "pass": 0,
+  "seed": 8412,
+  "hour": 21,
+  "eye": [
+    -18.8,
+    1.82,
+    -25
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "stats": {
+    "fps": 136,
+    "drawCalls": 614,
+    "triangles": 3129848,
+    "buildings": 57,
+    "pedestrians": 46,
+    "vehicles": 12
+  }
+}

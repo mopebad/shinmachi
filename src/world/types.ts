@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
 export interface Bounds { minX: number; maxX: number; minZ: number; maxZ: number }
-export interface Doorway { x: number; z: number; sidewalkX: number; business?: import('./simulation/WorldRules').Business }
+export interface Doorway { x: number; z: number; sidewalkX: number; business?: import('./simulation/WorldRules').Business; area?: 'alley'; approachX?: number; approachZ?: number }
 export interface Shopfront { x: number; z: number; rotation: number; width: number; business: import('./simulation/WorldRules').Business }
 export interface District {
   group: THREE.Group;

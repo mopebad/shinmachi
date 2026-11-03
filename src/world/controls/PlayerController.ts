@@ -1,15 +1,18 @@
 import * as THREE from 'three';
-import { Bounds } from '../types';
+import type { Bounds } from '../types.ts';
 
 export type CameraMode = 'walk' | 'fly';
 export class PlayerController {
+  readonly camera: THREE.PerspectiveCamera;
+  private readonly colliders: Bounds[];
   mode: CameraMode = 'walk';
   private readonly keys = new Set<string>();
   private readonly velocity = new THREE.Vector3();
   private readonly direction = new THREE.Vector3();
   private readonly safe = new THREE.Vector3(4.7, 1.82, 43);
   private yaw = 0; private pitch = 0; private dragging = false;
-  constructor(readonly camera: THREE.PerspectiveCamera, canvas: HTMLCanvasElement, private readonly colliders: Bounds[] = []) {
+  constructor(camera: THREE.PerspectiveCamera, canvas: HTMLCanvasElement, colliders: Bounds[] = []) {
+    this.camera = camera; this.colliders = colliders;
     canvas.tabIndex = 0; canvas.setAttribute('aria-label', 'City view. Click to look; WASD to walk, F to fly, V to walk, Escape to release.');
     canvas.addEventListener('click', () => { canvas.focus(); if (document.pointerLockElement !== canvas) { const result = canvas.requestPointerLock(); if (result) result.catch(() => { /* Drag-to-look remains available. */ }); } });
     canvas.addEventListener('pointerdown', () => { this.dragging = true; }); window.addEventListener('pointerup', () => { this.dragging = false; });
@@ -33,7 +36,7 @@ export class PlayerController {
     if (mode === 'walk') { if (this.blocked(this.camera.position.x, this.camera.position.z)) this.camera.position.copy(this.safe); this.camera.position.y = 1.82; }
   }
   teleport(position: THREE.Vector3, target: THREE.Vector3): void {
-    this.camera.position.copy(position); this.camera.lookAt(target); this.camera.rotation.order = 'YXZ';
+    this.camera.rotation.order = 'YXZ'; this.camera.position.copy(position); this.camera.lookAt(target);
     this.yaw = this.camera.rotation.y; this.pitch = this.camera.rotation.x; this.velocity.set(0, 0, 0); this.keys.clear();
     if (!this.blocked(position.x, position.z) && this.mode === 'walk') this.safe.copy(position);
   }

@@ -8,3 +8,5 @@
 - Future external assets must have an explicit license/attribution entry here, be stored locally, and have a procedural fallback before they are integrated.
 
 - The November 2026 visual pass adds original procedural skyline/tower geometry, commuter train windows with illustrated passenger silhouettes, station wayfinding and area-map canvases, four sign aspect layouts, material bump/roughness maps and a road reflection mask. No external reference photographs are included in the app. The train and line identities remain fictional.
+
+- Production Pass 1 adds three original project-authored GLB models, loaded with GLTFLoader and instanced by material. They are generated locally rather than downloaded. [ASSET_MANIFEST.md](./ASSET_MANIFEST.md) records the source, dimensions, materials, runtime use and dependency licenses.

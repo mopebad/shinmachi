@@ -1,0 +1,33 @@
+{
+  "frames": 1198,
+  "elapsedMs": 5001.2,
+  "aggregateFps": 239.54250979764853,
+  "medianMs": 4.2,
+  "p95Ms": 4.3,
+  "p99Ms": 4.3,
+  "worstMs": 8.3,
+  "viewport": [
+    1920,
+    1080
+  ],
+  "renderPixelRatio": 1,
+  "devicePixelRatio": 1,
+  "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "browser": "VS Code 1.144 / Electron 43.8.3 / Chrome 150.0.7871.250 on Windows",
+  "stats": {
+    "drawCalls": 314,
+    "triangles": 1931725,
+    "buildings": 57,
+    "pedestrians": 50,
+    "vehicles": 12
+  },
+  "scene": {
+    "seed": 8412,
+    "hour": 21,
+    "view": "nightlife",
+    "dampReflections": true,
+    "clockPaused": true,
+    "agentsMoving": true
+  },
+  "note": "Raw browser rAF intervals after 60 warm-up frames. Does not isolate GPU execution time. No comparable baseline FPS sample."
+}

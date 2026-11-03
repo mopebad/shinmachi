@@ -11,12 +11,13 @@ import { District } from './types';
 import { CitySoundscape } from './audio/CitySoundscape';
 import { BUSINESSES, businessOpen, dayState, districtZone } from './simulation/WorldRules';
 import type { Business } from './simulation/WorldRules';
+import { NightlifeStreet } from './generation/NightlifeStreet';
 import { CityBackdrop } from './generation/CityBackdrop';
 import { StreetReflections } from './effects/StreetReflections';
 import { photographicPass } from './effects/PhotographicPass';
 import { StreetAtmosphere } from './effects/StreetAtmosphere';
 
-const LOCATIONS = [
+export const LOCATIONS = [
   { name: 'Shinmachi-dori', eye: [4.7, 1.82, 43], target: [-1, 5, -25], fov: 60 },
   { name: 'Lantern alley', eye: [-16, 1.82, -25], target: [6, 2.3, -25], fov: 58 },
   { name: 'Station square', eye: [17, 1.82, -39], target: [19, 3.4, -49], fov: 56 },
@@ -24,7 +25,9 @@ const LOCATIONS = [
   { name: 'Residential lane', eye: [29.1, 1.82, 43], target: [28.5, 2.5, -14], fov: 58 },
   { name: 'Akane tower avenue', eye: [4.65, 1.82, 36], target: [-7, 25, -214], fov: 48 },
   { name: 'Railway approach', eye: [8.5, 1.82, -38.5], target: [-2, 8.2, -57], fov: 54 },
+  { name: 'Yoto nightlife street', eye: [-18.8, 1.82, -25], target: [16, 3.8, -25], fov: 58 },
 ];
+export const REVIEW_VIEWS = { nightlife: 7, tower: 5, alley: 1, residential: 4, station: 2, overview: 3, commercial: 0, elevatedRail: 6 } as const;
 
 export class CityWorld {
   readonly scene = new THREE.Scene();
@@ -34,6 +37,8 @@ export class CityWorld {
   readonly activity: CityActivity;
   readonly audio = new CitySoundscape();
   private readonly atmosphere: StreetAtmosphere;
+  private readonly nightlife: NightlifeStreet;
+  readonly assetsReady: Promise<void>;
   private readonly backdrop: CityBackdrop;
   private readonly reflections: StreetReflections;
   private readonly finish = photographicPass();
@@ -76,13 +81,14 @@ export class CityWorld {
     for (const position of this.district.lamps.filter((_, i) => i % 2 === 0)) this.practical(position, 0xe3eee8, 36, 15);
     this.district.shopfronts.filter(s => Math.abs(s.x) < 9).forEach((s, i) => { if (i % 3 === 0) { const p = new THREE.Vector3(0, 2.3, -.6).applyAxisAngle(THREE.Object3D.DEFAULT_UP, s.rotation).add(new THREE.Vector3(s.x, 0, s.z)); this.practical(p, s.business === 'convenience' ? 0xc5e9d8 : 0xffcc94, 32, 11, s.business); } });
     this.practical(new THREE.Vector3(0, 3, -25), 0xffab5c, 22, 15, 'restaurant');
-    for (const x of [-15, -9, 12, 19]) this.practical(new THREE.Vector3(x, 2.7, -25), 0xffbc7b, 19, 9, 'restaurant');
     this.practical(new THREE.Vector3(18, 3.3, -47), 0xe6fff4, 45, 17);
+    this.nightlife = new NightlifeStreet(this.scene, this.district);
+    this.assetsReady = this.nightlife.ready.then(() => { this.nightlife.update(this.time); this.renderer.shadowMap.needsUpdate = true; });
     this.activity = new CityActivity(this.scene, this.district);
-    this.atmosphere = new StreetAtmosphere(this.scene, this.district);
+    this.atmosphere = new StreetAtmosphere(this.scene, this.district, this.nightlife.exhausts);
     this.controller = new PlayerController(this.camera, this.renderer.domElement, this.district.colliders);
     this.renderer.domElement.addEventListener('pointerdown', () => { if (this.audio.status === 'start') void this.audio.start().catch(() => {}); });
-    this.teleport(5);
+    this.teleport(Number(new URLSearchParams(location.search).get('view') ?? 7));
     const target = new THREE.WebGLRenderTarget(innerWidth, innerHeight, { type: THREE.HalfFloatType }); target.samples = 2;
     this.composer = new EffectComposer(this.renderer, target); this.composer.addPass(new RenderPass(this.scene, this.camera));
     this.composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth / 2, innerHeight / 2), .25, .5, 1.05)); this.composer.addPass(new OutputPass()); this.composer.addPass(this.finish);
@@ -93,17 +99,51 @@ export class CityWorld {
   private readSeed(): number { const value = Number(new URLSearchParams(location.search).get('seed') ?? 8412); return Number.isFinite(value) ? value >>> 0 : 8412; }
   get cameraMode(): CameraMode { return this.controller.mode; }
   get locationIndex(): number { return this.location; }
-  get locationName(): string { if (this.location === 5 && this.camera.position.distanceTo(new THREE.Vector3(...LOCATIONS[5].eye)) < 3) return 'Akane tower avenue'; if (this.location === 6 && this.camera.position.z < -36) return 'Railway approach'; return this.camera.position.y > 15 ? 'District overview' : { commercial: 'Shinmachi-dori', alley: 'Lantern alley', station: 'Station square', residential: 'Residential lane' }[districtZone(this.camera.position)]; }
+  get locationName(): string { if (this.location === 7 && Math.abs(this.camera.position.z + 25) < 3.1) return 'Yoto nightlife street'; if (this.location === 5 && this.camera.position.distanceTo(new THREE.Vector3(...LOCATIONS[5].eye)) < 3) return 'Akane tower avenue'; if (this.location === 6 && this.camera.position.z < -36) return 'Railway approach'; return this.camera.position.y > 15 ? 'District overview' : { commercial: 'Shinmachi-dori', alley: 'Lantern alley', station: 'Station square', residential: 'Residential lane' }[districtZone(this.camera.position)]; }
   get stats() { return { fps: Math.round(this.fps), drawCalls: this.renderer.info.render.calls, triangles: this.renderer.info.render.triangles, buildings: this.district.stats.buildings, ...this.activity.stats }; }
   setPlaying(value: boolean): void { this.playing = value; }
   teleport(index: number): void {
-    this.location = THREE.MathUtils.clamp(index, 0, LOCATIONS.length - 1); const location = LOCATIONS[this.location];
+    this.location = THREE.MathUtils.clamp(Number.isFinite(index) ? Math.round(index) : 7, 0, LOCATIONS.length - 1); const location = LOCATIONS[this.location];
     this.setFov(location.fov);
     this.controller.setMode(this.location === 3 ? 'fly' : 'walk'); this.controller.teleport(new THREE.Vector3(...location.eye), new THREE.Vector3(...location.target));
   }
   setFov(value: number): void { this.camera.fov = THREE.MathUtils.clamp(value, 35, 80); this.camera.updateProjectionMatrix(); }
   setWeather(value: 'dry' | 'damp'): void { this.weather = value; this.reflections.setWetness(value === 'damp' && this.reflectionsEnabled ? .64 : 0); }
   setReflections(value: boolean): void { this.reflectionsEnabled = value; this.setWeather(this.weather); }
+  /** Development capture of actual render output, independent of browser screenshot scaling. */
+  async captureBenchmark(name: string, view: keyof typeof REVIEW_VIEWS = 'nightlife', hour = 21): Promise<unknown> {
+    if (!import.meta.env.DEV) throw new Error('Review capture requires the local development server');
+    if (!/^[a-z0-9-]{1,70}$/.test(name)) throw new Error('Use a short lowercase capture name');
+    await this.assetsReady;
+    if (this.nightlife.assets.errors.length) throw new Error(this.nightlife.assets.errors.join('\n'));
+    this.teleport(REVIEW_VIEWS[view]); this.setPlaying(false); this.setTime(hour);
+    const size = this.renderer.getSize(new THREE.Vector2()), ratio = this.renderer.getPixelRatio(), aspect = this.camera.aspect;
+    this.renderer.setPixelRatio(1); this.composer.setPixelRatio(1); this.renderer.setSize(1920, 1080, false); this.composer.setSize(1920, 1080);
+    this.camera.aspect = 16 / 9; this.camera.updateProjectionMatrix(); this.camera.updateMatrixWorld(); this.reflections.update(this.camera);
+    this.renderer.info.reset(); this.composer.render(0);
+    const png = this.renderer.domElement.toDataURL('image/png');
+    const metadata = { name, view, preset: REVIEW_VIEWS[view], seed: this.readSeed(), hour, simulationClock: this.activity.simulation.clock, eye: this.camera.position.toArray(), quaternion: this.camera.quaternion.toArray(), fov: this.camera.fov, width: 1920, height: 1080, pixelRatio: 1, surface: this.weather, reflections: this.reflectionsEnabled, stats: this.stats, assets: { loaded: this.nightlife.assets.loaded, errors: this.nightlife.assets.errors }, capturedAt: new Date().toISOString() };
+    this.renderer.setPixelRatio(ratio); this.composer.setPixelRatio(ratio); this.renderer.setSize(size.x, size.y, false); this.composer.setSize(size.x, size.y); this.camera.aspect = aspect; this.camera.updateProjectionMatrix();
+    const response = await fetch(`${import.meta.env.BASE_URL}__review/capture`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, png, metadata }) });
+    if (!response.ok) throw new Error(`Review capture failed: ${response.status}`); return response.json();
+  }
+  /** Raw rAF intervals, not the HUD's smoothed frame-rate display or GPU timing. */
+  async measurePerformance(seconds = 5): Promise<unknown> {
+    await this.assetsReady;
+    const frames: number[] = []; let previous = 0, start = 0, warmup = 60;
+    await new Promise<void>((resolve, reject) => {
+      const sample = (now: number) => {
+        if (document.hidden) { reject(new Error('Keep the benchmark tab visible')); return; }
+        if (warmup-- > 0) { previous = now; requestAnimationFrame(sample); return; }
+        if (!start) start = previous;
+        frames.push(now - previous); previous = now;
+        if (now - start >= Math.max(1, Math.min(seconds, 15)) * 1000) resolve(); else requestAnimationFrame(sample);
+      }; requestAnimationFrame(sample);
+    });
+    const sorted = [...frames].sort((a, b) => a - b), total = frames.reduce((sum, v) => sum + v, 0), at = (p: number) => sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * p))];
+    const gl = this.renderer.getContext(), extension = gl.getExtension('WEBGL_debug_renderer_info');
+    return { frames: frames.length, elapsedMs: total, aggregateFps: frames.length * 1000 / total, medianMs: at(.5), p95Ms: at(.95), p99Ms: at(.99), worstMs: sorted.at(-1), viewport: this.renderer.getSize(new THREE.Vector2()).toArray(), renderPixelRatio: this.renderer.getPixelRatio(), devicePixelRatio, gpuLabel: extension ? gl.getParameter(extension.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER), browser: navigator.userAgent, stats: this.stats, note: 'Browser frame intervals; does not isolate GPU execution time.' };
+  }
   setTime(hour: number): void {
     this.time = ((hour % 24) + 24) % 24;
     const state = dayState(this.time), elevation = state.elevation;
@@ -111,10 +151,10 @@ export class CityWorld {
     this.sun.position.set(Math.cos((this.time - 6) / 12 * Math.PI) * 90, Math.max(5, elevation * 100), -25);
     this.sun.intensity = day * (1.1 + Math.max(0, elevation) * 2.2);
     this.sun.color.setRGB(1, .94 - dusk * .29, .83 - dusk * .4);
-    this.ambient.intensity = .22 + day * 1.65; this.ambient.color.set(day > .5 ? 0xb6d2e5 : 0x73899e);
-    this.scene.environmentIntensity = .19 + day * .22;
-    this.renderer.toneMappingExposure = .97 + night * .17;
-    this.backdrop.update(this.time, night);
+    this.ambient.intensity = .15 + day * 1.72; this.ambient.color.set(day > .5 ? 0xb6d2e5 : 0x73899e);
+    this.scene.environmentIntensity = .105 + day * .305;
+    this.renderer.toneMappingExposure = .97 + night * .08;
+    this.backdrop.update(this.time, night); this.nightlife.update(this.time);
     this.fog.color.set(0x111e2d).lerp(new THREE.Color(0xb4c5cf), day).lerp(new THREE.Color(0xc59177), dusk * .3 * day);
     this.fog.density = .0028 + night * .0007;
     const uniforms = this.sky.material.uniforms;
@@ -154,8 +194,8 @@ export class CityWorld {
   }
   start(): void {
     const tick = (now: number) => {
-      const delta = Math.min((now - this.last) / 1000, .05); this.last = now;
-      this.fps = THREE.MathUtils.lerp(this.fps, 1 / Math.max(.001, delta), .03);
+      const rawDelta = (now - this.last) / 1000, delta = Math.min(rawDelta, .05); this.last = now;
+      this.fps = THREE.MathUtils.lerp(this.fps, 1 / Math.max(.001, rawDelta), .03);
       this.controller.update(delta); this.activity.update(delta, this.time, this.camera.position); this.atmosphere.update(delta, this.time, this.camera);
       if (this.playing) { this.time = (this.time + delta * .06) % 24; this.lightingAccumulator += delta; if (this.lightingAccumulator > .2) { this.setTime(this.time); this.lightingAccumulator = 0; } }
       this.reflections.update(this.camera); this.finish.uniforms.seconds.value = now / 1000;

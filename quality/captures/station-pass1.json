@@ -1,0 +1,38 @@
+{
+  "name": "station-pass1",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 264.799999999995,
+  "eye": [
+    17,
+    1.82,
+    -39
+  ],
+  "quaternion": [
+    0.0764055276027024,
+    -0.09824674688499402,
+    0.007565638179019687,
+    0.9921958139385657
+  ],
+  "fov": 56,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "stats": {
+    "fps": 218,
+    "drawCalls": 332,
+    "triangles": 2139215,
+    "buildings": 57,
+    "pedestrians": 50,
+    "vehicles": 10
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T07:59:35.747Z"
+}

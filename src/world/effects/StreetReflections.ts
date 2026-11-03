@@ -18,7 +18,7 @@ export class StreetReflections {
         float n=noise(p*vec2(.65,.34))*.65+noise(p*3.7)*.35;float pool=smoothstep(.28,.72,n);float fine=noise(p*vec2(28.,6.));
         vec2 uv=vReflection.xy/vReflection.w;vec2 jitter=vec2(fine-.5,noise(p*18.)-.5)*.0011;
         vec3 col=texture2D(tDiffuse,uv+jitter).rgb*.4;col+=texture2D(tDiffuse,uv+jitter+vec2(.0018,0)).rgb*.15;col+=texture2D(tDiffuse,uv+jitter-vec2(.0018,0)).rgb*.15;col+=texture2D(tDiffuse,uv+jitter+vec2(0,.0024)).rgb*.15;col+=texture2D(tDiffuse,uv+jitter-vec2(0,.0024)).rgb*.15;
-        float grazing=pow(1.-clamp(normalize(eye-vWorld).y,0.,1.),3.);float alpha=wetness*road*(.09+pool*.58)*(.22+grazing*.78);
+        float grazing=pow(1.-clamp(normalize(eye-vWorld).y,0.,1.),3.);float alpha=wetness*road*(.015+pow(pool,1.7)*.64)*(.22+grazing*.78);
         gl_FragColor=vec4(col,alpha);}`,
     };
     this.surface = new Reflector(new THREE.PlaneGeometry(148, 148), { textureWidth: 768, textureHeight: 768, multisample: 0, clipBias: .005, shader });

@@ -1,0 +1,38 @@
+{
+  "name": "commercial-pass1",
+  "view": "commercial",
+  "preset": 0,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 264.93333333332845,
+  "eye": [
+    4.7,
+    1.82,
+    43
+  ],
+  "quaternion": [
+    0.023261337608258003,
+    0.04179049953395925,
+    -0.0009732171516890708,
+    0.9988551031905241
+  ],
+  "fov": 60,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "stats": {
+    "fps": 209,
+    "drawCalls": 592,
+    "triangles": 2647087,
+    "buildings": 57,
+    "pedestrians": 50,
+    "vehicles": 10
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T07:59:36.022Z"
+}

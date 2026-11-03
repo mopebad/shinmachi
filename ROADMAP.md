@@ -4,6 +4,20 @@
 
 A compact, metre-scale, Tokyo-inspired neighborhood that rewards exploration at pedestrian eye level. Pursue the photographic Tokyo evening references through coherent construction, materials, light, audio, density and polish while retaining a compact real-time environment. This is a fictional district, not a geographically accurate reconstruction of Tokyo.
 
+## Production delivery sequence
+
+The attached production brief supersedes the earlier small evening pass. Current delivery is **Pass 1**, focused on an authored nightlife street rather than a UI redesign. Audit and contracts: [ARCHITECTURE.md](./ARCHITECTURE.md). Reference analysis: [VISUAL_TARGETS.md](./VISUAL_TARGETS.md). Actual results and known issues: [QUALITY_REPORT.md](./QUALITY_REPORT.md). Asset provenance: [ASSET_MANIFEST.md](./ASSET_MANIFEST.md).
+
+1. **Pass 1 delivered:** twelve authored nightlife frontages, theatre marquee and layered signs, original imported/instanced GLB lanterns/condensers/lamps, business-specific interiors, contextual exhaust, more selective reflections, twelve actual alley destinations, connected limb/camera fixes, eight compatible presets, fixed-view 1080p captures and raw frame measurements. Sixteen tests and the production build pass; the 600-second generated-world run retained safe traffic/path behavior.
+2. **Pass 2 next:** higher-quality rigged people and animations, additional facade/roof/corner archetypes, richer vehicles and detailed reusable interiors. Extend the original GLB/Blender-compatible source pipeline; retain spatial contracts.
+3. **Pass 3:** contact shading, exposure/material refinement, localized atmosphere, actual rainfall/runoff/drying and low/high graphics settings.
+4. **Pass 4:** deterministic functional at-grade railway crossing on a real route, road/pedestrian interlocks, station stops/events and walkable elevations. The elevated line remains separate.
+5. **Pass 5:** broader NPC routines/entry/exit/social behavior, destination traffic and mastered source-specific sound with licensed recordings where useful.
+6. **Pass 6:** more varied skyline layers, believable background districts/road continuity and stronger individual district identity.
+7. **Pass 7:** integrated regression/capture review, performance optimization, accessibility and final polish.
+
+The original seven presets retain their transforms; **8 / Yoto nightlife street** is added and is the current starting view. The reference crossing is not delivered in Pass 1, and static station detail is not boarding or player access.
+
 ## Photographic direction and execution
 
 See [VISUAL_PLAN.md](./VISUAL_PLAN.md) for the reference analysis, ordered implementation plan, acceptance criteria and production limits.
@@ -77,7 +91,7 @@ Generation emits plain spatial data alongside meshes. Simulation must consume th
 
 ## Validation and visual review
 
-- Run `npm.cmd run check`, `npm.cmd test` and `npm.cmd run build`. Twelve regression tests also run in GitHub CI.
+- Run `npm.cmd run check`, `npm.cmd test` and `npm.cmd run build`. Sixteen regression tests also run in GitHub CI.
 - Tests cover left-hand lanes, continuous turn curves, conflicting-green/occupancy interlocks, crossing-only navigation, day state and business/service hours, deterministic updates, multi-cycle safety, junction liveness and vehicle footprint separation.
 - Actual generated-world browser exercise: 600 simulated seconds across a morning-to-night density transition. The reviewed run had zero wall hits, zero unmarked-road steps and zero pedestrian/vehicle footprint overlaps; vehicle exits continued and longest crossing clearance was about 12 seconds.
 - Verified all five presets outside collision bounds. Checked daylight/night sun states and cafe/restaurant/convenience schedules at 00:00, 03:00, 08:00, noon, evening and 22:00.

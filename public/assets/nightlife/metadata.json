@@ -1,0 +1,41 @@
+[
+  {
+    "filename": "paper-lantern.glb",
+    "bytes": 566076,
+    "meshes": 49,
+    "triangles": 20800,
+    "materials": 4,
+    "dimensionsMetres": [
+      0.4620159864425659,
+      0.9799706772745121,
+      0.4620159864425659
+    ],
+    "origin": "Bottom of tassel, +Y up, glyph faces +Z"
+  },
+  {
+    "filename": "ac-condenser.glb",
+    "bytes": 234988,
+    "meshes": 51,
+    "triangles": 4768,
+    "materials": 4,
+    "dimensionsMetres": [
+      0.9817226231098175,
+      0.6595000119954347,
+      0.46050000343471764
+    ],
+    "origin": "Bottom of mounting feet, +Y up, fan faces +Z"
+  },
+  {
+    "filename": "twin-street-lamp.glb",
+    "bytes": 225176,
+    "meshes": 26,
+    "triangles": 6564,
+    "materials": 4,
+    "dimensionsMetres": [
+      1.0957942008972168,
+      0.9679999994039535,
+      0.7778971183300019
+    ],
+    "origin": "Centre of wall mounting plate, +Y up, bracket projects +Z"
+  }
+]

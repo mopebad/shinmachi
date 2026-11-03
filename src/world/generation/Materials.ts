@@ -31,7 +31,7 @@ export const SHOP_NAMES = [
 ];
 
 /** Per-instance world-space UVs keep tiles metre-sized on long roads and tall buildings. */
-function worldTexture(material: THREE.MeshStandardMaterial, scale = .5): void {
+export function worldTexture(material: THREE.MeshStandardMaterial, scale = .5): void {
   material.onBeforeCompile = shader => {
     shader.vertexShader = shader.vertexShader.replace('#include <uv_vertex>', `#include <uv_vertex>
       #ifdef USE_MAP

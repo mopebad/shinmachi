@@ -13,8 +13,8 @@ export class Hud {
       </div>
       <div class="hud__bottom">
         <details class="controls" open><summary>Explore the neighborhood <span>−</span></summary><div class="controls__body">
-          <label class="label" for="location">A different perspective <kbd>1–7</kbd></label>
-          <select id="location"><option value="0">01 / Commercial street</option><option value="1">02 / Lantern alley</option><option value="2">03 / Shinmachi station</option><option value="3">04 / District overview</option><option value="4">05 / Residential lane</option><option value="5" selected>06 / Akane tower avenue</option><option value="6">07 / Railway approach</option></select>
+          <label class="label" for="location">A different perspective <kbd>1–8</kbd></label>
+          <select id="location"><option value="0">01 / Commercial street</option><option value="1">02 / Lantern alley</option><option value="2">03 / Shinmachi station</option><option value="3">04 / District overview</option><option value="4">05 / Residential lane</option><option value="5">06 / Akane tower avenue</option><option value="6">07 / Railway approach</option><option value="7" selected>08 / Yoto nightlife street</option></select>
           <div class="scene-presets" aria-label="Lighting presets"><button data-hour="20.5" class="active">After hours</button><button data-hour="18.4">Blue hour</button><button data-hour="13">Daylight</button></div>
           <div class="controls__row"><label for="cycle">Local time</label><input id="cycle" type="range" min="0" max="23.99" step="0.01" value="20.5"/><button id="play" aria-label="Play day and night cycle" aria-pressed="false">▶</button></div>
           <div class="controls__row"><label for="weather">Street surface</label><select id="weather"><option value="damp">After rain</option><option value="dry">Dry</option></select></div>
@@ -41,7 +41,7 @@ export class Hud {
     this.root.querySelectorAll<HTMLButtonElement>('[data-hour]').forEach(button => button.addEventListener('click', () => { world.setPlaying(false); world.setTime(Number(button.dataset.hour)); }));
     window.addEventListener('keydown', e => {
       if (e.target instanceof HTMLElement && e.target.matches('input,select,textarea')) return;
-      if (/^[1-7]$/.test(e.key)) world.teleport(Number(e.key) - 1);
+      if (/^[1-8]$/.test(e.key)) world.teleport(Number(e.key) - 1);
       if (e.repeat) return; if (e.key.toLowerCase() === 'm') world.audio.toggle(); if (e.key.toLowerCase() === 'h') this.togglePhoto();
     });
   }

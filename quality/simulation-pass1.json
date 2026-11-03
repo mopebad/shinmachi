@@ -1,0 +1,17 @@
+{
+  "seconds": 600,
+  "hours": [
+    18.5,
+    23
+  ],
+  "wallHits": 0,
+  "unmarkedRoadSteps": 0,
+  "pedestrianVehicleFootprintOverlaps": 0,
+  "vehicleExits": 117,
+  "distinctAlleyVisits": 18,
+  "alleyDoorNodes": 12,
+  "allEightPresetsOutsideColliders": true,
+  "assetsLoaded": 3,
+  "assetErrors": [],
+  "shaderFailures": 0
+}

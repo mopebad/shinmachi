@@ -48,6 +48,14 @@ export class Navigation {
       // Shop visits stop at a clear threshold; no agent is allowed to cut through masonry.
       const threshold = { x: door.x, z: door.z };
       if (pointBlocked(threshold, bounds, .16)) continue;
+      if (door.area === 'alley') {
+        const x = door.approachX ?? door.x, z = door.approachZ ?? -25;
+        const sameSide = this.nodes.filter(n => n.area === 'alley' && Math.sign(n.x) === Math.sign(x));
+        const nearest = sameSide.sort((a, b) => Math.abs(a.x - x) - Math.abs(b.x - x))[0];
+        if (!nearest) continue;
+        const approach = add(x, z, 'alley'), destination = add(door.x, door.z, 'alley', door);
+        link(nearest.id, approach); link(approach, destination); continue;
+      }
       const sameSide = this.nodes.filter(n => Math.sign(n.x) === Math.sign(door.sidewalkX) && Math.abs(n.x) < 5 && ((n.z < 6 && door.z < 6) || (n.z > 20 && door.z > 20)));
       const nearest = sameSide.sort((a, b) => Math.abs(a.z - door.z) - Math.abs(b.z - door.z))[0]; if (!nearest) continue;
       const approach = add(door.sidewalkX, door.z), destination = add(door.x, door.z, 'commercial', door);

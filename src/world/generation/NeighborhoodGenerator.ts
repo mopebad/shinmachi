@@ -52,7 +52,7 @@ export class NeighborhoodGenerator {
       if (Math.abs(z - 12) < 16) continue;
       add({ x, z, rotation: i < 6 ? Math.PI / 2 : -Math.PI / 2, width: 9 + rng() * 4, depth: 8 + rng() * 7, floors: 7 + Math.floor(rng() * 9), kind: 'office', palette: 4 + i % 4, shop: 15 });
     }
-    b.origin(); this.streetProps(b, m, lamps, rng, colliders); this.railway(b, m, colliders); addRailwayDetails(b, m); this.alley(b, m);
+    b.origin(); this.streetProps(b, m, lamps, rng, colliders); this.railway(b, m, colliders); addRailwayDetails(b, m);
     const station = stationDetails(b, m);
     const group = b.finish(m.signs); group.add(station); group.name = `Shinmachi · seed ${this.seed}`;
     return { group, colliders, doors, shopfronts, lamps, materials: { signs: m.signs, windows: m.windows, warmWindows: m.warmWindows, lamps: m.lamps, shop: m.shop, lantern: m.lantern, businesses: m.businesses }, stats: { buildings, instances: b.instances } };
@@ -180,32 +180,6 @@ export class NeighborhoodGenerator {
       const dx = (rng() - .5) * 2.6, dz = (rng() - .5) * 2.6, y = 2.5 + rng() * 1.8;
       b.rod(m.wood, new THREE.Vector3(x, 2, z), new THREE.Vector3(x + dx, y, z + dz), .025);
       b.part('sphere', m.green, x + dx, y, z + dz, .4 + rng() * .4, .45 + rng() * .35, .4 + rng() * .4, 0, 0, 0, [0xa6b780, 0x789f76, 0x9aa581][i % 3]);
-    }
-  }
-  private alley(b: CityBatch, m: Materials): void {
-    for (let x = -19; x < 23; x += 2.5) {
-      const y = 3.35 - Math.sin((x + 19) / 42 * Math.PI) * .4;
-      b.part('sphere', m.lantern, x, y, -25, .18, .27, .18);
-      for (const dy of [-.24, .24]) b.b(m.dark, x, y + dy, -25, .15, .035, .15);
-      for (const dy of [-.12, 0, .12]) b.part('torus', m.red, x, y + dy, -25, .17, .17, .17, Math.PI / 2);
-    }
-    b.cable(new THREE.Vector3(-20, 3.7, -25), new THREE.Vector3(24, 3.7, -25), .5); b.sign(23, -4.6, 4.1, -24.3, 2.5, .65, Math.PI / 2);
-    for (const x of [-15, -11, 13, 18]) { b.b(m.cream, x, .6, -22.9, .8, 1.2, .55); for (let i = 0; i < 6; i++) b.b(m.metal, x, .3 + i * .11, -23.2, .64, .035, .025); b.b(m.wood, x + 1, .3, -22.9, .55, .6, .5); }
-    for (const x of [-11, 13]) { b.part('cylinder', m.metal, x, 2.35, -22.8, .11, 1.6, .11); b.b(m.metal, x, 3.1, -22.8, .42, .09, .38); }
-    // Human-scale alley bars: recessed entrances, wood battens, noren, menu boards.
-    for (const side of [-1, 1]) for (const x of [-17, -12, 11, 16, 21]) {
-      b.origin(x, -25 + side * 2.65, side > 0 ? Math.PI : 0);
-      b.b(m.wood, 0, 1.4, -.12, 3.5, 2.8, .35);
-      b.b(m.shop, -.45, 1.3, .08, 1.8, 1.7, .04);
-      b.b(m.windows, 1, 1.15, .09, .65, 2.2, .04);
-      for (let i = 0; i < 9; i++) b.b(m.wood, -1.4 + i * .21, 1.3, .16, .035, 1.85, .07);
-      b.b(m.dark, 0, 2.65, .12, 3.5, .55, .3); b.sign(x % 2 ? 5 : 9, 0, 2.65, .29, 3.3, .48);
-      for (let i = 0; i < 3; i++) b.b(m.green, .7 + i * .22, 2, .22, .2, .5, .035);
-      b.b(m.metal, 0, 2.4, .4, 3.6, .08, .9);
-      b.b(m.lantern, -1.45, 1.9, .62, .28, .48, .28);
-      b.sign(30, -1.45, 1.9, .77, .23, .39);
-      b.b(m.wood, .2, .5, .7, .45, .95, .07); b.sign(9, .2, .55, .75, .38, .65);
-      b.origin();
     }
   }
   private railway(b: CityBatch, m: Materials, colliders: Bounds[]): void {

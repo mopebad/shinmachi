@@ -1,0 +1,38 @@
+{
+  "name": "nightlife-day-pass1",
+  "view": "nightlife",
+  "preset": 7,
+  "seed": 8412,
+  "hour": 13,
+  "simulationClock": 264.99999999999517,
+  "eye": [
+    -18.8,
+    1.82,
+    -25
+  ],
+  "quaternion": [
+    0.02009159979257884,
+    -0.7068212840724131,
+    0.02009159979257884,
+    0.7068212840724131
+  ],
+  "fov": 58,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "stats": {
+    "fps": 204,
+    "drawCalls": 404,
+    "triangles": 2616675,
+    "buildings": 57,
+    "pedestrians": 50,
+    "vehicles": 10
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-03T07:59:36.163Z"
+}
