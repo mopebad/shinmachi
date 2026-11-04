@@ -23,6 +23,9 @@ export class CityBatch {
   private readonly signFaces: SignFace[] = [];
   instances = 0;
   private sectionName = '';
+  private muted=0;
+  /** Preserve legacy placement RNG draws while replacing an architectural presentation. */
+  withoutGeometry(action:()=>void):void {this.muted++;try{action();}finally{this.muted--;}}
   /** Semantic attribution for spatial review; does not change batching or rendering. */
   section(name = ''): void { this.sectionName = name; }
 
@@ -30,6 +33,7 @@ export class CityBatch {
     this.transform.compose(new THREE.Vector3(x, y, z), new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), rotation), new THREE.Vector3(1, 1, 1));
   }
   part(shape: 'box' | 'plane' | 'rice' | 'cylinder' | 'sphere' | 'torus' | 'triangle', material: THREE.Material, x: number, y: number, z: number, sx: number, sy: number, sz: number, rx = 0, ry = 0, rz = 0, tint = 0xffffff): void {
+    if(this.muted)return;
     const key = shape + material.uuid;
     let batch = this.batches.get(key);
     if (!batch) { batch = { geometry: this[shape], material, matrices: [], colors: [], sections: [] }; this.batches.set(key, batch); }
@@ -44,6 +48,7 @@ export class CityBatch {
     this.part('cylinder', material, midpoint.x, midpoint.y, midpoint.z, radius, delta.length(), radius, e.x, e.y, e.z);
   }
   sign(index: number, x: number, y: number, z: number, w: number, h: number, rotation = 0, business = signBusiness(index >= 32 ? 12 : index)): void {
+    if(this.muted)return;
     const matrix = new THREE.Matrix4().multiplyMatrices(this.transform, new THREE.Matrix4().makeRotationY(rotation).setPosition(x, y, z));
     for (const [vx, vy] of [[-w / 2, -h / 2], [w / 2, -h / 2], [w / 2, h / 2], [-w / 2, h / 2]]) {
       const p = new THREE.Vector3(vx, vy, 0).applyMatrix4(matrix); this.signPositions.push(p.x, p.y, p.z);
@@ -52,6 +57,7 @@ export class CityBatch {
     this.signFaces.push({ index, width: w, height: h, business: BUSINESSES.indexOf(business) });
   }
   cable(a: THREE.Vector3, b: THREE.Vector3, sag = .7): void {
+    if(this.muted)return;
     let last = a.clone();
     for (let i = 1; i <= 18; i++) {
       const t = i / 18, p = a.clone().lerp(b, t); p.y -= Math.sin(t * Math.PI) * sag;

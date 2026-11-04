@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>Shinmachi neighborhood comparisons</title>
+<style>
+body{margin:24px auto;padding:0 20px;max-width:1800px;background:#111a21;color:#e7edeb;font:16px system-ui}p{line-height:1.5}select{font:inherit;padding:8px;max-width:100%}a{color:#a6d7d0}.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}figure{margin:0}figcaption{padding:8px 0}img{width:100%;height:auto;display:block;background:#080d12}@media(max-width:800px){.pair{grid-template-columns:1fr}}
+</style>
+<h1>Shinmachi neighborhood identities</h1>
+<p>Nine actual 1920 × 1080 WebGL comparisons. Each pair preserves its camera, field of view, seed 8412, simulation clock 300, time of day, After Rain surface, reflections and contact shading. Pedestrian routes can differ because district destination preferences now influence activity.</p>
+<label>View <select id="view"></select></label>
+<div class="pair">
+<figure><figcaption>Before / railway district baseline</figcaption><a id="before-link"><img id="before" alt="Neighborhood before City Development 2B"></a></figure>
+<figure><figcaption>After / City Development 2B</figcaption><a id="after-link"><img id="after" alt="Neighborhood after City Development 2B"></a></figure>
+</div>
+<p id="note"></p>
+<p><a href="./CITY_DEVELOPMENT_2B.md">Implementation, performance and limitations</a> · <a href="./neighborhood-geometry-audit.json">Spatial audit</a> · <a href="./neighborhood-simulation-audit.json">Simulation regression</a> · <a href="./neighborhood-capture-audit.json">Camera comparison audit</a> · <a href="./references/neighborhoods/README.md">References and credits</a> · <a href="/?view=4&amp;seed=8412">Walk the residential lane</a></p>
+<script type="module">
+const views=[
+ ['residential-day','Residential lane · 13:00','Four housing families, recessed entrances, residential plaques and utilities replace repeated commercial-looking apartment fronts.'],
+ ['residential-night','Residential lane · 20:30','Restrained window occupancy and small entrance lights distinguish housing from the brighter commercial streets.'],
+ ['hero-night','Hero Street · 20:30','Existing polished shopfronts remain; rooftop occupation and surrounding office massing vary.'],
+ ['commercial-day','Commercial corridor · 13:00','Retail continuity remains intact, with varied roof equipment and a different residential street beyond.'],
+ ['station-night','Station district · 20:30','Existing station frontage and bicycle pocket remain accessible; adjacent housing and office parcels have clearer identities.'],
+ ['nightlife-night','Restaurant alley · 20:30','The existing twelve-frontage restaurant and theatre cluster retains its warmer light and denser signage.'],
+ ['nightlife-day','Restaurant alley · 13:00','Preserved individual shopfronts contrast with the surrounding office and residential architecture.'],
+ ['transition-day','Residential / restaurant transition · 13:00','The same junction connects quieter housing to the restaurant alley. Actual moving pedestrians can obscure part of the fixed view.'],
+ ['overview-day','District overview · 13:00','Mixed rooflines and office families occupy existing lots. Broad backland surfaces and some older repetitive buildings remain visible.']
+];
+const pick=document.querySelector('#view');for(const [value,label]of views)pick.add(new Option(label,value));
+function load(){const entry=views.find(v=>v[0]===pick.value);document.querySelector('#note').textContent=entry[2];for(const stage of ['before','after']){const url='./captures/neighborhood-'+pick.value+'-'+stage+'.png';document.querySelector('#'+stage).src=url;document.querySelector('#'+stage+'-link').href=url;}}
+pick.addEventListener('change',load);load();
+</script>
+</html>

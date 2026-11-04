@@ -1,0 +1,61 @@
+{
+  "pairs": [
+    {
+      "view": "residential-day",
+      "decodedImages": 2,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "view": "residential-night",
+      "decodedImages": 2,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "view": "hero-night",
+      "decodedImages": 2,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "view": "commercial-day",
+      "decodedImages": 2,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "view": "station-night",
+      "decodedImages": 2,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "view": "nightlife-night",
+      "decodedImages": 2,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "view": "nightlife-day",
+      "decodedImages": 2,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "view": "transition-day",
+      "decodedImages": 2,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "view": "overview-day",
+      "decodedImages": 2,
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "allImagesDecoded": true,
+  "totalImages": 18,
+  "viewer": "quality/NEIGHBORHOOD_REVIEW.html"
+}

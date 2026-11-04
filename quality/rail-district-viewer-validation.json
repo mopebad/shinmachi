@@ -1,0 +1,179 @@
+{
+  "views": [
+    {
+      "view": "platform-day",
+      "images": [
+        {
+          "src": "./captures/rail-district-platform-day-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "src": "./captures/rail-district-platform-day-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "platform-night",
+      "images": [
+        {
+          "src": "./captures/rail-district-platform-night-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "src": "./captures/rail-district-platform-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "approach-night",
+      "images": [
+        {
+          "src": "./captures/rail-district-approach-night-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "src": "./captures/rail-district-approach-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "rail-street-night",
+      "images": [
+        {
+          "src": "./captures/rail-district-rail-street-night-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "src": "./captures/rail-district-rail-street-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "entrance-day",
+      "images": [
+        {
+          "src": "./captures/rail-district-entrance-day-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "src": "./captures/rail-district-entrance-day-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "entrance-night",
+      "images": [
+        {
+          "src": "./captures/rail-district-entrance-night-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "src": "./captures/rail-district-entrance-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "overview-day",
+      "images": [
+        {
+          "src": "./captures/rail-district-overview-day-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "src": "./captures/rail-district-overview-day-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "overview-night",
+      "images": [
+        {
+          "src": "./captures/rail-district-overview-night-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "src": "./captures/rail-district-overview-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "hero-night",
+      "images": [
+        {
+          "src": "./captures/rail-district-hero-night-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "src": "./captures/rail-district-hero-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "north-lane-night",
+      "images": [
+        {
+          "src": "./captures/rail-district-north-lane-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "under-rail-day",
+      "images": [
+        {
+          "src": "./captures/rail-district-under-rail-day-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "forecourt-day",
+      "images": [
+        {
+          "src": "./captures/rail-district-forecourt-day-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "arrival-night",
+      "images": [
+        {
+          "src": "./captures/rail-district-arrival-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "contracts": {
+    "colliders": true,
+    "playerColliders": true,
+    "doors": true,
+    "shopfronts": true,
+    "lamps": true,
+    "station": true,
+    "stats": true
+  },
+  "actors": true,
+  "captures": [
+    {
+      "label": "hero-night",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "hero-day",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "tower-night",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "tower-day",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "railway-night",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "overview-night",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "overview-day",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "occlusion-night",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    }
+  ],
+  "geometry": {
+    "parts": 85009,
+    "buildingParts": 81449,
+    "railParts": 512,
+    "triangles": 250664,
+    "intersections": []
+  },
+  "shaderErrors": 0,
+  "assets": [],
+  "backdrop": {
+    "seed": 8412,
+    "layoutSeed": 81075,
+    "buildings": 376,
+    "families": [
+      "postwar-office",
+      "tile-apartment",
+      "curtain-office",
+      "mixed-use",
+      "stepped-residential",
+      "commercial-tower",
+      "utility-office"
+    ],
+    "layers": [
+      119,
+      168,
+      89
+    ],
+    "tower": {
+      "x": -32,
+      "z": -1050,
+      "height": 333,
+      "baseWidth": 95,
+      "yaw": 0.2827433388230814,
+      "mainDeck": 150,
+      "topDeck": 250,
+      "foundationHalfSize": 67
+    },
+    "roads": 25,
+    "visualOnly": true
+  }
+}

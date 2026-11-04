@@ -1,0 +1,314 @@
+{
+  "runs": [
+    {
+      "hour": 13,
+      "openSeconds": 900,
+      "drainSeconds": 600,
+      "ticks": 45000,
+      "arrivals": 6,
+      "departures": 6,
+      "boardingThresholdCrossings": 10,
+      "alightingThresholdCrossings": 24,
+      "movingRiderSamples": 50234,
+      "maxPositionStep": 0.13333333333335418,
+      "maxTransferStep": 0.0492429030778716,
+      "maxRiderOffsetError": 1.4210854715202004e-14,
+      "minimumSeparation": 0.5600508602812972,
+      "invalidPositions": 0,
+      "unsafeCrossings": 0,
+      "overlaps": 0,
+      "unsafeDepartures": 0,
+      "capacityViolations": 0,
+      "gateConflicts": 0,
+      "wallHits": 0,
+      "vehicleOverlaps": 0,
+      "vehicleExits": 169,
+      "trainCycles": [
+        {
+          "clock": 97.29999999999706,
+          "stop": 1,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 266.2333333333295,
+          "stop": 2,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 420.2000000001187,
+          "stop": 3,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 566.7000000001419,
+          "stop": 4,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 727.6333333333289,
+          "stop": 5,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 876.9999999998597,
+          "stop": 6,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        }
+      ],
+      "densityAgentSeconds": {
+        "commercial": 29819,
+        "station": 3676,
+        "residential": 308,
+        "nightlife": 2733
+      },
+      "meanPopulation": {
+        "commercial": 33.132222222222225,
+        "station": 4.084444444444444,
+        "residential": 0.3422222222222222,
+        "nightlife": 3.0366666666666666
+      },
+      "doorDwellSeconds": {
+        "commercial": 138,
+        "station": 0,
+        "residential": 0,
+        "nightlife": 162
+      },
+      "cityOverlapSamples": 0,
+      "minimumCitySeparation": 0.5150020606793828,
+      "roadSteps": 0,
+      "rail": {
+        "originated": 24,
+        "boarded": 10,
+        "alighted": 24,
+        "delivered": 10,
+        "maxOnboard": 4,
+        "maxTransfers": 3,
+        "invalidMoves": 0,
+        "unsafeCrossings": 0,
+        "capacityRefusals": 0,
+        "doorBoardings": {
+          "car-3-south-2": 4,
+          "car-3-south-1": 2,
+          "car-2-south-1": 2,
+          "car-1-south-2": 1,
+          "car-2-south-2": 1
+        },
+        "doorAlightings": {
+          "car-2-south-1": 6,
+          "car-2-south-2": 6,
+          "car-1-south-1": 6,
+          "car-1-south-2": 6
+        }
+      },
+      "station": {
+        "started": 38,
+        "completed": 38,
+        "failures": 0,
+        "invalidMoves": 0,
+        "maxActive": 9,
+        "maxMovingWait": 14.266666666666627,
+        "maxGateWait": 6.566666666666653,
+        "maxStairWait": 9.73333333333331,
+        "maxVisitSeconds": 530.6999999999621,
+        "maxWaiting": 4,
+        "transitions": {
+          "riding": 34,
+          "approaching": 14,
+          "alighting": 24,
+          "returning": 25,
+          "entering": 11,
+          "descending": 25,
+          "gate-in": 11,
+          "paid": 36,
+          "ascending": 11,
+          "gate-out": 25,
+          "exiting": 25,
+          "platform": 11,
+          "waiting": 11,
+          "boarding": 10
+        }
+      },
+      "activities": {
+        "started": 101,
+        "completed": 101,
+        "cancelled": 3,
+        "pairs": 125,
+        "conversations": 7,
+        "maxActive": 6
+      },
+      "remaining": 0,
+      "reservations": 0,
+      "trainActive": false
+    },
+    {
+      "hour": 20.5,
+      "openSeconds": 900,
+      "drainSeconds": 600,
+      "ticks": 45000,
+      "arrivals": 7,
+      "departures": 7,
+      "boardingThresholdCrossings": 4,
+      "alightingThresholdCrossings": 35,
+      "movingRiderSamples": 57600,
+      "maxPositionStep": 0.13333333333335418,
+      "maxTransferStep": 0.05000000000000071,
+      "maxRiderOffsetError": 1.1546319456101628e-14,
+      "minimumSeparation": 0.56018666562845,
+      "invalidPositions": 0,
+      "unsafeCrossings": 0,
+      "overlaps": 0,
+      "unsafeDepartures": 0,
+      "capacityViolations": 0,
+      "gateConflicts": 0,
+      "wallHits": 0,
+      "vehicleOverlaps": 0,
+      "vehicleExits": 204,
+      "trainCycles": [
+        {
+          "clock": 100.13333333333023,
+          "stop": 1,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 265.6999999999957,
+          "stop": 2,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 407.50000000010857,
+          "stop": 3,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 553.4666666668206,
+          "stop": 4,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 693.6000000000265,
+          "stop": 5,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 850.7333333332169,
+          "stop": 6,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 999.2999999997485,
+          "stop": 7,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        }
+      ],
+      "densityAgentSeconds": {
+        "commercial": 42338,
+        "station": 3571,
+        "residential": 384,
+        "nightlife": 3968
+      },
+      "meanPopulation": {
+        "commercial": 47.04222222222222,
+        "station": 3.9677777777777776,
+        "residential": 0.4266666666666667,
+        "nightlife": 4.408888888888889
+      },
+      "doorDwellSeconds": {
+        "commercial": 179,
+        "station": 0,
+        "residential": 0,
+        "nightlife": 404
+      },
+      "cityOverlapSamples": 0,
+      "minimumCitySeparation": 0.5150000728288976,
+      "roadSteps": 0,
+      "rail": {
+        "originated": 35,
+        "boarded": 4,
+        "alighted": 35,
+        "delivered": 4,
+        "maxOnboard": 5,
+        "maxTransfers": 4,
+        "invalidMoves": 0,
+        "unsafeCrossings": 0,
+        "capacityRefusals": 0,
+        "doorBoardings": {
+          "car-2-south-1": 1,
+          "car-3-south-2": 2,
+          "car-3-south-1": 1
+        },
+        "doorAlightings": {
+          "car-2-south-2": 7,
+          "car-3-south-1": 7,
+          "car-2-south-1": 7,
+          "car-1-south-1": 7,
+          "car-1-south-2": 7
+        }
+      },
+      "station": {
+        "started": 45,
+        "completed": 45,
+        "failures": 0,
+        "invalidMoves": 0,
+        "maxActive": 12,
+        "maxMovingWait": 17.400000000000023,
+        "maxGateWait": 0,
+        "maxStairWait": 6.366666666666654,
+        "maxVisitSeconds": 962.6666666664194,
+        "maxWaiting": 4,
+        "transitions": {
+          "riding": 39,
+          "approaching": 10,
+          "alighting": 35,
+          "returning": 40,
+          "entering": 9,
+          "gate-in": 9,
+          "paid": 49,
+          "ascending": 9,
+          "descending": 40,
+          "platform": 9,
+          "gate-out": 40,
+          "exiting": 40,
+          "waiting": 9,
+          "boarding": 4
+        }
+      },
+      "activities": {
+        "started": 132,
+        "completed": 132,
+        "cancelled": 6,
+        "pairs": 261,
+        "conversations": 10,
+        "maxActive": 7
+      },
+      "remaining": 0,
+      "reservations": 0,
+      "trainActive": false
+    }
+  ]
+}

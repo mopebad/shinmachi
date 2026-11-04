@@ -1,0 +1,17 @@
+# Neighborhood reference sources
+
+Researched 4 November 2026. Shinmachi is fictional: these sources inform construction, frontage, land-use transitions and visual intensity, rather than reproducing Tokyo street maps.
+
+| Primary source | Observed reference and implementation use |
+|---|---|
+| [GO TOKYO: Shiodome and Shimbashi](https://www.gotokyo.org/en/destinations/central-tokyo/shiodome-and-shimbashi/index.html) | Compact restaurants and bars beside offices and railway infrastructure. Preserve the existing warm restaurant alley as a distinct cluster, with quieter office directories outside it. |
+| [GO TOKYO: Ebisu](https://www.gotokyo.org/en/destinations/southern-tokyo/ebisu/index.html), [station-area photograph](https://www.gotokyo.org/shared/images/pages/destinations/southern-tokyo/ebisu/images/area048_01.jpg) | Mixed commercial eras and scales, rather than a uniform luxury district. Inform three office facade families and uneven roof occupation. |
+| [GO TOKYO: Nakameguro](https://www.gotokyo.org/en/destinations/southern-tokyo/nakameguro/), [small-business photograph](https://www.gotokyo.org/shared/images/pages/destinations/southern-tokyo/nakameguro/images/area043_1027_11.jpg) | Restrained local frontage, small setbacks, planting and domestic scale. Inform recessed residential thresholds and small entry details; no river or new shopping street is added. |
+| [GO TOKYO: Koenji](https://www.gotokyo.org/en/destinations/western-tokyo/koenji/index.html), [shopping-street photograph](https://www.gotokyo.org/shared/images/pages/destinations/western-tokyo/koenji/images/area038_1008_16.jpg) | Independent storefront identities, equipment and signs attached to real facades, clear walking space. Preserve the existing individually authored alley and avoid retail signs on every apartment. |
+| [Meguro City: landscape plan](https://www.city.meguro.tokyo.jp/toshikeikaku/kusei/keikaku/keikankeikakuzennbun.html) | The March 2012 plan distinguishes residential, commercial, arterial and station-approach character. Its guidance on quieter housing, active ground floors, upper-floor composition and equipment placement informs district contrast. This is a design reference, not a claim of regulatory compliance. |
+| [Minato City: land-use districts and planning maps](https://www.city.minato.tokyo.jp/toshikeikaku/toshikeikaku/youtochiiki/youtochiiki.html) | Official geographic and land-use context for adjoining commercial, residential and railway areas. The linked interactive maps were not reconstructed in Shinmachi. |
+| [Existing railway research and licensed photographs](../rail-district/README.md) | Shimbashi entrance and Hamamatsucho urban context photographs, with JR East infrastructure and Tamachi development references, inform continuity with the completed station quarter. Original credits and licences remain there. |
+
+The Ebisu, Nakameguro and Koenji photographs were downloaded temporarily and visually inspected. GO TOKYO photographs are copyright Tokyo Convention & Visitors Bureau; they are linked here for reference only, are not redistributed in this repository and are not game textures. Municipal material is linked for research, not copied as artwork. The earlier railway photographs retain their stated public-domain/CC BY licences.
+
+All new building meshes, entry plaques, directories and fixtures are original procedural assets using the existing Shinmachi materials and Japanese sign atlas. No external image requests or new branded assets are introduced at runtime.

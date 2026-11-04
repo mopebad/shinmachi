@@ -35,7 +35,7 @@ export const REVIEW_VIEWS = { nightlife: 7, tower: 5, alley: 1, residential: 4, 
 
 export class CityWorld {
   readonly scene = new THREE.Scene();
-  readonly camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, .08, 650);
+  readonly camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, .08, 2200);
   readonly renderer: THREE.WebGLRenderer;
   readonly controller: PlayerController;
   readonly activity: CityActivity;
@@ -80,7 +80,7 @@ export class CityWorld {
     this.scene.add(this.sun, this.sun.target, this.ambient);
     this.sky = this.createSky(); this.scene.add(this.sky);
     this.district = new NeighborhoodGenerator(this.readSeed()).generate(); this.scene.add(this.district.group);
-    this.backdrop = new CityBackdrop(this.scene);
+    this.backdrop = new CityBackdrop(this.scene, this.readSeed());
     this.reflections = new StreetReflections(this.scene);
     // Bounded set of non-shadowed practical lights: pools of light, not a light per sign.
     for (const position of this.district.lamps.filter((_, i) => i % 2 === 0)) this.practical(position, 0xe3eee8, 36, 15);
@@ -220,7 +220,7 @@ export class CityWorld {
         col+=vec3(1.,.86,.63)*smoothstep(.9994,.9998,sun)*day*2.;
         float star=step(.9992,fract(sin(dot(floor(p.xz*850.),vec2(12.9898,78.233)))*43758.5453));
         col+=star*(1.-day)*smoothstep(.15,.5,h)*.16; gl_FragColor=vec4(col,1.); }` });
-    const sky = new THREE.Mesh(new THREE.SphereGeometry(600, 24, 16), material); sky.frustumCulled = false; return sky;
+    const sky = new THREE.Mesh(new THREE.SphereGeometry(2100, 24, 16), material); sky.frustumCulled = false; return sky;
   }
   start(): void {
     const tick = (now: number) => {

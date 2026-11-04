@@ -1,7 +1,8 @@
 import type * as THREE from 'three';
 import type { CitySimulation } from '../simulation/CitySimulation';
 import { trafficVoiceMix } from './AudioMix';
-import { businessOpen, dayState, districtZone, railServiceOpen, seededRandom } from '../simulation/WorldRules';
+import { businessOpen, dayState, railServiceOpen, seededRandom } from '../simulation/WorldRules';
+import {neighborhoodAt} from '../Neighborhoods';
 
 interface Voice { gain: GainNode; panner?: PannerNode; filter: BiquadFilterNode; engine?: OscillatorNode; engineGain?: GainNode; source?: AudioBufferSourceNode; vehicleId?: number;engineClass?:string;tickGain?:GainNode;indicatorEdge?:number }
 interface FootVoice {gain:GainNode;panner:PannerNode;filter:BiquadFilterNode;until:number}
@@ -124,10 +125,10 @@ export class CitySoundscape {
     this.master.gain.setTargetAtTime(audible ? this.volume : 0, now, .15); this.audible = audible && ctx.state === 'running';
     if (!audible) return;
     this.sources=[];
-    const residential = districtZone(p) === 'residential' ? 1 : 0, night = dayState(hour).night;
+    const residential = neighborhoodAt(p).weights.residential, night = dayState(hour).night;
     const set = (name: string, value: number) => this.voices.get(name)!.gain.gain.setTargetAtTime(value, now, .3);
-    set('city', (.022 - night * .008) * (residential ? .6 : 1));
-    set('distant', .018 * (residential ? .35 : 1));
+    set('city', (.022 - night * .008) * (1-residential*.4));
+    set('distant', .018 * (1-residential*.65));
     const chatter = (.75 + Math.sin(this.seconds * 1.6) * .12 + Math.sin(this.seconds * 2.7) * .1);
     const crowd=sim.pedestrians.filter(q=>q.active&&!q.rail&&Math.hypot(q.x-p.x,q.z-p.z)<20);
     const conversations=crowd.filter(q=>q.activity?.state==='acting'&&q.activity.kind==='conversation');

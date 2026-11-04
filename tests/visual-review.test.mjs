@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import { createHumanGeometry } from '../src/world/simulation/HumanGeometry.ts';
-import { skylineLayout } from '../src/world/generation/SkylineLayout.ts';
+import { skylineLayout, SKYLINE_FAMILIES, skylineFootprint, overlaps, PLAYABLE_ENVELOPE, RAIL_ENVELOPE, TOWER_ENVELOPE } from '../src/world/generation/SkylineLayout.ts';
 import { ContactShading } from '../src/world/effects/ContactShading.ts';
 import { pedestrianSurfaceHeight } from '../src/world/simulation/CharacterPose.ts';
 
@@ -16,13 +16,12 @@ test('human meshes retain adult proportions and lengths required by the walking 
   for (const g of Object.values(meshes)) { assert.ok([...g.attributes.position.array].every(Number.isFinite)); assert.ok([...g.attributes.normal.array].every(Number.isFinite)); assert.ok(g.boundingSphere.radius > 0); g.dispose(); }
 });
 test('background layouts are deterministic, varied and outside protected playable/landmark space', () => {
-  const a = skylineLayout(), b = skylineLayout(); assert.deepEqual(a, b); assert.ok(a.length > 60); assert.equal(new Set(a.map(s => s.family)).size, 5);
+  const a = skylineLayout(), b = skylineLayout(); assert.deepEqual(a, b); assert.ok(a.length > 60); assert.equal(new Set(a.map(s => s.family)).size, SKYLINE_FAMILIES.length);
   assert.ok(new Set(a.map(s => s.floors)).size > 12); assert.ok(a.some(s => s.yaw !== 0));
   for (const s of a) {
     const hx = (Math.abs(Math.cos(s.yaw)) * s.width + Math.abs(Math.sin(s.yaw)) * s.depth) / 2, hz = (Math.abs(Math.cos(s.yaw)) * s.depth + Math.abs(Math.sin(s.yaw)) * s.width) / 2;
     assert.ok(!(s.x - hx < 66 && s.x + hx > -66 && s.z - hz < 68 && s.z + hz > -68));
-    assert.ok(!(s.x - hx < 10 && s.x + hx > -22 && s.z - hz < -198 && s.z + hz > -231));
-    if (s.yaw === 0) assert.ok(Math.abs(s.x) - hx > 8);
+    for(const protectedSpace of [PLAYABLE_ENVELOPE,RAIL_ENVELOPE,TOWER_ENVELOPE])assert.ok(!overlaps(skylineFootprint(s),protectedSpace));
   }
 });
 test('contact depth excludes glass/effects and restores every original visibility state', () => {

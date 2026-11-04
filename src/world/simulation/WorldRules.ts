@@ -1,13 +1,12 @@
+import {neighborhoodAt} from '../Neighborhoods.ts';
+
 export type Point = { x: number; z: number };
 export type Axis = 'NS' | 'EW';
 export type Approach = 'N' | 'S' | 'E' | 'W';
 export type Light = 'red' | 'amber' | 'green';
 export type Business = 'restaurant' | 'cafe' | 'retail' | 'convenience' | 'residential' | 'office';
 export function districtZone(p: Point): 'commercial' | 'alley' | 'station' | 'residential' {
-  if (p.z < -36 && p.x > 6 && p.x < 27) return 'station';
-  if (Math.abs(p.z + 25) < 3.1 && Math.abs(p.x) > 5) return 'alley';
-  if (p.x > 26 && Math.abs(p.z - 12) > 9) return 'residential';
-  return 'commercial';
+  const id=neighborhoodAt(p).id;return id==='nightlife'?'alley':id;
 }
 export const BUSINESSES: Business[] = ['restaurant', 'cafe', 'retail', 'convenience', 'residential', 'office'];
 export function signBusiness(index: number): Business {

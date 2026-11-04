@@ -1,0 +1,59 @@
+{
+  "contracts": {
+    "doors": true,
+    "shopfronts": true,
+    "station": true,
+    "lamps": true,
+    "navigation": true
+  },
+  "parcels": 20,
+  "parts": 5549,
+  "triangles": 78577,
+  "trainHits": [],
+  "roadHits": [],
+  "routeHits": [],
+  "unreservedLowParts": [],
+  "bodySamples": 18477,
+  "shaderErrors": 0,
+  "allNewCollidersPresent": true,
+  "pierCollidersPresent": true,
+  "doorApproaches": [
+    {
+      "id": "car-1-south-1",
+      "clear": true,
+      "gap": 0.054999999999999716,
+      "sillError": 8.881784197001252e-16
+    },
+    {
+      "id": "car-1-south-2",
+      "clear": true,
+      "gap": 0.054999999999999716,
+      "sillError": 8.881784197001252e-16
+    },
+    {
+      "id": "car-2-south-1",
+      "clear": true,
+      "gap": 0.054999999999999716,
+      "sillError": 8.881784197001252e-16
+    },
+    {
+      "id": "car-2-south-2",
+      "clear": true,
+      "gap": 0.054999999999999716,
+      "sillError": 8.881784197001252e-16
+    },
+    {
+      "id": "car-3-south-1",
+      "clear": true,
+      "gap": 0.054999999999999716,
+      "sillError": 8.881784197001252e-16
+    },
+    {
+      "id": "car-3-south-2",
+      "clear": true,
+      "gap": 0.054999999999999716,
+      "sillError": 8.881784197001252e-16
+    }
+  ],
+  "assets": []
+}

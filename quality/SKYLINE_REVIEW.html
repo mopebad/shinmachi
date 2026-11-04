@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Shinmachi skyline comparisons</title>
+<style>body{margin:24px auto;padding:0 20px;max-width:1800px;background:#111a21;color:#e7edeb;font:16px system-ui}p{line-height:1.5}select{font:inherit;padding:8px;max-width:100%}a{color:#a6d7d0}.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}figure{margin:0}figcaption{padding:8px 0}img{width:100%;height:auto;display:block;background:#080d12}@media(max-width:800px){.pair{grid-template-columns:1fr}}</style>
+<h1>Shinmachi skyline comparisons</h1>
+<p>Actual 1920 × 1080 WebGL captures, seed 8412, simulation clock 300 seconds, After Rain with reflections and contact shading. Camera transforms and FOV match in each pair. Select a view, or open either original image for full-size inspection.</p>
+<label>View <select id="view"></select></label>
+<div class="pair"><figure><figcaption>Before</figcaption><a id="before-link"><img id="before" alt="Original skyline"></a></figure><figure><figcaption>After</figcaption><a id="after-link"><img id="after" alt="Revised skyline"></a></figure></div>
+<p><a href="./SKYLINE_DEVELOPMENT_1A.md">Implementation, measurements and limitations</a> · <a href="./skyline-validation.json">Spatial and replay audit</a> · <a href="./references/skyline/README.md">Tokyo references and photo credits</a> · <a href="/?view=8&amp;seed=8412">Explore the living city</a></p>
+<script type="module">
+const views=[['hero-night','Hero Street · 20:30'],['hero-day','Hero Street · 13:00'],['tower-night','Tower Avenue · 20:30'],['tower-day','Tower Avenue · 13:00'],['railway-night','Railway approach · 20:30'],['overview-night','District overview · 20:30'],['overview-day','District overview · 13:00'],['occlusion-night','West sidewalk / natural occlusion · 20:30']];
+const pick=document.querySelector('#view');for(const [value,label]of views)pick.add(new Option(label,value));
+function load(){for(const stage of ['before','after']){const url='./captures/skyline-'+pick.value+'-'+stage+'.png';document.querySelector('#'+stage).src=url;document.querySelector('#'+stage+'-link').href=url;}}pick.addEventListener('change',load);load();
+</script></html>

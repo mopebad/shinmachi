@@ -1,0 +1,195 @@
+{
+  "baselineCommit": "37d8733",
+  "clock": 300.000000000023,
+  "method": "Alternating former/new backdrop in the same paused live city; old far clip/sky radius restored for baseline. Whole-composer synchronous wall timings and paused-render frame intervals. Host load affects both.",
+  "rounds": [
+    {
+      "kind": "before",
+      "cost": {
+        "viewport": [
+          1323,
+          804
+        ],
+        "pixelRatio": 1,
+        "medianMs": 9.099999904632568,
+        "p95Ms": 23.40000009536743,
+        "stats": {
+          "fps": 92,
+          "drawCalls": 1110,
+          "triangles": 5002933,
+          "buildings": 57,
+          "pedestrians": 56,
+          "vehicles": 11
+        },
+        "method": "30 synchronous composite renders after 8 warmups, gl.finish; CPU+GPU composite wall time, not GPU-only"
+      },
+      "frames": {
+        "frames": 118,
+        "elapsedMs": 2027.199999999997,
+        "aggregateFps": 58.20836621941603,
+        "medianMs": 16.69999999999709,
+        "p95Ms": 29.19999999999709,
+        "p99Ms": 29.19999999999709,
+        "worstMs": 29.30000000000291,
+        "viewport": [
+          1323,
+          777
+        ],
+        "renderPixelRatio": 1,
+        "devicePixelRatio": 1,
+        "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.145.0 Chrome/150.0.7871.250 Electron/43.8.3 Safari/537.36",
+        "stats": {
+          "fps": 72,
+          "drawCalls": 1111,
+          "triangles": 5004653,
+          "buildings": 57,
+          "pedestrians": 56,
+          "vehicles": 11
+        },
+        "note": "Browser frame intervals; does not isolate GPU execution time."
+      }
+    },
+    {
+      "kind": "after",
+      "cost": {
+        "viewport": [
+          1323,
+          804
+        ],
+        "pixelRatio": 1,
+        "medianMs": 9.5,
+        "p95Ms": 27.799999952316284,
+        "stats": {
+          "fps": 72,
+          "drawCalls": 1121,
+          "triangles": 4726705,
+          "buildings": 57,
+          "pedestrians": 56,
+          "vehicles": 11
+        },
+        "method": "30 synchronous composite renders after 8 warmups, gl.finish; CPU+GPU composite wall time, not GPU-only"
+      },
+      "frames": {
+        "frames": 121,
+        "elapsedMs": 2010.3999999999942,
+        "aggregateFps": 60.18702745722262,
+        "medianMs": 12.599999999998545,
+        "p95Ms": 29.200000000004366,
+        "p99Ms": 33.400000000001455,
+        "worstMs": 33.5,
+        "viewport": [
+          1323,
+          777
+        ],
+        "renderPixelRatio": 1,
+        "devicePixelRatio": 1,
+        "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.145.0 Chrome/150.0.7871.250 Electron/43.8.3 Safari/537.36",
+        "stats": {
+          "fps": 71,
+          "drawCalls": 1122,
+          "triangles": 4728425,
+          "buildings": 57,
+          "pedestrians": 56,
+          "vehicles": 11
+        },
+        "note": "Browser frame intervals; does not isolate GPU execution time."
+      }
+    },
+    {
+      "kind": "before",
+      "cost": {
+        "viewport": [
+          1323,
+          804
+        ],
+        "pixelRatio": 1,
+        "medianMs": 9.399999856948853,
+        "p95Ms": 26.799999952316284,
+        "stats": {
+          "fps": 71,
+          "drawCalls": 1110,
+          "triangles": 5002933,
+          "buildings": 57,
+          "pedestrians": 56,
+          "vehicles": 11
+        },
+        "method": "30 synchronous composite renders after 8 warmups, gl.finish; CPU+GPU composite wall time, not GPU-only"
+      },
+      "frames": {
+        "frames": 120,
+        "elapsedMs": 2002.0999999999913,
+        "aggregateFps": 59.937066080615615,
+        "medianMs": 16.69999999999709,
+        "p95Ms": 29.19999999999709,
+        "p99Ms": 29.29999999998836,
+        "worstMs": 29.30000000000291,
+        "viewport": [
+          1323,
+          777
+        ],
+        "renderPixelRatio": 1,
+        "devicePixelRatio": 1,
+        "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.145.0 Chrome/150.0.7871.250 Electron/43.8.3 Safari/537.36",
+        "stats": {
+          "fps": 72,
+          "drawCalls": 1111,
+          "triangles": 5004653,
+          "buildings": 57,
+          "pedestrians": 56,
+          "vehicles": 11
+        },
+        "note": "Browser frame intervals; does not isolate GPU execution time."
+      }
+    },
+    {
+      "kind": "after",
+      "cost": {
+        "viewport": [
+          1323,
+          804
+        ],
+        "pixelRatio": 1,
+        "medianMs": 9.099999904632568,
+        "p95Ms": 17.59999990463257,
+        "stats": {
+          "fps": 72,
+          "drawCalls": 1121,
+          "triangles": 4726705,
+          "buildings": 57,
+          "pedestrians": 56,
+          "vehicles": 11
+        },
+        "method": "30 synchronous composite renders after 8 warmups, gl.finish; CPU+GPU composite wall time, not GPU-only"
+      },
+      "frames": {
+        "frames": 115,
+        "elapsedMs": 2022.8999999999942,
+        "aggregateFps": 56.84907805625603,
+        "medianMs": 16.69999999999709,
+        "p95Ms": 29.30000000000291,
+        "p99Ms": 33.5,
+        "worstMs": 41.69999999999709,
+        "viewport": [
+          1323,
+          777
+        ],
+        "renderPixelRatio": 1,
+        "devicePixelRatio": 1,
+        "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.145.0 Chrome/150.0.7871.250 Electron/43.8.3 Safari/537.36",
+        "stats": {
+          "fps": 64,
+          "drawCalls": 1122,
+          "triangles": 4728425,
+          "buildings": 57,
+          "pedestrians": 56,
+          "vehicles": 11
+        },
+        "note": "Browser frame intervals; does not isolate GPU execution time."
+      }
+    }
+  ]
+}

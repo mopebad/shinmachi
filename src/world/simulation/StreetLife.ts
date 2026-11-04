@@ -5,6 +5,7 @@ import type {Bounds} from '../types.ts';
 import {businessOpen,seededRandom} from './WorldRules.ts';
 import type {Business,Point} from './WorldRules.ts';
 import {walkingDistance} from './Locomotion.ts';
+import {neighborhoodOptionalWeight} from '../Neighborhoods.ts';
 
 export type StreetAction='phone'|'browse'|'restaurant-wait'|'look-around'|'conversation';
 export interface ActivityZone {id:number;anchor:number;business:Business;spots:Point[];facing:number}
@@ -41,7 +42,7 @@ export class StreetLife {
     const point=zone.spots[spot];return peers.every(q=>!q.active||!q.activity&&Math.hypot(q.x-point.x,q.z-point.z)>.65||q.activity&&(q.activity.zone!==zone.id||q.activity.spot!==spot)&&Math.hypot(q.x-point.x,q.z-point.z)>.65);
   }
   consider(p:Pedestrian,peers:Pedestrian[],clock:number,hour:number):void {
-    if(p.activity||p.station||p.crossing||p.rail||p.retiring||(p.activityCooldown??0)>clock||this.rng()>p.identity.optionalChance)return;
+    if(p.activity||p.station||p.crossing||p.rail||p.retiring||(p.activityCooldown??0)>clock||this.rng()>p.identity.optionalChance*neighborhoodOptionalWeight(p))return;
     const zone=this.zones.find(z=>(z.anchor===p.node||z.spots.some(s=>Math.hypot(s.x-p.x,s.z-p.z)<1.65))&&businessOpen(z.business,hour));if(!zone)return;
     const index=zone.spots.findIndex((s,i)=>this.free(zone,i,peers)&&segmentClear(p,s,this.bounds,.29));if(index<0)return;
     const kind:StreetAction=zone.business==='restaurant'?'restaurant-wait':zone.business==='retail'?'browse':p.identity.uid%3===0?'look-around':'phone';

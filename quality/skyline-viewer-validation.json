@@ -1,0 +1,124 @@
+{
+  "pairs": [
+    {
+      "view": "hero-night",
+      "images": [
+        {
+          "file": "skyline-hero-night-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "file": "skyline-hero-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "hero-day",
+      "images": [
+        {
+          "file": "skyline-hero-day-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "file": "skyline-hero-day-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "tower-night",
+      "images": [
+        {
+          "file": "skyline-tower-night-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "file": "skyline-tower-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "tower-day",
+      "images": [
+        {
+          "file": "skyline-tower-day-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "file": "skyline-tower-day-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "railway-night",
+      "images": [
+        {
+          "file": "skyline-railway-night-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "file": "skyline-railway-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "overview-night",
+      "images": [
+        {
+          "file": "skyline-overview-night-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "file": "skyline-overview-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "overview-day",
+      "images": [
+        {
+          "file": "skyline-overview-day-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "file": "skyline-overview-day-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    },
+    {
+      "view": "occlusion-night",
+      "images": [
+        {
+          "file": "skyline-occlusion-night-before.png",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "file": "skyline-occlusion-night-after.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    }
+  ]
+}

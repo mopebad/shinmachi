@@ -8,24 +8,32 @@ import { addRailwayDetails } from './RailwayDetails';
 import { signBusiness } from '../simulation/WorldRules';
 import { STATION } from './StationLayout';
 import { onHeroStreet, heroStreetFamily, heroRoadDetails } from './HeroStreet';
+import { buildRailDistrict } from './RailDistrict';
+import { railPierObstacles } from './RailDistrictLayout';
+import {neighborhoodBuilding,neighborhoodParcel,neighborhoodFootprint,fitNeighborhoodParcel,NEIGHBORHOODS} from '../Neighborhoods';
 
 /** Metre-scale compact district. Each frontage uses the same local +Z kit convention. */
 export class NeighborhoodGenerator {
   constructor(private readonly seed = 8412) {}
   generate(): District {
     const b = new CityBatch(), m = new Materials(), rng = random(this.seed);
-    const kit = new BuildingKit(b, m, rng), colliders: Bounds[] = [], doors: Doorway[] = [], lamps: THREE.Vector3[] = [], shopfronts: Shopfront[] = [];
+    const kit = new BuildingKit(b, m, rng,this.seed), colliders: Bounds[] = [], doors: Doorway[] = [], lamps: THREE.Vector3[] = [], shopfronts: Shopfront[] = [],parcels:object[]=[];
     let buildings = 0, heroStoreBuilt = false, heroIndex = 0;
-    const heroFrontages: object[] = [];
+    const heroFrontages: object[] = [],occupied:Bounds[]=[];
     const add = (s: BuildingSpec, main = false) => {
       // Select one existing main-street convenience branch without drawing RNG or moving any parcel/threshold.
       if (!heroStoreBuilt && main && s.kind === 'convenience' && s.x > 0 && s.z > 20.5) { s.heroStore = true; heroStoreBuilt = true; }
       if (main && onHeroStreet(s)) { s.heroStreet = heroIndex++; heroFrontages.push({ ...s, family: heroStreetFamily(s) }); }
-      kit.build(s); buildings++;
+      const rendered=fitNeighborhoodParcel(neighborhoodParcel(s),occupied);kit.build(s,rendered);if(rendered.renderable)buildings++;
       const corners = [[-s.width / 2 - .15, .1], [s.width / 2 + .95, -s.depth]].map(([x, z]) => new THREE.Vector3(x, 0, z).applyAxisAngle(new THREE.Vector3(0, 1, 0), s.rotation).add(new THREE.Vector3(s.x, 0, s.z)));
-      colliders.push({ minX: Math.min(corners[0].x, corners[1].x), maxX: Math.max(corners[0].x, corners[1].x), minZ: Math.min(corners[0].z, corners[1].z), maxZ: Math.max(corners[0].z, corners[1].z) });
+      const originalFootprint={ minX: Math.min(corners[0].x, corners[1].x), maxX: Math.max(corners[0].x, corners[1].x), minZ: Math.min(corners[0].z, corners[1].z), maxZ: Math.max(corners[0].z, corners[1].z) };
+      let footprint=originalFootprint;
+      if(rendered.railAdjusted||rendered.cornerAdjusted||rendered.parcelAdjusted)footprint=neighborhoodFootprint(rendered);
+      if(rendered.renderable)colliders.push(footprint);
+      if(rendered.renderable)occupied.push(neighborhoodBuilding(s,this.seed).replace?neighborhoodFootprint(rendered):originalFootprint);
+      parcels.push({...s,rendered,identity:neighborhoodBuilding(rendered,this.seed),originalFootprint,footprint});
       const business = s.kind === 'apartment' ? 'residential' : s.kind === 'office' ? 'office' : s.kind === 'convenience' ? 'convenience' : signBusiness(s.shop);
-      shopfronts.push({ x: s.x, z: s.z, rotation: s.rotation, width: s.width, business });
+      if(rendered.renderable)shopfronts.push({ x: rendered.x, z: rendered.z, rotation: rendered.rotation, width: rendered.width, business });
       if (main) {
         const point = new THREE.Vector3(s.width * .2, 0, .48).applyAxisAngle(THREE.Object3D.DEFAULT_UP, s.rotation);
         doors.push({ x: s.x + point.x, z: s.z + point.z, sidewalkX: s.x < 0 ? -4.55 : 4.55, business });
@@ -59,13 +67,17 @@ export class NeighborhoodGenerator {
       add({ x, z, rotation: i < 6 ? Math.PI / 2 : -Math.PI / 2, width: 9 + rng() * 4, depth: 8 + rng() * 7, floors: 7 + Math.floor(rng() * 9), kind: 'office', palette: 4 + i % 4, shop: 15 });
     }
     b.origin(); this.streetProps(b, m, lamps, rng, colliders); this.railway(b, m, colliders); addRailwayDetails(b, m);
+    const railDistrict = buildRailDistrict(m, this.seed, colliders);
+    colliders.push(...railDistrict.colliders);
     const station = stationDetails(b, m), playerColliders = [...colliders];
     colliders.push(...station.spatial.npcReservation);
     // Only actual ground structure augments the existing flat navigation obstacles. Upper guards are height-aware.
     colliders.push(...station.spatial.boxes.filter(box=>box.collision&&box.minY<.3).map(({minX,maxX,minZ,maxZ})=>({minX,maxX,minZ,maxZ})));
-    const group = b.finish(m.signs); group.add(station.group); group.name = `Shinmachi · seed ${this.seed}`;
+    const group = b.finish(m.signs); group.add(station.group, railDistrict.group); group.name = `Shinmachi · seed ${this.seed}`;
     group.userData.heroFrontages = heroFrontages;
-    return { group, colliders, playerColliders, station: station.spatial, doors, shopfronts, lamps, materials: { signs: m.signs, windows: m.windows, warmWindows: m.warmWindows, lamps: m.lamps, shop: m.shop, lantern: m.lantern, businesses: m.businesses }, stats: { buildings, instances: b.instances } };
+    group.userData.railDistrict = railDistrict.group.userData.railDistrict;
+    group.userData.neighborhoods={definitions:NEIGHBORHOODS,parcels,seed:this.seed};
+    return { group, colliders, playerColliders, station: station.spatial, doors, shopfronts, lamps, materials: { signs: m.signs, windows: m.windows, warmWindows: m.warmWindows, lamps: m.lamps, shop: m.shop, lantern: m.lantern, businesses: m.businesses }, stats: { buildings:buildings+railDistrict.buildings, instances: b.instances+railDistrict.instances } };
   }
   private roads(b: CityBatch, m: Materials): void {
     b.b(m.asphalt, 0, -.12, 0, 150, .2, 150);
@@ -197,10 +209,15 @@ export class NeighborhoodGenerator {
     b.b(m.cream, 0, 7, -60.15, 142, 1.2, .24);
     // The south parapet stops at the platform; it no longer cuts across the stair access.
     for(const [a,c] of [[-71,STATION.platformMinX],[STATION.platformMaxX,71]]) b.b(m.cream,(a+c)/2,7,-53.85,c-a,1.2,.24);
-    for (let x = -65; x <= 65; x += 16) {
-      if (Math.abs(x) < 5) continue;
-      b.b(m.facades[1], x, 3, -57, 1.2, 6, 2.6); b.b(m.facades[1], x, 5.5, -57, 3.8, .8, 3.8); colliders.push({ minX: x - .7, maxX: x + .7, minZ: -58.4, maxZ: -55.6 });
+    for (const pier of railPierObstacles()) {
+      const x=(pier.minX+pier.maxX)/2;b.section(pier.id);
+      b.b(m.facades[1], x, 3, -57, 1.2, 6, 2.6);
+      // Caps carry both edge girders and the road portal beams, rather than ending inside them.
+      b.b(m.facades[1], x, 5.5, -57, 3.8, .8, 5.3);
+      b.b(m.cream,x,.12,-57,pier.maxX-pier.minX,.24,pier.maxZ-pier.minZ);
+      colliders.push({minX:pier.minX,maxX:pier.maxX,minZ:pier.minZ,maxZ:pier.maxZ});
     }
+    b.section();
     for (const z of [-57.75, -56.25]) b.b(m.metal, 0, 6.93, z, 142, .18, .09);
     for (let x = -70; x < 70; x += .8) b.b(m.wood, x, 6.8, -57, .18, .15, 2.3);
     for (let x = -60; x < 70; x += 15) {

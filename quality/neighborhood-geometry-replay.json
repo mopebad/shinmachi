@@ -1,0 +1,7 @@
+{
+  "seed": 8412,
+  "parcels": true,
+  "colliders": true,
+  "doors": true,
+  "instances": true
+}

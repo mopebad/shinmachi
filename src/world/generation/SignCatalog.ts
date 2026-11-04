@@ -18,6 +18,7 @@ export const SHOP_NAMES = [
 ];
 
 export const KONBINI_SIGNS = { fascia: 32, coffee: 33, fresh: 34, services: 35, door: 36, drinks: 37, groceries: 38, price: 39, hours: 40 } as const;
+export const NEIGHBORHOOD_SIGNS={walkup:41,mansion:42,residence:43,apartments:44,directory:45} as const;
 export const SIGN_NAMES: readonly (readonly string[])[] = [...SHOP_NAMES,
   ['青空マート', 'AOZORA MART   /   24 HOURS', '#e5eadc', '#123e43'],
   ['挽きたて珈琲', 'AOZORA COFFEE   120円', '#f2e1b3', '#20494b'],
@@ -28,6 +29,11 @@ export const SIGN_NAMES: readonly (readonly string[])[] = [...SHOP_NAMES,
   ['お菓子・日用品', 'GROCERIES   /   青空マート', '#1b5054', '#e9eddf'],
   ['青空のお買得', '税込 128円   /   158円   /   198円', '#eae4cb', '#7b3427'],
   ['24', '時間営業', '#e5eadc', '#123e43'],
+  ['東町荘', 'HIGASHI APARTMENTS', '#b9b4a2', '#34483d'],
+  ['青葉ハイツ', 'AOBA HEIGHTS', '#746357', '#ede3cb'],
+  ['東町住宅', 'HIGASHI RESIDENCES', '#d2c6aa', '#3b443b'],
+  ['新町レジデンス', 'SHINMACHI RESIDENCE', '#71817e', '#eae5d8'],
+  ['テナント案内', 'TENANT DIRECTORY', '#d7d6c8', '#2a4043'],
 ];
 /** Display identity never depends on the sign format or an unrelated modulo lookup. */
 export function storefrontSign(kind: string, shop: number): number {

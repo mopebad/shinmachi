@@ -1,0 +1,233 @@
+{
+  "viewport": [
+    1323,
+    804
+  ],
+  "clock": 300.000000000023,
+  "view": "station",
+  "hour": 20.5,
+  "gpuTimerSupported": true,
+  "withContext": {
+    "medianWallMs": 5.5,
+    "medianGpuMs": 10.7576,
+    "drawCalls": 563,
+    "triangles": 3823396
+  },
+  "withoutContext": {
+    "medianWallMs": 3.799999952316284,
+    "medianGpuMs": 6.325536,
+    "drawCalls": 423,
+    "triangles": 3590671
+  },
+  "runs": [
+    {
+      "visible": false,
+      "wallMs": 5.3999998569488525,
+      "gpuMs": 6.325536,
+      "stats": {
+        "fps": 126,
+        "drawCalls": 423,
+        "triangles": 3590671,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": true,
+      "wallMs": 6.1000001430511475,
+      "gpuMs": 10.892288,
+      "stats": {
+        "fps": 128,
+        "drawCalls": 563,
+        "triangles": 3823396,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": true,
+      "wallMs": 5.200000047683716,
+      "gpuMs": 3.905984,
+      "stats": {
+        "fps": 123,
+        "drawCalls": 563,
+        "triangles": 3823396,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": false,
+      "wallMs": 3.799999952316284,
+      "gpuMs": 14.064256,
+      "stats": {
+        "fps": 120,
+        "drawCalls": 423,
+        "triangles": 3590671,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": false,
+      "wallMs": 2.5,
+      "gpuMs": 10.880928,
+      "stats": {
+        "fps": 114,
+        "drawCalls": 423,
+        "triangles": 3590671,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": true,
+      "wallMs": 5.5,
+      "gpuMs": 1.516448,
+      "stats": {
+        "fps": 112,
+        "drawCalls": 563,
+        "triangles": 3823396,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": true,
+      "wallMs": 6,
+      "gpuMs": 10.7576,
+      "stats": {
+        "fps": 114,
+        "drawCalls": 563,
+        "triangles": 3823396,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": false,
+      "wallMs": 3.799999952316284,
+      "gpuMs": 1.874816,
+      "stats": {
+        "fps": 113,
+        "drawCalls": 423,
+        "triangles": 3590671,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": false,
+      "wallMs": 3.4000000953674316,
+      "gpuMs": 3.052064,
+      "stats": {
+        "fps": 111,
+        "drawCalls": 423,
+        "triangles": 3590671,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": true,
+      "wallMs": 4.200000047683716,
+      "gpuMs": 2.994336,
+      "stats": {
+        "fps": 105,
+        "drawCalls": 563,
+        "triangles": 3823396,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": true,
+      "wallMs": 4.200000047683716,
+      "gpuMs": 11.808224,
+      "stats": {
+        "fps": 101,
+        "drawCalls": 563,
+        "triangles": 3823396,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": false,
+      "wallMs": 4.8999998569488525,
+      "gpuMs": 3.06064,
+      "stats": {
+        "fps": 97,
+        "drawCalls": 423,
+        "triangles": 3590671,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": false,
+      "wallMs": 4.799999952316284,
+      "gpuMs": 11.490144,
+      "stats": {
+        "fps": 100,
+        "drawCalls": 423,
+        "triangles": 3590671,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": true,
+      "wallMs": 7.1000001430511475,
+      "gpuMs": 11.67728,
+      "stats": {
+        "fps": 100,
+        "drawCalls": 563,
+        "triangles": 3823396,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": true,
+      "wallMs": 3.5999999046325684,
+      "gpuMs": 1.991712,
+      "stats": {
+        "fps": 98,
+        "drawCalls": 563,
+        "triangles": 3823396,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    },
+    {
+      "visible": false,
+      "wallMs": 3.1999998092651367,
+      "gpuMs": 2.634976,
+      "stats": {
+        "fps": 100,
+        "drawCalls": 423,
+        "triangles": 3590671,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      }
+    }
+  ],
+  "method": "Eight alternating on/off pairs; four warmups per sample. Current revised piers remain in both. Same simulation and camera; gl.finish wall cost and EXT_disjoint_timer_query_webgl2 GPU cost. Off is an isolation measurement, not the historic before scene."
+}

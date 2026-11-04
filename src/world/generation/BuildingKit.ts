@@ -5,15 +5,24 @@ import { signBusiness } from '../simulation/WorldRules';
 import { storefrontSign } from './SignCatalog';
 import { buildConvenienceStore, KONBINI_ROOM_DEPTH } from './ConvenienceStore';
 import { HeroStreetKit } from './HeroStreet';
+import {NeighborhoodArchitecture} from './NeighborhoodArchitecture';
+import {neighborhoodBuilding,neighborhoodParcel,parcelHash} from '../Neighborhoods';
 
 export type Archetype = 'izakaya' | 'retail' | 'apartment' | 'office' | 'convenience';
 export interface BuildingSpec { x: number; z: number; rotation: number; width: number; depth: number; floors: number; kind: Archetype; palette: number; shop: number; heroStore?: boolean; heroStreet?: number }
 
 export class BuildingKit {
   private hero?: HeroStreetKit;
-  constructor(private readonly b: CityBatch, private readonly m: Materials, private readonly rng: () => number) {}
+  private local?:NeighborhoodArchitecture;
+  constructor(private readonly b: CityBatch, private readonly m: Materials, private readonly rng: () => number,private readonly seed=8412) {}
 
-  build(s: BuildingSpec): void {
+  build(s: BuildingSpec,rendered=neighborhoodParcel(s)): void {
+    if(neighborhoodBuilding(s,this.seed).replace){
+      this.b.withoutGeometry(()=>this.legacyBuild(s));
+      if(rendered.renderable){this.local??=new NeighborhoodArchitecture(this.b,this.m,this.seed);this.local.build(rendered);}
+    }else this.legacyBuild(s);
+  }
+  private legacyBuild(s:BuildingSpec):void {
     const { width: w, depth: d, floors, kind } = s, h = floors * 2.85 + .3;
     const b = this.b, m = this.m, facade = m.facades[s.palette % m.facades.length], hero = s.heroStreet !== undefined;
     if (hero) this.hero ??= new HeroStreetKit(b, m);
@@ -69,7 +78,8 @@ export class BuildingKit {
       for (let i = 0; i <= columns; i++) { b.b(m.metal, -w / 2 + i * w / columns, upperStart / 2 + 1.5, .18, .09, upperStart - 3, .16); if (stepped) b.b(m.metal, -upperW / 2 + i * upperW / columns, (upperStart + h) / 2, upperFront + .18, .09, h - upperStart, .16); }
     }
     this.store(s);
-    this.roof(upperW, upperD, h, kind, upperFront);
+    b.section(`neighborhood-roof:${s.x.toFixed(3)}:${s.z.toFixed(3)}`);
+    this.roof(upperW, upperD, h, kind, upperFront,parcelHash(s,this.seed)%7);b.section();
     if (kind === 'apartment' || (s.palette % 3 === 0 && floors < 6)) this.stairs(w, d, floors);
     b.origin();
   }
@@ -192,22 +202,21 @@ export class BuildingKit {
       for (let j = 0; j < 4; j++) b.part('sphere', m.green, -w / 2 + .45 + i * .5 + j % 2 * .2, .52, .6 + Math.floor(j / 2) * .2, .12, .1, .12);
     }
   }
-  private roof(w: number, d: number, h: number, kind: Archetype, front = 0): void {
+  private roof(w: number, d: number, h: number, kind: Archetype, front = 0,variant=0): void {
     const b = this.b, m = this.m;
     b.b(m.dark, 0, h + .08, front - d / 2, w + .1, .16, d + .1);
     for (const z of [front, front - d]) b.b(m.cream, 0, h + .3, z, w + .12, .5, .16);
     for (const x of [-w / 2, w / 2]) b.b(m.cream, x, h + .3, front - d / 2, .14, .5, d);
-    b.b(m.facades[1], w * .15, h + .85, front - d + 2.2, w * .43, 1.7, 2.8);
-    b.b(m.metal, w * .15, h + 1.75, front - d + 2.2, w * .43 + .2, .15, 3);
-    for (let i = 0; i < 2; i++) { b.b(m.cream, -w * .24, h + .4, front - 2 - i * 1.7, .9, .7, 1.15); b.part('cylinder', m.dark, -w * .24, h + .77, front - 2 - i * 1.7, .3, .04, .3); }
-    if (kind === 'apartment' || this.rng() > .45) {
-      for (const x of [-.55, .55]) for (const z of [-.55, .55]) b.b(m.metal, x, h + .55, front - d / 2 + z, .07, 1.1, .07);
-      b.part('cylinder', m.cream, 0, h + 1.7, front - d / 2, .9, 1.3, .9);
-      b.part('cylinder', m.metal, 0, h + 2.38, front - d / 2, .95, .09, .95);
-      for (const y of [h + 1.2, h + 2.1]) b.part('cylinder', m.metal, 0, y, front - d / 2, .915, .04, .915);
+    if(variant%3!==0){b.b(m.facades[1],w*.25,h+.85,front-d*.76,w*.32,1.7,2.4);b.b(m.metal,w*.25,h+1.75,front-d*.76,w*.32+.12,.1,2.52);}
+    for(let i=0;i<1+variant%2;i++){b.b(m.cream,w*.25,h+.4,front-1.6-i*1.4,.85,.7,1.05);b.part('cylinder',m.dark,w*.25,h+.77,front-1.6-i*1.4,.27,.04,.27);}
+    const legacyTank=kind==='apartment'||this.rng()>.45;
+    if (legacyTank&&variant%3===1) {
+      for (const x of [-.55, .55]) for (const z of [-.55, .55]) b.b(m.metal,-w*.28+x,h+.55,front-d*.56+z,.07,1.1,.07);
+      b.part('cylinder',m.cream,-w*.28,h+1.7,front-d*.56,.9,1.3,.9);
+      b.part('cylinder',m.metal,-w*.28,h+2.38,front-d*.56,.95,.09,.95);
+      for(const y of [h+1.2,h+2.1])b.part('cylinder',m.metal,-w*.28,y,front-d*.56,.915,.04,.915);
     }
-    b.part('cylinder', m.metal, -w * .35, h + 1.8, front - d + 1, .025, 3.6, .025);
-    for (let i = 0; i < 5; i++) b.b(m.metal, -w * .35, h + 2.1, front - d + .3 + i * .32, 1.25 - i * .14, .026, .025);
+    if(variant%3===0){b.part('cylinder',m.metal,-w*.35,h+1.8,front-d+1,.025,3.6,.025);for(let i=0;i<5;i++)b.b(m.metal,-w*.35,h+2.1,front-d+.3+i*.32,1.25-i*.14,.026,.025);}
   }
   private stairs(w: number, d: number, floors: number): void {
     const b = this.b, m = this.m, count = Math.min(3, floors - 1);

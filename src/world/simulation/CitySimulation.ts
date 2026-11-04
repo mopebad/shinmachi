@@ -21,6 +21,7 @@ import type {VehicleLights} from './Driving.ts';
 import {StreetLife} from './StreetLife.ts';
 import type {StreetActivity,Companion} from './StreetLife.ts';
 import {businessAffinity} from './AgentIdentity.ts';
+import {neighborhoodDestinationWeight} from '../Neighborhoods.ts';
 export { VEHICLE_PROFILES } from './VehicleCatalog.ts';
 export type { VehicleKind } from './VehicleCatalog.ts';
 
@@ -162,7 +163,7 @@ export class CitySimulation {
       return !p.retiring || Math.abs(n.x) > 50 || n.z > 55 || n.area === 'station';
     });
     for (let attempt = 0; attempt < 10; attempt++) {
-      const weights=candidates.map(id=>{const n=this.navigation.nodes[id];return n.door?businessAffinity(p.identity,n.door.business??'retail',this.hour):n.area==='residential'?(p.identity.purpose==='leisure'?1.3:.6):1;});
+      const weights=candidates.map(id=>{const n=this.navigation.nodes[id],base=n.door?businessAffinity(p.identity,n.door.business??'retail',this.hour):n.area==='residential'?(p.identity.purpose==='leisure'?1.3:.6):1;return base*neighborhoodDestinationWeight(n,this.hour,p.identity.purpose,n.door?.business);});
       let draw=this.rng()*weights.reduce((sum,w)=>sum+w,0),index=0;while(index<weights.length-1&&draw>weights[index])draw-=weights[index++];
       const to = candidates[index];
       if (to === undefined) break;

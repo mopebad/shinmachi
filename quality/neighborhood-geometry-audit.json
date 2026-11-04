@@ -1,0 +1,3026 @@
+{
+  "contracts": {
+    "colliders": true,
+    "playerColliders": true,
+    "doors": true,
+    "shopfronts": true,
+    "station": true,
+    "lamps": true,
+    "navigation": true
+  },
+  "skyline": true,
+  "parcels": [
+    {
+      "x": -6.510011584777385,
+      "z": -47.607263240846805,
+      "rotation": 1.5707963267948966,
+      "width": 6.7854735183063895,
+      "depth": 12.017316303215921,
+      "floors": 4,
+      "kind": "retail",
+      "palette": 2,
+      "shop": 7,
+      "heroStreet": 0,
+      "rendered": {
+        "x": -6.510011584777385,
+        "z": -47.607263240846805,
+        "rotation": 1.5707963267948966,
+        "width": 6.7854735183063895,
+        "depth": 12.017316303215921,
+        "floors": 4,
+        "kind": "retail",
+        "palette": 2,
+        "shop": 7,
+        "heroStreet": 0,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "station",
+        "family": 0,
+        "style": "existing-frontage",
+        "variant": 0,
+        "replace": false,
+        "floors": 4,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": -18.527327887993305,
+        "maxX": -6.4100115847773855,
+        "minZ": -51.95,
+        "maxZ": -44.06452648169361
+      },
+      "footprint": {
+        "minX": -18.527327887993305,
+        "maxX": -6.4100115847773855,
+        "minZ": -51.95,
+        "maxZ": -44.06452648169361
+      }
+    },
+    {
+      "x": -6.345914957090281,
+      "z": -40.590933961060365,
+      "rotation": 1.5707963267948966,
+      "width": 6.1365570648573335,
+      "depth": 9.253523557446897,
+      "floors": 6,
+      "kind": "convenience",
+      "palette": 5,
+      "shop": 6,
+      "heroStreet": 1,
+      "rendered": {
+        "x": -6.345914957090281,
+        "z": -40.590933961060365,
+        "rotation": 1.5707963267948966,
+        "width": 6.1365570648573335,
+        "depth": 9.253523557446897,
+        "floors": 6,
+        "kind": "convenience",
+        "palette": 5,
+        "shop": 6,
+        "heroStreet": 1,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "existing-frontage",
+        "variant": 4,
+        "replace": false,
+        "floors": 6,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": -15.599438514537178,
+        "maxX": -6.245914957090282,
+        "minZ": -44.60921249348903,
+        "maxZ": -37.372655428631695
+      },
+      "footprint": {
+        "minX": -15.599438514537178,
+        "maxX": -6.245914957090282,
+        "minZ": -44.60921249348903,
+        "maxZ": -37.372655428631695
+      }
+    },
+    {
+      "x": -6.466188420006074,
+      "z": -34.55742577641504,
+      "rotation": 1.5707963267948966,
+      "width": 4.859063691436313,
+      "depth": 9.890225787647069,
+      "floors": 5,
+      "kind": "convenience",
+      "palette": 4,
+      "shop": 7,
+      "heroStreet": 2,
+      "rendered": {
+        "x": -6.466188420006074,
+        "z": -34.55742577641504,
+        "rotation": 1.5707963267948966,
+        "width": 4.859063691436313,
+        "depth": 9.890225787647069,
+        "floors": 5,
+        "kind": "convenience",
+        "palette": 4,
+        "shop": 7,
+        "heroStreet": 2,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "existing-frontage",
+        "variant": 2,
+        "replace": false,
+        "floors": 5,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": -16.356414207653142,
+        "maxX": -6.3661884200060745,
+        "minZ": -37.93695762213319,
+        "maxZ": -31.97789393069688
+      },
+      "footprint": {
+        "minX": -16.356414207653142,
+        "maxX": -6.3661884200060745,
+        "minZ": -37.93695762213319,
+        "maxZ": -31.97789393069688
+      }
+    },
+    {
+      "x": -6.95,
+      "z": -18.75720780431293,
+      "rotation": 1.5707963267948966,
+      "width": 5.4855843913741404,
+      "depth": 9.469283017329872,
+      "floors": 5,
+      "kind": "apartment",
+      "palette": 5,
+      "shop": 6,
+      "heroStreet": 3,
+      "rendered": {
+        "x": -6.95,
+        "z": -18.75720780431293,
+        "rotation": 1.5707963267948966,
+        "width": 5.4855843913741404,
+        "depth": 9.469283017329872,
+        "floors": 5,
+        "kind": "apartment",
+        "palette": 5,
+        "shop": 6,
+        "heroStreet": 3,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "existing-frontage",
+        "variant": 1,
+        "replace": false,
+        "floors": 5,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": -16.41928301732987,
+        "maxX": -6.8500000000000005,
+        "minZ": -22.450000000000003,
+        "maxZ": -15.86441560862586
+      },
+      "footprint": {
+        "minX": -16.41928301732987,
+        "maxX": -6.8500000000000005,
+        "minZ": -22.450000000000003,
+        "maxZ": -15.86441560862586
+      }
+    },
+    {
+      "x": -6.95,
+      "z": -12.328244714660105,
+      "rotation": 1.5707963267948966,
+      "width": 6.470035576424561,
+      "depth": 9.348828740417957,
+      "floors": 6,
+      "kind": "apartment",
+      "palette": 5,
+      "shop": 10,
+      "heroStreet": 4,
+      "rendered": {
+        "x": -6.95,
+        "z": -12.328244714660105,
+        "rotation": 1.5707963267948966,
+        "width": 6.470035576424561,
+        "depth": 9.348828740417957,
+        "floors": 6,
+        "kind": "apartment",
+        "palette": 5,
+        "shop": 10,
+        "heroStreet": 4,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "existing-frontage",
+        "variant": 1,
+        "replace": false,
+        "floors": 6,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": -16.298828740417957,
+        "maxX": -6.850000000000001,
+        "minZ": -16.513262502872387,
+        "maxZ": -8.943226926447824
+      },
+      "footprint": {
+        "minX": -16.298828740417957,
+        "maxX": -6.850000000000001,
+        "minZ": -16.513262502872387,
+        "maxZ": -8.943226926447824
+      }
+    },
+    {
+      "x": -6.95,
+      "z": -5.0449590118369105,
+      "rotation": 1.5707963267948966,
+      "width": 6.167517468309961,
+      "depth": 9.99534913804382,
+      "floors": 6,
+      "kind": "apartment",
+      "palette": 0,
+      "shop": 13,
+      "heroStreet": 5,
+      "rendered": {
+        "x": -6.95,
+        "z": -5.0449590118369105,
+        "rotation": 1.5707963267948966,
+        "width": 6.167517468309961,
+        "depth": 9.99534913804382,
+        "floors": 6,
+        "kind": "apartment",
+        "palette": 0,
+        "shop": 13,
+        "heroStreet": 5,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "existing-frontage",
+        "variant": 1,
+        "replace": false,
+        "floors": 6,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": -16.94534913804382,
+        "maxX": -6.8500000000000005,
+        "minZ": -9.078717745991892,
+        "maxZ": -1.8112002776819303
+      },
+      "footprint": {
+        "minX": -16.94534913804382,
+        "maxX": -6.8500000000000005,
+        "minZ": -9.078717745991892,
+        "maxZ": -1.8112002776819303
+      }
+    },
+    {
+      "x": -6.286822207318619,
+      "z": 1.3426670449262015,
+      "rotation": 1.5707963267948966,
+      "width": 4.614665910147598,
+      "depth": 12.96988436859101,
+      "floors": 7,
+      "kind": "office",
+      "palette": 4,
+      "shop": 8,
+      "heroStreet": 6,
+      "rendered": {
+        "x": -6.286822207318619,
+        "z": 1.3426670449262015,
+        "rotation": 1.5707963267948966,
+        "width": 4.614665910147598,
+        "depth": 12.96988436859101,
+        "floors": 7,
+        "kind": "office",
+        "palette": 4,
+        "shop": 8,
+        "heroStreet": 6,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 1,
+        "style": "renovated-office",
+        "variant": 3,
+        "replace": false,
+        "floors": 7,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": -19.25670657590963,
+        "maxX": -6.186822207318619,
+        "minZ": -1.9146659101475998,
+        "maxZ": 3.8000000000000003
+      },
+      "footprint": {
+        "minX": -19.25670657590963,
+        "maxX": -6.186822207318619,
+        "minZ": -1.9146659101475998,
+        "maxZ": 3.8000000000000003
+      }
+    },
+    {
+      "x": -6.530446388595737,
+      "z": 23.875839007936882,
+      "rotation": 1.5707963267948966,
+      "width": 6.751678015873767,
+      "depth": 10.30493185017258,
+      "floors": 5,
+      "kind": "convenience",
+      "palette": 0,
+      "shop": 22,
+      "heroStreet": 7,
+      "rendered": {
+        "x": -6.530446388595737,
+        "z": 23.875839007936882,
+        "rotation": 1.5707963267948966,
+        "width": 6.751678015873767,
+        "depth": 10.30493185017258,
+        "floors": 5,
+        "kind": "convenience",
+        "palette": 0,
+        "shop": 22,
+        "heroStreet": 7,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "existing-frontage",
+        "variant": 0,
+        "replace": false,
+        "floors": 5,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": -16.835378238768318,
+        "maxX": -6.430446388595739,
+        "minZ": 19.549999999999997,
+        "maxZ": 27.401678015873767
+      },
+      "footprint": {
+        "minX": -16.835378238768318,
+        "maxX": -6.430446388595739,
+        "minZ": 19.549999999999997,
+        "maxZ": 27.401678015873767
+      }
+    },
+    {
+      "x": -6.423173465300351,
+      "z": 30.179015135078224,
+      "rotation": 1.5707963267948966,
+      "width": 4.790874051442369,
+      "depth": 12.798875091597438,
+      "floors": 5,
+      "kind": "retail",
+      "palette": 4,
+      "shop": 13,
+      "heroStreet": 8,
+      "rendered": {
+        "x": -6.423173465300351,
+        "z": 30.179015135078224,
+        "rotation": 1.5707963267948966,
+        "width": 4.790874051442369,
+        "depth": 12.798875091597438,
+        "floors": 5,
+        "kind": "retail",
+        "palette": 4,
+        "shop": 13,
+        "heroStreet": 8,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "existing-frontage",
+        "variant": 1,
+        "replace": false,
+        "floors": 5,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": -19.22204855689779,
+        "maxX": -6.323173465300352,
+        "minZ": 26.833578109357035,
+        "maxZ": 32.72445216079941
+      },
+      "footprint": {
+        "minX": -19.22204855689779,
+        "maxX": -6.323173465300352,
+        "minZ": 26.833578109357035,
+        "maxZ": 32.72445216079941
+      }
+    },
+    {
+      "x": -6.368867930420675,
+      "z": 36.48640387675259,
+      "rotation": 1.5707963267948966,
+      "width": 6.8983238659799095,
+      "depth": 12.904745784588158,
+      "floors": 4,
+      "kind": "izakaya",
+      "palette": 7,
+      "shop": 5,
+      "heroStreet": 9,
+      "rendered": {
+        "x": -6.368867930420675,
+        "z": 36.48640387675259,
+        "rotation": 1.5707963267948966,
+        "width": 6.8983238659799095,
+        "depth": 12.904745784588158,
+        "floors": 4,
+        "kind": "izakaya",
+        "palette": 7,
+        "shop": 5,
+        "heroStreet": 9,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "existing-frontage",
+        "variant": 3,
+        "replace": false,
+        "floors": 4,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": -19.273613715008832,
+        "maxX": -6.268867930420676,
+        "minZ": 32.087241943762635,
+        "maxZ": 40.08556580974255
+      },
+      "footprint": {
+        "minX": -19.273613715008832,
+        "maxX": -6.268867930420676,
+        "minZ": 32.087241943762635,
+        "maxZ": 40.08556580974255
+      }
+    },
+    {
+      "x": -6.95,
+      "z": 44.43918855580268,
+      "rotation": 1.5707963267948966,
+      "width": 7.550251323636621,
+      "depth": 11.244893978349864,
+      "floors": 3,
+      "kind": "apartment",
+      "palette": 7,
+      "shop": 6,
+      "heroStreet": 10,
+      "rendered": {
+        "x": -6.95,
+        "z": 44.43918855580268,
+        "rotation": 1.5707963267948966,
+        "width": 7.550251323636621,
+        "depth": 11.244893978349864,
+        "floors": 3,
+        "kind": "apartment",
+        "palette": 7,
+        "shop": 6,
+        "heroStreet": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "existing-frontage",
+        "variant": 1,
+        "replace": false,
+        "floors": 3,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": -18.194893978349864,
+        "maxX": -6.850000000000001,
+        "minZ": 39.71406289398437,
+        "maxZ": 48.364314217620986
+      },
+      "footprint": {
+        "minX": -18.194893978349864,
+        "maxX": -6.850000000000001,
+        "minZ": 39.71406289398437,
+        "maxZ": 48.364314217620986
+      }
+    },
+    {
+      "x": -6.319791658315808,
+      "z": 51.6313319227891,
+      "rotation": 1.5707963267948966,
+      "width": 5.091539516160264,
+      "depth": 12.699693812057376,
+      "floors": 6,
+      "kind": "convenience",
+      "palette": 0,
+      "shop": 6,
+      "rendered": {
+        "x": -6.319791658315808,
+        "z": 51.6313319227891,
+        "rotation": 1.5707963267948966,
+        "width": 5.091539516160264,
+        "depth": 12.699693812057376,
+        "floors": 6,
+        "kind": "convenience",
+        "palette": 0,
+        "shop": 6,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "existing-frontage",
+        "variant": 5,
+        "replace": false,
+        "floors": 6,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": -19.019485470373183,
+        "maxX": -6.219791658315808,
+        "minZ": 48.135562164708965,
+        "maxZ": 54.327101680869234
+      },
+      "footprint": {
+        "minX": -19.019485470373183,
+        "maxX": -6.219791658315808,
+        "minZ": 48.135562164708965,
+        "maxZ": 54.327101680869234
+      }
+    },
+    {
+      "x": -6.463992916187271,
+      "z": 57.83647982095717,
+      "rotation": 1.5707963267948966,
+      "width": 5.62704035808566,
+      "depth": 12.312231824733317,
+      "floors": 3,
+      "kind": "retail",
+      "palette": 6,
+      "shop": 11,
+      "rendered": {
+        "x": -6.463992916187271,
+        "z": 57.83647982095717,
+        "rotation": 1.5707963267948966,
+        "width": 5.62704035808566,
+        "depth": 12.312231824733317,
+        "floors": 3,
+        "kind": "retail",
+        "palette": 6,
+        "shop": 11,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "existing-frontage",
+        "variant": 6,
+        "replace": false,
+        "floors": 3,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": -18.77622474092059,
+        "maxX": -6.3639929161872715,
+        "minZ": 54.072959641914345,
+        "maxZ": 60.800000000000004
+      },
+      "footprint": {
+        "minX": -18.77622474092059,
+        "maxX": -6.3639929161872715,
+        "minZ": 54.072959641914345,
+        "maxZ": 60.800000000000004
+      }
+    },
+    {
+      "x": 6.536556715192273,
+      "z": -31.925,
+      "rotation": -1.5707963267948966,
+      "width": 6.15,
+      "depth": 10.601464552804828,
+      "floors": 3,
+      "kind": "izakaya",
+      "palette": 2,
+      "shop": 14,
+      "heroStreet": 11,
+      "rendered": {
+        "x": 6.536556715192273,
+        "z": -31.925,
+        "rotation": -1.5707963267948966,
+        "width": 6.15,
+        "depth": 10.601464552804828,
+        "floors": 3,
+        "kind": "izakaya",
+        "palette": 2,
+        "shop": 14,
+        "heroStreet": 11,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "existing-frontage",
+        "variant": 3,
+        "replace": false,
+        "floors": 3,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": 6.436556715192273,
+        "maxX": 17.1380212679971,
+        "minZ": -35.15,
+        "maxZ": -27.900000000000002
+      },
+      "footprint": {
+        "minX": 6.436556715192273,
+        "maxX": 17.1380212679971,
+        "minZ": -35.15,
+        "maxZ": -27.900000000000002
+      }
+    },
+    {
+      "x": 6.4622090852120895,
+      "z": -17.66903974157758,
+      "rotation": -1.5707963267948966,
+      "width": 7.661920516844839,
+      "depth": 11.682986600324512,
+      "floors": 3,
+      "kind": "izakaya",
+      "palette": 3,
+      "shop": 9,
+      "heroStreet": 12,
+      "rendered": {
+        "x": 6.4622090852120895,
+        "z": -17.66903974157758,
+        "rotation": -1.5707963267948966,
+        "width": 7.661920516844839,
+        "depth": 11.682986600324512,
+        "floors": 3,
+        "kind": "izakaya",
+        "palette": 3,
+        "shop": 9,
+        "heroStreet": 12,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "existing-frontage",
+        "variant": 2,
+        "replace": false,
+        "floors": 3,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": 6.362209085212088,
+        "maxX": 18.1451956855366,
+        "minZ": -21.650000000000002,
+        "maxZ": -12.888079483155165
+      },
+      "footprint": {
+        "minX": 6.362209085212088,
+        "maxX": 18.1451956855366,
+        "minZ": -21.650000000000002,
+        "maxZ": -12.888079483155165
+      }
+    },
+    {
+      "x": 6.346689651207998,
+      "z": -10.795898861333264,
+      "rotation": -1.5707963267948966,
+      "width": 4.763846065825782,
+      "depth": 9.743978073820472,
+      "floors": 4,
+      "kind": "izakaya",
+      "palette": 6,
+      "shop": 14,
+      "heroStreet": 13,
+      "rendered": {
+        "x": 6.346689651207998,
+        "z": -10.795898861333264,
+        "rotation": -1.5707963267948966,
+        "width": 4.763846065825782,
+        "depth": 9.743978073820472,
+        "floors": 4,
+        "kind": "izakaya",
+        "palette": 6,
+        "shop": 14,
+        "heroStreet": 13,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "existing-frontage",
+        "variant": 1,
+        "replace": false,
+        "floors": 4,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": 6.246689651207998,
+        "maxX": 16.09066772502847,
+        "minZ": -13.327821894246155,
+        "maxZ": -7.4639758284203745
+      },
+      "footprint": {
+        "minX": 6.246689651207998,
+        "maxX": 16.09066772502847,
+        "minZ": -13.327821894246155,
+        "maxZ": -7.4639758284203745
+      }
+    },
+    {
+      "x": 6.506355076818727,
+      "z": -4.089593638665976,
+      "rotation": -1.5707963267948966,
+      "width": 6.459053860092535,
+      "depth": 11.38227638695389,
+      "floors": 3,
+      "kind": "izakaya",
+      "palette": 5,
+      "shop": 5,
+      "heroStreet": 14,
+      "rendered": {
+        "x": 6.506355076818727,
+        "z": -4.089593638665976,
+        "rotation": -1.5707963267948966,
+        "width": 6.459053860092535,
+        "depth": 11.38227638695389,
+        "floors": 3,
+        "kind": "izakaya",
+        "palette": 5,
+        "shop": 5,
+        "heroStreet": 14,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 1,
+        "style": "existing-frontage",
+        "variant": 0,
+        "replace": false,
+        "floors": 3,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": 6.406355076818726,
+        "maxX": 17.88863146377262,
+        "minZ": -7.469120568712244,
+        "maxZ": 0.08993329138028994
+      },
+      "footprint": {
+        "minX": 6.406355076818726,
+        "maxX": 17.88863146377262,
+        "minZ": -7.469120568712244,
+        "maxZ": 0.08993329138028994
+      }
+    },
+    {
+      "x": 6.95,
+      "z": 1.8555612339638163,
+      "rotation": -1.5707963267948966,
+      "width": 3.588877532072367,
+      "depth": 11.783470654860139,
+      "floors": 4,
+      "kind": "apartment",
+      "palette": 1,
+      "shop": 7,
+      "heroStreet": 15,
+      "rendered": {
+        "x": 6.95,
+        "z": 1.8555612339638163,
+        "rotation": -1.5707963267948966,
+        "width": 3.588877532072367,
+        "depth": 11.783470654860139,
+        "floors": 4,
+        "kind": "apartment",
+        "palette": 1,
+        "shop": 7,
+        "heroStreet": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "existing-frontage",
+        "variant": 2,
+        "replace": false,
+        "floors": 4,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": 6.85,
+        "maxX": 18.733470654860138,
+        "minZ": -0.08887753207236693,
+        "maxZ": 4.599999999999997
+      },
+      "footprint": {
+        "minX": 6.85,
+        "maxX": 18.733470654860138,
+        "minZ": -0.08887753207236693,
+        "maxZ": 4.599999999999997
+      }
+    },
+    {
+      "x": 6.95,
+      "z": 23.78696565750288,
+      "rotation": -1.5707963267948966,
+      "width": 6.573931315005757,
+      "depth": 10.741689946502447,
+      "floors": 5,
+      "kind": "apartment",
+      "palette": 3,
+      "shop": 8,
+      "heroStreet": 16,
+      "rendered": {
+        "x": 6.95,
+        "z": 23.78696565750288,
+        "rotation": -1.5707963267948966,
+        "width": 6.573931315005757,
+        "depth": 10.741689946502447,
+        "floors": 5,
+        "kind": "apartment",
+        "palette": 3,
+        "shop": 8,
+        "heroStreet": 16,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "existing-frontage",
+        "variant": 4,
+        "replace": false,
+        "floors": 5,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": 6.85,
+        "maxX": 17.691689946502446,
+        "minZ": 20.35,
+        "maxZ": 28.023931315005754
+      },
+      "footprint": {
+        "minX": 6.85,
+        "maxX": 17.691689946502446,
+        "minZ": 20.35,
+        "maxZ": 28.023931315005754
+      }
+    },
+    {
+      "x": 6.391765184700489,
+      "z": 31.500185502367096,
+      "rotation": -1.5707963267948966,
+      "width": 7.611094768764451,
+      "depth": 10.328854178078473,
+      "floors": 3,
+      "kind": "izakaya",
+      "palette": 3,
+      "shop": 14,
+      "heroStreet": 17,
+      "rendered": {
+        "x": 6.391765184700489,
+        "z": 31.500185502367096,
+        "rotation": -1.5707963267948966,
+        "width": 7.611094768764451,
+        "depth": 10.328854178078473,
+        "floors": 3,
+        "kind": "izakaya",
+        "palette": 3,
+        "shop": 14,
+        "heroStreet": 17,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "existing-frontage",
+        "variant": 4,
+        "replace": false,
+        "floors": 3,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": 6.2917651847004885,
+        "maxX": 16.72061936277896,
+        "minZ": 27.54463811798487,
+        "maxZ": 36.25573288674932
+      },
+      "footprint": {
+        "minX": 6.2917651847004885,
+        "maxX": 16.72061936277896,
+        "minZ": 27.54463811798487,
+        "maxZ": 36.25573288674932
+      }
+    },
+    {
+      "x": 6.510668825521134,
+      "z": 39.314447119098624,
+      "rotation": -1.5707963267948966,
+      "width": 6.799751259130426,
+      "depth": 10.675333536230028,
+      "floors": 4,
+      "kind": "convenience",
+      "palette": 3,
+      "shop": 6,
+      "heroStore": true,
+      "heroStreet": 18,
+      "rendered": {
+        "x": 6.510668825521134,
+        "z": 39.314447119098624,
+        "rotation": -1.5707963267948966,
+        "width": 6.799751259130426,
+        "depth": 10.675333536230028,
+        "floors": 4,
+        "kind": "convenience",
+        "palette": 3,
+        "shop": 6,
+        "heroStore": true,
+        "heroStreet": 18,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 1,
+        "style": "existing-frontage",
+        "variant": 5,
+        "replace": false,
+        "floors": 4,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": 6.4106688255211335,
+        "maxX": 17.18600236175116,
+        "minZ": 35.76457148953341,
+        "maxZ": 43.664322748663835
+      },
+      "footprint": {
+        "minX": 6.4106688255211335,
+        "maxX": 17.18600236175116,
+        "minZ": 35.76457148953341,
+        "maxZ": 43.664322748663835
+      }
+    },
+    {
+      "x": 6.95,
+      "z": 46.314603183884174,
+      "rotation": -1.5707963267948966,
+      "width": 6.096583257964812,
+      "depth": 9.067520396783948,
+      "floors": 3,
+      "kind": "apartment",
+      "palette": 7,
+      "shop": 20,
+      "heroStreet": 19,
+      "rendered": {
+        "x": 6.95,
+        "z": 46.314603183884174,
+        "rotation": -1.5707963267948966,
+        "width": 6.096583257964812,
+        "depth": 9.067520396783948,
+        "floors": 3,
+        "kind": "apartment",
+        "palette": 7,
+        "shop": 20,
+        "heroStreet": 19,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "existing-frontage",
+        "variant": 5,
+        "replace": false,
+        "floors": 3,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": 6.85,
+        "maxX": 16.017520396783947,
+        "minZ": 43.11631155490177,
+        "maxZ": 50.312894812866574
+      },
+      "footprint": {
+        "minX": 6.85,
+        "maxX": 16.017520396783947,
+        "minZ": 43.11631155490177,
+        "maxZ": 50.312894812866574
+      }
+    },
+    {
+      "x": 6.95,
+      "z": 52.578329634724646,
+      "rotation": -1.5707963267948966,
+      "width": 5.440082917595282,
+      "depth": 10.954188119620085,
+      "floors": 4,
+      "kind": "apartment",
+      "palette": 7,
+      "shop": 2,
+      "rendered": {
+        "x": 6.95,
+        "z": 52.578329634724646,
+        "rotation": -1.5707963267948966,
+        "width": 5.440082917595282,
+        "depth": 10.954188119620085,
+        "floors": 4,
+        "kind": "apartment",
+        "palette": 7,
+        "shop": 2,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 1,
+        "style": "existing-frontage",
+        "variant": 4,
+        "replace": false,
+        "floors": 4,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": 6.85,
+        "maxX": 17.904188119620084,
+        "minZ": 49.708288175927,
+        "maxZ": 56.24837109352229
+      },
+      "footprint": {
+        "minX": 6.85,
+        "maxX": 17.904188119620084,
+        "minZ": 49.708288175927,
+        "maxZ": 56.24837109352229
+      }
+    },
+    {
+      "x": 6.359358058823273,
+      "z": 58.33758151673828,
+      "rotation": -1.5707963267948966,
+      "width": 4.624836966523434,
+      "depth": 10.556801117956638,
+      "floors": 7,
+      "kind": "office",
+      "palette": 3,
+      "shop": 7,
+      "rendered": {
+        "x": 6.359358058823273,
+        "z": 58.33758151673828,
+        "rotation": -1.5707963267948966,
+        "width": 4.624836966523434,
+        "depth": 10.556801117956638,
+        "floors": 7,
+        "kind": "office",
+        "palette": 3,
+        "shop": 7,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "ceramic-office",
+        "variant": 1,
+        "replace": true,
+        "floors": 7,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": 6.259358058823272,
+        "maxX": 16.91615917677991,
+        "minZ": 55.87516303347657,
+        "maxZ": 61.599999999999994
+      },
+      "footprint": {
+        "minX": 6.259358058823272,
+        "maxX": 16.91615917677991,
+        "minZ": 55.87516303347657,
+        "maxZ": 61.599999999999994
+      }
+    },
+    {
+      "x": 26.2,
+      "z": -32.39295566617511,
+      "rotation": 1.5707963267948966,
+      "width": 7.214829532150179,
+      "depth": 5.6,
+      "floors": 3,
+      "kind": "apartment",
+      "palette": 3,
+      "shop": 10,
+      "rendered": {
+        "x": 26.2,
+        "z": -32.39295566617511,
+        "rotation": 1.5707963267948966,
+        "width": 7.214829532150179,
+        "depth": 5.6,
+        "floors": 3,
+        "kind": "apartment",
+        "palette": 3,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 1,
+        "style": "tile-mansion",
+        "variant": 3,
+        "replace": true,
+        "floors": 3,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 20.6,
+        "maxX": 26.299999999999997,
+        "minZ": -36.9503704322502,
+        "maxZ": -28.635540900100022
+      },
+      "footprint": {
+        "minX": 20.6,
+        "maxX": 26.299999999999997,
+        "minZ": -36.9503704322502,
+        "maxZ": -28.635540900100022
+      }
+    },
+    {
+      "x": 26.2,
+      "z": -15.900470338063315,
+      "rotation": 1.5707963267948966,
+      "width": 7.729889262886718,
+      "depth": 5.6,
+      "floors": 3,
+      "kind": "apartment",
+      "palette": 1,
+      "shop": 10,
+      "rendered": {
+        "x": 26.2,
+        "z": -15.900470338063315,
+        "rotation": 1.5707963267948966,
+        "width": 7.729889262886718,
+        "depth": 5.6,
+        "floors": 3,
+        "kind": "apartment",
+        "palette": 1,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 3,
+        "style": "renovated-apartments",
+        "variant": 1,
+        "replace": true,
+        "floors": 3,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 20.6,
+        "maxX": 26.299999999999997,
+        "minZ": -20.715414969506675,
+        "maxZ": -11.885525706619955
+      },
+      "footprint": {
+        "minX": 20.6,
+        "maxX": 26.299999999999997,
+        "minZ": -20.715414969506675,
+        "maxZ": -11.885525706619955
+      }
+    },
+    {
+      "x": 26.2,
+      "z": -5.339269989868626,
+      "rotation": 1.5707963267948966,
+      "width": 7.791860979469493,
+      "depth": 5.6,
+      "floors": 3,
+      "kind": "apartment",
+      "palette": 1,
+      "shop": 10,
+      "rendered": {
+        "x": 26.2,
+        "z": -5.339269989868626,
+        "rotation": 1.5707963267948966,
+        "width": 7.791860979469493,
+        "depth": 5.6,
+        "floors": 3,
+        "kind": "apartment",
+        "palette": 1,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 0,
+        "style": "rendered-walkup",
+        "variant": 1,
+        "replace": true,
+        "floors": 3,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 20.6,
+        "maxX": 26.299999999999997,
+        "minZ": -10.185200479603374,
+        "maxZ": -1.2933395001338797
+      },
+      "footprint": {
+        "minX": 20.6,
+        "maxX": 26.299999999999997,
+        "minZ": -10.185200479603374,
+        "maxZ": -1.2933395001338797
+      }
+    },
+    {
+      "x": 26.2,
+      "z": 29.33105039712973,
+      "rotation": 1.5707963267948966,
+      "width": 7.102164985332638,
+      "depth": 5.6,
+      "floors": 3,
+      "kind": "apartment",
+      "palette": 1,
+      "shop": 10,
+      "rendered": {
+        "x": 26.2,
+        "z": 29.33105039712973,
+        "rotation": 1.5707963267948966,
+        "width": 7.102164985332638,
+        "depth": 5.6,
+        "floors": 3,
+        "kind": "apartment",
+        "palette": 1,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 3,
+        "style": "renovated-apartments",
+        "variant": 5,
+        "replace": true,
+        "floors": 3,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 20.6,
+        "maxX": 26.299999999999997,
+        "minZ": 24.82996790446341,
+        "maxZ": 33.032132889796046
+      },
+      "footprint": {
+        "minX": 20.6,
+        "maxX": 26.299999999999997,
+        "minZ": 24.82996790446341,
+        "maxZ": 33.032132889796046
+      }
+    },
+    {
+      "x": 26.2,
+      "z": 40.79011718556285,
+      "rotation": 1.5707963267948966,
+      "width": 7.173618193902075,
+      "depth": 5.6,
+      "floors": 4,
+      "kind": "apartment",
+      "palette": 3,
+      "shop": 10,
+      "rendered": {
+        "x": 26.2,
+        "z": 40.79011718556285,
+        "rotation": 1.5707963267948966,
+        "width": 7.173618193902075,
+        "depth": 5.6,
+        "floors": 4,
+        "kind": "apartment",
+        "palette": 3,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 1,
+        "style": "tile-mansion",
+        "variant": 6,
+        "replace": true,
+        "floors": 4,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 20.6,
+        "maxX": 26.299999999999997,
+        "minZ": 36.25330808861181,
+        "maxZ": 44.526926282513884
+      },
+      "footprint": {
+        "minX": 20.6,
+        "maxX": 26.299999999999997,
+        "minZ": 36.25330808861181,
+        "maxZ": 44.526926282513884
+      }
+    },
+    {
+      "x": 26.2,
+      "z": 51.94867372489534,
+      "rotation": 1.5707963267948966,
+      "width": 7.666109870607033,
+      "depth": 5.6,
+      "floors": 3,
+      "kind": "apartment",
+      "palette": 1,
+      "shop": 10,
+      "rendered": {
+        "x": 26.2,
+        "z": 51.94867372489534,
+        "rotation": 1.5707963267948966,
+        "width": 7.666109870607033,
+        "depth": 5.6,
+        "floors": 3,
+        "kind": "apartment",
+        "palette": 1,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 2,
+        "style": "small-residence",
+        "variant": 1,
+        "replace": true,
+        "floors": 2,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 20.6,
+        "maxX": 26.299999999999997,
+        "minZ": 47.165618789591825,
+        "maxZ": 55.93172866019886
+      },
+      "footprint": {
+        "minX": 20.6,
+        "maxX": 26.299999999999997,
+        "minZ": 47.165618789591825,
+        "maxZ": 55.93172866019886
+      }
+    },
+    {
+      "x": 33.8,
+      "z": -41.53094322537072,
+      "rotation": -1.5707963267948966,
+      "width": 6.919679561816156,
+      "depth": 9,
+      "floors": 2,
+      "kind": "apartment",
+      "palette": 1,
+      "shop": 10,
+      "rendered": {
+        "x": 33.8,
+        "z": -41.53094322537072,
+        "rotation": -1.5707963267948966,
+        "width": 6.919679561816156,
+        "depth": 9,
+        "floors": 2,
+        "kind": "apartment",
+        "palette": 1,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 2,
+        "style": "small-residence",
+        "variant": 3,
+        "replace": true,
+        "floors": 2,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": -45.140783006278795,
+        "maxZ": -37.12110344446265
+      },
+      "footprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": -45.140783006278795,
+        "maxZ": -37.12110344446265
+      }
+    },
+    {
+      "x": 33.8,
+      "z": -32.907715804176405,
+      "rotation": -1.5707963267948966,
+      "width": 7.164677697885781,
+      "depth": 9,
+      "floors": 4,
+      "kind": "apartment",
+      "palette": 2,
+      "shop": 10,
+      "rendered": {
+        "x": 33.8,
+        "z": -32.907715804176405,
+        "rotation": -1.5707963267948966,
+        "width": 7.164677697885781,
+        "depth": 9,
+        "floors": 4,
+        "kind": "apartment",
+        "palette": 2,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 3,
+        "style": "renovated-apartments",
+        "variant": 5,
+        "replace": true,
+        "floors": 4,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": -36.64005465311929,
+        "maxZ": -28.375376955233516
+      },
+      "footprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": -36.64005465311929,
+        "maxZ": -28.375376955233516
+      }
+    },
+    {
+      "x": 33.8,
+      "z": -15.80821559461765,
+      "rotation": -1.5707963267948966,
+      "width": 7.303575513837859,
+      "depth": 9,
+      "floors": 4,
+      "kind": "apartment",
+      "palette": 3,
+      "shop": 10,
+      "rendered": {
+        "x": 33.8,
+        "z": -15.80821559461765,
+        "rotation": -1.5707963267948966,
+        "width": 7.303575513837859,
+        "depth": 9,
+        "floors": 4,
+        "kind": "apartment",
+        "palette": 3,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 1,
+        "style": "tile-mansion",
+        "variant": 6,
+        "replace": true,
+        "floors": 4,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": -19.61000335153658,
+        "maxZ": -11.206427837698723
+      },
+      "footprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": -19.61000335153658,
+        "maxZ": -11.206427837698723
+      }
+    },
+    {
+      "x": 33.8,
+      "z": -5.408823805861175,
+      "rotation": -1.5707963267948966,
+      "width": 7.214293352281675,
+      "depth": 9,
+      "floors": 4,
+      "kind": "apartment",
+      "palette": 1,
+      "shop": 10,
+      "rendered": {
+        "x": 33.8,
+        "z": -5.408823805861175,
+        "rotation": -1.5707963267948966,
+        "width": 7.214293352281675,
+        "depth": 5.2,
+        "floors": 4,
+        "kind": "apartment",
+        "palette": 1,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": true,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 2,
+        "style": "small-residence",
+        "variant": 5,
+        "replace": true,
+        "floors": 2,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": -9.165970482002013,
+        "maxZ": -0.8516771297203398
+      },
+      "footprint": {
+        "minX": 33.699999999999996,
+        "maxX": 39.08,
+        "minZ": -9.135970482002012,
+        "maxZ": -1.6816771297203377
+      }
+    },
+    {
+      "x": 33.8,
+      "z": 29.47430985979736,
+      "rotation": -1.5707963267948966,
+      "width": 6.933331701625138,
+      "depth": 9,
+      "floors": 2,
+      "kind": "apartment",
+      "palette": 1,
+      "shop": 10,
+      "rendered": {
+        "x": 33.8,
+        "z": 29.47430985979736,
+        "rotation": -1.5707963267948966,
+        "width": 6.933331701625138,
+        "depth": 5.2,
+        "floors": 2,
+        "kind": "apartment",
+        "palette": 1,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": true,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 1,
+        "style": "tile-mansion",
+        "variant": 2,
+        "replace": true,
+        "floors": 2,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": 25.85764400898479,
+        "maxZ": 33.89097571060992
+      },
+      "footprint": {
+        "minX": 33.699999999999996,
+        "maxX": 39.08,
+        "minZ": 25.88764400898479,
+        "maxZ": 33.06097571060993
+      }
+    },
+    {
+      "x": 33.8,
+      "z": 40.18424380547367,
+      "rotation": -1.5707963267948966,
+      "width": 7.4992282909341155,
+      "depth": 9,
+      "floors": 4,
+      "kind": "apartment",
+      "palette": 1,
+      "shop": 10,
+      "rendered": {
+        "x": 33.8,
+        "z": 40.18424380547367,
+        "rotation": -1.5707963267948966,
+        "width": 7.4992282909341155,
+        "depth": 9,
+        "floors": 4,
+        "kind": "apartment",
+        "palette": 1,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 3,
+        "style": "renovated-apartments",
+        "variant": 2,
+        "replace": true,
+        "floors": 4,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": 36.284629660006615,
+        "maxZ": 44.88385795094072
+      },
+      "footprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": 36.284629660006615,
+        "maxZ": 44.88385795094072
+      }
+    },
+    {
+      "x": 33.8,
+      "z": 51.90730562340468,
+      "rotation": -1.5707963267948966,
+      "width": 6.963307149661705,
+      "depth": 9,
+      "floors": 2,
+      "kind": "apartment",
+      "palette": 0,
+      "shop": 10,
+      "rendered": {
+        "x": 33.8,
+        "z": 51.90730562340468,
+        "rotation": -1.5707963267948966,
+        "width": 6.963307149661705,
+        "depth": 9,
+        "floors": 2,
+        "kind": "apartment",
+        "palette": 0,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "residential",
+        "family": 0,
+        "style": "rendered-walkup",
+        "variant": 4,
+        "replace": true,
+        "floors": 2,
+        "signage": "entry-plaque"
+      },
+      "originalFootprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": 48.27565204857383,
+        "maxZ": 56.33895919823553
+      },
+      "footprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": 48.27565204857383,
+        "maxZ": 56.33895919823553
+      }
+    },
+    {
+      "x": -48,
+      "z": 4.4,
+      "rotation": 0,
+      "width": 7.4,
+      "depth": 9,
+      "floors": 6,
+      "kind": "office",
+      "palette": 5,
+      "shop": 15,
+      "rendered": {
+        "x": -48,
+        "z": 4.4,
+        "rotation": 0,
+        "width": 7.4,
+        "depth": 9,
+        "floors": 6,
+        "kind": "office",
+        "palette": 5,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "ceramic-office",
+        "variant": 2,
+        "replace": true,
+        "floors": 6,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": -51.85,
+        "maxX": -43.35,
+        "minZ": -4.6,
+        "maxZ": 4.5
+      },
+      "footprint": {
+        "minX": -51.85,
+        "maxX": -43.35,
+        "minZ": -4.6,
+        "maxZ": 4.5
+      }
+    },
+    {
+      "x": -38,
+      "z": 4.4,
+      "rotation": 0,
+      "width": 7.4,
+      "depth": 9,
+      "floors": 7,
+      "kind": "office",
+      "palette": 2,
+      "shop": 15,
+      "rendered": {
+        "x": -38,
+        "z": 4.4,
+        "rotation": 0,
+        "width": 7.4,
+        "depth": 9,
+        "floors": 7,
+        "kind": "office",
+        "palette": 2,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 1,
+        "style": "renovated-office",
+        "variant": 4,
+        "replace": true,
+        "floors": 7,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": -41.85,
+        "maxX": -33.35,
+        "minZ": -4.6,
+        "maxZ": 4.5
+      },
+      "footprint": {
+        "minX": -41.85,
+        "maxX": -33.35,
+        "minZ": -4.6,
+        "maxZ": 4.5
+      }
+    },
+    {
+      "x": -28,
+      "z": 4.4,
+      "rotation": 0,
+      "width": 7.4,
+      "depth": 9,
+      "floors": 7,
+      "kind": "office",
+      "palette": 5,
+      "shop": 15,
+      "rendered": {
+        "x": -28,
+        "z": 4.4,
+        "rotation": 0,
+        "width": 7.4,
+        "depth": 9,
+        "floors": 7,
+        "kind": "office",
+        "palette": 5,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 1,
+        "style": "renovated-office",
+        "variant": 1,
+        "replace": true,
+        "floors": 7,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": -31.85,
+        "maxX": -23.35,
+        "minZ": -4.6,
+        "maxZ": 4.5
+      },
+      "footprint": {
+        "minX": -31.85,
+        "maxX": -23.35,
+        "minZ": -4.6,
+        "maxZ": 4.5
+      }
+    },
+    {
+      "x": 43,
+      "z": 4.4,
+      "rotation": 0,
+      "width": 7.4,
+      "depth": 9,
+      "floors": 4,
+      "kind": "convenience",
+      "palette": 1,
+      "shop": 12,
+      "rendered": {
+        "x": 43,
+        "z": 4.4,
+        "rotation": 0,
+        "width": 7.4,
+        "depth": 9,
+        "floors": 4,
+        "kind": "convenience",
+        "palette": 1,
+        "shop": 12,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "existing-frontage",
+        "variant": 1,
+        "replace": false,
+        "floors": 4,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": 39.15,
+        "maxX": 47.65,
+        "minZ": -4.6,
+        "maxZ": 4.5
+      },
+      "footprint": {
+        "minX": 39.15,
+        "maxX": 47.65,
+        "minZ": -4.6,
+        "maxZ": 4.5
+      }
+    },
+    {
+      "x": 53,
+      "z": 4.4,
+      "rotation": 0,
+      "width": 7.4,
+      "depth": 9,
+      "floors": 6,
+      "kind": "office",
+      "palette": 5,
+      "shop": 15,
+      "rendered": {
+        "x": 53,
+        "z": 4.4,
+        "rotation": 0,
+        "width": 7.4,
+        "depth": 9,
+        "floors": 6,
+        "kind": "office",
+        "palette": 5,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "postwar-office",
+        "variant": 0,
+        "replace": true,
+        "floors": 6,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": 49.15,
+        "maxX": 57.65,
+        "minZ": -4.6,
+        "maxZ": 4.5
+      },
+      "footprint": {
+        "minX": 49.15,
+        "maxX": 57.65,
+        "minZ": -4.6,
+        "maxZ": 4.5
+      }
+    },
+    {
+      "x": -48,
+      "z": 19.6,
+      "rotation": 3.141592653589793,
+      "width": 7.4,
+      "depth": 9,
+      "floors": 5,
+      "kind": "office",
+      "palette": 5,
+      "shop": 15,
+      "rendered": {
+        "x": -48,
+        "z": 19.6,
+        "rotation": 3.141592653589793,
+        "width": 7.4,
+        "depth": 9,
+        "floors": 5,
+        "kind": "office",
+        "palette": 5,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 1,
+        "style": "renovated-office",
+        "variant": 2,
+        "replace": true,
+        "floors": 5,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": -52.65,
+        "maxX": -44.15,
+        "minZ": 19.500000000000004,
+        "maxZ": 28.6
+      },
+      "footprint": {
+        "minX": -52.65,
+        "maxX": -44.15,
+        "minZ": 19.500000000000004,
+        "maxZ": 28.6
+      }
+    },
+    {
+      "x": -38,
+      "z": 19.6,
+      "rotation": 3.141592653589793,
+      "width": 7.4,
+      "depth": 9,
+      "floors": 5,
+      "kind": "office",
+      "palette": 0,
+      "shop": 15,
+      "rendered": {
+        "x": -38,
+        "z": 19.6,
+        "rotation": 3.141592653589793,
+        "width": 7.4,
+        "depth": 9,
+        "floors": 5,
+        "kind": "office",
+        "palette": 0,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 1,
+        "style": "renovated-office",
+        "variant": 5,
+        "replace": true,
+        "floors": 5,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": -42.65,
+        "maxX": -34.15,
+        "minZ": 19.500000000000004,
+        "maxZ": 28.6
+      },
+      "footprint": {
+        "minX": -42.65,
+        "maxX": -34.15,
+        "minZ": 19.500000000000004,
+        "maxZ": 28.6
+      }
+    },
+    {
+      "x": -28,
+      "z": 19.6,
+      "rotation": 3.141592653589793,
+      "width": 7.4,
+      "depth": 9,
+      "floors": 7,
+      "kind": "office",
+      "palette": 3,
+      "shop": 15,
+      "rendered": {
+        "x": -28,
+        "z": 19.6,
+        "rotation": 3.141592653589793,
+        "width": 7.4,
+        "depth": 9,
+        "floors": 7,
+        "kind": "office",
+        "palette": 3,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "ceramic-office",
+        "variant": 2,
+        "replace": true,
+        "floors": 7,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": -32.65,
+        "maxX": -24.15,
+        "minZ": 19.500000000000004,
+        "maxZ": 28.6
+      },
+      "footprint": {
+        "minX": -32.65,
+        "maxX": -24.15,
+        "minZ": 19.500000000000004,
+        "maxZ": 28.6
+      }
+    },
+    {
+      "x": 43,
+      "z": 19.6,
+      "rotation": 3.141592653589793,
+      "width": 7.4,
+      "depth": 9,
+      "floors": 7,
+      "kind": "convenience",
+      "palette": 0,
+      "shop": 12,
+      "rendered": {
+        "x": 43,
+        "z": 19.6,
+        "rotation": 3.141592653589793,
+        "width": 7.4,
+        "depth": 9,
+        "floors": 7,
+        "kind": "convenience",
+        "palette": 0,
+        "shop": 12,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 1,
+        "style": "existing-frontage",
+        "variant": 2,
+        "replace": false,
+        "floors": 7,
+        "signage": "retail-frontage"
+      },
+      "originalFootprint": {
+        "minX": 38.35,
+        "maxX": 46.85,
+        "minZ": 19.500000000000004,
+        "maxZ": 28.6
+      },
+      "footprint": {
+        "minX": 38.35,
+        "maxX": 46.85,
+        "minZ": 19.500000000000004,
+        "maxZ": 28.6
+      }
+    },
+    {
+      "x": 53,
+      "z": 19.6,
+      "rotation": 3.141592653589793,
+      "width": 7.4,
+      "depth": 9,
+      "floors": 5,
+      "kind": "office",
+      "palette": 3,
+      "shop": 15,
+      "rendered": {
+        "x": 53,
+        "z": 19.6,
+        "rotation": 3.141592653589793,
+        "width": 7.4,
+        "depth": 9,
+        "floors": 5,
+        "kind": "office",
+        "palette": 3,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "ceramic-office",
+        "variant": 4,
+        "replace": true,
+        "floors": 5,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": 48.35,
+        "maxX": 56.85,
+        "minZ": 19.500000000000004,
+        "maxZ": 28.6
+      },
+      "footprint": {
+        "minX": 48.35,
+        "maxX": 56.85,
+        "minZ": 19.500000000000004,
+        "maxZ": 28.6
+      }
+    },
+    {
+      "x": -47.382743920898065,
+      "z": -38.48571218806319,
+      "rotation": 1.5707963267948966,
+      "width": 9.332660667598248,
+      "depth": 12.632642115233466,
+      "floors": 14,
+      "kind": "office",
+      "palette": 4,
+      "shop": 15,
+      "rendered": {
+        "x": -47.382743920898065,
+        "z": -38.48571218806319,
+        "rotation": 1.5707963267948966,
+        "width": 9.332660667598248,
+        "depth": 12.632642115233466,
+        "floors": 14,
+        "kind": "office",
+        "palette": 4,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "postwar-office",
+        "variant": 3,
+        "replace": true,
+        "floors": 14,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": -60.01538603613153,
+        "maxX": -47.28274392089806,
+        "minZ": -44.102042521862316,
+        "maxZ": -33.66938185426407
+      },
+      "footprint": {
+        "minX": -60.01538603613153,
+        "maxX": -47.28274392089806,
+        "minZ": -44.102042521862316,
+        "maxZ": -33.66938185426407
+      }
+    },
+    {
+      "x": -40.06033463985659,
+      "z": 50.3892940513324,
+      "rotation": 1.5707963267948966,
+      "width": 11.818559940904379,
+      "depth": 9.819059279281646,
+      "floors": 14,
+      "kind": "office",
+      "palette": 5,
+      "shop": 15,
+      "rendered": {
+        "x": -40.06033463985659,
+        "z": 50.3892940513324,
+        "rotation": 1.5707963267948966,
+        "width": 11.818559940904379,
+        "depth": 9.819059279281646,
+        "floors": 14,
+        "kind": "office",
+        "palette": 5,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "postwar-office",
+        "variant": 0,
+        "replace": true,
+        "floors": 14,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": -49.87939391913824,
+        "maxX": -39.96033463985659,
+        "minZ": 43.53001408088021,
+        "maxZ": 56.44857402178459
+      },
+      "footprint": {
+        "minX": -49.87939391913824,
+        "maxX": -39.96033463985659,
+        "minZ": 43.53001408088021,
+        "maxZ": 56.44857402178459
+      }
+    },
+    {
+      "x": -56.25748425652273,
+      "z": -49.60498390044086,
+      "rotation": 1.5707963267948966,
+      "width": 11.35535570140928,
+      "depth": 13.270438577979803,
+      "floors": 12,
+      "kind": "office",
+      "palette": 6,
+      "shop": 15,
+      "rendered": {
+        "x": -56.25748425652273,
+        "z": -48.11365302486811,
+        "rotation": 1.5707963267948966,
+        "width": 8.052693950263787,
+        "depth": 13.110438577979803,
+        "floors": 12,
+        "kind": "office",
+        "palette": 6,
+        "shop": 15,
+        "railAdjusted": true,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "station",
+        "family": 2,
+        "style": "ceramic-office",
+        "variant": 4,
+        "replace": true,
+        "floors": 12,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": -69.52792283450253,
+        "maxX": -56.157484256522736,
+        "minZ": -56.2326617511455,
+        "maxZ": -43.77730604973622
+      },
+      "footprint": {
+        "minX": -69.44792283450253,
+        "maxX": -56.15748425652273,
+        "minZ": -52.26,
+        "maxZ": -43.967306049736216
+      }
+    },
+    {
+      "x": -50.969396891538054,
+      "z": 33.14072628482245,
+      "rotation": 1.5707963267948966,
+      "width": 10.28643555752933,
+      "depth": 10.586630634730682,
+      "floors": 9,
+      "kind": "office",
+      "palette": 4,
+      "shop": 15,
+      "rendered": {
+        "x": -50.969396891538054,
+        "z": 33.62197203179356,
+        "rotation": 1.5707963267948966,
+        "width": 9.323944063587113,
+        "depth": 10.506630634730682,
+        "floors": 9,
+        "kind": "office",
+        "palette": 4,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": true,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "ceramic-office",
+        "variant": 6,
+        "replace": true,
+        "floors": 9,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": -61.556027526268736,
+        "maxX": -50.86939689153805,
+        "minZ": 27.04750850605778,
+        "maxZ": 38.43394406358711
+      },
+      "footprint": {
+        "minX": -61.556027526268736,
+        "maxX": -50.86939689153805,
+        "minZ": 28.840000000000003,
+        "maxZ": 38.40394406358712
+      }
+    },
+    {
+      "x": -55.72191830794327,
+      "z": 49.67005951073952,
+      "rotation": 1.5707963267948966,
+      "width": 11.088059775531292,
+      "depth": 11.701301005436108,
+      "floors": 9,
+      "kind": "office",
+      "palette": 5,
+      "shop": 15,
+      "rendered": {
+        "x": -55.72191830794327,
+        "z": 49.67005951073952,
+        "rotation": 1.5707963267948966,
+        "width": 11.088059775531292,
+        "depth": 11.701301005436108,
+        "floors": 9,
+        "kind": "office",
+        "palette": 5,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 1,
+        "style": "renovated-office",
+        "variant": 0,
+        "replace": true,
+        "floors": 9,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": -67.42321931337938,
+        "maxX": -55.621918307943275,
+        "minZ": 43.17602962297387,
+        "maxZ": 55.364089398505165
+      },
+      "footprint": {
+        "minX": -67.42321931337938,
+        "maxX": -55.621918307943275,
+        "minZ": 43.17602962297387,
+        "maxZ": 55.364089398505165
+      }
+    },
+    {
+      "x": 58.609032679349184,
+      "z": -16.88002763222903,
+      "rotation": -1.5707963267948966,
+      "width": 12.58874629251659,
+      "depth": 10.017967700725421,
+      "floors": 10,
+      "kind": "office",
+      "palette": 6,
+      "shop": 15,
+      "rendered": {
+        "x": 58.609032679349184,
+        "z": -16.88002763222903,
+        "rotation": -1.5707963267948966,
+        "width": 12.58874629251659,
+        "depth": 10.017967700725421,
+        "floors": 10,
+        "kind": "office",
+        "palette": 6,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "ceramic-office",
+        "variant": 5,
+        "replace": true,
+        "floors": 10,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": 58.50903267934918,
+        "maxX": 68.6270003800746,
+        "minZ": -23.324400778487323,
+        "maxZ": -9.635654485970736
+      },
+      "footprint": {
+        "minX": 58.50903267934918,
+        "maxX": 68.6270003800746,
+        "minZ": -23.324400778487323,
+        "maxZ": -9.635654485970736
+      }
+    },
+    {
+      "x": 56.0499078258872,
+      "z": -23.413488279562443,
+      "rotation": -1.5707963267948966,
+      "width": 11.05654505547136,
+      "depth": 12.935329474043101,
+      "floors": 7,
+      "kind": "office",
+      "palette": 7,
+      "shop": 15,
+      "rendered": {
+        "x": 56.0499078258872,
+        "z": -26.258080792892727,
+        "rotation": -1.5707963267948966,
+        "width": 5.367360028810797,
+        "depth": 12.855329474043101,
+        "floors": 7,
+        "kind": "office",
+        "palette": 7,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": true,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 2,
+        "style": "ceramic-office",
+        "variant": 0,
+        "replace": true,
+        "floors": 7,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": 55.9499078258872,
+        "maxX": 68.9852372999303,
+        "minZ": -29.091760807298122,
+        "maxZ": -16.935215751826764
+      },
+      "footprint": {
+        "minX": 55.9499078258872,
+        "maxX": 68.9852372999303,
+        "minZ": -29.061760807298125,
+        "maxZ": -23.45440077848733
+      }
+    },
+    {
+      "x": 62.24357432126999,
+      "z": -58.54681146820076,
+      "rotation": -1.5707963267948966,
+      "width": 10.958765661343932,
+      "depth": 13.97111419052817,
+      "floors": 11,
+      "kind": "office",
+      "palette": 4,
+      "shop": 15,
+      "rendered": {
+        "x": 62.24357432126999,
+        "z": -62.81309714943636,
+        "rotation": -1.5707963267948966,
+        "width": 2.1061942988727296,
+        "depth": 13.81111419052817,
+        "floors": 3,
+        "kind": "office",
+        "palette": 4,
+        "shop": 15,
+        "railAdjusted": true,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "identity": {
+        "district": "station",
+        "family": 0,
+        "style": "postwar-office",
+        "variant": 1,
+        "replace": true,
+        "floors": 3,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": 62.14357432126999,
+        "maxX": 76.21468851179816,
+        "minZ": -64.17619429887273,
+        "maxZ": -52.117428637528796
+      },
+      "footprint": {
+        "minX": 62.14357432126999,
+        "maxX": 76.13468851179816,
+        "minZ": -63.986194298872725,
+        "maxZ": -61.63999999999999
+      }
+    },
+    {
+      "x": 57.11332694068551,
+      "z": -30.507880866294727,
+      "rotation": -1.5707963267948966,
+      "width": 10.32348855305463,
+      "depth": 13.182052469346672,
+      "floors": 13,
+      "kind": "office",
+      "palette": 5,
+      "shop": 15,
+      "rendered": {
+        "x": 57.11332694068551,
+        "z": -32.505692975060086,
+        "rotation": -1.5707963267948966,
+        "width": 6.327864335523916,
+        "depth": 13.102052469346672,
+        "floors": 13,
+        "kind": "office",
+        "palette": 5,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": true,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 1,
+        "style": "renovated-office",
+        "variant": 2,
+        "replace": true,
+        "floors": 13,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": 57.01332694068551,
+        "maxX": 70.29537941003218,
+        "minZ": -35.81962514282204,
+        "maxZ": -24.396136589767412
+      },
+      "footprint": {
+        "minX": 57.01332694068551,
+        "maxX": 70.29537941003218,
+        "minZ": -35.78962514282205,
+        "maxZ": -29.22176080729813
+      }
+    },
+    {
+      "x": 56.78200913593173,
+      "z": 32.57493308838457,
+      "rotation": -1.5707963267948966,
+      "width": 9.737854254432023,
+      "depth": 14.813917501596734,
+      "floors": 11,
+      "kind": "office",
+      "palette": 7,
+      "shop": 15,
+      "rendered": {
+        "x": 56.78200913593173,
+        "z": 33.201930107800294,
+        "rotation": -1.5707963267948966,
+        "width": 8.48386021560058,
+        "depth": 14.733917501596734,
+        "floors": 11,
+        "kind": "office",
+        "palette": 7,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": true,
+        "renderable": true
+      },
+      "identity": {
+        "district": "commercial",
+        "family": 0,
+        "style": "postwar-office",
+        "variant": 1,
+        "replace": true,
+        "floors": 11,
+        "signage": "tenancy-directory"
+      },
+      "originalFootprint": {
+        "minX": 56.68200913593173,
+        "maxX": 71.59592663752846,
+        "minZ": 27.55600596116856,
+        "maxZ": 38.393860215600576
+      },
+      "footprint": {
+        "minX": 56.68200913593173,
+        "maxX": 71.59592663752846,
+        "minZ": 28.840000000000003,
+        "maxZ": 37.563860215600585
+      }
+    }
+  ],
+  "parts": 10370,
+  "triangles": 136002,
+  "trainHits": [],
+  "routeHits": [],
+  "roadHits": [],
+  "unreservedGroundParts": [],
+  "samples": 17711,
+  "shaderErrors": 0,
+  "assetErrors": [],
+  "railCorrections": [
+    {
+      "original": {
+        "x": 33.8,
+        "z": -5.408823805861175,
+        "width": 7.214293352281675,
+        "floors": 4
+      },
+      "rendered": {
+        "x": 33.8,
+        "z": -5.408823805861175,
+        "rotation": -1.5707963267948966,
+        "width": 7.214293352281675,
+        "depth": 5.2,
+        "floors": 4,
+        "kind": "apartment",
+        "palette": 1,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": true,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "originalFootprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": -9.165970482002013,
+        "maxZ": -0.8516771297203398
+      },
+      "footprint": {
+        "minX": 33.699999999999996,
+        "maxX": 39.08,
+        "minZ": -9.135970482002012,
+        "maxZ": -1.6816771297203377
+      }
+    },
+    {
+      "original": {
+        "x": 33.8,
+        "z": 29.47430985979736,
+        "width": 6.933331701625138,
+        "floors": 2
+      },
+      "rendered": {
+        "x": 33.8,
+        "z": 29.47430985979736,
+        "rotation": -1.5707963267948966,
+        "width": 6.933331701625138,
+        "depth": 5.2,
+        "floors": 2,
+        "kind": "apartment",
+        "palette": 1,
+        "shop": 10,
+        "railAdjusted": false,
+        "cornerAdjusted": true,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "originalFootprint": {
+        "minX": 33.699999999999996,
+        "maxX": 42.8,
+        "minZ": 25.85764400898479,
+        "maxZ": 33.89097571060992
+      },
+      "footprint": {
+        "minX": 33.699999999999996,
+        "maxX": 39.08,
+        "minZ": 25.88764400898479,
+        "maxZ": 33.06097571060993
+      }
+    },
+    {
+      "original": {
+        "x": -56.25748425652273,
+        "z": -49.60498390044086,
+        "width": 11.35535570140928,
+        "floors": 12
+      },
+      "rendered": {
+        "x": -56.25748425652273,
+        "z": -48.11365302486811,
+        "rotation": 1.5707963267948966,
+        "width": 8.052693950263787,
+        "depth": 13.110438577979803,
+        "floors": 12,
+        "kind": "office",
+        "palette": 6,
+        "shop": 15,
+        "railAdjusted": true,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "originalFootprint": {
+        "minX": -69.52792283450253,
+        "maxX": -56.157484256522736,
+        "minZ": -56.2326617511455,
+        "maxZ": -43.77730604973622
+      },
+      "footprint": {
+        "minX": -69.44792283450253,
+        "maxX": -56.15748425652273,
+        "minZ": -52.26,
+        "maxZ": -43.967306049736216
+      }
+    },
+    {
+      "original": {
+        "x": -50.969396891538054,
+        "z": 33.14072628482245,
+        "width": 10.28643555752933,
+        "floors": 9
+      },
+      "rendered": {
+        "x": -50.969396891538054,
+        "z": 33.62197203179356,
+        "rotation": 1.5707963267948966,
+        "width": 9.323944063587113,
+        "depth": 10.506630634730682,
+        "floors": 9,
+        "kind": "office",
+        "palette": 4,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": true,
+        "renderable": true
+      },
+      "originalFootprint": {
+        "minX": -61.556027526268736,
+        "maxX": -50.86939689153805,
+        "minZ": 27.04750850605778,
+        "maxZ": 38.43394406358711
+      },
+      "footprint": {
+        "minX": -61.556027526268736,
+        "maxX": -50.86939689153805,
+        "minZ": 28.840000000000003,
+        "maxZ": 38.40394406358712
+      }
+    },
+    {
+      "original": {
+        "x": 56.0499078258872,
+        "z": -23.413488279562443,
+        "width": 11.05654505547136,
+        "floors": 7
+      },
+      "rendered": {
+        "x": 56.0499078258872,
+        "z": -26.258080792892727,
+        "rotation": -1.5707963267948966,
+        "width": 5.367360028810797,
+        "depth": 12.855329474043101,
+        "floors": 7,
+        "kind": "office",
+        "palette": 7,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": true,
+        "renderable": true
+      },
+      "originalFootprint": {
+        "minX": 55.9499078258872,
+        "maxX": 68.9852372999303,
+        "minZ": -29.091760807298122,
+        "maxZ": -16.935215751826764
+      },
+      "footprint": {
+        "minX": 55.9499078258872,
+        "maxX": 68.9852372999303,
+        "minZ": -29.061760807298125,
+        "maxZ": -23.45440077848733
+      }
+    },
+    {
+      "original": {
+        "x": 62.24357432126999,
+        "z": -58.54681146820076,
+        "width": 10.958765661343932,
+        "floors": 11
+      },
+      "rendered": {
+        "x": 62.24357432126999,
+        "z": -62.81309714943636,
+        "rotation": -1.5707963267948966,
+        "width": 2.1061942988727296,
+        "depth": 13.81111419052817,
+        "floors": 3,
+        "kind": "office",
+        "palette": 4,
+        "shop": 15,
+        "railAdjusted": true,
+        "cornerAdjusted": false,
+        "parcelAdjusted": false,
+        "renderable": true
+      },
+      "originalFootprint": {
+        "minX": 62.14357432126999,
+        "maxX": 76.21468851179816,
+        "minZ": -64.17619429887273,
+        "maxZ": -52.117428637528796
+      },
+      "footprint": {
+        "minX": 62.14357432126999,
+        "maxX": 76.13468851179816,
+        "minZ": -63.986194298872725,
+        "maxZ": -61.63999999999999
+      }
+    },
+    {
+      "original": {
+        "x": 57.11332694068551,
+        "z": -30.507880866294727,
+        "width": 10.32348855305463,
+        "floors": 13
+      },
+      "rendered": {
+        "x": 57.11332694068551,
+        "z": -32.505692975060086,
+        "rotation": -1.5707963267948966,
+        "width": 6.327864335523916,
+        "depth": 13.102052469346672,
+        "floors": 13,
+        "kind": "office",
+        "palette": 5,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": true,
+        "renderable": true
+      },
+      "originalFootprint": {
+        "minX": 57.01332694068551,
+        "maxX": 70.29537941003218,
+        "minZ": -35.81962514282204,
+        "maxZ": -24.396136589767412
+      },
+      "footprint": {
+        "minX": 57.01332694068551,
+        "maxX": 70.29537941003218,
+        "minZ": -35.78962514282205,
+        "maxZ": -29.22176080729813
+      }
+    },
+    {
+      "original": {
+        "x": 56.78200913593173,
+        "z": 32.57493308838457,
+        "width": 9.737854254432023,
+        "floors": 11
+      },
+      "rendered": {
+        "x": 56.78200913593173,
+        "z": 33.201930107800294,
+        "rotation": -1.5707963267948966,
+        "width": 8.48386021560058,
+        "depth": 14.733917501596734,
+        "floors": 11,
+        "kind": "office",
+        "palette": 7,
+        "shop": 15,
+        "railAdjusted": false,
+        "cornerAdjusted": false,
+        "parcelAdjusted": true,
+        "renderable": true
+      },
+      "originalFootprint": {
+        "minX": 56.68200913593173,
+        "maxX": 71.59592663752846,
+        "minZ": 27.55600596116856,
+        "maxZ": 38.393860215600576
+      },
+      "footprint": {
+        "minX": 56.68200913593173,
+        "maxX": 71.59592663752846,
+        "minZ": 28.840000000000003,
+        "maxZ": 37.563860215600585
+      }
+    }
+  ]
+}

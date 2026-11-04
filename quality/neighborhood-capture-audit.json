@@ -1,0 +1,167 @@
+{
+  "views": [
+    {
+      "label": "hero-night",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "commercial-day",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "station-night",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "residential-day",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "residential-night",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "nightlife-night",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "nightlife-day",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "transition-day",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    },
+    {
+      "label": "overview-day",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "seed": true,
+        "hour": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "width": true,
+        "height": true,
+        "pixelRatio": true,
+        "renderConditions": true
+      }
+    }
+  ],
+  "actorNote": "Population uses the revised district destination preferences; actor routes are allowed to differ."
+}

@@ -32,6 +32,7 @@ export class NightlifeStreet {
   constructor(scene: THREE.Scene, district: District) {
     const b = new CityBatch(), m = this.materials, placements: AssetPlacement[] = [];
     this.group.name = 'Yoto nightlife street / authored facades and services';
+    this.group.userData.neighborhoods={district:'nightlife',frontages:FRONTAGES.map(s=>({...s,z:-25+s.side*2.55,business:'restaurant'}))};
     const putAsset = (asset: NightlifeAsset, x: number, y: number, z: number, yaw: number, scale: number) => placements.push({ asset, position: new THREE.Vector3(x, y, z), yaw, scale });
     for (const [index, s] of FRONTAGES.entries()) {
       const z = -25 + s.side * 2.55, yaw = s.side > 0 ? Math.PI : 0, w = s.width, h = s.height, facade = m[s.skin];

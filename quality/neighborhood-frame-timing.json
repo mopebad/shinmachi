@@ -1,0 +1,64 @@
+{
+  "runs": [
+    {
+      "view": "hero",
+      "hour": 20.5,
+      "clockStart": 301.200000000024,
+      "clockEnd": 306.200000000024,
+      "frames": 514,
+      "elapsedMs": 5009.400000000023,
+      "aggregateFps": 102.60709865452901,
+      "medianMs": 8.400000000023283,
+      "p95Ms": 12.599999999976717,
+      "p99Ms": 16.70000000001164,
+      "worstMs": 16.800000000046566,
+      "viewport": [
+        1323,
+        777
+      ],
+      "renderPixelRatio": 1,
+      "devicePixelRatio": 1,
+      "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.145.0 Chrome/150.0.7871.250 Electron/43.8.3 Safari/537.36",
+      "stats": {
+        "fps": 105,
+        "drawCalls": 1310,
+        "triangles": 4848042,
+        "buildings": 77,
+        "pedestrians": 56,
+        "vehicles": 11
+      },
+      "note": "Browser frame intervals; does not isolate GPU execution time."
+    },
+    {
+      "view": "residential",
+      "hour": 20.5,
+      "clockStart": 308.0000000000294,
+      "clockEnd": 313.0000000000294,
+      "frames": 565,
+      "elapsedMs": 5005.200000000012,
+      "aggregateFps": 112.88260209382216,
+      "medianMs": 8.399999999965075,
+      "p95Ms": 12.5,
+      "p99Ms": 12.600000000034925,
+      "worstMs": 16.70000000001164,
+      "viewport": [
+        1323,
+        777
+      ],
+      "renderPixelRatio": 1,
+      "devicePixelRatio": 1,
+      "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.145.0 Chrome/150.0.7871.250 Electron/43.8.3 Safari/537.36",
+      "stats": {
+        "fps": 120,
+        "drawCalls": 1038,
+        "triangles": 4643982,
+        "buildings": 77,
+        "pedestrians": 55,
+        "vehicles": 11
+      },
+      "note": "Browser frame intervals; does not isolate GPU execution time."
+    }
+  ]
+}

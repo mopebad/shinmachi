@@ -1,0 +1,26 @@
+{
+  "supported": true,
+  "medianMs": 10.359872,
+  "p95Ms": 18.388384,
+  "samples": [
+    1.835872,
+    1.94272,
+    9.588352,
+    9.923296,
+    10.08848,
+    10.099616,
+    10.359872,
+    10.378528,
+    10.531584,
+    10.665728,
+    17.649536,
+    18.388384
+  ],
+  "viewport": [
+    1323,
+    777
+  ],
+  "pixelRatio": 1,
+  "clock": 300.000000000023,
+  "method": "EXT_disjoint_timer_query_webgl2, 12 whole composer GPU queries; no disjoint samples"
+}
