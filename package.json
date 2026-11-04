@@ -7,7 +7,7 @@
     "dev": "vite",
     "assets:build": "node tools/build-nightlife-assets.mjs",
     "check": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test tests/simulation.test.mjs tests/audio.test.mjs tests/nightlife.test.mjs tests/visual-review.test.mjs tests/signage.test.mjs tests/station.test.mjs tests/station-navigation.test.mjs tests/train-operation.test.mjs tests/train-doors.test.mjs tests/station-boarding-access.test.mjs tests/train-passengers.test.mjs",
+    "test": "node --experimental-strip-types --test tests/simulation.test.mjs tests/audio.test.mjs tests/nightlife.test.mjs tests/visual-review.test.mjs tests/signage.test.mjs tests/station.test.mjs tests/station-navigation.test.mjs tests/train-operation.test.mjs tests/train-doors.test.mjs tests/station-boarding-access.test.mjs tests/train-passengers.test.mjs tests/vehicles.test.mjs tests/behavior.test.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview"
   },

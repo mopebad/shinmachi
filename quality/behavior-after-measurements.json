@@ -1,0 +1,18 @@
+{
+  "clock": 300.000000000023,
+  "viewport": [
+    1521,
+    889
+  ],
+  "medianMs": 7.200000047683716,
+  "p95Ms": 8.200000047683716,
+  "stats": {
+    "fps": 92,
+    "drawCalls": 1111,
+    "triangles": 5004653,
+    "buildings": 57,
+    "pedestrians": 56,
+    "vehicles": 11
+  },
+  "method": "30 synchronous composite renders with gl.finish after 8 warmups, matching baseline resolution; not GPU-only or FPS"
+}

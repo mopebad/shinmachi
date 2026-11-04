@@ -1,0 +1,15 @@
+{
+  "seconds": 600,
+  "overlaps": 0,
+  "redEntries": 0,
+  "laneErrors": 0,
+  "maxBrakeExcess": 1.9984014443252818e-14,
+  "vehicleExits": 109,
+  "activityKinds": {
+    "phone": 17,
+    "browse": 8,
+    "restaurant-wait": 23,
+    "look-around": 6,
+    "conversation": 6
+  }
+}

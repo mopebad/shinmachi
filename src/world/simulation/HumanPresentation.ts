@@ -4,6 +4,7 @@ import { createHumanGeometry } from './HumanGeometry';
 import { legPose } from './CharacterPose';
 import { stationStairPose } from './StationPose';
 import { stationFootSurface } from './StationNavigation';
+import { walkingPose } from './WalkingPose';
 import type { CitySimulation } from './CitySimulation';
 
 function cloth(): THREE.MeshStandardMaterial {
@@ -25,6 +26,7 @@ export class HumanPresentation {
   private readonly features: THREE.InstancedMesh; private readonly details: THREE.InstancedMesh; private readonly contacts: THREE.InstancedMesh;
   private readonly joints: THREE.InstancedMesh;
   private pedestrianId = -1;
+  private readonly boneDirection=new THREE.Vector3();
   constructor(parent: THREE.Group) {
     const geometry = createHumanGeometry(), fabric = cloth(), skin = new THREE.MeshStandardMaterial({ roughness: .72 }), hair = new THREE.MeshStandardMaterial({ roughness: .93 }), leather = new THREE.MeshStandardMaterial({ roughness: .6 });
     this.group.name = 'Clothed human presentation'; parent.add(this.group);
@@ -45,6 +47,11 @@ export class HumanPresentation {
     this.object.position.set(x, y, z); this.object.scale.set(sx, sy, sz); this.object.rotation.set(pitch, yaw, roll, 'YXZ'); this.object.updateMatrix(); const index = mesh.count++; mesh.setMatrixAt(index, this.object.matrix); mesh.setColorAt(index, this.color.setHex(color));
     (mesh.userData.pedestrianIds??=[])[index]=this.pedestrianId;
   }
+  private segment(mesh:THREE.InstancedMesh,a:{x:number;y:number;z:number},b:{x:number;y:number;z:number},scale:number,color:number):void {
+    this.object.position.set((a.x+b.x)/2,(a.y+b.y)/2,(a.z+b.z)/2);this.object.scale.setScalar(scale);
+    this.object.quaternion.setFromUnitVectors(THREE.Object3D.DEFAULT_UP,this.boneDirection.set(a.x-b.x,a.y-b.y,a.z-b.z).normalize());this.object.updateMatrix();
+    const index=mesh.count++;mesh.setMatrixAt(index,this.object.matrix);mesh.setColorAt(index,this.color.setHex(color));(mesh.userData.pedestrianIds??=[])[index]=this.pedestrianId;
+  }
   update(simulation: CitySimulation, listener?: THREE.Vector3): void {
     this.pools.forEach(p => { p.count = 0; });
     // The same bounded pools render street pedestrians, physical transfers and moving train occupants.
@@ -53,34 +60,48 @@ export class HumanPresentation {
       if (!p.active || (listener && Math.abs(p.y+1-listener.y)<1.5 && Math.hypot(p.x - listener.x, p.z - listener.z) < .65)) continue;
       presentedIds.push(p.id);
       this.pedestrianId=p.id;
-      const scale = p.scale * 1.08 * (p.style === 4 ? .96 : 1), swing = p.moving ? Math.sin(p.phase) * .40 : 0;
+      const appearance=p.identity.appearance,near=!listener||Math.hypot(p.x-listener.x,p.z-listener.z)<35;
+      const scale = p.scale * 1.08 * (p.style === 4 ? .96 : 1), swing = Math.sin(p.phase)*Math.asin(p.identity.strideLength/(1.36*scale))*p.motion.blend;
       const stair=simulation.navigation.station?stationStairPose(simulation.navigation.station.layout,p,scale):null;
-      const legs = stair?.legs??[legPose(swing, -1), legPose(swing, 1)], bounce = stair?0:.11 - Math.min(legs[0].ankle.y, legs[1].ankle.y);
-      const surface = p.y, rootY = stair?.rootY??surface - .05 * scale;
-      const skin = [0xbd9275, 0xd0aa89, 0xae8065][p.id % 3], hair = p.style === 4 ? 0x77736b : p.id % 3 ? 0x211f1c : 0x48372d;
-      const shirt = p.style === 0 ? 0x343d45 : p.style === 2 ? 0x938675 : p.shirt, trousers = [0x30383f, 0x3d4245, 0x3b4853][p.id % 3];
-      const part = (mesh: THREE.InstancedMesh, x: number, y: number, z: number, color: number, sx = 1, sy = 1, sz = 1, pitch = 0, roll = 0) => { const cs = Math.cos(p.yaw), sn = Math.sin(p.yaw); this.put(mesh, p.x + (x * cs + z * sn) * scale, rootY + (y + bounce) * scale, p.z + (z * cs - x * sn) * scale, sx * scale, sy * scale, sz * scale, color, p.yaw, pitch, roll); };
-      part(this.torso, 0, 1.10, 0, shirt, p.style === 4 ? 1.04 : 1, 1, 1);
+      const walk=walkingPose(p,scale);
+      const legs = stair?.legs??[legPose(swing, -1), legPose(swing, 1)], bounce = stair||walk?0:.11 - Math.min(legs[0].ankle.y, legs[1].ankle.y);
+      const surface = p.y, rootY = stair?.rootY??walk?.rootY??surface - .05 * scale;
+      const skin=appearance.skin,hair=appearance.hair,shirt=p.shirt,trousers=appearance.trousers;
+      const cs=Math.cos(p.yaw),sn=Math.sin(p.yaw),look=p.motion.lookYaw,hc=Math.cos(look),hs=Math.sin(look);
+      const part = (mesh: THREE.InstancedMesh, x: number, y: number, z: number, color: number, sx = 1, sy = 1, sz = 1, pitch = 0, roll = 0) => {
+        const head=y>1.43;if(head){const ox=x;x=x*hc+z*hs;z=z*hc-ox*hs;}
+        this.put(mesh, p.x + (x * cs + z * sn) * scale, rootY + (y + bounce) * scale, p.z + (z * cs - x * sn) * scale, sx * scale, sy * scale, sz * scale, color, p.yaw+(head?look:0), pitch, roll);
+      };
+      part(this.torso, 0, 1.10, 0, shirt, appearance.build,1+(1-p.motion.blend)*.003*Math.sin(simulation.clock*1.3+p.identity.phase), 1);
       part(this.pelvis, 0, .79, 0, trousers); part(this.neck, 0, 1.402, .003, skin); part(this.head, 0, 1.545, .004, skin); part(this.hair, 0, 1.545, .004, hair, 1, 1, p.style === 3 ? 1.04 : 1);
       for (const [i, side] of [-1, 1].entries()) {
         const { hip, knee, ankle, upperRotation, lowerRotation } = legs[i];
-        part(this.upperLeg, side * .09, (hip.y + knee.y) / 2, (hip.z + knee.z) / 2, trousers, 1, 1, 1, upperRotation);
-        part(this.lowerLeg, side * .09, (knee.y + ankle.y) / 2, (knee.z + ankle.z) / 2, trousers, 1, 1, 1, lowerRotation);
-        part(this.joints, side * .09, knee.y, knee.z, trousers, .054, .055, .057);
-        part(this.shoe, side * .09, ankle.y - .015, ankle.z, 0x22272a);
-        const upper = side * swing * .65, lower = upper - .12, shoulderY = 1.285, elbowY = shoulderY - Math.cos(upper) * .25, elbowZ = -Math.sin(upper) * .25, wristY = elbowY - Math.cos(lower) * .23, wristZ = elbowZ - Math.sin(lower) * .23;
+        if(walk){
+          const leg=walk.legs[i];this.segment(this.upperLeg,leg.hip,leg.knee,scale,trousers);this.segment(this.lowerLeg,leg.knee,leg.ankle,scale,trousers);
+          this.put(this.joints,leg.knee.x,leg.knee.y,leg.knee.z,.054*scale,.055*scale,.057*scale,trousers,p.yaw);
+          this.put(this.shoe,leg.foot.x,leg.foot.y+.045*scale,leg.foot.z,scale,scale,scale,0x22272a,leg.yaw);
+        }else{
+          part(this.upperLeg, side * .09, (hip.y + knee.y) / 2, (hip.z + knee.z) / 2, trousers, 1, 1, 1, upperRotation);
+          part(this.lowerLeg, side * .09, (knee.y + ankle.y) / 2, (knee.z + ankle.z) / 2, trousers, 1, 1, 1, lowerRotation);
+          part(this.joints, side * .09, knee.y, knee.z, trousers, .054, .055, .057);part(this.shoe, side * .09, ankle.y - .015, ankle.z, 0x22272a);
+        }
+        const acting=p.activity?.state==='acting',phone=acting&&p.activity?.kind==='phone',talk=acting&&p.activity?.kind==='conversation';
+        const upper = phone?-.30:talk&&side===1?-.3-Math.sin(simulation.clock*1.3+p.identity.phase)*.16:side*swing*.65;
+        const lower = phone?-1.40:talk&&side===1?-.8:upper-.12, shoulderY = 1.285, elbowY = shoulderY - Math.cos(upper) * .25, elbowZ = -Math.sin(upper) * .25, wristY = elbowY - Math.cos(lower) * .23, wristZ = elbowZ - Math.sin(lower) * .23;
         part(this.upperArm, side * .225, (shoulderY + elbowY) / 2, elbowZ / 2, shirt, 1, 1, 1, upper);
         part(this.forearm, side * .225, (elbowY + wristY) / 2, (elbowZ + wristZ) / 2, shirt, 1, 1, 1, lower);
         part(this.joints, side * .225, shoulderY - .012, 0, shirt, .054, .069, .056);
         part(this.joints, side * .225, elbowY, elbowZ, shirt, .041, .045, .042);
         part(this.hand, side * .225, wristY - .072, wristZ + .008, skin, 1, 1, 1, lower);
         part(this.details, side * .225, wristY + .02, wristZ, 0xb4b1a2, .065, .025, .065, lower);
-        part(this.features, side * .081, 1.53, .004, skin, .012, .023, .014);
-        part(this.features, side * .031, 1.569, .082, 0x332e26, .008, .0035, .004);
+        if(phone&&side===1){part(this.details,.225,wristY+.055,wristZ+.025,0x18242d,.072,.12,.014,-.35);part(this.details,.225,wristY+.055,wristZ+.035,0x7facae,.058,.10,.006,-.35);}
+        if(near){part(this.features, side * .081, 1.53, .004, skin, .012, .023, .014);part(this.features, side * .031, 1.569, .082, 0x332e26, .008, .0035, .004);}
         if (p.style === 0 || p.style === 4) part(this.details, side * .04, 1.355, .071, 0xbebcb0, .05, .05, .014, 0, side * .45);
       }
       part(this.details, 0, .875, .003, 0x252b2d, .30, .026, .206);
-      for (let button = 0; button < 3; button++) part(this.features, 0, 1.0 + button * .11, .108, 0x6e7066, .006, .006, .004);
+      if(near)for (let button = 0; button < 3; button++) part(this.features, 0, 1.0 + button * .11, .108, 0x6e7066, .006, .006, .004);
+      if(appearance.hairStyle===1)part(this.details,0,1.50,-.08,hair,.155,.16,.065);
+      if(appearance.hairStyle===2)part(this.details,0,1.53,-.12,hair,.07,.08,.09);
       if (p.style === 0) { part(this.details, 0, 1.20, .116, 0x656653, .034, .23, .009); for (const side of [-1, 1]) part(this.details, side * .065, 1.25, .11, 0x2c333b, .055, .20, .016, 0, side * .29); }
       if (p.style === 1 || p.style === 3) { part(this.details, 0, 1.10, -.17, 0x41483e, .25, .32, .13); for (const side of [-1, 1]) part(this.details, side * .13, 1.15, .09, 0x353b35, .023, .34, .022, 0, side * .06); }
       if (p.style === 2) { part(this.skirt, 0, .64, .005, trousers); part(this.details, .285, .66, .015, 0x735c45, .17, .23, .105); part(this.details, .285, .815, .015, 0x64523f, .115, .075, .022); part(this.details, 0, 1.52, -.077, hair, .14, .17, .055); }

@@ -1,0 +1,334 @@
+{
+  "seconds": 600,
+  "drainSeconds": 600,
+  "wallHits": 0,
+  "roadSteps": 0,
+  "pedestrianOverlaps": 0,
+  "minimumSeparation": 0.5150000033990411,
+  "activitySamples": 27478,
+  "invalidActivities": 0,
+  "maxSpeed": 1.4714202759048773,
+  "maxDriverBrakeExcess": 1.9984014443252818e-14,
+  "exits": 147,
+  "first": [],
+  "cpuMs": 15316.799999952316,
+  "station": {
+    "started": 37,
+    "completed": 37,
+    "failures": 0,
+    "invalidMoves": 0,
+    "maxActive": 11,
+    "maxMovingWait": 12.999999999999964,
+    "maxGateWait": 11.799999999999969,
+    "maxStairWait": 9.599999999999977,
+    "maxVisitSeconds": 453.7000000001633,
+    "maxWaiting": 4,
+    "transitions": {
+      "riding": 31,
+      "approaching": 17,
+      "alighting": 20,
+      "returning": 21,
+      "descending": 21,
+      "entering": 12,
+      "gate-in": 12,
+      "paid": 33,
+      "ascending": 12,
+      "gate-out": 21,
+      "exiting": 21,
+      "platform": 12,
+      "waiting": 12,
+      "boarding": 11
+    }
+  },
+  "rail": {
+    "originated": 20,
+    "boarded": 11,
+    "alighted": 20,
+    "delivered": 11,
+    "maxOnboard": 5,
+    "maxTransfers": 4,
+    "invalidMoves": 0,
+    "unsafeCrossings": 0,
+    "capacityRefusals": 0,
+    "doorBoardings": {
+      "car-2-south-1": 2,
+      "car-3-south-2": 3,
+      "car-3-south-1": 4,
+      "car-2-south-2": 2
+    },
+    "doorAlightings": {
+      "car-2-south-2": 4,
+      "car-2-south-1": 4,
+      "car-3-south-1": 4,
+      "car-1-south-1": 4,
+      "car-1-south-2": 4
+    }
+  },
+  "passengers": {
+    "ticks": 36000,
+    "arrivals": 4,
+    "departures": 4,
+    "boardingThresholdCrossings": 11,
+    "alightingThresholdCrossings": 20,
+    "movingRiderSamples": 45786,
+    "maxPositionStep": 0.13333333333335418,
+    "maxTransferStep": 0.04857467470896637,
+    "maxRiderOffsetError": 1.4210854715202004e-14,
+    "minimumSeparation": 0.5601960859259805,
+    "invalidPositions": 0,
+    "unsafeCrossings": 0,
+    "overlaps": 0,
+    "unsafeDepartures": 0,
+    "capacityViolations": 0,
+    "gateConflicts": 0,
+    "wallHits": 0,
+    "vehicleOverlaps": 0,
+    "vehicleExits": 147,
+    "trainCycles": [
+      {
+        "clock": 96.79999999999708,
+        "stop": 1,
+        "x": 34.75,
+        "allDoorsClosed": true,
+        "holds": []
+      },
+      {
+        "clock": 280.63333333334094,
+        "stop": 2,
+        "x": 34.75,
+        "allDoorsClosed": true,
+        "holds": []
+      },
+      {
+        "clock": 427.3000000001243,
+        "stop": 3,
+        "x": 34.75,
+        "allDoorsClosed": true,
+        "holds": []
+      },
+      {
+        "clock": 605.7000000001065,
+        "stop": 4,
+        "x": 34.75,
+        "allDoorsClosed": true,
+        "holds": []
+      }
+    ]
+  },
+  "streetLife": {
+    "started": 77,
+    "completed": 77,
+    "cancelled": 2,
+    "pairs": 190,
+    "conversations": 7,
+    "maxActive": 7
+  },
+  "remainingStation": 0,
+  "reservations": 0,
+  "zones": [
+    {
+      "id": 0,
+      "anchor": 57,
+      "business": "convenience",
+      "spots": [
+        {
+          "x": -5.55,
+          "z": -42.668245374031834
+        },
+        {
+          "x": -5.55,
+          "z": -43.36824537403183
+        }
+      ],
+      "facing": -1.5707963267948966,
+      "clear": true
+    },
+    {
+      "id": 1,
+      "anchor": 59,
+      "business": "residential",
+      "spots": [
+        {
+          "x": -5.55,
+          "z": -14.472251829945018
+        },
+        {
+          "x": -5.55,
+          "z": -15.172251829945019
+        }
+      ],
+      "facing": -1.5707963267948966,
+      "clear": true
+    },
+    {
+      "id": 2,
+      "anchor": 61,
+      "business": "residential",
+      "spots": [
+        {
+          "x": -5.55,
+          "z": -5.428462505498903
+        },
+        {
+          "x": -5.55,
+          "z": -4.728462505498903
+        }
+      ],
+      "facing": -1.5707963267948966,
+      "clear": true
+    },
+    {
+      "id": 3,
+      "anchor": 67,
+      "business": "retail",
+      "spots": [
+        {
+          "x": -5.55,
+          "z": 30.070840324789753
+        },
+        {
+          "x": -5.55,
+          "z": 30.770840324789752
+        }
+      ],
+      "facing": -1.5707963267948966,
+      "clear": true
+    },
+    {
+      "id": 4,
+      "anchor": 69,
+      "business": "residential",
+      "spots": [
+        {
+          "x": -5.55,
+          "z": 43.779138291075355
+        },
+        {
+          "x": -5.55,
+          "z": 44.47913829107535
+        }
+      ],
+      "facing": -1.5707963267948966,
+      "clear": true
+    },
+    {
+      "id": 5,
+      "anchor": 71,
+      "business": "retail",
+      "spots": [
+        {
+          "x": -5.55,
+          "z": 57.561071749340044
+        },
+        {
+          "x": -5.55,
+          "z": 58.26107174934004
+        }
+      ],
+      "facing": -1.5707963267948966,
+      "clear": true
+    },
+    {
+      "id": 6,
+      "anchor": 75,
+      "business": "restaurant",
+      "spots": [
+        {
+          "x": 5.55,
+          "z": -1.947782866647469
+        },
+        {
+          "x": 5.55,
+          "z": -1.247782866647469
+        }
+      ],
+      "facing": 1.5707963267948966,
+      "clear": true
+    },
+    {
+      "id": 7,
+      "anchor": 79,
+      "business": "residential",
+      "spots": [
+        {
+          "x": 5.55,
+          "z": 25.95175192050403
+        },
+        {
+          "x": 5.55,
+          "z": 26.65175192050403
+        }
+      ],
+      "facing": 1.5707963267948966,
+      "clear": true
+    },
+    {
+      "id": 8,
+      "anchor": 81,
+      "business": "restaurant",
+      "spots": [
+        {
+          "x": 5.55,
+          "z": 33.87240445611999
+        },
+        {
+          "x": 5.55,
+          "z": 32.172404456119985
+        }
+      ],
+      "facing": 1.5707963267948966,
+      "clear": true
+    },
+    {
+      "id": 9,
+      "anchor": 83,
+      "business": "convenience",
+      "spots": [
+        {
+          "x": 5.55,
+          "z": 42.224397370924706
+        },
+        {
+          "x": 5.55,
+          "z": 39.82439737092471
+        }
+      ],
+      "facing": 1.5707963267948966,
+      "clear": true
+    },
+    {
+      "id": 10,
+      "anchor": 85,
+      "business": "residential",
+      "spots": [
+        {
+          "x": 5.55,
+          "z": 48.38391983547714
+        },
+        {
+          "x": 5.55,
+          "z": 46.683919835477134
+        }
+      ],
+      "facing": 1.5707963267948966,
+      "clear": true
+    },
+    {
+      "id": 11,
+      "anchor": 87,
+      "business": "residential",
+      "spots": [
+        {
+          "x": 5.55,
+          "z": 54.516346218243704
+        },
+        {
+          "x": 5.55,
+          "z": 55.2163462182437
+        }
+      ],
+      "facing": 1.5707963267948966,
+      "clear": true
+    }
+  ]
+}

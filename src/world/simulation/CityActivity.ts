@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { CommuterRail } from './CommuterRail';
 import { HumanPresentation } from './HumanPresentation';
-import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { VehiclePresentation } from './VehiclePresentation';
 import type { District } from '../types';
 import { CitySimulation, VEHICLE_PROFILES } from './CitySimulation';
 import { CROSSINGS, dayState } from './WorldRules';
@@ -14,29 +14,19 @@ export class CityActivity {
   readonly simulation: CitySimulation;
   private readonly object = new THREE.Object3D(); private readonly tint = new THREE.Color();
   readonly people: HumanPresentation;
-  private readonly body: THREE.InstancedMesh; private readonly glass: THREE.InstancedMesh; private readonly wheels: THREE.InstancedMesh;
-  private readonly headlights: THREE.InstancedMesh; private readonly taillights: THREE.InstancedMesh; private readonly rail: CommuterRail;
-  private readonly brakelights: THREE.InstancedMesh;
+  readonly vehicles: VehiclePresentation;
+  private readonly rail: CommuterRail;
   private stationDebug?: StationNavigationDebug;
   private readonly beams: THREE.SpotLight[] = [];
   private readonly contacts: THREE.InstancedMesh;
   private readonly signalMaterials: Record<Axis, THREE.MeshStandardMaterial[]> = { NS: [], EW: [] };
   private readonly pedestrianMaterials: THREE.MeshStandardMaterial[] = [];
-  private readonly headlightMaterial = new THREE.MeshStandardMaterial({ color: 0xffefc9, emissive: 0xffe6b3, emissiveIntensity: 1 });
-  private readonly tailMaterial = new THREE.MeshStandardMaterial({ color: 0xaa3029, emissive: 0xe43725, emissiveIntensity: 1 });
-  private readonly brakeMaterial = new THREE.MeshStandardMaterial({ color: 0xf6533a, emissive: 0xff3822, emissiveIntensity: 3 });
 
   constructor(scene: THREE.Scene, district: District) {
     scene.add(this.group); this.group.name = 'Living street presentation';
     this.simulation = new CitySimulation({ bounds: district.colliders, doors: district.doors, station: district.station });
-    const paint = new THREE.MeshStandardMaterial({ roughness: .34, metalness: .28 });
-    const glass = new THREE.MeshStandardMaterial({ color: 0x4c6c78, roughness: .16, metalness: .6 });
-    const box = new THREE.BoxGeometry(1, 1, 1), rounded = new RoundedBoxGeometry(1, 1, 1, 2, .08);
     this.people = new HumanPresentation(this.group);
-    this.body = this.pool(rounded, paint, 20 * 12); this.glass = this.pool(box, glass, 20 * 8);
-    this.wheels = this.pool(new THREE.CylinderGeometry(1, 1, 1, 16), new THREE.MeshStandardMaterial({ roughness: .92 }), 20 * 8);
-    this.headlights = this.pool(box, this.headlightMaterial, 20 * 5); this.taillights = this.pool(box, this.tailMaterial, 20 * 4);
-    this.brakelights = this.pool(box, this.brakeMaterial, 20 * 4);
+    this.vehicles = new VehiclePresentation(this.group);
     this.rail = new CommuterRail(scene);
     this.contacts = this.pool(new THREE.CircleGeometry(.5, 16), new THREE.MeshBasicMaterial({ color: 0x06090a, transparent: true, opacity: .18, depthWrite: false }), 110);
     for (let i = 0; i < 3; i++) { const light = new THREE.SpotLight(0xffe3bd, 0, 24, .5, .65, 2); scene.add(light, light.target); this.beams.push(light); }
@@ -59,45 +49,21 @@ export class CityActivity {
   update(dt: number, hour: number, listener?: THREE.Vector3, hourRate = 0): void {
     this.simulation.update(dt, hour, listener, hourRate);
     hour = this.simulation.hour;
-    const pools = [this.body, this.glass, this.wheels, this.headlights, this.taillights, this.brakelights, this.contacts];
-    pools.forEach(p => { p.count = 0; }); this.people.update(this.simulation, listener); this.drawVehicles(); this.rail.update(this.simulation.train.snapshot, hour);
+    const pools = [this.contacts];
+    pools.forEach(p => { p.count = 0; }); this.people.update(this.simulation, listener); this.vehicles.update(this.simulation,listener); this.drawVehicles(); this.rail.update(this.simulation.train.snapshot, hour);
     this.stationDebug?.update(this.simulation);
     pools.forEach(p => { p.instanceMatrix.needsUpdate = true; if (p.instanceColor) p.instanceColor.needsUpdate = true; });
     const night = dayState(hour).night;
-    this.headlightMaterial.emissiveIntensity = .4 + night * 3.2; this.tailMaterial.emissiveIntensity = .25 + night * .65; this.brakeMaterial.emissiveIntensity = 1.8 + night * 2;
     const nearby = this.simulation.vehicles.filter(c => c.active).sort((a, b) => Math.hypot(a.x - (listener?.x ?? 0), a.z - (listener?.z ?? 0)) - Math.hypot(b.x - (listener?.x ?? 0), b.z - (listener?.z ?? 0)));
-    this.beams.forEach((light, i) => { const c = nearby[i]; light.intensity = c ? night * 35 : 0; if (c) { const front = VEHICLE_PROFILES[c.kind].length / 2; light.position.set(c.x + Math.sin(c.yaw) * front, .72, c.z + Math.cos(c.yaw) * front); light.target.position.set(c.x + Math.sin(c.yaw) * (front + 10), .05, c.z + Math.cos(c.yaw) * (front + 10)); } });
+    this.beams.forEach((light, i) => { const c = nearby[i]; light.intensity = c ? night * 20 : 0; if (c) { const front = VEHICLE_PROFILES[c.kind].length / 2; light.position.set(c.x + Math.sin(c.yaw) * front, .72, c.z + Math.cos(c.yaw) * front); light.target.position.set(c.x + Math.sin(c.yaw) * (front + 10), .05, c.z + Math.cos(c.yaw) * (front + 10)); } });
     for (const axis of ['NS', 'EW'] as const) this.signalMaterials[axis].forEach((m, i) => { const active = this.simulation.signals[axis === 'NS' ? 'ns' : 'ew'] === ['red', 'amber', 'green'][i]; m.color.setHex(active ? [0xf44335, 0xf1bf46, 0x39cda5][i] : 0x172321); m.emissiveIntensity = active ? 3 : 0; });
     this.pedestrianMaterials.forEach((m, i) => { const s = this.simulation.signals, green = s.walk || (s.clearance && Math.floor(this.simulation.clock * 3) % 2 === 0); m.emissiveIntensity = (i === 1 ? green : !s.walk && !s.clearance) ? 2.5 : .015; });
   }
   private drawVehicles(): void {
     for (const c of this.simulation.vehicles) {
       if (!c.active) continue;
-      const { length: l, width: w, height: h } = VEHICLE_PROFILES[c.kind], cs = Math.cos(c.yaw), sn = Math.sin(c.yaw);
-      const part = (mesh: THREE.InstancedMesh, lx: number, y: number, lz: number, sx: number, sy: number, sz: number, color: number, rz = 0) => this.put(mesh, c.x + lx * cs + lz * sn, y, c.z + lz * cs - lx * sn, sx, sy, sz, color, c.yaw, 0, rz);
-      const boxy = c.kind === 'van' || c.kind === 'kei', truck = c.kind === 'truck';
-      part(this.body, 0, .63, 0, w, .66, l, c.color);
-      if (truck) {
-        part(this.body, 0, h / 2 + .45, -.6, w, h - .6, l * .58, 0xc7c7bc);
-        part(this.body, 0, 1.2, l * .29, w * .94, 1.3, l * .35, c.color);
-        part(this.glass, 0, 1.45, l * .47, w * .83, .55, .025, 0xd5e3df);
-      } else {
-        part(this.glass, 0, (h + .8) / 2, -.1, w * .9, h - .75, boxy ? l * .77 : l * .53, 0xc2d0d0);
-        part(this.body, 0, h, -.1, w * .94, .13, boxy ? l * .79 : l * .56, c.color);
-        for (const side of [-1, 1]) { part(this.body, side * w * .455, (h + .8) / 2, -.16, .06, h - .72, .09, c.color); part(this.body, side * w * .53, 1.02, l * .18, .14, .1, .23, c.color); }
-      }
-      part(this.body, 0, .48, l / 2, w * .92, .16, .1, 0x343c3e);
-      part(this.body, 0, .48, -l / 2, w * .92, .14, .1, 0x343c3e);
-      for (const side of [-1, 1]) {
-        part(this.headlights, side * w * .33, .73, l / 2 + .035, .3, .18, .03, 0xffffff);
-        part(c.braking ? this.brakelights : this.taillights, side * w * .36, .72, -l / 2 - .03, .22, truck ? .2 : .16, .025, 0xffffff);
-        for (const z of [-l * .3, l * .3]) { part(this.wheels, side * w * .48, .32, z, .29, .16, .29, 0x242a2c, Math.PI / 2); part(this.wheels, side * w * .535, .32, z, .17, .015, .17, 0x9aabae, Math.PI / 2); }
-        part(this.body, side * w * .485, .82, -.15, .025, .035, .24, 0xaab5b4);
-      }
-      part(this.body, 0, .54, l / 2 + .06, .4, .18, .025, c.kind === 'kei' ? 0xcfae40 : 0xdadacc);
-      if (c.kind === 'taxi') { part(this.headlights, 0, h + .15, -.05, .48, .18, .22, 0xf4d698); for (const side of [-1, 1]) part(this.body, side * w * .505, .82, 0, .025, .14, l * .65, 0x306859); }
-      if (c.route.turn && !c.committed) part(this.headlights, -w * .5, .78, l * .38, .03, .12, .16, Math.floor(this.simulation.clock * 2) % 2 ? 0xffbd52 : 0x654b24);
-      this.put(this.contacts, c.x, .035, c.z, w + .3, l + .4, 1, 0xffffff, c.yaw, -Math.PI / 2);
+      const p = VEHICLE_PROFILES[c.kind];
+      this.put(this.contacts, c.x, .035, c.z, p.bodyWidth + .22, p.length + .22, 1, 0xffffff, c.yaw, -Math.PI / 2);
     }
   }
   private signals(): void {

@@ -1,0 +1,17 @@
+{
+  "playing": {
+    "videoPaused": false,
+    "audioPaused": false,
+    "drift": 0.05948599999999993
+  },
+  "paused": {
+    "videoPaused": true,
+    "audioPaused": true
+  },
+  "seek": {
+    "video": 8,
+    "audio": 8
+  },
+  "videoDuration": 21.919438,
+  "audioDuration": 21.973333
+}

@@ -1,0 +1,1236 @@
+{
+  "configuration": {
+    "seed": 8412,
+    "hour": 20.5,
+    "clock": 300.000000000023,
+    "surface": "damp",
+    "wetness": 0.64,
+    "reflections": true
+  },
+  "profiles": {
+    "kei": {
+      "name": "Koma K — kei work van",
+      "family": "work",
+      "length": 3.38,
+      "bodyWidth": 1.47,
+      "width": 1.69,
+      "height": 1.87,
+      "wheelbase": 2.43,
+      "wheelRadius": 0.267,
+      "belt": 0.97,
+      "frontBase": 0.43,
+      "frontRoof": 0.34,
+      "rearRoof": -0.42,
+      "rearBase": -0.46,
+      "roofWidth": 0.91,
+      "nose": 0.88,
+      "style": "kei",
+      "weight": 18,
+      "palette": [
+        14212309,
+        11713720,
+        12695968,
+        7968395
+      ]
+    },
+    "van": {
+      "name": "Shiro Cargo — delivery van",
+      "family": "work",
+      "length": 4.68,
+      "bodyWidth": 1.7,
+      "width": 1.98,
+      "height": 1.99,
+      "wheelbase": 2.58,
+      "wheelRadius": 0.308,
+      "belt": 1.02,
+      "frontBase": 0.44,
+      "frontRoof": 0.32,
+      "rearRoof": -0.42,
+      "rearBase": -0.47,
+      "roofWidth": 0.89,
+      "nose": 0.88,
+      "style": "van",
+      "weight": 15,
+      "palette": [
+        14212309,
+        11713720,
+        12695968,
+        7968395
+      ]
+    },
+    "compact": {
+      "name": "Minato H — city hatchback",
+      "family": "commuter",
+      "length": 3.98,
+      "bodyWidth": 1.69,
+      "width": 1.95,
+      "height": 1.53,
+      "wheelbase": 2.5,
+      "wheelRadius": 0.297,
+      "belt": 0.87,
+      "frontBase": 0.3,
+      "frontRoof": 0.11,
+      "rearRoof": -0.28,
+      "rearBase": -0.43,
+      "roofWidth": 0.82,
+      "nose": 0.78,
+      "style": "hatch",
+      "weight": 18,
+      "palette": [
+        14277589,
+        11055540,
+        3358021,
+        2505805,
+        7355707,
+        9084827,
+        10192958
+      ]
+    },
+    "commuter": {
+      "name": "Hikari S — commuter sedan",
+      "family": "commuter",
+      "length": 4.57,
+      "bodyWidth": 1.75,
+      "width": 2.01,
+      "height": 1.46,
+      "wheelbase": 2.68,
+      "wheelRadius": 0.309,
+      "belt": 0.87,
+      "frontBase": 0.22,
+      "frontRoof": 0.05,
+      "rearRoof": -0.19,
+      "rearBase": -0.35,
+      "roofWidth": 0.8,
+      "nose": 0.82,
+      "style": "sedan",
+      "weight": 11,
+      "palette": [
+        14277589,
+        11055540,
+        3358021,
+        2505805,
+        7355707
+      ]
+    },
+    "taxi": {
+      "name": "Hikari Service — city taxi",
+      "family": "service",
+      "length": 4.57,
+      "bodyWidth": 1.75,
+      "width": 2.01,
+      "height": 1.63,
+      "wheelbase": 2.68,
+      "wheelRadius": 0.309,
+      "belt": 0.87,
+      "frontBase": 0.22,
+      "frontRoof": 0.05,
+      "rearRoof": -0.19,
+      "rearBase": -0.35,
+      "roofWidth": 0.8,
+      "nose": 0.82,
+      "style": "sedan",
+      "weight": 8,
+      "palette": [
+        3423295,
+        14934224,
+        13226955
+      ]
+    },
+    "truck": {
+      "name": "Machi Box — light delivery truck",
+      "family": "work",
+      "length": 4.86,
+      "bodyWidth": 1.83,
+      "width": 2.09,
+      "height": 2.59,
+      "wheelbase": 2.62,
+      "wheelRadius": 0.327,
+      "belt": 1.02,
+      "frontBase": 0.46,
+      "frontRoof": 0.39,
+      "rearRoof": 0.13,
+      "rearBase": 0.12,
+      "roofWidth": 0.92,
+      "nose": 0.92,
+      "style": "truck",
+      "weight": 10,
+      "palette": [
+        14278616,
+        10860477,
+        11978427
+      ]
+    },
+    "mpv": {
+      "name": "Sora M — family minivan",
+      "family": "commuter",
+      "length": 4.77,
+      "bodyWidth": 1.77,
+      "width": 2.03,
+      "height": 1.88,
+      "wheelbase": 2.86,
+      "wheelRadius": 0.315,
+      "belt": 0.99,
+      "frontBase": 0.35,
+      "frontRoof": 0.22,
+      "rearRoof": -0.39,
+      "rearBase": -0.46,
+      "roofWidth": 0.88,
+      "nose": 0.86,
+      "style": "mpv",
+      "weight": 6,
+      "palette": [
+        14277589,
+        11055540,
+        3358021,
+        2505805,
+        7355707
+      ]
+    },
+    "hybrid": {
+      "name": "Nagi E — hybrid liftback",
+      "family": "commuter",
+      "length": 4.56,
+      "bodyWidth": 1.77,
+      "width": 2.03,
+      "height": 1.44,
+      "wheelbase": 2.72,
+      "wheelRadius": 0.315,
+      "belt": 0.86,
+      "frontBase": 0.28,
+      "frontRoof": 0.04,
+      "rearRoof": -0.14,
+      "rearBase": -0.45,
+      "roofWidth": 0.8,
+      "nose": 0.77,
+      "style": "hybrid",
+      "weight": 6,
+      "palette": [
+        14279132,
+        11779520,
+        3688013,
+        6716300,
+        9147252
+      ]
+    },
+    "executive": {
+      "name": "Rhein 48 — sporting executive sedan",
+      "family": "premium",
+      "length": 4.82,
+      "bodyWidth": 1.83,
+      "width": 2.09,
+      "height": 1.45,
+      "wheelbase": 2.85,
+      "wheelRadius": 0.333,
+      "belt": 0.87,
+      "frontBase": 0.18,
+      "frontRoof": 0.015,
+      "rearRoof": -0.2,
+      "rearBase": -0.34,
+      "roofWidth": 0.79,
+      "nose": 0.83,
+      "style": "sport",
+      "weight": 2,
+      "palette": [
+        2370612,
+        6583163,
+        13028298,
+        14737367,
+        2438990
+      ]
+    },
+    "modern": {
+      "name": "Elbe A — modern executive sedan",
+      "family": "premium",
+      "length": 4.86,
+      "bodyWidth": 1.85,
+      "width": 2.11,
+      "height": 1.43,
+      "wheelbase": 2.88,
+      "wheelRadius": 0.337,
+      "belt": 0.88,
+      "frontBase": 0.23,
+      "frontRoof": 0.045,
+      "rearRoof": -0.22,
+      "rearBase": -0.39,
+      "roofWidth": 0.81,
+      "nose": 0.86,
+      "style": "modern",
+      "weight": 2,
+      "palette": [
+        2370612,
+        6583163,
+        13028298,
+        14737367,
+        2438990
+      ]
+    },
+    "luxury": {
+      "name": "Linden L — formal luxury sedan",
+      "family": "premium",
+      "length": 4.94,
+      "bodyWidth": 1.87,
+      "width": 2.13,
+      "height": 1.48,
+      "wheelbase": 2.95,
+      "wheelRadius": 0.342,
+      "belt": 0.89,
+      "frontBase": 0.19,
+      "frontRoof": 0.035,
+      "rearRoof": -0.205,
+      "rearBase": -0.35,
+      "roofWidth": 0.81,
+      "nose": 0.86,
+      "style": "luxury",
+      "weight": 1,
+      "palette": [
+        2370612,
+        6583163,
+        13028298,
+        14737367,
+        2438990
+      ]
+    },
+    "wagon": {
+      "name": "Elbe Touring — luxury estate",
+      "family": "premium",
+      "length": 4.83,
+      "bodyWidth": 1.85,
+      "width": 2.11,
+      "height": 1.53,
+      "wheelbase": 2.83,
+      "wheelRadius": 0.337,
+      "belt": 0.91,
+      "frontBase": 0.23,
+      "frontRoof": 0.045,
+      "rearRoof": -0.35,
+      "rearBase": -0.46,
+      "roofWidth": 0.83,
+      "nose": 0.85,
+      "style": "wagon",
+      "weight": 1,
+      "palette": [
+        2370612,
+        6583163,
+        13028298,
+        14737367,
+        2438990
+      ]
+    },
+    "crossover": {
+      "name": "Feld C — urban crossover",
+      "family": "premium",
+      "length": 4.58,
+      "bodyWidth": 1.86,
+      "width": 2.12,
+      "height": 1.66,
+      "wheelbase": 2.74,
+      "wheelRadius": 0.356,
+      "belt": 1,
+      "frontBase": 0.24,
+      "frontRoof": 0.065,
+      "rearRoof": -0.27,
+      "rearBase": -0.43,
+      "roofWidth": 0.82,
+      "nose": 0.85,
+      "style": "crossover",
+      "weight": 1,
+      "palette": [
+        2370612,
+        6583163,
+        13028298,
+        14737367,
+        2438990
+      ]
+    },
+    "coupe": {
+      "name": "Akebono R — enthusiast coupe",
+      "family": "enthusiast",
+      "length": 4.48,
+      "bodyWidth": 1.81,
+      "width": 2.05,
+      "height": 1.34,
+      "wheelbase": 2.65,
+      "wheelRadius": 0.326,
+      "belt": 0.8,
+      "frontBase": 0.15,
+      "frontRoof": -0.01,
+      "rearRoof": -0.21,
+      "rearBase": -0.34,
+      "roofWidth": 0.77,
+      "nose": 0.87,
+      "style": "coupe",
+      "weight": 1,
+      "palette": [
+        4218255,
+        7684940,
+        11843769,
+        14278358,
+        3488324
+      ]
+    }
+  },
+  "captures": [
+    {
+      "saved": "quality/captures/vehicles-hero-after.png"
+    },
+    {
+      "saved": "quality/captures/vehicles-hero-day-after.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-compact-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-compact-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-hybrid-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-hybrid-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicles-traffic-red-queue.png"
+    },
+    {
+      "saved": "quality/captures/vehicles-traffic-crossing-clearance.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-kei-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-kei-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicles-traffic-turning.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-commuter-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-commuter-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-taxi-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-taxi-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-mpv-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-mpv-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-van-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-van-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-wagon-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-wagon-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-truck-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-truck-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicles-hero-mixed.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-executive-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-executive-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-modern-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-modern-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-luxury-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-luxury-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-coupe-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-coupe-night.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-crossover-day.png"
+    },
+    {
+      "saved": "quality/captures/vehicle-crossover-night.png"
+    }
+  ],
+  "familyCaptures": [
+    {
+      "kind": "compact",
+      "id": 2,
+      "spawn": 62,
+      "clock": 300.000000000023,
+      "x": 12.540000000000006,
+      "z": 14.2,
+      "yaw": -1.5707963267948966,
+      "speed": 0,
+      "braking": true,
+      "framing": {
+        "eye": [
+          8.240000000000006,
+          2.1,
+          10.7
+        ],
+        "target": [
+          12.540000000000006,
+          0.7191,
+          14.2
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "hybrid",
+      "id": 3,
+      "spawn": 67,
+      "clock": 300.000000000023,
+      "x": -31.830000000000027,
+      "z": 9.8,
+      "yaw": 1.5707963267948966,
+      "speed": 6.1,
+      "braking": false,
+      "framing": {
+        "eye": [
+          -27.530000000000026,
+          2.1,
+          6.300000000000001
+        ],
+        "target": [
+          -31.830000000000027,
+          0.6768,
+          9.8
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "kei",
+      "id": 4,
+      "spawn": 63,
+      "clock": 300.7000000000236,
+      "x": -12.240000000000002,
+      "z": 9.8,
+      "yaw": 1.5707963267948966,
+      "speed": 0,
+      "braking": true,
+      "framing": {
+        "eye": [
+          -7.940000000000002,
+          2.37,
+          13.3
+        ],
+        "target": [
+          -12.240000000000002,
+          0.8789,
+          9.8
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "commuter",
+      "id": 9,
+      "spawn": 61,
+      "clock": 324.13333333337556,
+      "x": -1.8,
+      "z": 24.498832366136355,
+      "yaw": 3.141592653589793,
+      "speed": 3.2580217307715222,
+      "braking": false,
+      "framing": {
+        "eye": [
+          1.7000000000000004,
+          2.1,
+          20.198832366136354
+        ],
+        "target": [
+          -1.8,
+          0.6861999999999999,
+          24.498832366136355
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "taxi",
+      "id": 0,
+      "spawn": 65,
+      "clock": 325.6666666667101,
+      "x": -1.8,
+      "z": 27.447886950296905,
+      "yaw": 3.141592653589793,
+      "speed": 3.1590197604227845,
+      "braking": false,
+      "framing": {
+        "eye": [
+          -5.299999999999999,
+          2.13,
+          23.147886950296904
+        ],
+        "target": [
+          -1.8,
+          0.7660999999999999,
+          27.447886950296905
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "mpv",
+      "id": 7,
+      "spawn": 71,
+      "clock": 347.8333333333944,
+      "x": -31.830000000000027,
+      "z": 9.8,
+      "yaw": 1.5707963267948966,
+      "speed": 6.1,
+      "braking": false,
+      "framing": {
+        "eye": [
+          -27.530000000000026,
+          2.38,
+          6.300000000000001
+        ],
+        "target": [
+          -31.830000000000027,
+          0.8835999999999999,
+          9.8
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "van",
+      "id": 8,
+      "spawn": 72,
+      "clock": 347.8333333333944,
+      "x": 1.8,
+      "z": -38.94666666666669,
+      "yaw": 0,
+      "speed": 6.1,
+      "braking": false,
+      "framing": {
+        "eye": [
+          5.3,
+          2.49,
+          -34.64666666666669
+        ],
+        "target": [
+          1.8,
+          0.9352999999999999,
+          -38.94666666666669
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "wagon",
+      "id": 2,
+      "spawn": 76,
+      "clock": 371.1666666667463,
+      "x": 1.8,
+      "z": -38.94666666666669,
+      "yaw": 0,
+      "speed": 6.1,
+      "braking": false,
+      "framing": {
+        "eye": [
+          5.3,
+          2.1,
+          -34.64666666666669
+        ],
+        "target": [
+          1.8,
+          0.7191,
+          -38.94666666666669
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "truck",
+      "id": 0,
+      "spawn": 82,
+      "clock": 379.3333333334195,
+      "x": 31.830000000000027,
+      "z": 14.2,
+      "yaw": -1.5707963267948966,
+      "speed": 6.1,
+      "braking": false,
+      "framing": {
+        "eye": [
+          27.530000000000026,
+          3.09,
+          10.7
+        ],
+        "target": [
+          31.830000000000027,
+          1.2172999999999998,
+          14.2
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "executive",
+      "id": 6,
+      "spawn": 103,
+      "clock": 510.1333333335236,
+      "x": -31.9230582267853,
+      "z": 9.8,
+      "yaw": 1.5707963267948966,
+      "speed": 4.41288827712726,
+      "braking": false,
+      "framing": {
+        "eye": [
+          -27.6230582267853,
+          2.1,
+          13.3
+        ],
+        "target": [
+          -31.9230582267853,
+          0.6815,
+          9.8
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "modern",
+      "id": 5,
+      "spawn": 140,
+      "clock": 699.0000000000216,
+      "x": 1.8,
+      "z": -38.94666666666669,
+      "yaw": 0,
+      "speed": 6.1,
+      "braking": false,
+      "framing": {
+        "eye": [
+          5.3,
+          2.1,
+          -34.64666666666669
+        ],
+        "target": [
+          1.8,
+          0.6720999999999999,
+          -38.94666666666669
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "luxury",
+      "id": 6,
+      "spawn": 152,
+      "clock": 774.833333333286,
+      "x": 1.8,
+      "z": -38.94666666666669,
+      "yaw": 0,
+      "speed": 6.1,
+      "braking": false,
+      "framing": {
+        "eye": [
+          -1.7,
+          2.1,
+          -34.64666666666669
+        ],
+        "target": [
+          1.8,
+          0.6956,
+          -38.94666666666669
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "coupe",
+      "id": 6,
+      "spawn": 276,
+      "clock": 1466.66666666599,
+      "x": 1.8,
+      "z": -38.94666666666669,
+      "yaw": 0,
+      "speed": 6.1,
+      "braking": false,
+      "framing": {
+        "eye": [
+          5.3,
+          2.1,
+          -34.64666666666669
+        ],
+        "target": [
+          1.8,
+          0.6298,
+          -38.94666666666669
+        ],
+        "fov": 52
+      }
+    },
+    {
+      "kind": "crossover",
+      "id": 10,
+      "spawn": 630,
+      "clock": 3390.499999997574,
+      "x": 31.830000000000027,
+      "z": 14.2,
+      "yaw": -1.5707963267948966,
+      "speed": 6.1,
+      "braking": false,
+      "framing": {
+        "eye": [
+          27.530000000000026,
+          2.16,
+          10.7
+        ],
+        "target": [
+          31.830000000000027,
+          0.7801999999999999,
+          14.2
+        ],
+        "fov": 52
+      }
+    }
+  ],
+  "matchingCapture": {
+    "eye": true,
+    "quaternion": true,
+    "fov": true,
+    "hour": true,
+    "seed": true,
+    "surface": true,
+    "reflections": true,
+    "contactShading": true,
+    "width": true,
+    "height": true,
+    "pixelRatio": true,
+    "simulationClock": true,
+    "renderConditions": true
+  },
+  "performance": {
+    "clock": 300.000000000023,
+    "hidden": false,
+    "viewport": [
+      1521,
+      889
+    ],
+    "medianMs": 8.5,
+    "p95Ms": 11.5,
+    "stats": {
+      "fps": 89,
+      "drawCalls": 1160,
+      "triangles": 5078297,
+      "buildings": 57,
+      "pedestrians": 54,
+      "vehicles": 11
+    },
+    "method": "30 synchronous composite renders with gl.finish; not rAF or isolated GPU timing"
+  },
+  "presentation": [
+    {
+      "clock": 300.000000000023,
+      "cars": 11,
+      "wheels": 44,
+      "near": 6,
+      "far": 5
+    },
+    {
+      "clock": 300.000000000023,
+      "cars": 11,
+      "wheels": 44,
+      "near": 10,
+      "far": 1
+    },
+    {
+      "clock": 300.000000000023,
+      "cars": 11,
+      "wheels": 44,
+      "near": 9,
+      "far": 2
+    },
+    {
+      "clock": 300.7000000000236,
+      "cars": 11,
+      "wheels": 44,
+      "near": 10,
+      "far": 1
+    },
+    {
+      "clock": 324.13333333337556,
+      "cars": 11,
+      "wheels": 44,
+      "near": 11,
+      "far": 0
+    },
+    {
+      "clock": 325.6666666667101,
+      "cars": 11,
+      "wheels": 44,
+      "near": 11,
+      "far": 0
+    },
+    {
+      "clock": 347.8333333333944,
+      "cars": 11,
+      "wheels": 44,
+      "near": 6,
+      "far": 5
+    },
+    {
+      "clock": 347.8333333333944,
+      "cars": 11,
+      "wheels": 44,
+      "near": 1,
+      "far": 10
+    },
+    {
+      "clock": 371.1666666667463,
+      "cars": 10,
+      "wheels": 40,
+      "near": 3,
+      "far": 7
+    },
+    {
+      "clock": 379.3333333334195,
+      "cars": 11,
+      "wheels": 44,
+      "near": 10,
+      "far": 1
+    },
+    {
+      "clock": 510.1333333335236,
+      "cars": 11,
+      "wheels": 44,
+      "near": 8,
+      "far": 3
+    },
+    {
+      "clock": 699.0000000000216,
+      "cars": 11,
+      "wheels": 44,
+      "near": 4,
+      "far": 7
+    },
+    {
+      "clock": 774.833333333286,
+      "cars": 11,
+      "wheels": 44,
+      "near": 4,
+      "far": 7
+    },
+    {
+      "clock": 1466.66666666599,
+      "cars": 11,
+      "wheels": 44,
+      "near": 2,
+      "far": 9
+    },
+    {
+      "clock": 3390.499999997574,
+      "cars": 11,
+      "wheels": 44,
+      "near": 7,
+      "far": 4
+    }
+  ],
+  "dayMatchingCapture": {
+    "eye": true,
+    "quaternion": true,
+    "fov": true,
+    "hour": true,
+    "seed": true,
+    "surface": true,
+    "reflections": true,
+    "contactShading": true,
+    "width": true,
+    "height": true,
+    "pixelRatio": true,
+    "simulationClock": true,
+    "renderConditions": true
+  },
+  "mixedClock": 409.0333333334431,
+  "modelBudgets": [
+    {
+      "kind": "kei",
+      "nearTriangles": 17090,
+      "farTriangles": 9682,
+      "nearDraws": 14,
+      "farDraws": 13
+    },
+    {
+      "kind": "van",
+      "nearTriangles": 17042,
+      "farTriangles": 9634,
+      "nearDraws": 14,
+      "farDraws": 13
+    },
+    {
+      "kind": "compact",
+      "nearTriangles": 15990,
+      "farTriangles": 8678,
+      "nearDraws": 13,
+      "farDraws": 13
+    },
+    {
+      "kind": "commuter",
+      "nearTriangles": 15870,
+      "farTriangles": 8558,
+      "nearDraws": 13,
+      "farDraws": 13
+    },
+    {
+      "kind": "taxi",
+      "nearTriangles": 16194,
+      "farTriangles": 8882,
+      "nearDraws": 14,
+      "farDraws": 14
+    },
+    {
+      "kind": "truck",
+      "nearTriangles": 20636,
+      "farTriangles": 10880,
+      "nearDraws": 15,
+      "farDraws": 15
+    },
+    {
+      "kind": "mpv",
+      "nearTriangles": 16422,
+      "farTriangles": 9086,
+      "nearDraws": 13,
+      "farDraws": 13
+    },
+    {
+      "kind": "hybrid",
+      "nearTriangles": 15870,
+      "farTriangles": 8558,
+      "nearDraws": 13,
+      "farDraws": 13
+    },
+    {
+      "kind": "executive",
+      "nearTriangles": 16530,
+      "farTriangles": 9314,
+      "nearDraws": 13,
+      "farDraws": 13
+    },
+    {
+      "kind": "modern",
+      "nearTriangles": 15850,
+      "farTriangles": 8670,
+      "nearDraws": 13,
+      "farDraws": 13
+    },
+    {
+      "kind": "luxury",
+      "nearTriangles": 17750,
+      "farTriangles": 10654,
+      "nearDraws": 13,
+      "farDraws": 13
+    },
+    {
+      "kind": "wagon",
+      "nearTriangles": 15898,
+      "farTriangles": 8718,
+      "nearDraws": 13,
+      "farDraws": 13
+    },
+    {
+      "kind": "crossover",
+      "nearTriangles": 15898,
+      "farTriangles": 8718,
+      "nearDraws": 13,
+      "farDraws": 13
+    },
+    {
+      "kind": "coupe",
+      "nearTriangles": 16518,
+      "farTriangles": 9422,
+      "nearDraws": 13,
+      "farDraws": 13
+    }
+  ],
+  "traffic": {
+    "seconds": 900,
+    "drainSeconds": 600,
+    "ticks": 45000,
+    "vehicleSamples": 351471,
+    "pairTests": 110385,
+    "overlaps": 0,
+    "redEntries": 0,
+    "stopLineViolations": 0,
+    "laneErrors": 0,
+    "premiumCapViolations": 0,
+    "duplicateAppearances": 0,
+    "exits": 204,
+    "turns": 62,
+    "spawns": {
+      "kei": 32,
+      "van": 41,
+      "compact": 39,
+      "commuter": 22,
+      "taxi": 13,
+      "truck": 17,
+      "mpv": 15,
+      "hybrid": 16,
+      "executive": 0,
+      "modern": 2,
+      "luxury": 5,
+      "wagon": 2,
+      "crossover": 0,
+      "coupe": 3
+    },
+    "passengers": {
+      "ticks": 45000,
+      "arrivals": 6,
+      "departures": 6,
+      "boardingThresholdCrossings": 10,
+      "alightingThresholdCrossings": 36,
+      "movingRiderSamples": 67962,
+      "maxPositionStep": 0.13333333333335418,
+      "maxTransferStep": 0.0448821794781864,
+      "maxRiderOffsetError": 1.4210854715202004e-14,
+      "minimumSeparation": 0.5605540903014621,
+      "invalidPositions": 0,
+      "unsafeCrossings": 0,
+      "overlaps": 0,
+      "unsafeDepartures": 0,
+      "capacityViolations": 0,
+      "gateConflicts": 0,
+      "wallHits": 0,
+      "vehicleOverlaps": 0,
+      "vehicleExits": 204,
+      "trainCycles": [
+        {
+          "clock": 99.39999999999694,
+          "stop": 1,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 259.9999999999912,
+          "stop": 2,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 425.46666666678954,
+          "stop": 3,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 579.466666666797,
+          "stop": 4,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 768.8333333332914,
+          "stop": 5,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        },
+        {
+          "clock": 927.0666666664808,
+          "stop": 6,
+          "x": 34.75,
+          "allDoorsClosed": true,
+          "holds": []
+        }
+      ],
+      "station": {
+        "started": 52,
+        "completed": 52,
+        "failures": 0,
+        "invalidMoves": 0,
+        "maxActive": 16,
+        "maxMovingWait": 20.866666666666863,
+        "maxGateWait": 14.233333333333293,
+        "maxStairWait": 12.5333333333333,
+        "maxVisitSeconds": 567.0333333329384,
+        "maxWaiting": 4,
+        "transitions": {
+          "riding": 46,
+          "alighting": 36,
+          "returning": 42,
+          "approaching": 16,
+          "descending": 42,
+          "paid": 58,
+          "entering": 16,
+          "gate-out": 42,
+          "exiting": 42,
+          "gate-in": 16,
+          "ascending": 16,
+          "platform": 16,
+          "waiting": 16,
+          "boarding": 10
+        }
+      },
+      "rail": {
+        "originated": 36,
+        "boarded": 10,
+        "alighted": 36,
+        "delivered": 10,
+        "maxOnboard": 6,
+        "maxTransfers": 5,
+        "invalidMoves": 0,
+        "unsafeCrossings": 0,
+        "capacityRefusals": 0,
+        "doorBoardings": {
+          "car-3-south-2": 4,
+          "car-2-south-1": 2,
+          "car-2-south-2": 2,
+          "car-3-south-1": 2
+        },
+        "doorAlightings": {
+          "car-3-south-1": 6,
+          "car-2-south-1": 6,
+          "car-2-south-2": 6,
+          "car-3-south-2": 6,
+          "car-1-south-1": 6,
+          "car-1-south-2": 6
+        }
+      },
+      "remaining": 0,
+      "reservations": 0
+    }
+  },
+  "failedShaderLinks": 0,
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "browserErrors": [],
+  "spatialContracts": {
+    "colliders": true,
+    "doors": true,
+    "shopfronts": true,
+    "lamps": true,
+    "buildings": true
+  },
+  "frameTimingFile": "vehicle-frame-timing.json"
+}

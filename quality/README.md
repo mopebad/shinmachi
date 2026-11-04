@@ -1,6 +1,17 @@
 # Repeatable visual review
 
-The latest visual task is [Hero Street Development 1](./HERO_STREET_DEVELOPMENT_1.md): select **09 / Shinmachi Hero Street**, or open `http://127.0.0.1:5173/?view=8&seed=8412`. It preserves the existing commercial camera at 20:30 with After Rain and reflections. [Before](./captures/hero-street-before.png) and [after](./captures/hero-street-after.png) are actual 1080p WebGL captures. Reload that URL, then run:
+The latest [living-city behavior pass](./LIVING_CITY_BEHAVIOR.md) includes [before](./captures/behavior-hero-before.png) / [after](./captures/behavior-hero-after.png), [live hero recording](./captures/behavior-hero-sequence.mp4), activity/traffic/station recordings with audio and adjacent state traces, and [generated-world measurements](./behavior-generated-audit.json). Use the [behavior browser helper](../tools/behavior-browser-checks.mjs) on `?view=8&seed=8412&review=1`; enable sound, set the required camera/clock, then call `record(window.__shinmachi, 'review-name', 20)`. It records actual live canvas/Web Audio output and pauses afterward. `generatedAudit(window.__shinmachi)` checks a separate 1,200-second simulation without changing the displayed population. See the report for safety contracts, results and limits.
+
+The preceding pass is [Hero Street 2A: vehicle families](./HERO_STREET_2A_VEHICLES.md). It includes [night before](./captures/vehicles-hero-before.png) / [after](./captures/vehicles-hero-after.png), matching day comparisons, fourteen day/night close-up pairs and traffic-phase captures. Open `http://127.0.0.1:5173/?view=8&seed=8412&review=1` on the development server, then run:
+
+```js
+const vehicles = await (await import('/tools/vehicle-browser-checks.mjs')).review();
+window.__shinmachi.setReviewPaused(false);
+```
+
+The development-only `review=1` query pauses before simulation starts. The helper replays to clock 300 for the comparison, photographs actual spawned families, and checks 1,500 seconds of generated-world traffic and station journeys. [Measurements](./vehicle-measurements.json) include geometry budgets, capture conditions and synchronous render cost; [visible frame timing](./vehicle-frame-timing.json) is a separate desktop sample. See the report for dimensions, research sources, visual limitations and performance tradeoffs.
+
+The preceding architecture pass is [Hero Street Development 1](./HERO_STREET_DEVELOPMENT_1.md): select **09 / Shinmachi Hero Street**, or open `http://127.0.0.1:5173/?view=8&seed=8412`. It preserves the existing commercial camera at 20:30 with After Rain and reflections. [Before](./captures/hero-street-before.png) and [after](./captures/hero-street-after.png) are actual 1080p WebGL captures. Reload that URL, then run:
 
 ```js
 window.__shinmachi.setReviewPaused(true);

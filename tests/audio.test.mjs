@@ -2,6 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { trafficVoiceMix, MAX_TRAFFIC_VOICE_GAIN } from '../src/world/audio/AudioMix.ts';
 const gain = m => m.engineGain + m.tireGain;
+test('engine families, actual load and wet tire noise produce distinct bounded mixes',()=>{
+  assert.notEqual(trafficVoiceMix('kei',4,3).engineHz,trafficVoiceMix('truck',4,3).engineHz);
+  assert.ok(trafficVoiceMix('hybrid',4,3).engineGain<trafficVoiceMix('coupe',4,3).engineGain);
+  assert.ok(trafficVoiceMix('van',4,3,1).engineGain>trafficVoiceMix('van',4,3,-1).engineGain);
+  assert.ok(trafficVoiceMix('compact',4,3,0,true).tireGain>trafficVoiceMix('compact',4,3,0,false).tireGain);
+  for(const kind of ['kei','truck','hybrid','coupe','luxury'])for(const a of [-3,0,3])assert.ok(gain(trafficVoiceMix(kind,6,0,a,true))<=MAX_TRAFFIC_VOICE_GAIN+1e-12);
+});
 test('stationary traffic has no tire hiss and a quiet idle', () => {
   const idle = trafficVoiceMix('compact', 0, 0); assert.equal(idle.tireGain, 0); assert.ok(idle.engineGain <= .004);
 });

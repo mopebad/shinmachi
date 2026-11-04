@@ -1,0 +1,141 @@
+{
+  "recordings": [
+    {
+      "name": "behavior-hero-sequence",
+      "bytes": 2517337,
+      "samples": 45,
+      "start": 300.000000000023,
+      "end": 321.96666666670717,
+      "audio": true,
+      "pcm": {
+        "frames": 1054720,
+        "rate": 48000,
+        "seconds": 21.973333333333333,
+        "bytes": 2109484
+      },
+      "footEvents": 17,
+      "indicatorEvents": 3
+    },
+    {
+      "uid": 41,
+      "name": "behavior-phone-sequence",
+      "bytes": 3029465,
+      "samples": 45,
+      "start": 322.0333333333739,
+      "end": 342.73333333339036,
+      "audio": true,
+      "pcm": {
+        "frames": 1054720,
+        "rate": 48000,
+        "seconds": 21.973333333333333,
+        "bytes": 2109484
+      },
+      "footEvents": 219,
+      "indicatorEvents": 71
+    },
+    {
+      "uid": 13,
+      "partner": 30,
+      "name": "behavior-conversation-sequence",
+      "bytes": 3845827,
+      "samples": 49,
+      "start": 441.80000000013587,
+      "end": 465.80000000015497,
+      "audio": true,
+      "pcm": {
+        "frames": 1150976,
+        "rate": 48000,
+        "seconds": 23.978666666666665,
+        "bytes": 2301996
+      },
+      "footEvents": 1245,
+      "indicatorEvents": 134
+    },
+    {
+      "spawn": 103,
+      "kind": "mpv",
+      "name": "behavior-traffic-braking-sequence",
+      "bytes": 1807835,
+      "samples": 37,
+      "start": 533.8333333335052,
+      "end": 551.8333333334888,
+      "audio": true,
+      "pcm": {
+        "frames": 864256,
+        "rate": 48000,
+        "seconds": 18.005333333333333,
+        "bytes": 1728556
+      },
+      "footEvents": 1857,
+      "indicatorEvents": 183
+    },
+    {
+      "spawn": 59,
+      "kind": "van",
+      "name": "behavior-traffic-turn-sequence",
+      "bytes": 2535246,
+      "samples": 33,
+      "start": 347.0000000000604,
+      "end": 362.9666666667398,
+      "audio": true,
+      "pcm": {
+        "frames": 768000,
+        "rate": 48000,
+        "seconds": 16,
+        "bytes": 1536044
+      },
+      "footEvents": 284,
+      "indicatorEvents": 66
+    },
+    {
+      "uid": 26,
+      "partner": 41,
+      "name": "behavior-companions-day-sequence",
+      "bytes": 2471204,
+      "samples": 33,
+      "start": 624.1666666667563,
+      "end": 640.1666666667418,
+      "audio": true,
+      "pcm": {
+        "frames": 768000,
+        "rate": 48000,
+        "seconds": 16,
+        "bytes": 1536044
+      },
+      "footEvents": 2060,
+      "indicatorEvents": 332
+    },
+    {
+      "name": "behavior-station-sequence",
+      "bytes": 1418987,
+      "samples": 45,
+      "start": 695.6666666666913,
+      "end": 717.6666666666713,
+      "audio": true,
+      "pcm": {
+        "frames": 1054720,
+        "rate": 48000,
+        "seconds": 21.973333333333333,
+        "bytes": 2109484
+      },
+      "footEvents": 2119,
+      "indicatorEvents": 332
+    },
+    {
+      "name": "behavior-residential-time-sequence",
+      "bytes": 1032475,
+      "samples": 37,
+      "start": 717.6666666666713,
+      "end": 735.6666666666549,
+      "audio": true,
+      "pcm": {
+        "frames": 862208,
+        "rate": 48000,
+        "seconds": 17.962666666666667,
+        "bytes": 1724460
+      },
+      "footEvents": 2119,
+      "indicatorEvents": 332
+    }
+  ]
+}

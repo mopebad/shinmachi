@@ -8,6 +8,8 @@ import { RAIL_VEHICLE, railGeometry } from './RailGeometry.ts';
 import { populationTarget, railServiceOpen } from './WorldRules.ts';
 import { PASSENGER_SPACE, trainBerths, passengerTransferPath, passengerPositionValid, pointPathDistance, transferPathsConflict } from './RailPassengerGeometry.ts';
 import type { TrainBerth } from './RailPassengerGeometry.ts';
+import { pedestrianIdentity } from './AgentIdentity.ts';
+import { locomotion } from './Locomotion.ts';
 
 export interface RailPassengerConfig { arrivingPassengers?: number; capacityPerDoor?: number; stationDemand?: number; boardingGraceSeconds?: number }
 export interface RailJourney {
@@ -28,8 +30,10 @@ export class RailPassengers {
   private readonly traffic: StationTraffic;
   private readonly people: Pedestrian[];
   private readonly config: RailPassengerConfig;
-  constructor(train: TrainOperation,traffic: StationTraffic,people: Pedestrian[],config: RailPassengerConfig={}) {
+  private readonly birth:()=>Pick<Pedestrian,'identity'|'motion'|'speed'|'phase'|'shirt'|'style'|'scale'>;
+  constructor(train: TrainOperation,traffic: StationTraffic,people: Pedestrian[],config: RailPassengerConfig={},birth?:()=>Pick<Pedestrian,'identity'|'motion'|'speed'|'phase'|'shirt'|'style'|'scale'>) {
     this.train=train;this.traffic=traffic;this.people=people;this.config=config;
+    let sequence=0;this.birth=birth??(()=>{const identity=pedestrianIdentity(8412,sequence++,'station'),a=identity.appearance;return{identity,motion:locomotion(),speed:identity.preferredSpeed,phase:identity.phase,shirt:a.shirt,style:a.style,scale:a.scale};});
     const perDoor=config.capacityPerDoor??2;
     if(!Number.isInteger(perDoor)||perDoor<1||perDoor>2||config.arrivingPassengers!==undefined&&(!Number.isInteger(config.arrivingPassengers)||config.arrivingPassengers<0||config.arrivingPassengers>perDoor*6)||
       config.stationDemand!==undefined&&(!Number.isFinite(config.stationDemand)||config.stationDemand<0||config.stationDemand>1)||
@@ -71,9 +75,9 @@ export class RailPassengers {
     const ordered=this.freeBerths().sort((a,b)=>a.id.slice(-1).localeCompare(b.id.slice(-1))||a.doorId.localeCompare(b.doorId));
     for(const b of ordered.slice(0,demand)) {
       const old=this.people.find(p=>!p.active),id=old?.id??this.people.length;if(!old&&id>=88)break;
-      const p: Pedestrian={id,x:s.x+b.localX,y:RAIL_VEHICLE.sillY,z:STATION.trackZ+b.localZ,node:-1,path:[],next:1,speed:1.1,yaw:0,phase:id*.71,moving:false,crossing:null,wait:0,active:true,retiring:false,
-        shirt:[0x35494e,0xc6bbab,0x47525a,0x93736c][id%4],style:id%5,scale:.97+(id%4)*.012,
+      const p: Pedestrian={id,...this.birth(),x:s.x+b.localX,y:RAIL_VEHICLE.sillY,z:STATION.trackZ+b.localZ,node:-1,path:[],next:1,yaw:0,moving:false,crossing:null,wait:0,active:true,retiring:false,
         rail:{kind:'inbound',state:'riding',berthId:b.id,doorId:b.doorId,localX:b.localX,localZ:b.localZ,path:[],index:0,started:clock}};
+      p.motion.previousX=p.x;p.motion.previousY=p.y;p.motion.previousZ=p.z;p.motion.previousPhase=p.phase;
       this.traffic.registerInbound(p,clock);if(old)Object.assign(old,p);else this.people.push(p);
       this.event(old??p,'origin',clock);this.metrics.originated++;
     }

@@ -1,0 +1,26 @@
+{
+  "frames": 594,
+  "elapsedMs": 5005.099999999999,
+  "aggregateFps": 118.67894747357697,
+  "medianMs": 8.300000000001091,
+  "p95Ms": 12.5,
+  "p99Ms": 12.600000000000364,
+  "worstMs": 16.700000000000728,
+  "viewport": [
+    1323,
+    889
+  ],
+  "renderPixelRatio": 1,
+  "devicePixelRatio": 1,
+  "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.144.1 Chrome/150.0.7871.250 Electron/43.8.3 Safari/537.36",
+  "stats": {
+    "fps": 125,
+    "drawCalls": 1118,
+    "triangles": 5097543,
+    "buildings": 57,
+    "pedestrians": 60,
+    "vehicles": 11
+  },
+  "note": "Browser frame intervals; does not isolate GPU execution time."
+}

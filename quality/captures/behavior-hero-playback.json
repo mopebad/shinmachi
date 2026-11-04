@@ -1,0 +1,14 @@
+{
+  "source": "behavior-hero-sequence.mp4",
+  "seconds": 4,
+  "duration": 21.921979,
+  "width": 1322,
+  "height": 888,
+  "audioChannels": 1,
+  "audioDuration": 21.973333333333333,
+  "audioRms": 0.001709150545307772,
+  "audioPeak": 0.007354960776865482,
+  "silentTraceSamples": 0,
+  "cameraDrift": 0,
+  "simulationSeconds": 21.966666666684148
+}

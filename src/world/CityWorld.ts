@@ -104,7 +104,7 @@ export class CityWorld {
     this.composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth / 2, innerHeight / 2), .25, .5, 1.05)); this.composer.addPass(new OutputPass()); this.composer.addPass(this.finish);
     window.addEventListener('resize', () => { this.camera.aspect = innerWidth / innerHeight; this.camera.updateProjectionMatrix(); this.renderer.setSize(innerWidth, innerHeight); this.composer.setSize(innerWidth, innerHeight); });
     document.addEventListener('visibilitychange', () => { this.last = performance.now(); });
-    this.setTime(this.time);
+    this.setTime(this.time);this.setWeather(this.weather);
   }
   private readSeed(): number { const value = Number(new URLSearchParams(location.search).get('seed') ?? 8412); return Number.isFinite(value) ? value >>> 0 : 8412; }
   get cameraMode(): CameraMode { return this.controller.mode; }
@@ -112,7 +112,7 @@ export class CityWorld {
   get locationName(): string { if (this.location === 8 && this.camera.position.distanceTo(new THREE.Vector3(...HERO_STREET_VIEW.eye)) < 3) return HERO_STREET_VIEW.name; if (this.location === 7 && Math.abs(this.camera.position.z + 25) < 3.1) return 'Yoto nightlife street'; if (this.location === 5 && this.camera.position.distanceTo(new THREE.Vector3(...LOCATIONS[5].eye)) < 3) return 'Akane tower avenue'; if (this.location === 6 && this.camera.position.z < -36) return 'Railway approach'; return this.camera.position.y > 15 ? 'District overview' : { commercial: 'Shinmachi-dori', alley: 'Lantern alley', station: 'Station square', residential: 'Residential lane' }[districtZone(this.camera.position)]; }
   get stats() { return { fps: Math.round(this.fps), drawCalls: this.renderer.info.render.calls, triangles: this.renderer.info.render.triangles, buildings: this.district.stats.buildings, ...this.activity.stats }; }
   setPlaying(value: boolean): void { this.playing = value; }
-  private reviewPaused = false;
+  private reviewPaused = import.meta.env.DEV && new URLSearchParams(location.search).get('review') === '1';
   /** Development captures advance the actual simulation explicitly while rAF only renders. */
   setReviewPaused(value: boolean): void {
     if (!import.meta.env.DEV) throw new Error('Review pause requires the local development server');
@@ -125,7 +125,7 @@ export class CityWorld {
     this.controller.setMode(this.location === 3 ? 'fly' : 'walk'); this.controller.teleport(new THREE.Vector3(...location.eye), new THREE.Vector3(...location.target));
   }
   setFov(value: number): void { this.camera.fov = THREE.MathUtils.clamp(value, 35, 80); this.camera.updateProjectionMatrix(); }
-  setWeather(value: 'dry' | 'damp'): void { this.weather = value; this.reflections.setWetness(value === 'damp' && this.reflectionsEnabled ? .64 : 0); }
+  setWeather(value: 'dry' | 'damp'): void { this.weather = value; this.activity.simulation.wet=value==='damp';this.reflections.setWetness(value === 'damp' && this.reflectionsEnabled ? .64 : 0); }
   setReflections(value: boolean): void { this.reflectionsEnabled = value; this.setWeather(this.weather); }
   setContactShading(value: boolean): void { this.contactShading.enabled = value; }
   /** Development capture of actual render output, independent of browser screenshot scaling. */
@@ -136,6 +136,7 @@ export class CityWorld {
     if (this.nightlife.assets.errors.length) throw new Error(this.nightlife.assets.errors.join('\n'));
     this.teleport(REVIEW_VIEWS[view]); this.setPlaying(false); this.setTime(hour);
     if (framing) { this.controller.teleport(new THREE.Vector3(...framing.eye), new THREE.Vector3(...framing.target)); this.setFov(framing.fov); }
+    this.activity.update(0, hour, this.camera.position);
     const size = this.renderer.getSize(new THREE.Vector2()), ratio = this.renderer.getPixelRatio(), aspect = this.camera.aspect;
     this.renderer.setPixelRatio(1); this.composer.setPixelRatio(1); this.renderer.setSize(1920, 1080, false); this.composer.setSize(1920, 1080);
     this.camera.aspect = 16 / 9; this.camera.updateProjectionMatrix(); this.camera.updateMatrixWorld(); this.reflections.update(this.camera);
@@ -147,6 +148,9 @@ export class CityWorld {
     const metadata = { name, view, preset: REVIEW_VIEWS[view], seed: this.readSeed(), hour, simulationClock: sim.clock, train: sim.train.snapshot,
       renderConditions: { exposure: this.renderer.toneMappingExposure, fogDensity: this.fog.density, wetness: this.reflections.surface.visible ? .64 : 0, grainSeconds: this.finish.uniforms.seconds.value, atmosphereSeconds: this.atmosphere.elapsedSeconds },
       railPassengers:sim.railPassengers?.snapshot,stationPassengers:sim.pedestrians.filter(p=>p.active&&p.station).map(p=>({id:p.id,visit:p.station!.id,journey:p.station!.journey,state:p.station!.state,x:p.x,y:p.y,z:p.z,rail:p.rail})),
+      vehicles:sim.vehicles.filter(c=>c.active).map(c=>({id:c.id,spawn:c.spawn,kind:c.kind,variant:c.variant,color:c.color,x:c.x,z:c.z,yaw:c.yaw,s:c.s,speed:c.speed,braking:c.braking,entry:c.route.entry,exit:c.route.exit})),
+      people:sim.pedestrians.filter(p=>p.active).map(p=>({id:p.id,uid:p.identity.uid,purpose:p.identity.purpose,x:p.x,y:p.y,z:p.z,yaw:p.yaw,speed:p.motion.speed,phase:p.phase,footfalls:p.motion.footfalls,activity:p.activity,companion:p.companion})),
+      streetLife:sim.streetLife.metrics,driverStates:sim.vehicles.filter(c=>c.active).map(c=>({spawn:c.spawn,driver:c.driver,acceleration:c.acceleration,steering:c.steering,lights:c.lights})),audio:this.audio.diagnostics,
       eye: this.camera.position.toArray(), quaternion: this.camera.quaternion.toArray(), fov: this.camera.fov, width: 1920, height: 1080, pixelRatio: 1, surface: this.weather, reflections: this.reflectionsEnabled, contactShading: this.contactShading.enabled, stats: this.stats, assets: { loaded: this.nightlife.assets.loaded, errors: this.nightlife.assets.errors }, capturedAt: new Date().toISOString() };
     this.renderer.setPixelRatio(ratio); this.composer.setPixelRatio(ratio); this.renderer.setSize(size.x, size.y, false); this.composer.setSize(size.x, size.y); this.camera.aspect = aspect; this.camera.updateProjectionMatrix();
     this.atmosphere.seek(atmosphereSeconds, hour, this.camera); this.finish.uniforms.seconds.value = grainSeconds;
