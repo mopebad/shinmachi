@@ -1,0 +1,58 @@
+{
+  "name": "station3-running",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 93.19999999999729,
+  "train": {
+    "state": "RUNNING",
+    "x": 50.80000000000346,
+    "velocity": 4,
+    "speed": 4,
+    "acceleration": 0,
+    "direction": 1,
+    "active": true,
+    "serviceOpen": true,
+    "service": "IN_SERVICE",
+    "motion": "cruise",
+    "destination": "turnback",
+    "stateElapsed": 0.012500000000863605,
+    "stopX": 34.75,
+    "stoppingError": 16.050000000003458,
+    "lastStopError": 0,
+    "completedStops": 1,
+    "turnbacks": 0
+  },
+  "eye": [
+    48,
+    26,
+    -72
+  ],
+  "quaternion": [
+    0,
+    0.9199732190240683,
+    0.39198121929308527,
+    0
+  ],
+  "fov": 70,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 119,
+    "drawCalls": 915,
+    "triangles": 5294387,
+    "buildings": 57,
+    "pedestrians": 42,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-04T04:11:07.448Z"
+}

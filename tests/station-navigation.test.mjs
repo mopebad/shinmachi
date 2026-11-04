@@ -9,7 +9,8 @@ import { stationStairPose } from '../src/world/simulation/StationPose.ts';
 const layout=createStationLayout();
 const bounds=[...layout.npcReservation,...layout.boxes.filter(b=>b.collision&&b.minY<.3)];
 const create=seed=>new CitySimulation({seed,station:layout,bounds});
-const phases=['approaching','entering','gate-in','paid','ascending','platform','waiting','returning','descending','gate-out','exiting'];
+const outbound=['approaching','entering','gate-in','paid','ascending','platform','waiting','boarding','riding'];
+const inbound=['riding','alighting','returning','descending','paid','gate-out','exiting'];
 
 test('station graph has surface-validated 3D lanes, all four tread flights, gated boundaries and distinct waiting destinations',()=>{
   const nav=new Navigation(bounds,[],layout),s=nav.station;
@@ -36,7 +37,7 @@ test('station graph has surface-validated 3D lanes, all four tread flights, gate
   }
 });
 
-test('600 seconds of simultaneous station visitors complete continuous round trips without collisions, gate deadlocks or traffic regressions',()=>{
+test('600 seconds of station journeys retain continuous circulation, gate reservations, stairs and traffic safety',()=>{
   const sim=create(8412);let wallHits=0,roadSteps=0,overlaps=0,exits=0,climbs=0,descents=0,maxVerticalStep=0;
   assert.ok(sim.pedestrians.every(p=>!p.station&&p.y<=.115),'No passengers may spawn upstairs');
   for(let i=0;i<18000;i++){
@@ -50,7 +51,7 @@ test('600 seconds of simultaneous station visitors complete continuous round tri
     const inside=sim.pedestrians.filter(p=>p.active&&p.station&&p.station.state!=='approaching');
     for(const p of sim.pedestrians.filter(p=>p.active)){
       const old=before[p.id];
-      if(p.station&&p.station.state!=='approaching'){
+      if(p.station&&p.station.state!=='approaching'&&!p.rail){
         assert.ok(stationPositionValid(layout,p),`Station body hit at ${sim.clock}: ${JSON.stringify(p)}`);
         if(old?.visit===p.station.id&&old.state!=='approaching'){
           assert.ok(Math.hypot(p.x-old.x,p.y-old.y,p.z-old.z)<=p.speed/30+1e-7,'Disconnected movement/teleport');
@@ -67,8 +68,8 @@ test('600 seconds of simultaneous station visitors complete continuous round tri
           for(const leg of pose.legs){assert.ok(Math.abs(Math.hypot(leg.hip.y-leg.knee.y,leg.hip.z-leg.knee.z)-.34)<1e-8);assert.ok(Math.abs(Math.hypot(leg.knee.y-leg.ankle.y,leg.knee.z-leg.ankle.z)-.34)<1e-8);}
           for(const f of pose.feet.filter(f=>f.grounded))assert.ok(Math.abs(stationFootSurface(layout,f.x,f.z,f.y)-f.y)<1e-8,'Stance foot must touch a real tread or landing');
         }
-      }else if(pointBlocked(p,bounds,.16))wallHits++;
-      if(!p.crossing&&(Math.abs(p.x)<3.5||p.z>6.5&&p.z<17.5))roadSteps++;
+      }else if(!p.rail&&pointBlocked(p,bounds,.16))wallHits++;
+      if(p.y<2&&!p.crossing&&(Math.abs(p.x)<3.5||p.z>6.5&&p.z<17.5))roadSteps++;
       if(p.y<2)for(const c of sim.vehicles.filter(c=>c.active)){
         const dx=p.x-c.x,dz=p.z-c.z,v=VEHICLE_PROFILES[c.kind];
         if(Math.abs(dx*Math.sin(c.yaw)+dz*Math.cos(c.yaw))<v.length/2+.25&&Math.abs(dx*Math.cos(c.yaw)-dz*Math.sin(c.yaw))<v.width/2+.25)overlaps++;
@@ -84,7 +85,12 @@ test('600 seconds of simultaneous station visitors complete continuous round tri
   const m=sim.stationTraffic.metrics;assert.ok(m.completed>=6);assert.ok(m.maxActive>=4);assert.ok(m.maxWaiting>=2);assert.equal(m.failures,0);assert.equal(m.invalidMoves,0);
   assert.ok(m.maxMovingWait<35);assert.ok(climbs>100&&descents>100);assert.ok(maxVerticalStep<.03);
   assert.equal(wallHits,0);assert.equal(roadSteps,0);assert.equal(overlaps,0);assert.ok(exits>70);
-  for(const v of sim.stationTraffic.completed){assert.ok(phases.every(s=>v.states.includes(s)));assert.ok(!sim.navigation.nodes[v.originNode].door);assert.ok(v.waitedSeconds>=15);assert.equal(v.rejoinedNode,sim.navigation.station.exitAnchor);assert.notEqual(v.entranceGate,v.exitGate);}
+  for(const v of sim.stationTraffic.completed){
+    assert.ok((v.journey==='inbound'?inbound:outbound).every(s=>v.states.includes(s)));
+    if(v.journey==='outbound'){assert.ok(!sim.navigation.nodes[v.originNode].door);assert.equal(v.destination,'rail');}
+    else {assert.equal(v.rejoinedNode,sim.navigation.station.exitAnchor);assert.equal(v.destination,'city');}
+    assert.notEqual(v.entranceGate,v.exitGate);
+  }
   const started=m.started;
   for(let i=0;i<18000;i++)sim.update(1/30,3);
   assert.equal(m.started,started,'Closed service must not accept new visits');assert.equal(m.completed,started,'Every active visitor must leave without respawning/teleporting');

@@ -1,0 +1,58 @@
+{
+  "name": "station3-decelerating",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 53.19999999999956,
+  "train": {
+    "state": "DECELERATING",
+    "x": 31.774941406346453,
+    "velocity": 1.9906250305171689,
+    "speed": 1.9906250305171689,
+    "acceleration": -0.7499926757812493,
+    "direction": 1,
+    "active": true,
+    "serviceOpen": true,
+    "service": "IN_SERVICE",
+    "motion": "braking",
+    "destination": "station",
+    "stateElapsed": 4.0125000000005455,
+    "stopX": 34.75,
+    "stoppingError": -2.9750585936535465,
+    "lastStopError": null,
+    "completedStops": 0,
+    "turnbacks": 0
+  },
+  "eye": [
+    35,
+    28,
+    -72
+  ],
+  "quaternion": [
+    -0.003060906956255689,
+    0.9091949081623075,
+    0.41630585150286153,
+    0.006684895273366414
+  ],
+  "fov": 70,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 128,
+    "drawCalls": 905,
+    "triangles": 5374503,
+    "buildings": 57,
+    "pedestrians": 45,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-04T04:11:06.272Z"
+}

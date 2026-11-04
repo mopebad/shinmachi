@@ -4,7 +4,7 @@ import { createSignAtlas } from './SignTextures';
 import { faceKey, signAtlasUv } from './SignLayout.ts';
 import type { SignFace } from './SignLayout.ts';
 
-type Batch = { geometry: THREE.BufferGeometry; material: THREE.Material; matrices: THREE.Matrix4[]; colors: THREE.Color[] };
+type Batch = { geometry: THREE.BufferGeometry; material: THREE.Material; matrices: THREE.Matrix4[]; colors: THREE.Color[]; sections: string[] };
 
 /** Static kit parts are uploaded as instanced batches, not thousands of scene objects. */
 export class CityBatch {
@@ -22,6 +22,9 @@ export class CityBatch {
   private readonly signBusinesses: number[] = [];
   private readonly signFaces: SignFace[] = [];
   instances = 0;
+  private sectionName = '';
+  /** Semantic attribution for spatial review; does not change batching or rendering. */
+  section(name = ''): void { this.sectionName = name; }
 
   origin(x = 0, z = 0, rotation = 0, y = 0): void {
     this.transform.compose(new THREE.Vector3(x, y, z), new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), rotation), new THREE.Vector3(1, 1, 1));
@@ -29,9 +32,9 @@ export class CityBatch {
   part(shape: 'box' | 'plane' | 'rice' | 'cylinder' | 'sphere' | 'torus' | 'triangle', material: THREE.Material, x: number, y: number, z: number, sx: number, sy: number, sz: number, rx = 0, ry = 0, rz = 0, tint = 0xffffff): void {
     const key = shape + material.uuid;
     let batch = this.batches.get(key);
-    if (!batch) { batch = { geometry: this[shape], material, matrices: [], colors: [] }; this.batches.set(key, batch); }
+    if (!batch) { batch = { geometry: this[shape], material, matrices: [], colors: [], sections: [] }; this.batches.set(key, batch); }
     this.object.position.set(x, y, z); this.object.scale.set(sx, sy, sz); this.object.rotation.set(rx, ry, rz); this.object.updateMatrix();
-    batch.matrices.push(new THREE.Matrix4().multiplyMatrices(this.transform, this.object.matrix)); batch.colors.push(new THREE.Color(tint)); this.instances++;
+    batch.matrices.push(new THREE.Matrix4().multiplyMatrices(this.transform, this.object.matrix)); batch.colors.push(new THREE.Color(tint)); batch.sections.push(this.sectionName); this.instances++;
   }
   b(material: THREE.Material, x: number, y: number, z: number, w: number, h: number, d: number, ry = 0): void { this.part('box', material, x, y, z, w, h, d, 0, ry); }
   panel(material: THREE.Material, x: number, y: number, z: number, w: number, h: number, ry = 0): void { this.part('plane', material, x, y, z, w, h, 1, 0, ry); }
@@ -60,6 +63,7 @@ export class CityBatch {
     for (const batch of this.batches.values()) {
       const mesh = new THREE.InstancedMesh(batch.geometry, batch.material, batch.matrices.length);
       batch.matrices.forEach((matrix, i) => { mesh.setMatrixAt(i, matrix); mesh.setColorAt(i, batch.colors[i]); });
+      mesh.userData.sections = batch.sections;
       mesh.castShadow = batch.geometry !== this.torus && !batch.material.transparent; mesh.receiveShadow = true; mesh.computeBoundingSphere(); group.add(mesh);
     }
     const atlas = createSignAtlas(this.signFaces), entries = new Map(atlas.entries.map(e => [e.key, e]));

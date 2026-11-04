@@ -3,13 +3,15 @@ import type { Navigation } from './Navigation.ts';
 import { populationTarget, railServiceOpen, seededRandom } from './WorldRules.ts';
 import { stationPositionValid } from './StationNavigation.ts';
 import type { PassengerState, StationTraversal, WaitingDestination } from './StationNavigation.ts';
+import type { StationPoint } from '../generation/StationLayout.ts';
 
 export interface StationVisit {
+  journey: 'outbound' | 'inbound';
   id: number; state: PassengerState; paid: boolean; gate: string; slot: string; origin: number;
-  route: number[]; index: number; started: number; idle: number; blockedFor: number;
+  route: number[]; index: number; started: number; blockedFor: number;
   flight?: string; failed: boolean; history: PassengerState[]; waitedSeconds: number;
 }
-export interface StationVisitResult { visit: number; pedestrian: number; seconds: number; originNode: number; rejoinedNode: number; waitedSeconds: number; states: PassengerState[]; entranceGate: string; exitGate: string }
+export interface StationVisitResult { visit: number; pedestrian: number; seconds: number; originNode: number; rejoinedNode: number; waitedSeconds: number; states: PassengerState[]; entranceGate: string; exitGate: string; journey: 'outbound' | 'inbound'; destination: 'city' | 'rail' }
 
 /** Fixed-step station circulation. Reservations meter turns; positions always traverse graph edges. */
 export class StationTraffic {
@@ -23,8 +25,10 @@ export class StationTraffic {
   private readonly cooldown = new Map<number,number>();
   private readonly rng: () => number;
   private ticket=0; private sequence=0;
-  constructor(navigation: Navigation,seed: number) {this.navigation=navigation;this.rng=seededRandom(seed^0x51a710);}
-  private state(p: Pedestrian,state: PassengerState,clock: number): void {
+  platformClear: (p: Pedestrian, next: StationPoint) => boolean = () => true;
+  private readonly demand: number;
+  constructor(navigation: Navigation,seed: number,demand = .34) {this.navigation=navigation;this.demand=demand;this.rng=seededRandom(seed^0x51a710);}
+  state(p: Pedestrian,state: PassengerState,clock: number): void {
     const v=p.station!;if(v.state===state)return;v.state=state;v.history.push(state);
     this.metrics.transitions[state]=(this.metrics.transitions[state]??0)+1;
     this.events.push({clock,pedestrian:p.id,visit:v.id,state});if(this.events.length>512)this.events.shift();
@@ -36,18 +40,40 @@ export class StationTraffic {
     // Select station errands on public pavement, after an existing doorway/alley visit has cleared.
     if(source.door||source.station||source.area==='alley'||source.area==='station')return false;
     const capacity=Math.min(8,Math.max(2,Math.floor(populationTarget(hour).pedestrians/8)));
-    if(p.retiring||p.station||!railServiceOpen(hour)||this.slots.size>=capacity||(this.cooldown.get(p.id)??0)>clock||this.rng()>.34)return false;
+    if(p.retiring||p.station||!railServiceOpen(hour)||this.slots.size>=capacity||(this.cooldown.get(p.id)??0)>clock||this.rng()>this.demand)return false;
     const path=this.navigation.path(p.node,n.anchor);if(!path.length)return false;
     const free=n.waiting.filter(s=>!this.slots.has(s.id));if(!free.length)return false;
     const slot=free[Math.floor(this.rng()*free.length)];
     const gate=n.entranceGates[this.sequence%n.entranceGates.length];
-    p.station={id:++this.sequence,state:'approaching',paid:false,gate,slot:slot.id,origin:p.node,route:[],index:0,started:clock,idle:15+this.rng()*20,blockedFor:0,failed:false,history:['approaching'],waitedSeconds:0};
+    p.station={journey:'outbound',id:++this.sequence,state:'approaching',paid:false,gate,slot:slot.id,origin:p.node,route:[],index:0,started:clock,blockedFor:0,failed:false,history:['approaching'],waitedSeconds:0};
     this.slots.set(slot.id,p.id);p.path=path;p.next=1;p.wait=0;this.metrics.started++;
     this.metrics.transitions.approaching=(this.metrics.transitions.approaching??0)+1;
     if(path.length===1)this.enter(p,clock);
     return true;
   }
   private slot(p: Pedestrian): WaitingDestination {return this.navigation.station!.waiting.find(s=>s.id===p.station!.slot)!;}
+  registerInbound(p: Pedestrian,clock: number): void {
+    p.station={journey:'inbound',id:++this.sequence,state:'riding',paid:true,gate:'rail-arrival',slot:'',origin:-1,route:[],index:0,started:clock,blockedFor:0,failed:false,history:['riding'],waitedSeconds:0};
+    this.metrics.started++;this.metrics.transitions.riding=(this.metrics.transitions.riding??0)+1;
+  }
+  claimArrivalSlot(p: Pedestrian): WaitingDestination | undefined {
+    const slot=this.navigation.station!.waiting.filter(s=>!this.slots.has(s.id)).sort((a,b)=>
+      Math.abs(this.navigation.nodes[a.node].x-p.x)-Math.abs(this.navigation.nodes[b.node].x-p.x)||a.node-b.node)[0];
+    if(slot){this.slots.set(slot.id,p.id);p.station!.slot=slot.id;}return slot;
+  }
+  releaseSlot(p: Pedestrian): void {if(this.slots.get(p.station!.slot)===p.id)this.slots.delete(p.station!.slot);}
+  startReturn(p: Pedestrian,clock: number): void {
+    const v=p.station!,slot=this.slot(p),point=this.navigation.nodes[slot.node];
+    if(Math.hypot(p.x-point.x,p.y-point.y,p.z-point.z)>1e-6)throw new Error('Station return must start at its physical waiting node');
+    p.node=slot.node;v.route=slot.outbound;v.index=1;p.path=v.route;p.next=1;v.flight=undefined;v.blockedFor=0;this.state(p,'returning',clock);
+  }
+  finish(p: Pedestrian,clock: number,destination: 'city'|'rail'): void {
+    const v=p.station!,seconds=clock-v.started;this.metrics.completed++;this.metrics.maxVisitSeconds=Math.max(this.metrics.maxVisitSeconds,seconds);
+    this.completed.push({visit:v.id,pedestrian:p.id,seconds,originNode:v.origin,rejoinedNode:destination==='city'?p.node:-1,waitedSeconds:v.waitedSeconds,
+      states:[...v.history],entranceGate:v.gate,exitGate:destination==='city'?this.navigation.station!.exitGate:'rail',journey:v.journey,destination});
+    if(this.completed.length>256)this.completed.shift();
+    this.releaseSlot(p);this.retain(p,[]);this.requests.delete(p.id);this.cooldown.set(p.id,clock+90);p.station=undefined;p.path=[];p.next=1;p.wait=.4;
+  }
   enter(p: Pedestrian,clock: number): void {
     const v=p.station!,n=this.navigation.station!,slot=this.slot(p);
     v.route=[...n.inbound.get(v.gate)!,...slot.inbound.slice(1)];v.index=1;
@@ -65,7 +91,10 @@ export class StationTraffic {
     let request=this.requests.get(p.id);
     if(!request){request={ticket:this.ticket++,locks};this.requests.set(p.id,request);}else request.locks=locks;
     if(locks.some(key=>this.owners.has(key)&&this.owners.get(key)!==p.id))return false;
-    if([...this.requests].some(([id,q])=>id!==p.id&&q.ticket<request!.ticket&&q.locks.some(key=>needed.includes(key))))return false;
+    // FIFO among requests that can actually acquire their whole resource set. A blocked
+    // multi-resource request must not prevent the exit flow from releasing its missing lock.
+    if([...this.requests].some(([id,q])=>id!==p.id&&q.ticket<request!.ticket&&q.locks.some(key=>needed.includes(key))&&
+      q.locks.every(key=>!this.owners.has(key)||this.owners.get(key)===id)))return false;
     for(const key of locks)this.owners.set(key,p.id);this.requests.delete(p.id);return true;
   }
   private blocked(p: Pedestrian,edge: StationTraversal,dt: number): void {
@@ -77,9 +106,9 @@ export class StationTraffic {
     const v=p.station;if(!v||v.state==='approaching')return false;
     p.moving=false;
     if(v.state==='waiting'){
-      p.yaw=Math.PI;v.idle-=dt;v.waitedSeconds+=dt;
-      if(v.idle>0&&railServiceOpen(hour))return true;
-      v.route=this.slot(p).outbound;v.index=1;p.path=v.route;p.next=1;v.blockedFor=0;this.state(p,'returning',clock);
+      p.yaw=Math.PI;v.waitedSeconds+=dt;
+      if(railServiceOpen(hour))return true;
+      this.startReturn(p,clock);
     }
     const goal=this.navigation.nodes[v.route[v.index]],edge=this.navigation.edges.get(p.node)?.find(e=>e.to===goal?.id)?.station;
     if(!goal||!edge)throw new Error(`Disconnected station visit ${v.id} at node ${p.node}`);
@@ -90,6 +119,7 @@ export class StationTraffic {
     if(!stationPositionValid(this.navigation.station!.layout,next)){
       this.metrics.invalidMoves++;if(!v.failed){v.failed=true;this.metrics.failures++;}this.blocked(p,edge,dt);return true;
     }
+    if(!this.platformClear(p,next)){this.blocked(p,edge,dt);return true;}
     for(const q of peers){
       if(q===p||!q.active||Math.abs(q.y-next.y)>1.5)continue;
       const before=Math.hypot(q.x-p.x,q.z-p.z),after=Math.hypot(q.x-next.x,q.z-next.z);
@@ -102,6 +132,7 @@ export class StationTraffic {
     p.x=next.x;p.y=next.y;p.z=next.z;p.yaw=Math.atan2(dx,dz);p.moving=step>1e-6;p.phase+=Math.hypot(dx*t,dz*t)*7;v.blockedFor=0;
     if(d<=step+1e-9){
       p.node=goal.id;v.index++;p.next=v.index;
+      if(v.route===this.slot(p).outbound&&v.index>=2)this.releaseSlot(p);
       if(goal.station===v.gate+':paid')v.paid=true;
       if(goal.station==='exit-gate-unpaid')v.paid=false;
       const following=this.navigation.edges.get(p.node)?.find(e=>e.to===v.route[v.index])?.station;
@@ -109,9 +140,7 @@ export class StationTraffic {
       if(v.index===v.route.length){
         this.requests.delete(p.id);v.flight=undefined;
         if(goal.id===this.navigation.station!.exitAnchor){
-          const seconds=clock-v.started;this.metrics.completed++;this.metrics.maxVisitSeconds=Math.max(this.metrics.maxVisitSeconds,seconds);
-          this.completed.push({visit:v.id,pedestrian:p.id,seconds,originNode:v.origin,rejoinedNode:p.node,waitedSeconds:v.waitedSeconds,states:[...v.history],entranceGate:v.gate,exitGate:this.navigation.station!.exitGate});if(this.completed.length>128)this.completed.shift();
-          this.slots.delete(v.slot);this.cooldown.set(p.id,clock+90);p.station=undefined;p.path=[];p.next=1;p.wait=.4;
+          this.finish(p,clock,'city');
         }else{p.moving=false;this.state(p,'waiting',clock);}
       }
     }

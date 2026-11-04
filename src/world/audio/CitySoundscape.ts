@@ -111,7 +111,7 @@ export class CitySoundscape {
     set('station', .045 * (railServiceOpen(hour) ? 1 : .1) * (.8 + Math.sin(this.seconds * .7) * .2));
     for (const name of ['restaurantWest', 'restaurantEast']) set(name, businessOpen('restaurant', hour) ? .055 * chatter * (night ? 1 : .6) : .004);
     const train = this.voices.get('train')!; train.panner!.positionX.value = sim.trainX;
-    set('train', railServiceOpen(hour) && sim.trainX > -85 && sim.trainX < 125 ? .13 * (.85 + Math.sin(this.seconds * 21) * .15) : 0);
+    set('train', sim.train.snapshot.active && sim.trainX > -85 && sim.trainX < 125 ? .13 * Math.min(1, sim.train.snapshot.speed / sim.train.config.cruiseSpeed) * (.85 + Math.sin(this.seconds * 21) * .15) : 0);
     // Stable IDs keep a passing car attached to its own voice instead of jumping on every sort.
     const nearby = sim.vehicles.filter(c => c.active && Math.hypot(c.x - p.x, c.z - p.z) < 32).sort((a, b) => Math.hypot(a.x - p.x, a.z - p.z) - Math.hypot(b.x - p.x, b.z - p.z));
     const assigned = new Set(this.traffic.map(v => v.vehicleId));

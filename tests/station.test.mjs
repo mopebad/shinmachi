@@ -44,7 +44,9 @@ test('stairwell stays open and platform guards protect drops while the upper lan
   const s=createStationLayout();
   for(const f of s.flights)for(const t of f.treads){const pos={x:(t.minX+t.maxX)/2,z:(t.minZ+t.maxZ)/2};assert.ok(!s.surfaces.some(s=>s.kind==='platform'&&inStationRect(pos,s)));}
   assert.equal(stationSupport(s,18,-52.2,STATION.platformY),null);
-  assert.equal(stationBodyBlocked(s,30,STATION.platformEdgeZ+.1,STATION.platformY),true);
+  assert.equal(stationBodyBlocked(s,38.35,STATION.platformEdgeZ+.1,STATION.platformY),false);
+  for(const [x,z]of [[8,-54],[61.5,-54],[30,-47.74],[18,-53.1],[8.5,-55.39],[61,-55.39]])
+    assert.equal(stationBodyBlocked(s,x,z,STATION.platformY),true,'Real exposed edges remain guarded');
   assert.equal(stationBodyBlocked(s,14.2,-52.2,STATION.platformY),false);
   assert.equal(stationSupport(s,7.3,-54,STATION.platformY),null);
   assert.ok(s.boxes.some(b=>b.id==='return-east-guard'));

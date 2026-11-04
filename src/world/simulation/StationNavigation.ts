@@ -1,8 +1,12 @@
 import type { NavNode, NavEdge } from './Navigation.ts';
-import { inStationRect, stationBodyBlocked } from '../generation/StationLayout.ts';
+import { inStationRect, stationBodyBlocked, STATION } from '../generation/StationLayout.ts';
 import type { StationSpatial, StationPoint, StationFlight } from '../generation/StationLayout.ts';
+import { stationBoardingApproach } from './StationBoardingAccess.ts';
+import type { StationBoardingApproach } from './StationBoardingAccess.ts';
+import { trainDoorDefinitions, TRAIN_DOOR } from './TrainDoors.ts';
+import { RAIL_PLATFORM, RAIL_VEHICLE } from './RailGeometry.ts';
 
-export type PassengerState = 'approaching' | 'entering' | 'gate-in' | 'paid' | 'ascending' | 'platform' | 'waiting' | 'returning' | 'descending' | 'gate-out' | 'exiting';
+export type PassengerState = 'approaching' | 'entering' | 'gate-in' | 'paid' | 'ascending' | 'platform' | 'waiting' | 'boarding' | 'riding' | 'alighting' | 'returning' | 'descending' | 'gate-out' | 'exiting';
 export interface StationTraversal {
   kind: 'walk' | 'stairs' | 'gate'; state: PassengerState; speed: number;
   locks: string[]; gate?: string; flight?: string;
@@ -24,7 +28,8 @@ export function stationFootSurface(s: StationSpatial, x: number, z: number, y: n
 }
 export function stationPositionValid(s: StationSpatial, p: StationPoint): boolean {
   const support=stationFootSurface(s,p.x,p.z,p.y);
-  return support!==null && !stationBodyBlocked(s,p.x,p.z,Math.max(p.y,support));
+  const edgeHazard=s.navigationHazards.some(h=>Math.abs(p.y-h.y)<.19 && p.x>h.minX-.25&&p.x<h.maxX+.25&&p.z>h.minZ-.25&&p.z<h.maxZ+.25);
+  return support!==null && !edgeHazard && !stationBodyBlocked(s,p.x,p.z,Math.max(p.y,support));
 }
 
 /** Directed lanes embedded in the existing graph. Every flight is derived from its authored treads. */
@@ -38,8 +43,15 @@ export class StationNavigation {
   readonly entranceGates: string[];
   readonly exitGate: string;
   readonly validation: { edges: number; samples: number };
+  /** Conditional approaches are traversed only by the authoritative passenger exchange controller. */
+  readonly boardingApproaches: (StationBoardingApproach & { doorId: string; enabled: true })[];
   constructor(nodes: NavNode[], edges: Map<number,NavEdge[]>, layout: StationSpatial, anchor: number) {
     this.layout=layout;this.anchor=anchor;
+    this.boardingApproaches=trainDoorDefinitions().filter(d=>d.side===1).map(d=>{
+      const x=RAIL_PLATFORM.stopX+d.localX,y=RAIL_VEHICLE.sillY;
+      return {...stationBoardingApproach(layout,{minX:x-TRAIN_DOOR.width/2,maxX:x+TRAIN_DOOR.width/2,bottomY:y,topY:y+TRAIN_DOOR.height,
+        z:STATION.trackZ+TRAIN_DOOR.sillOuterZ}),doorId:d.id,enabled:true};
+    });
     const g=layout.nodes.forecourt.y,p=layout.nodes.upperLanding.y,keys=new Map<string,number>();
     keys.set('forecourt',anchor);
     const walk=(state: PassengerState,locks: string[]=[]): StationTraversal=>({kind:'walk',state,speed:1,locks});
@@ -81,15 +93,18 @@ export class StationNavigation {
     }
     const access=layout.nodes.platformAccess,landing=layout.nodes.upperLanding;
     const east=layout.surfaces.find(s=>s.id==='platform-east')!,corridorX=east.minX+1.09;
+    // Acquire the compact neck and first waiting junction together. Higher alighting throughput
+    // must not admit an ascending person into a turn blocked by the descending queue.
+    const entranceTurn=['east-turn','waiting-junction:0'];
     ascending.push(wp('up-landing',landing.x,p,lane(upper,true),walk('platform',['upper-junction'])),
       at('up-access',access,'platform',['upper-junction']),wp('up-neck-clear',upper.to.x+.8,p,access.z,walk('platform',['upper-junction'])),
-      wp('up-neck-east-hold',corridorX-1.1,p,access.z,walk('platform')),wp('up-neck-east',corridorX,p,access.z,walk('platform',['east-turn'])),wp('platform-in-start',corridorX,p,access.z+1.2,walk('platform',['east-turn'])));
+      wp('up-neck-east-hold',corridorX-1.1,p,access.z,walk('platform')),wp('up-neck-east',corridorX,p,access.z,walk('platform',entranceTurn)),wp('platform-in-start',corridorX,p,access.z+1.2,walk('platform',entranceTurn)));
     const up=route(ascending);
     const [exit,...entry]=layout.gates;this.entranceGates=entry.map(g=>g.id);this.exitGate=exit.id;
     for(const gate of entry){
-      const laneT: StationTraversal={kind:'gate',state:'gate-in',speed:.78,locks:['paid-junction','gate:'+gate.id],gate:gate.id};
+      const laneT: StationTraversal={kind:'gate',state:'gate-in',speed:.78,locks:['unpaid-approach','paid-junction','gate:'+gate.id],gate:gate.id};
       const prefix=route([at('forecourt',layout.nodes.forecourt,'entering'),at('entry',layout.nodes.entrance,'entering',['forecourt-entry']),wp('concourse',layout.nodes.concourse.x,g,layout.nodes.gateApproach.z,walk('entering')),
-        wp('unpaid-turn',layout.nodes.unpaidTurn.x,g,layout.nodes.gateApproach.z,walk('entering')),wp(gate.id+':approach',gate.center.x,g,gate.center.z+gate.depth/2+.45,walk('entering')),
+        wp('unpaid-turn',layout.nodes.unpaidTurn.x,g,layout.nodes.gateApproach.z,walk('entering',['unpaid-approach'])),wp(gate.id+':approach',gate.center.x,g,gate.center.z+gate.depth/2+.45,walk('entering',['unpaid-approach'])),
         wp(gate.id+':center',gate.center.x,g,gate.center.z,laneT),wp(gate.id+':paid',gate.center.x,g,gate.center.z-gate.depth/2-.45,laneT),
         wp(gate.id+':paid-turn',gate.center.x,g,lane(lower,true),walk('paid',['paid-junction'])),ascending[0]]);
       this.inbound.set(gate.id,[...prefix,...up.slice(1)]);
@@ -121,7 +136,7 @@ export class StationNavigation {
     const inCorridor: Waypoint[]=[ascending.at(-1)!];
     for(const [i,q]of slots.entries()){
       const locks=['waiting-junction:'+i],inZ=ascending.at(-1)!.p.z,outZ=descending[0].p.z;
-      inCorridor.push(wp('in-before-'+i,q.x-.8,p,inZ,walk('platform')),wp('in-mid-'+i,q.x,p,inZ,walk('platform',locks)),wp('in-after-'+i,q.x+.8,p,inZ,walk('platform',locks)));
+      inCorridor.push(wp('in-before-'+i,q.x-.8,p,inZ,walk('platform',i===0?entranceTurn:[])),wp('in-mid-'+i,q.x,p,inZ,walk('platform',i===0?entranceTurn:locks)),wp('in-after-'+i,q.x+.8,p,inZ,walk('platform',locks)));
       const wait=at('wait-'+i,q,'platform',locks);
       const inRoute=route([...inCorridor.slice(0,-1),wait]);
       const outCorridor: Waypoint[]=[wait,wp('out-cross-'+i,q.x,p,inZ,walk('returning',locks)),wp('out-mid-'+i,q.x,p,outZ,walk('returning',locks)),wp('out-before-'+i,q.x-.8,p,outZ,walk('returning',locks))];

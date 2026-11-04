@@ -56,10 +56,11 @@ export class CityActivity {
   private put(mesh: THREE.InstancedMesh, x: number, y: number, z: number, w: number, h: number, d: number, color = 0xffffff, yaw = 0, rx = 0, rz = 0): void {
     const index = mesh.count++; this.object.position.set(x, y, z); this.object.scale.set(w, h, d); this.object.rotation.set(rx, yaw, rz, 'YXZ'); this.object.updateMatrix(); mesh.setMatrixAt(index, this.object.matrix); mesh.setColorAt(index, this.tint.setHex(color));
   }
-  update(dt: number, hour: number, listener?: THREE.Vector3): void {
-    this.simulation.update(dt, hour, listener);
+  update(dt: number, hour: number, listener?: THREE.Vector3, hourRate = 0): void {
+    this.simulation.update(dt, hour, listener, hourRate);
+    hour = this.simulation.hour;
     const pools = [this.body, this.glass, this.wheels, this.headlights, this.taillights, this.brakelights, this.contacts];
-    pools.forEach(p => { p.count = 0; }); this.people.update(this.simulation, listener); this.drawVehicles(); this.rail.update(this.simulation.trainX, hour);
+    pools.forEach(p => { p.count = 0; }); this.people.update(this.simulation, listener); this.drawVehicles(); this.rail.update(this.simulation.train.snapshot, hour);
     this.stationDebug?.update(this.simulation);
     pools.forEach(p => { p.instanceMatrix.needsUpdate = true; if (p.instanceColor) p.instanceColor.needsUpdate = true; });
     const night = dayState(hour).night;

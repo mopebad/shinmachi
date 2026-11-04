@@ -4,7 +4,23 @@
 
 A compact, metre-scale, Tokyo-inspired neighborhood that rewards exploration at pedestrian eye level. Pursue the photographic Tokyo evening references through coherent construction, materials, light, audio, density and polish while retaining a compact real-time environment. This is a fictional district, not a geographically accurate reconstruction of Tokyo.
 
-## Latest bounded delivery: station passenger navigation
+## Latest bounded delivery: functional passenger boarding and alighting
+
+[Station Development 3C](./quality/STATION_DEVELOPMENT_3C.md) replaces timed platform visits with real outbound boarding/riding and inbound alighting/city reentry. Six doorway queues, alighting priority, twelve standing positions and passenger/external door interlocks keep physical transfers synchronized with the authoritative train. A generated-world run completes 24 boardings, 48 alightings and 80/80 journeys after closure, with no unsafe crossings/departures or collisions. Ten actual captures, 55 tests, TypeScript checks and the production build pass; empty/max-load services drain and frame-partition replay is exact.
+
+## Previous bounded delivery: clear platform boarding access
+
+[Station 3B.5](./quality/STATION_DEVELOPMENT_3B_5.md) replaces the continuous track-facing screen with open usable frontage, preserving stair, rear and end guards. Six physical waiting-to-sill approaches have matched elevations, normal 55 mm gaps and clear pedestrian volumes. Door records now report conditional physical access while NPC boarding remains disabled for Station 3C. Eight actual captures, nine arrival/departure cycles, 49 tests, TypeScript checks and production build pass; the existing station regression still completes 35/35 visitors after closure.
+
+## Previous bounded delivery: functional train doors
+
+[Station Development 3B](./quality/STATION_DEVELOPMENT_3B.md) adds genuine sliding doors and carriage apertures synchronized with train operation, full-open dwell, departure warnings, closed-door interlocks and obstruction recovery. Nine generated-world cycles and seven actual captures validate the new doors; 44 tests, TypeScript checks and the production build pass. Existing station pedestrians still complete all 35 visits after closure. Boarding, alighting and platform-screen operation remain pending.
+
+## Previous bounded delivery: accurate station stopping
+
+[Station Development 3A](./quality/STATION_DEVELOPMENT_3A.md) adds deterministic approach, smooth braking, accurate platform stopping, configurable dwell and departure. The three-car train fits the unchanged platform; 12 generated-world arrivals have zero stopping error, and the Station Development 2 pedestrian regression still completes all 35 visits after closure. All 37 tests, TypeScript checks and the production build pass. Boarding, alighting and door animation remain pending.
+
+## Previous bounded delivery: station passenger navigation
 
 [Station Development 2](./quality/STATION_DEVELOPMENT_2.md) adds real city-population station visits through connected 3D lanes, exclusive fare gates, both stair directions, platform waiting and public-sidewalk reentry. The actual generated-world run completed 27 visits in 1,200 open seconds and all 35 started visits after closure, with no invalid moves, gate conflicts, passenger overlaps or street-safety failures. All 31 tests, TypeScript checks and the production build pass; a live NPC journey and optional navigation overlay were captured and inspected. Train boarding, stops and schedules remain outside this task.
 
@@ -120,7 +136,11 @@ Generation emits plain spatial data alongside meshes. Simulation must consume th
 - [ ] Per-tenant hours, window occupancy and physical shutter/door animations; genuine NPC entry/exit. Current visits stop at thresholds; rooms are not player-enterable.
 - [x] Station architectural continuity, player stairs/platform access and explicit multi-level spatial metadata. See [Station Development 1](./quality/STATION_DEVELOPMENT_1.md).
 - [x] Multi-level NPC station visits: city approach, reserved gate passage, stair ascent/descent, platform waiting and public reentry. See [Station Development 2](./quality/STATION_DEVELOPMENT_2.md).
-- [ ] Train stops, boarding and richer timetable behavior. Trains remain passing sets within a coarse service window; gate furniture and platform screens are static.
+- [x] Accurate station stopping, dwell and departure with compatible train/platform geometry. See [Station Development 3A](./quality/STATION_DEVELOPMENT_3A.md).
+- [x] Functional train doors with authoritative animation, warning/closing states and departure interlocks. See [Station Development 3B](./quality/STATION_DEVELOPMENT_3B.md).
+- [x] Open platform frontage and clear conditional approaches to all six train doors, with retained fall guards and truthful access metadata. See [Station 3B.5](./quality/STATION_DEVELOPMENT_3B_5.md).
+- [x] Real NPC boarding, moving-train occupancy, prioritized alighting, station/city reentry and passenger departure interlocks. See [Station Development 3C](./quality/STATION_DEVELOPMENT_3C.md).
+- [ ] Richer timetables, detailed passenger interiors and further transport choices. The existing service remains one train on its original alignment.
 - [ ] Collision for every prop and dynamic actor, general walkable elevations/physics. The station now has authored surface support and height-aware local obstacles; the wider city retains footprint collision.
 - [ ] Soundscape mastering and optional attributed high-quality recordings; genuine conversational ambience. Current voices are unintelligible procedural texture, not natural recorded speech.
 - [ ] Rainfall, weather sound, dynamic water accumulation and seasonal variation. Static after-rain road reflections and dry/damp controls are implemented; weather simulation is not.

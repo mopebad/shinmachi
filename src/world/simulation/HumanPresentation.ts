@@ -24,6 +24,7 @@ export class HumanPresentation {
   private readonly upperArm: THREE.InstancedMesh; private readonly forearm: THREE.InstancedMesh; private readonly hand: THREE.InstancedMesh; private readonly shoe: THREE.InstancedMesh; private readonly skirt: THREE.InstancedMesh;
   private readonly features: THREE.InstancedMesh; private readonly details: THREE.InstancedMesh; private readonly contacts: THREE.InstancedMesh;
   private readonly joints: THREE.InstancedMesh;
+  private pedestrianId = -1;
   constructor(parent: THREE.Group) {
     const geometry = createHumanGeometry(), fabric = cloth(), skin = new THREE.MeshStandardMaterial({ roughness: .72 }), hair = new THREE.MeshStandardMaterial({ roughness: .93 }), leather = new THREE.MeshStandardMaterial({ roughness: .6 });
     this.group.name = 'Clothed human presentation'; parent.add(this.group);
@@ -42,11 +43,16 @@ export class HumanPresentation {
   }
   private put(mesh: THREE.InstancedMesh, x: number, y: number, z: number, sx: number, sy: number, sz: number, color: number, yaw: number, pitch = 0, roll = 0): void {
     this.object.position.set(x, y, z); this.object.scale.set(sx, sy, sz); this.object.rotation.set(pitch, yaw, roll, 'YXZ'); this.object.updateMatrix(); const index = mesh.count++; mesh.setMatrixAt(index, this.object.matrix); mesh.setColorAt(index, this.color.setHex(color));
+    (mesh.userData.pedestrianIds??=[])[index]=this.pedestrianId;
   }
   update(simulation: CitySimulation, listener?: THREE.Vector3): void {
     this.pools.forEach(p => { p.count = 0; });
+    // The same bounded pools render street pedestrians, physical transfers and moving train occupants.
+    const presentedIds: number[] = []; this.group.userData.pedestrianIds=presentedIds;
     for (const p of simulation.pedestrians) {
       if (!p.active || (listener && Math.abs(p.y+1-listener.y)<1.5 && Math.hypot(p.x - listener.x, p.z - listener.z) < .65)) continue;
+      presentedIds.push(p.id);
+      this.pedestrianId=p.id;
       const scale = p.scale * 1.08 * (p.style === 4 ? .96 : 1), swing = p.moving ? Math.sin(p.phase) * .40 : 0;
       const stair=simulation.navigation.station?stationStairPose(simulation.navigation.station.layout,p,scale):null;
       const legs = stair?.legs??[legPose(swing, -1), legPose(swing, 1)], bounce = stair?0:.11 - Math.min(legs[0].ankle.y, legs[1].ankle.y);

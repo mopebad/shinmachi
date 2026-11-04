@@ -16,7 +16,14 @@ export class StreetReflections {
         void main(){vec2 p=vWorld.xz;float mainRoad=1.-smoothstep(3.45,3.65,abs(p.x));float avenue=1.-smoothstep(4.7,4.95,abs(p.y-12.));float alley=(1.-smoothstep(1.8,2.02,abs(p.y+25.)))*step(abs(p.x),23.);
         float road=max(max(mainRoad,avenue),alley);if(road<.01)discard;
         float n=noise(p*vec2(.65,.34))*.65+noise(p*3.7)*.35;float pool=smoothstep(.28,.72,n);float fine=noise(p*vec2(28.,6.));
-        vec2 uv=vReflection.xy/vReflection.w;vec2 jitter=vec2(fine-.5,noise(p*18.)-.5)*.0011;
+        // Local main-street drainage: broken gutter pools, dry aggregate islands
+        // and less water in wheel paths. Other streets retain their original response.
+        float hero=(1.-smoothstep(3.4,3.65,abs(p.x)))*smoothstep(-52.,-46.,p.y)*(1.-smoothstep(43.,48.,p.y));
+        float gutter=smoothstep(2.65,3.4,abs(p.x));
+        float wheel=exp(-pow((abs(p.x)-1.75)/.29,2.));
+        float localPool=smoothstep(.38,.74,n+gutter*.14)*(1.-wheel*.52);
+        pool=mix(pool,localPool,hero);
+        vec2 uv=vReflection.xy/vReflection.w;vec2 jitter=vec2(fine-.5,noise(p*18.)-.5)*mix(.0011,.0021,hero*(1.-pool));
         vec3 col=texture2D(tDiffuse,uv+jitter).rgb*.4;col+=texture2D(tDiffuse,uv+jitter+vec2(.0018,0)).rgb*.15;col+=texture2D(tDiffuse,uv+jitter-vec2(.0018,0)).rgb*.15;col+=texture2D(tDiffuse,uv+jitter+vec2(0,.0024)).rgb*.15;col+=texture2D(tDiffuse,uv+jitter-vec2(0,.0024)).rgb*.15;
         float grazing=pow(1.-clamp(normalize(eye-vWorld).y,0.,1.),3.);float alpha=wetness*road*(.015+pow(pool,1.7)*.64)*(.22+grazing*.78);
         gl_FragColor=vec4(col,alpha);}`,

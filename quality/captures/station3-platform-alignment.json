@@ -1,0 +1,58 @@
+{
+  "name": "station3-platform-alignment",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 68.19999999999871,
+  "train": {
+    "state": "DWELLING",
+    "x": 34.75,
+    "velocity": 0,
+    "speed": 0,
+    "acceleration": 0,
+    "direction": 1,
+    "active": true,
+    "serviceOpen": true,
+    "service": "IN_SERVICE",
+    "motion": "hold",
+    "destination": "station",
+    "stateElapsed": 10.012500000000507,
+    "stopX": 34.75,
+    "stoppingError": 0,
+    "lastStopError": 0,
+    "completedStops": 1,
+    "turnbacks": 0
+  },
+  "eye": [
+    58,
+    9.05,
+    -54.2
+  ],
+  "quaternion": [
+    -0.007148314420735596,
+    0.684016387196812,
+    0.0067035354448505315,
+    0.7294008131745556
+  ],
+  "fov": 68,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 126,
+    "drawCalls": 759,
+    "triangles": 5355589,
+    "buildings": 57,
+    "pedestrians": 45,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-04T04:11:06.871Z"
+}

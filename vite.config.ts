@@ -12,11 +12,11 @@ export default defineConfig({
         request.on('end', async () => {
           try {
             const { name, png, metadata } = JSON.parse(body);
-            if (!/^[a-z0-9-]{1,70}$/.test(name) || !/^data:image\/png;base64,/.test(png)) throw new Error('Invalid capture');
-            const directory = resolve(server.config.root, 'quality/captures'); await mkdir(directory, { recursive: true });
-            await writeFile(resolve(directory, `${name}.png`), Buffer.from(png.split(',')[1], 'base64'));
+            if (!/^[a-z0-9-]{1,70}$/.test(name) || (png !== undefined && !/^data:image\/png;base64,/.test(png))) throw new Error('Invalid capture');
+            const directory = resolve(server.config.root, png === undefined ? 'quality' : 'quality/captures'); await mkdir(directory, { recursive: true });
+            if (png !== undefined) await writeFile(resolve(directory, `${name}.png`), Buffer.from(png.split(',')[1], 'base64'));
             await writeFile(resolve(directory, `${name}.json`), JSON.stringify(metadata, null, 2) + '\n');
-            response.setHeader('Content-Type', 'application/json'); response.end(JSON.stringify({ saved: `quality/captures/${name}.png` }));
+            response.setHeader('Content-Type', 'application/json'); response.end(JSON.stringify({ saved: png === undefined ? `quality/${name}.json` : `quality/captures/${name}.png` }));
           } catch { response.statusCode = 400; response.end('Capture failed'); }
         });
       });

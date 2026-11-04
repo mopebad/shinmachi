@@ -7,6 +7,7 @@ import { stationDetails } from './StationDetails';
 import { addRailwayDetails } from './RailwayDetails';
 import { signBusiness } from '../simulation/WorldRules';
 import { STATION } from './StationLayout';
+import { onHeroStreet, heroStreetFamily, heroRoadDetails } from './HeroStreet';
 
 /** Metre-scale compact district. Each frontage uses the same local +Z kit convention. */
 export class NeighborhoodGenerator {
@@ -14,10 +15,12 @@ export class NeighborhoodGenerator {
   generate(): District {
     const b = new CityBatch(), m = new Materials(), rng = random(this.seed);
     const kit = new BuildingKit(b, m, rng), colliders: Bounds[] = [], doors: Doorway[] = [], lamps: THREE.Vector3[] = [], shopfronts: Shopfront[] = [];
-    let buildings = 0, heroStoreBuilt = false;
+    let buildings = 0, heroStoreBuilt = false, heroIndex = 0;
+    const heroFrontages: object[] = [];
     const add = (s: BuildingSpec, main = false) => {
       // Select one existing main-street convenience branch without drawing RNG or moving any parcel/threshold.
       if (!heroStoreBuilt && main && s.kind === 'convenience' && s.x > 0 && s.z > 20.5) { s.heroStore = true; heroStoreBuilt = true; }
+      if (main && onHeroStreet(s)) { s.heroStreet = heroIndex++; heroFrontages.push({ ...s, family: heroStreetFamily(s) }); }
       kit.build(s); buildings++;
       const corners = [[-s.width / 2 - .15, .1], [s.width / 2 + .95, -s.depth]].map(([x, z]) => new THREE.Vector3(x, 0, z).applyAxisAngle(new THREE.Vector3(0, 1, 0), s.rotation).add(new THREE.Vector3(s.x, 0, s.z)));
       colliders.push({ minX: Math.min(corners[0].x, corners[1].x), maxX: Math.max(corners[0].x, corners[1].x), minZ: Math.min(corners[0].z, corners[1].z), maxZ: Math.max(corners[0].z, corners[1].z) });
@@ -28,7 +31,7 @@ export class NeighborhoodGenerator {
         doors.push({ x: s.x + point.x, z: s.z + point.z, sidewalkX: s.x < 0 ? -4.55 : 4.55, business });
       }
     };
-    this.roads(b, m);
+    this.roads(b, m); heroRoadDetails(b, m);
     for (const side of [-1, 1]) for (const [start, end] of [[-51, -28.5], [-21.5, 4], [20.5, 61]]) {
       // Reserve a genuine forecourt for the station instead of overlapping the shop row.
       let cursor = side > 0 && start === -51 ? -35 : start;
@@ -61,6 +64,7 @@ export class NeighborhoodGenerator {
     // Only actual ground structure augments the existing flat navigation obstacles. Upper guards are height-aware.
     colliders.push(...station.spatial.boxes.filter(box=>box.collision&&box.minY<.3).map(({minX,maxX,minZ,maxZ})=>({minX,maxX,minZ,maxZ})));
     const group = b.finish(m.signs); group.add(station.group); group.name = `Shinmachi · seed ${this.seed}`;
+    group.userData.heroFrontages = heroFrontages;
     return { group, colliders, playerColliders, station: station.spatial, doors, shopfronts, lamps, materials: { signs: m.signs, windows: m.windows, warmWindows: m.warmWindows, lamps: m.lamps, shop: m.shop, lantern: m.lantern, businesses: m.businesses }, stats: { buildings, instances: b.instances } };
   }
   private roads(b: CityBatch, m: Materials): void {

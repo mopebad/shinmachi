@@ -60,9 +60,10 @@ export function stationDetails(b: CityBatch, m: Materials): { group: THREE.Group
       for(let i=0;i<f.risers;i+=4){const s=f.treads[i];b.b(m.metal,(s.minX+s.maxX)/2,s.y+.5,z,.035,1,.035);}
     }
   }
-  // Continuous tactile warning strips behind the track-edge barrier, and stair warning fields.
-  b.b(m.yellow,(c.platformMinX+c.platformMaxX)/2,p+.008,-55.02,c.platformMaxX-c.platformMinX,.016,.3);
-  b.b(m.marking,(c.platformMinX+c.platformMaxX)/2,p+.008,-54.75,c.platformMaxX-c.platformMinX,.012,.055);
+  // Open platform: continuous tactile strip, with a separate safe-waiting boundary behind it.
+  // Inset paving/paint sit flush with the supported deck; these are not 16mm-high obstacles under boarding feet.
+  b.b(m.yellow,(c.platformMinX+c.platformMaxX)/2,p+.0005,c.tactileCenterZ,c.platformMaxX-c.platformMinX,.001,c.tactileWidth);
+  b.b(m.marking,(c.platformMinX+c.platformMaxX)/2,p+.0004,c.safeWaitingMinZ,c.platformMaxX-c.platformMinX,.0008,.055);
   for(const [x,y,z] of [[14.5,c.groundY,-49.9],[14.5,p,-52.2]]){
     b.b(m.yellow,x,y+.009,z,.38,.018,1.58);
     for(let i=0;i<8;i++)for(let j=0;j<3;j++)b.part('cylinder',m.yellow,x-.12+j*.12,y+.022,z-.65+i*.18,.016,.012,.016);

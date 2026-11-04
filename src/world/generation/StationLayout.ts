@@ -1,4 +1,4 @@
-/** Authoritative metre-scale station contract. Rendering and future multi-level navigation use these same surfaces. */
+/** Authoritative metre-scale station contract. Rendering and height-aware navigation use these same surfaces. */
 export interface StationPoint { x: number; y: number; z: number }
 export interface StationRect { minX: number; maxX: number; minZ: number; maxZ: number }
 export interface StationSurface extends StationRect { id: string; y: number; kind: 'concourse' | 'landing' | 'platform' | 'tread'; thickness: number }
@@ -7,16 +7,26 @@ export interface StationFlight { id: string; from: StationPoint; to: StationPoin
 export interface StationGate { id: string; center: StationPoint; width: number; depth: number; accessible: boolean }
 export interface StationArea extends StationRect { id: string; y: number; kind: 'entrance' | 'circulation' | 'landing' | 'waiting' }
 export interface StationConnection { from: string; to: string; kind: 'walk' | 'gate' | 'stairs'; width: number }
+export interface PlatformFrontage {
+  minX: number; maxX: number; edgeZ: number; y: number;
+  barrier: 'OPEN_PLATFORM'; npcBoardingEnabled: true;
+  tactileCenterZ: number; tactileWidth: number; safeWaitingMinZ: number;
+  accessPolicy: 'STOPPED_OPEN_DOOR_ONLY';
+}
 export interface StationSpatial {
   id: string; bounds: StationRect; surfaces: StationSurface[]; boxes: StationBox[]; flights: StationFlight[];
   areas: StationArea[]; gates: StationGate[]; nodes: Record<string, StationPoint>; connections: StationConnection[];
   platformEdges: { id: string; a: StationPoint; b: StationPoint; inward: StationPoint; warningWidth: number }[];
   journey: StationPoint[]; npcReservation: StationRect[];
+  boardingFrontage: PlatformFrontage;
+  /** Behavioural exclusion, not an invisible solid wall. Boarding requires a separate conditional approach. */
+  navigationHazards: (StationRect & { id: string; kind: 'platform-edge'; y: number })[];
 }
 
 export const STATION = {
   groundY: .115, platformY: 7.455, trackZ: -57, railHeadY: 7.02,
   platformMinX: 8, platformMaxX: 61.5, platformEdgeZ: -55.5, platformRearZ: -47.7,
+  boardingEndInset: 1, tactileCenterZ: -55.02, tactileWidth: .3, safeWaitingMinZ: -54.75,
   stairStartX: 15.2, stairEndX: 23.21, landingEndX: 25.21, restMinX: 18.3, restMaxX: 19.8, lowerZ: -49.9, upperZ: -52.2,
   stairWidth: 1.8, risers: 21, going: .31, openingMinZ: -53.1, openingMaxZ: -49,
 } as const;
@@ -85,8 +95,9 @@ export function createStationLayout(): StationSpatial {
   box('well-west-lower-guard','glass',c.stairStartX-.035,c.stairStartX+.035,-50.85,c.openingMaxZ,p,p+1.1);
   box('return-east-guard','glass',c.landingEndX-.035,c.landingEndX+.035,c.openingMinZ,c.openingMaxZ,mid,mid+1.1);
   for(const z of [c.openingMinZ,c.openingMaxZ])box(`return-guard-${z}`,'glass',c.stairEndX,c.landingEndX,z-.035,z+.035,mid,mid+1.1);
-  // Edge screens remain closed static architecture, with no boarding or door-control logic.
-  box('track-edge-screen','glass',c.platformMinX,c.platformMaxX,c.platformEdgeZ+.085,c.platformEdgeZ+.135,p,p+1.12);
+  // Open boarding frontage. Short returns protect the non-boarding end corners only.
+  for(const [id,minX,maxX]of [['west',c.platformMinX,c.platformMinX+c.boardingEndInset],['east',c.platformMaxX-c.boardingEndInset,c.platformMaxX]] as const)
+    box(`track-end-return-${id}`,'glass',minX,maxX,c.platformEdgeZ+.085,c.platformEdgeZ+.135,p,p+1.12);
   box('rear-guard','glass',c.platformMinX,c.platformMaxX,c.platformRearZ-.065,c.platformRearZ-.015,p,p+1.1);
   for(const x of [c.platformMinX,c.platformMaxX])box(`platform-end-${x}`,'glass',x-.03,x+.03,c.platformEdgeZ+.11,c.platformRearZ-.04,p,p+1.1);
   for(const x of [8.5,25.2,37.2,49.2,61.0])for(const z of [-53.35,-48.15])box(`canopy-post-${x}-${z}`,'steel',x-.085,x+.085,z-.085,z+.085,p,10.78);
@@ -122,6 +133,10 @@ export function createStationLayout(): StationSpatial {
     journey.push(nodes[id]);
   }
   return {id:'shinmachi-station',bounds:{minX:5.65,maxX:61.7,minZ:-55.5,maxZ:-36.75},surfaces,boxes,flights,areas,gates,nodes,connections,journey,
+    boardingFrontage:{minX:c.platformMinX+c.boardingEndInset,maxX:c.platformMaxX-c.boardingEndInset,edgeZ:c.platformEdgeZ,y:p,
+      barrier:'OPEN_PLATFORM',npcBoardingEnabled:true,tactileCenterZ:c.tactileCenterZ,tactileWidth:c.tactileWidth,
+      safeWaitingMinZ:c.safeWaitingMinZ,accessPolicy:'STOPPED_OPEN_DOOR_ONLY'},
+    navigationHazards:[{id:'platform-edge-hazard',kind:'platform-edge',minX:c.platformMinX,maxX:c.platformMaxX,minZ:c.platformEdgeZ,maxZ:c.safeWaitingMinZ,y:p}],
     platformEdges:[{id:'platform-1-track-edge',a:point(c.platformMinX,p,c.platformEdgeZ),b:point(c.platformMaxX,p,c.platformEdgeZ),inward:point(0,0,1),warningWidth:.3}],
     // Exterior city routes retain their boundary; station travelers use the height-bearing traversal graph.
     npcReservation:[{minX:12.9,maxX:25.1,minZ:-54,maxZ:-49.5}]

@@ -1,0 +1,58 @@
+{
+  "name": "station3-approaching",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 42.0000000000002,
+  "train": {
+    "state": "APPROACHING",
+    "x": -9.999999999997783,
+    "velocity": 4,
+    "speed": 4,
+    "acceleration": 0,
+    "direction": 1,
+    "active": true,
+    "serviceOpen": true,
+    "service": "IN_SERVICE",
+    "motion": "cruise",
+    "destination": "station",
+    "stateElapsed": 0.3125000000005554,
+    "stopX": 34.75,
+    "stoppingError": -44.74999999999778,
+    "lastStopError": null,
+    "completedStops": 0,
+    "turnbacks": 0
+  },
+  "eye": [
+    -42,
+    17,
+    -66
+  ],
+  "quaternion": [
+    -0.05188165674230899,
+    -0.7662600271230126,
+    -0.06237147524785395,
+    0.6373881577206464
+  ],
+  "fov": 72,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 105,
+    "drawCalls": 845,
+    "triangles": 5366243,
+    "buildings": 57,
+    "pedestrians": 45,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-04T04:11:06.087Z"
+}

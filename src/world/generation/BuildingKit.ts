@@ -4,42 +4,50 @@ import { Materials } from './Materials';
 import { signBusiness } from '../simulation/WorldRules';
 import { storefrontSign } from './SignCatalog';
 import { buildConvenienceStore, KONBINI_ROOM_DEPTH } from './ConvenienceStore';
+import { HeroStreetKit } from './HeroStreet';
 
 export type Archetype = 'izakaya' | 'retail' | 'apartment' | 'office' | 'convenience';
-export interface BuildingSpec { x: number; z: number; rotation: number; width: number; depth: number; floors: number; kind: Archetype; palette: number; shop: number; heroStore?: boolean }
+export interface BuildingSpec { x: number; z: number; rotation: number; width: number; depth: number; floors: number; kind: Archetype; palette: number; shop: number; heroStore?: boolean; heroStreet?: number }
 
 export class BuildingKit {
+  private hero?: HeroStreetKit;
   constructor(private readonly b: CityBatch, private readonly m: Materials, private readonly rng: () => number) {}
 
   build(s: BuildingSpec): void {
     const { width: w, depth: d, floors, kind } = s, h = floors * 2.85 + .3;
-    const b = this.b, m = this.m, facade = m.facades[s.palette % m.facades.length];
+    const b = this.b, m = this.m, facade = m.facades[s.palette % m.facades.length], hero = s.heroStreet !== undefined;
+    if (hero) this.hero ??= new HeroStreetKit(b, m);
     const stepped = kind === 'office' && floors >= 7, upperStart = stepped ? h - 5.7 : h, upperW = stepped ? w * .78 : w, upperD = stepped ? d * .84 : d, upperFront = stepped ? -.5 : 0;
     b.origin(s.x, s.z, s.rotation);
     // Recessed retail level, upper masonry, projecting floor bands and a real roof silhouette.
-    b.b(facade, 0, (upperStart + 3) / 2, -d / 2, w, upperStart - 3, d);
-    if (stepped) b.b(facade, 0, (h + upperStart) / 2, upperFront - upperD / 2, upperW, h - upperStart, upperD);
+    b.b(facade, 0, (upperStart + 3) / 2, -(d + (hero ? .4 : 0)) / 2, w, upperStart - 3, d - (hero ? .4 : 0));
+    if (stepped) b.b(facade, 0, (h + upperStart) / 2, upperFront - (upperD + (hero ? .4 : 0)) / 2, upperW, h - upperStart, upperD - (hero ? .4 : 0));
     const roomDepth = s.heroStore ? KONBINI_ROOM_DEPTH : 3.2;
     b.b(facade, 0, 1.5, -(d + roomDepth) / 2, w - .15, 3, d - roomDepth);
     b.b(m.pavement, 0, .14, -d / 2 + .2, w + .2, .28, d + .5);
     for (const x of [-w / 2 + .12, w / 2 - .12]) b.b(facade, x, 1.55, -.14, .25, 3.1, .65);
-    for (let f = 1; f <= floors; f++) { const upper = f * 2.85 + .15 > upperStart, fw = upper ? upperW : w, fd = upper ? upperD : d, front = upper ? upperFront : 0; b.b(kind === 'office' ? m.metal : m.cream, 0, f * 2.85 + .15, front - fd / 2 + .04, fw + .12, .16, fd + .2); }
+    if (!hero) for (let f = 1; f <= floors; f++) { const upper = f * 2.85 + .15 > upperStart, fw = upper ? upperW : w, fd = upper ? upperD : d, front = upper ? upperFront : 0; b.b(kind === 'office' ? m.metal : m.cream, 0, f * 2.85 + .15, front - fd / 2 + .04, fw + .12, .16, fd + .2); }
 
     const columns = Math.max(2, Math.floor(w / 1.7));
+    const occupied: boolean[][] = [];
     for (let floor = 1; floor < floors; floor++) {
       const fy = floor * 2.85 + 1.35;
       const fw = fy > upperStart ? upperW : w, front = fy > upperStart ? upperFront : 0;
+      const row: boolean[] = []; occupied.push(row);
       for (let col = 0; col < columns; col++) {
         const x = (col + .5) * (fw - .7) / columns - (fw - .7) / 2;
-        this.window(x, fy, front + .04, (fw - 1) / columns - .15, kind === 'office' ? 1.95 : 1.55, this.rng() < .32, m.businesses[kind === 'apartment' ? 'residential' : 'office'].window);
-        if (kind !== 'office' && col === columns - 1 && !(s.heroStore && floor === 1)) this.aircon(x + .12, fy - 1, .22);
+        // Preserve every old RNG draw, so frontage authoring cannot move subsequent parcels or actors.
+        const lit = this.rng() < .32; row.push(lit);
+        if (!hero) this.window(x, fy, front + .04, (fw - 1) / columns - .15, kind === 'office' ? 1.95 : 1.55, lit, m.businesses[kind === 'apartment' ? 'residential' : 'office'].window);
+        if (!hero && kind !== 'office' && col === columns - 1 && !(s.heroStore && floor === 1)) this.aircon(x + .12, fy - 1, .22);
       }
-      if (kind === 'apartment') this.balcony(w, fy - .9, floor);
-      if ((kind === 'retail' || kind === 'izakaya') && floor < 3) {
+      if (!hero && kind === 'apartment') this.balcony(w, fy - .9, floor);
+      if (!hero && (kind === 'retail' || kind === 'izakaya') && floor < 3) {
         b.b(m.dark, -w / 2 + .6, fy, .23, .73, 1.9, .25);
         b.sign((s.shop + floor + 1) % 16, -w / 2 + .6, fy, .37, .66, 1.7);
       }
     }
+    if (hero) this.hero!.facade(s, occupied);
     // Side elevations are detailed too: alleys expose these, not only the street facade.
     for (const side of [-1, 1]) {
       for (let f = 1; f < floors; f++) for (let j = 0; j < Math.floor(d / 3.1); j++) {
@@ -57,7 +65,7 @@ export class BuildingKit {
       for (let i = 0; i < 3; i++) b.b(m.metal, w / 2 - .45 + i * .09, 1.3, .13, .018, 1, .03);
       b.sign(31, w / 2 - .36, 2.15, .2, .45, .33);
     }
-    if (kind === 'office') {
+    if (!hero && kind === 'office') {
       for (let i = 0; i <= columns; i++) { b.b(m.metal, -w / 2 + i * w / columns, upperStart / 2 + 1.5, .18, .09, upperStart - 3, .16); if (stepped) b.b(m.metal, -upperW / 2 + i * upperW / columns, (upperStart + h) / 2, upperFront + .18, .09, h - upperStart, .16); }
     }
     this.store(s);
@@ -133,6 +141,8 @@ export class BuildingKit {
       b.b(m.wood, 0, .85, -2.5, w * .55, 1.05, .55);
       for (let row = 0; row < 3; row++) for (let col = 0; col < 5; col++) b.b(m.metal, -w * .3 + col * .28, .8 + row * .28, -3, .25, .25, .05);
       b.b(m.dark, w * .25, 1.45, -3, .8, 2.2, .05); b.b(m.metal, w * .25, 1.6, -2.95, .025, 1.8, .03);
+    } else if (s.heroStreet !== undefined && s.shop === 13) {
+      this.hero!.salon(s);
     } else {
       for (let shelf = 0; shelf < 4; shelf++) {
         b.b(m.white, -w * .18, .65 + shelf * .46, -1.65, w * .5, .055, .46);
@@ -146,6 +156,7 @@ export class BuildingKit {
       b.sign(shop, w * .3, 2.2, -3, 1.2, .55);
     }
     for (const x of [-w * .25, w * .25]) b.b(interior.light, x, 2.65, -1.3, w * .35, .035, .13);
+    if (s.heroStreet !== undefined) { this.hero!.storefront(s); return; }
     b.b(m.dark, 0, 3.06, .18, w - .25, .94, .27);
     b.sign(shop, 0, 3.06, .325, w - .43, .78);
     if (s.kind === 'izakaya' || s.kind === 'retail') {

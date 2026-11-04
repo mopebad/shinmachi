@@ -18,6 +18,7 @@ import { photographicPass } from './effects/PhotographicPass';
 import { StreetAtmosphere } from './effects/StreetAtmosphere';
 import { ContactShading } from './effects/ContactShading';
 import { signEmission } from './generation/SignLayout';
+import { HERO_STREET_VIEW } from './generation/HeroStreet';
 
 export const LOCATIONS = [
   { name: 'Shinmachi-dori', eye: [4.7, 1.82, 43], target: [-1, 5, -25], fov: 60 },
@@ -28,8 +29,9 @@ export const LOCATIONS = [
   { name: 'Akane tower avenue', eye: [4.65, 1.82, 36], target: [-7, 25, -214], fov: 48 },
   { name: 'Railway approach', eye: [8.5, 1.82, -38.5], target: [-2, 8.2, -57], fov: 54 },
   { name: 'Yoto nightlife street', eye: [-18.8, 1.82, -25], target: [16, 3.8, -25], fov: 58 },
+  HERO_STREET_VIEW,
 ];
-export const REVIEW_VIEWS = { nightlife: 7, tower: 5, alley: 1, residential: 4, station: 2, overview: 3, commercial: 0, elevatedRail: 6 } as const;
+export const REVIEW_VIEWS = { nightlife: 7, tower: 5, alley: 1, residential: 4, station: 2, overview: 3, commercial: 0, elevatedRail: 6, heroStreet: 8 } as const;
 
 export class CityWorld {
   readonly scene = new THREE.Scene();
@@ -107,12 +109,19 @@ export class CityWorld {
   private readSeed(): number { const value = Number(new URLSearchParams(location.search).get('seed') ?? 8412); return Number.isFinite(value) ? value >>> 0 : 8412; }
   get cameraMode(): CameraMode { return this.controller.mode; }
   get locationIndex(): number { return this.location; }
-  get locationName(): string { if (this.location === 7 && Math.abs(this.camera.position.z + 25) < 3.1) return 'Yoto nightlife street'; if (this.location === 5 && this.camera.position.distanceTo(new THREE.Vector3(...LOCATIONS[5].eye)) < 3) return 'Akane tower avenue'; if (this.location === 6 && this.camera.position.z < -36) return 'Railway approach'; return this.camera.position.y > 15 ? 'District overview' : { commercial: 'Shinmachi-dori', alley: 'Lantern alley', station: 'Station square', residential: 'Residential lane' }[districtZone(this.camera.position)]; }
+  get locationName(): string { if (this.location === 8 && this.camera.position.distanceTo(new THREE.Vector3(...HERO_STREET_VIEW.eye)) < 3) return HERO_STREET_VIEW.name; if (this.location === 7 && Math.abs(this.camera.position.z + 25) < 3.1) return 'Yoto nightlife street'; if (this.location === 5 && this.camera.position.distanceTo(new THREE.Vector3(...LOCATIONS[5].eye)) < 3) return 'Akane tower avenue'; if (this.location === 6 && this.camera.position.z < -36) return 'Railway approach'; return this.camera.position.y > 15 ? 'District overview' : { commercial: 'Shinmachi-dori', alley: 'Lantern alley', station: 'Station square', residential: 'Residential lane' }[districtZone(this.camera.position)]; }
   get stats() { return { fps: Math.round(this.fps), drawCalls: this.renderer.info.render.calls, triangles: this.renderer.info.render.triangles, buildings: this.district.stats.buildings, ...this.activity.stats }; }
   setPlaying(value: boolean): void { this.playing = value; }
+  private reviewPaused = false;
+  /** Development captures advance the actual simulation explicitly while rAF only renders. */
+  setReviewPaused(value: boolean): void {
+    if (!import.meta.env.DEV) throw new Error('Review pause requires the local development server');
+    this.reviewPaused = value; this.last = performance.now();
+  }
   teleport(index: number): void {
     this.location = THREE.MathUtils.clamp(Number.isFinite(index) ? Math.round(index) : 7, 0, LOCATIONS.length - 1); const location = LOCATIONS[this.location];
     this.setFov(location.fov);
+    if (this.location === 8) { this.setPlaying(false); this.setTime(HERO_STREET_VIEW.hour); this.setWeather(HERO_STREET_VIEW.surface); this.setReflections(true); }
     this.controller.setMode(this.location === 3 ? 'fly' : 'walk'); this.controller.teleport(new THREE.Vector3(...location.eye), new THREE.Vector3(...location.target));
   }
   setFov(value: number): void { this.camera.fov = THREE.MathUtils.clamp(value, 35, 80); this.camera.updateProjectionMatrix(); }
@@ -130,10 +139,17 @@ export class CityWorld {
     const size = this.renderer.getSize(new THREE.Vector2()), ratio = this.renderer.getPixelRatio(), aspect = this.camera.aspect;
     this.renderer.setPixelRatio(1); this.composer.setPixelRatio(1); this.renderer.setSize(1920, 1080, false); this.composer.setSize(1920, 1080);
     this.camera.aspect = 16 / 9; this.camera.updateProjectionMatrix(); this.camera.updateMatrixWorld(); this.reflections.update(this.camera);
+    const atmosphereSeconds = this.atmosphere.elapsedSeconds, grainSeconds = this.finish.uniforms.seconds.value;
+    this.atmosphere.seek(this.activity.simulation.clock, hour, this.camera); this.finish.uniforms.seconds.value = this.activity.simulation.clock;
     this.renderer.info.reset(); this.composer.render(0);
     const png = this.renderer.domElement.toDataURL('image/png');
-    const metadata = { name, view, preset: REVIEW_VIEWS[view], seed: this.readSeed(), hour, simulationClock: this.activity.simulation.clock, eye: this.camera.position.toArray(), quaternion: this.camera.quaternion.toArray(), fov: this.camera.fov, width: 1920, height: 1080, pixelRatio: 1, surface: this.weather, reflections: this.reflectionsEnabled, contactShading: this.contactShading.enabled, stats: this.stats, assets: { loaded: this.nightlife.assets.loaded, errors: this.nightlife.assets.errors }, capturedAt: new Date().toISOString() };
+    const sim=this.activity.simulation;
+    const metadata = { name, view, preset: REVIEW_VIEWS[view], seed: this.readSeed(), hour, simulationClock: sim.clock, train: sim.train.snapshot,
+      renderConditions: { exposure: this.renderer.toneMappingExposure, fogDensity: this.fog.density, wetness: this.reflections.surface.visible ? .64 : 0, grainSeconds: this.finish.uniforms.seconds.value, atmosphereSeconds: this.atmosphere.elapsedSeconds },
+      railPassengers:sim.railPassengers?.snapshot,stationPassengers:sim.pedestrians.filter(p=>p.active&&p.station).map(p=>({id:p.id,visit:p.station!.id,journey:p.station!.journey,state:p.station!.state,x:p.x,y:p.y,z:p.z,rail:p.rail})),
+      eye: this.camera.position.toArray(), quaternion: this.camera.quaternion.toArray(), fov: this.camera.fov, width: 1920, height: 1080, pixelRatio: 1, surface: this.weather, reflections: this.reflectionsEnabled, contactShading: this.contactShading.enabled, stats: this.stats, assets: { loaded: this.nightlife.assets.loaded, errors: this.nightlife.assets.errors }, capturedAt: new Date().toISOString() };
     this.renderer.setPixelRatio(ratio); this.composer.setPixelRatio(ratio); this.renderer.setSize(size.x, size.y, false); this.composer.setSize(size.x, size.y); this.camera.aspect = aspect; this.camera.updateProjectionMatrix();
+    this.atmosphere.seek(atmosphereSeconds, hour, this.camera); this.finish.uniforms.seconds.value = grainSeconds;
     const response = await fetch(`${import.meta.env.BASE_URL}__review/capture`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, png, metadata }) });
     if (!response.ok) throw new Error(`Review capture failed: ${response.status}`); return response.json();
   }
@@ -206,8 +222,9 @@ export class CityWorld {
     const tick = (now: number) => {
       const rawDelta = (now - this.last) / 1000, delta = Math.min(rawDelta, .05); this.last = now;
       this.fps = THREE.MathUtils.lerp(this.fps, 1 / Math.max(.001, rawDelta), .03);
-      this.controller.update(delta); this.activity.update(delta, this.time, this.camera.position); this.atmosphere.update(delta, this.time, this.camera);
-      if (this.playing) { this.time = (this.time + delta * .06) % 24; this.lightingAccumulator += delta; if (this.lightingAccumulator > .2) { this.setTime(this.time); this.lightingAccumulator = 0; } }
+      const simulationDelta = this.reviewPaused || document.hidden ? 0 : Math.max(0, rawDelta);
+      this.controller.update(delta); this.activity.update(simulationDelta, this.time, this.camera.position, this.playing ? .06 : 0); this.atmosphere.update(delta, this.time, this.camera);
+      if (this.playing) { this.time = this.activity.simulation.hour; this.lightingAccumulator += simulationDelta; if (this.lightingAccumulator > .2) { this.setTime(this.time); this.lightingAccumulator = 0; } }
       this.reflections.update(this.camera); this.finish.uniforms.seconds.value = now / 1000;
       this.sky.position.copy(this.camera.position); this.camera.updateMatrixWorld(); this.audio.update(delta, this.time, this.camera, this.activity.simulation); this.renderer.info.reset(); this.composer.render(delta); requestAnimationFrame(tick);
     };

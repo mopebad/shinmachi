@@ -1,6 +1,51 @@
 # Repeatable visual review
 
-The latest bounded task is [Station Development 2](./STATION_DEVELOPMENT_2.md). In a freshly loaded page on the existing development server, run:
+The latest visual task is [Hero Street Development 1](./HERO_STREET_DEVELOPMENT_1.md): select **09 / Shinmachi Hero Street**, or open `http://127.0.0.1:5173/?view=8&seed=8412`. It preserves the existing commercial camera at 20:30 with After Rain and reflections. [Before](./captures/hero-street-before.png) and [after](./captures/hero-street-after.png) are actual 1080p WebGL captures. Reload that URL, then run:
+
+```js
+window.__shinmachi.setReviewPaused(true);
+const heroReview = await (await import('/tools/hero-street-browser-checks.mjs')).review();
+window.__shinmachi.setReviewPaused(false);
+```
+
+This refreshes final captures and [measurements](./hero-street-measurements.json), preserves pre-edit evidence, compares city spatial contracts and validates new scenery against routes and actual pedestrian volumes. See the report for exact settings, the ranked visual audit, simulation regression results and remaining limits.
+
+The station simulation baseline remains [Station Development 3C](./STATION_DEVELOPMENT_3C.md). In a freshly loaded page on the existing development server, run:
+
+```js
+const passengerReview = await (await import('/tools/station3c-browser-checks.mjs')).review();
+window.__shinmachi.setReviewPaused(false);
+```
+
+This saves [passenger measurements](./station3c-measurements.json) and ten actual 1080p captures of waiting, alighting, boarding, interior occupancy, secured doors, moving riders and city reentry. It validates all six rendered approaches, twelve standing-position paths, actual human parts near thresholds and a 1,200-second generated-world run plus 600-second service-closure drain. The saved run completes 24 boardings, 48 alightings and 80/80 admitted journeys with zero unsafe departures or crossing/occupancy failures.
+
+Earlier reviews below are historical milestone procedures. Their timed-visitor and disabled-boarding assumptions predate 3C; use the current passenger review above against the current simulation. Their saved measurements and captures remain available.
+
+The preceding task was [Station 3B.5](./STATION_DEVELOPMENT_3B_5.md):
+
+```js
+const accessReview = await (await import('/tools/station35-browser-checks.mjs')).review();
+```
+
+This saves [access measurements](./station35-measurements.json), six actual open-door approach close-ups and two frontage/guard views. It validates real body volumes, triangle rays, floor support, sill alignment, the normal platform/train gap, retained guards, nine arrival/departure cycles and the existing 35/35 visitor closure regression. Physical access is conditional on a stopped, aligned train with fully open doors; NPC boarding remains disabled for Station 3C. Resume automatic stepping afterward with `window.__shinmachi.setReviewPaused(false)`.
+
+The previous [Station Development 3B](./STATION_DEVELOPMENT_3B.md) door review remains available:
+
+```js
+const doorReview = await (await import('/tools/station3b-browser-checks.mjs')).review();
+```
+
+This saves [door measurements](./station3b-measurements.json) and seven actual 1080p captures, including closed/opening/open/closing close-ups of one doorway during a live train cycle. It validates nine generated-world door cycles, actual leaf/body clearances, real aperture/floor rays, a 60-second obstructed close and the retained station pedestrian regression. Door state and world-space openings come from the train simulation. Resume automatic stepping afterward with `window.__shinmachi.setReviewPaused(false)`.
+
+The previous [Station Development 3A](./STATION_DEVELOPMENT_3A.md) stopping review remains available:
+
+```js
+const trainReview = await (await import('/tools/station3-browser-checks.mjs')).review();
+```
+
+This saves [measurements](./station3-measurements.json) and 11 actual 1080p captures, follows one complete train cycle and three further arrivals, validates 1,500 seconds of train operation and repeats the 1,200-second station pedestrian run plus 600-second closure drain. Every capture has paired train state, position, velocity, stopping error and simulation clock. The review pauses automatic simulation stepping while advancing the same live state explicitly; resume with `window.__shinmachi.setReviewPaused(false)`. No FPS claim is made by this review.
+
+The prior [Station Development 2](./STATION_DEVELOPMENT_2.md) can still be reproduced:
 
 ```js
 const stationReview = await (await import('/tools/station2-browser-checks.mjs')).review();

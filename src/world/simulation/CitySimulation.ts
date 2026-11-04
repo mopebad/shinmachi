@@ -1,11 +1,15 @@
 import type { Bounds, Doorway } from '../types.ts';
 import { Navigation, pointBlocked } from './Navigation.ts';
-import { businessOpen, laneRoute, populationTarget, sampleLane, seededRandom, signalState } from './WorldRules.ts';
+import { businessOpen, laneRoute, populationTarget, sampleLane, seededRandom, signalState, wrapHour } from './WorldRules.ts';
 import type { Approach, LaneRoute, Point, SignalState } from './WorldRules.ts';
 import type { StationSpatial } from '../generation/StationLayout.ts';
 import { StationTraffic } from './StationTraffic.ts';
 import type { StationVisit } from './StationTraffic.ts';
 import { pedestrianSurfaceHeight } from './CharacterPose.ts';
+import { TrainOperation } from './TrainOperation.ts';
+import type { TrainConfig } from './TrainOperation.ts';
+import { RailPassengers } from './RailPassengers.ts';
+import type { RailJourney, RailPassengerConfig } from './RailPassengers.ts';
 
 export const VEHICLE_PROFILES = {
   kei: { length: 3.25, width: 1.46, height: 1.65 },
@@ -16,8 +20,8 @@ export const VEHICLE_PROFILES = {
 } as const;
 export type VehicleKind = keyof typeof VEHICLE_PROFILES;
 export interface Vehicle extends Point { id: number; route: LaneRoute; s: number; speed: number; yaw: number; kind: VehicleKind; color: number; committed: boolean; braking: boolean; active: boolean }
-export interface Pedestrian extends Point { y: number; id: number; node: number; path: number[]; next: number; speed: number; yaw: number; phase: number; moving: boolean; crossing: string | null; wait: number; active: boolean; retiring: boolean; shirt: number; style: number; scale: number; station?: StationVisit }
-export interface SimulationConfig { seed?: number; bounds?: Bounds[]; doors?: Doorway[]; station?: StationSpatial }
+export interface Pedestrian extends Point { y: number; id: number; node: number; path: number[]; next: number; speed: number; yaw: number; phase: number; moving: boolean; crossing: string | null; wait: number; active: boolean; retiring: boolean; shirt: number; style: number; scale: number; station?: StationVisit; rail?: RailJourney }
+export interface SimulationConfig { seed?: number; bounds?: Bounds[]; doors?: Doorway[]; station?: StationSpatial; train?: Partial<TrainConfig>; railPassengers?: RailPassengerConfig }
 const APPROACHES: Approach[] = ['N', 'S', 'E', 'W'];
 const COLORS = [0xe5e1d5, 0x40555e, 0x9caaa3, 0x783b39, 0xc7b993, 0x31434f];
 type ListenerPosition = Point & { y?: number };
@@ -31,32 +35,44 @@ export class CitySimulation {
   clock = 8;
   hour = 17.25;
   signals: SignalState = signalState(8);
-  trainX = -40;
+  readonly train: TrainOperation;
+  readonly railPassengers?: RailPassengers;
+  get trainX(): number { return this.train.x; }
   private readonly rng: () => number;
   private readonly bounds: Bounds[];
   private readonly routes = new Map<string, LaneRoute>();
   private readonly reachable: number[];
   private accumulator = 0; private spawnTimer = 0; private sequence = 0;
   constructor(config: SimulationConfig = {}) {
+    this.train = new TrainOperation(config.train);
     this.rng = seededRandom(config.seed ?? 8412); this.bounds = config.bounds ?? [];
     this.navigation = new Navigation(this.bounds, config.doors ?? [],config.station);
-    if(this.navigation.station)this.stationTraffic=new StationTraffic(this.navigation,config.seed??8412);
+    if(this.navigation.station){
+      this.stationTraffic=new StationTraffic(this.navigation,config.seed??8412,config.railPassengers?.stationDemand);
+      this.railPassengers=new RailPassengers(this.train,this.stationTraffic,this.pedestrians,config.railPassengers);
+    }
     this.reachable = this.navigation.nodes.filter(n => this.navigation.path(0, n.id).length > 0).map(n => n.id);
     for (const entry of APPROACHES) for (const turn of [false, true]) this.routes.set(`${entry}:${turn}`, laneRoute(entry, turn));
     for (let i = 0; i < 46; i++) this.spawnPedestrian(true);
     for (let i = 0; i < 12; i++) this.spawnVehicle(APPROACHES[i % 4], 7 + Math.floor(i / 4) * 15);
   }
   get stats() { return { pedestrians: this.pedestrians.filter(p => p.active).length, vehicles: this.vehicles.filter(c => c.active).length }; }
-  update(dt: number, hour: number, listener?: ListenerPosition): void {
-    this.hour = hour; this.accumulator += Math.max(0, Math.min(.25, dt));
-    while (this.accumulator >= 1 / 30) { this.step(1 / 30, listener); this.accumulator -= 1 / 30; }
-    this.trainX = ((this.clock * 9) % 330) - 130;
+  update(dt: number, hour: number, listener?: ListenerPosition, hourRate = 0): void {
+    if (!Number.isFinite(dt) || !Number.isFinite(hour) || !Number.isFinite(hourRate)) throw new Error('Invalid simulation update');
+    this.hour = hour; this.accumulator += Math.max(0, dt);
+    this.train.update(0, hour);
+    // Ten nanoseconds of arithmetic tolerance avoids losing a tick when equal elapsed
+    // time is partitioned into thousands of 144 Hz frames or irregular frame intervals.
+    while (this.accumulator >= 1 / 30 - 1e-8) { this.step(1 / 30, listener, hourRate); this.accumulator = Math.max(0, this.accumulator - 1 / 30); }
   }
   private occupied(axis: 'NS' | 'EW'): boolean {
     return this.vehicles.some(c => c.active && c.committed && c.route.axis === axis && c.x > -13 && c.x < 13 && c.z > -4 && c.z < 28);
   }
-  private step(dt: number, listener?: ListenerPosition): void {
+  private step(dt: number, listener?: ListenerPosition, hourRate = 0): void {
     this.clock += dt;
+    if (hourRate) this.hour = wrapHour(this.hour + dt * hourRate);
+    this.railPassengers?.synchronizeInterlocks();this.train.update(dt, this.hour);
+    this.railPassengers?.update(dt,this.clock,this.hour);
     this.signals = signalState(this.clock, this.pedestrians.some(p => p.active && p.crossing !== null), this.occupied('NS'), this.occupied('EW'));
     this.moveVehicles(dt); this.movePedestrians(dt, listener);
     for(const p of this.pedestrians)if(p.active&&(!p.station||p.station.state==='approaching'))p.y=pedestrianSurfaceHeight(p.x,p.z);
@@ -140,7 +156,7 @@ export class CitySimulation {
   }
   private movePedestrians(dt: number, listener?: ListenerPosition): void {
     for (const p of this.pedestrians) {
-      if (!p.active) continue; p.moving = false;
+      if (!p.active||p.rail) continue; p.moving = false;
       if(this.stationTraffic?.move(p,dt,this.clock,this.pedestrians,this.hour,listener))continue;
       if (p.wait > 0) { p.wait -= dt; continue; }
       const goal = this.navigation.nodes[p.path[p.next]];

@@ -1,0 +1,58 @@
+{
+  "name": "station3-preparing",
+  "view": "station",
+  "preset": 2,
+  "seed": 8412,
+  "hour": 12,
+  "simulationClock": 82.19999999999791,
+  "train": {
+    "state": "PREPARING DEPARTURE",
+    "x": 34.75,
+    "velocity": 0,
+    "speed": 0,
+    "acceleration": 0,
+    "direction": 1,
+    "active": true,
+    "serviceOpen": true,
+    "service": "IN_SERVICE",
+    "motion": "hold",
+    "destination": "station",
+    "stateElapsed": 0.012500000000882257,
+    "stopX": 34.75,
+    "stoppingError": 0,
+    "lastStopError": 0,
+    "completedStops": 1,
+    "turnbacks": 0
+  },
+  "eye": [
+    35,
+    28,
+    -72
+  ],
+  "quaternion": [
+    -0.003060906956255689,
+    0.9091949081623075,
+    0.41630585150286153,
+    0.006684895273366414
+  ],
+  "fov": 70,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 122,
+    "drawCalls": 905,
+    "triangles": 5319979,
+    "buildings": 57,
+    "pedestrians": 43,
+    "vehicles": 8
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-04T04:11:07.077Z"
+}

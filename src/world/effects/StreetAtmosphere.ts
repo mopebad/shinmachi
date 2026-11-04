@@ -10,6 +10,9 @@ export class StreetAtmosphere {
   private readonly opacity: THREE.InstancedBufferAttribute;
   private seconds = 0;
   private readonly shops: District['shopfronts'];
+  get elapsedSeconds(): number { return this.seconds; }
+  /** Sample the same decorative motion for comparable development captures. */
+  seek(seconds: number, hour: number, camera: THREE.Camera): void { this.seconds = seconds; this.update(0, hour, camera); }
   constructor(scene: THREE.Scene, district: District, sources?: THREE.Vector3[]) {
     this.sources = sources ?? [new THREE.Vector3(-11, 3.2, -22.8), new THREE.Vector3(13, 3.2, -22.8)];
     const canvas = document.createElement('canvas'); canvas.width = canvas.height = 64; const c = canvas.getContext('2d')!;
