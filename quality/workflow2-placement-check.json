@@ -1,0 +1,23 @@
+{
+  "anchors": [
+    [
+      -17.2,
+      0,
+      -27.55
+    ],
+    [
+      -12.3,
+      0,
+      -27.55
+    ]
+  ],
+  "clearRoutes": 27,
+  "placements": [
+    "shindo/speaker-0",
+    "shindo/speaker-1",
+    "shindo/stool-0",
+    "shindo/stool-1",
+    "shindo/stool-2"
+  ],
+  "sourceCount": 11
+}

@@ -12,3 +12,6 @@ if (import.meta.env.DEV) window.__shinmachi = world;
 const hud = new Hud(app, world);
 world.start();
 hud.start();
+if(import.meta.env.DEV&&new URLSearchParams(location.search).get('editor')==='1'){
+ void import('./world/authoring/SceneEditor').then(async({SceneEditor})=>{await world.assetsReady;new SceneEditor(world);});
+}

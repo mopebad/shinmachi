@@ -1,0 +1,112 @@
+{
+  "pairs": [
+    {
+      "view": "shindo",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ],
+      "identicalSimulation": [
+        "train",
+        "railPassengers",
+        "stationPassengers",
+        "vehicles",
+        "people",
+        "streetLife",
+        "driverStates"
+      ]
+    },
+    {
+      "view": "music",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ],
+      "identicalSimulation": [
+        "train",
+        "railPassengers",
+        "stationPassengers",
+        "vehicles",
+        "people",
+        "streetLife",
+        "driverStates"
+      ]
+    },
+    {
+      "view": "yoto",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ],
+      "identicalSimulation": [
+        "train",
+        "railPassengers",
+        "stationPassengers",
+        "vehicles",
+        "people",
+        "streetLife",
+        "driverStates"
+      ]
+    },
+    {
+      "view": "yoto-detail",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ],
+      "identicalSimulation": [
+        "train",
+        "railPassengers",
+        "stationPassengers",
+        "vehicles",
+        "people",
+        "streetLife",
+        "driverStates"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "status": "Saved to repository · cb5d276e",
+  "revision": "cb5d276e26801639cbcfe609d5da89bb4512b1ed370bd628f88c96a531961a43",
+  "nodes": [
+    {
+      "id": "lantern-0",
+      "label": "ramen lantern",
+      "position": [
+        -1.467,
+        2.07,
+        0.55
+      ],
+      "rotation": [
+        0,
+        0.017453292519943295,
+        0
+      ],
+      "scale": [
+        0.66,
+        0.66,
+        0.66
+      ],
+      "parent": "frontage-0",
+      "prefab": "lantern-mount",
+      "edit": {
+        "min": [
+          -1.492,
+          2.05,
+          0.53
+        ],
+        "max": [
+          -1.452,
+          2.09,
+          0.5700000000000001
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          0.66,
+          0.66,
+          0.66
+        ],
+        "scaleMax": [
+          0.66,
+          0.66,
+          0.66
+        ]
+      }
+    },
+    {
+      "id": "light-0",
+      "label": "ramen local warm light",
+      "position": [
+        -1.472,
+        2.45,
+        0.62
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "frontage-0",
+      "light": {
+        "color": "#ffbd83",
+        "intensity": 0.15,
+        "distance": 1.5
+      },
+      "edit": {
+        "min": [
+          -1.572,
+          2.35,
+          0.52
+        ],
+        "max": [
+          -1.3719999999999999,
+          2.5500000000000003,
+          0.72
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  ]
+}

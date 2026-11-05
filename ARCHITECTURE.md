@@ -116,3 +116,7 @@ See [VISUAL_TARGETS.md](./VISUAL_TARGETS.md), [QUALITY_REPORT.md](./QUALITY_REPO
 [ContactShading.ts](./src/world/effects/ContactShading.ts) adds half-resolution GTAO before bloom. It excludes transparent effects, sky and the planar reflector from normal/depth rendering and restores visibility afterward. It adds a geometry pass; disable it with `?ao=0` or the development world method. It is not a replacement for physically complete local shadows.
 
 [SkylineLayout.ts](./src/world/generation/SkylineLayout.ts) generates protected background parcels, consumed by the existing backdrop renderer. Five massing families, grouped occupancy and cross-street layers replace the former identical slab grid. Higher office roofs in the existing building kit receive setbacks without changing footprint metadata or RNG draw counts. [VISUAL_REVIEW.md](./VISUAL_REVIEW.md) records measured cost and limitations.
+
+## Authored environment pilot
+
+[AUTHORING.md](./AUTHORING.md) documents the shared asset registry, versioned scene/prefab data, generated-anchor adapter and development-only transform/light editor. Shindo equipment/furniture and two Yoto storefronts now use this layer while existing generation, navigation, collision reservations and simulation remain authoritative. [Working evidence](./quality/WORKFLOW_2_REVIEW.html) includes matching views and saved-edit persistence.

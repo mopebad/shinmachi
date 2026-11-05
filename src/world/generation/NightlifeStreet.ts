@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import {ShindoAssets} from './ShindoAssets';
+import {AuthoredEnvironments,migratedShindoAssets} from '../authoring/AuthoredEnvironments';
 import { CityBatch } from './CityBatch';
 import { NightlifeMaterials } from './NightlifeMaterials';
 import { NightlifeAssets, type AssetPlacement, type NightlifeAsset } from './NightlifeAssets';
@@ -35,13 +36,17 @@ export class NightlifeStreet {
   readonly ready: Promise<void>;
   readonly venue=createYotoVenue();
   readonly shindo=new ShindoPresentation();
+  readonly authoredFallbacks=new Map<string,THREE.Group>();
+  readonly authored?:AuthoredEnvironments;
   private readonly lights: { light: THREE.PointLight; power: number }[] = [];
   constructor(scene: THREE.Scene, district: District) {
-    const b = new CityBatch(), m = this.materials, placements: AssetPlacement[] = [];
+    let b = new CityBatch(),assetOwner=-1;const m = this.materials, placements: (AssetPlacement&{owner:number})[] = [];m.wood.name='Yoto timber';
     this.group.name = 'Yoto nightlife street / authored facades and services';
     this.group.userData.neighborhoods={district:'nightlife',frontages:FRONTAGES.map((s,i)=>({...s,...(i===8?{x:this.venue.frontage.x,width:this.venue.frontage.width}:{}),z:-25+s.side*2.55,business:'restaurant'}))};
-    const putAsset = (asset: NightlifeAsset, x: number, y: number, z: number, yaw: number, scale: number) => placements.push({ asset, position: new THREE.Vector3(x, y, z), yaw, scale });
+    const putAsset = (asset: NightlifeAsset, x: number, y: number, z: number, yaw: number, scale: number) => placements.push({ asset, position: new THREE.Vector3(x, y, z), yaw, scale,owner:assetOwner });
     for (const [index, s] of FRONTAGES.entries()) {
+      const mainBatch=b;if(index<2)b=new CityBatch();
+      assetOwner=index;
       const z = -25 + s.side * 2.55, yaw = s.side > 0 ? Math.PI : 0, w = s.width, h = s.height, facade = m[s.skin];
       const world = (x: number, y: number, zz: number) => new THREE.Vector3(x, y, zz).applyAxisAngle(THREE.Object3D.DEFAULT_UP, yaw).add(new THREE.Vector3(s.x, 0, z));
       b.origin(s.x, z, yaw);
@@ -139,6 +144,7 @@ export class NightlifeStreet {
       district.shopfronts.push({ x: index===8?this.venue.frontage.x:s.x, z, rotation: yaw, width: index===8?this.venue.frontage.width:w, business: 'restaurant' });
       const threshold = world(w * .23, 0, .87), approach = world(w * .23, 0, 2.55);
       district.doors.push({ x: threshold.x, z: threshold.z, sidewalkX: Math.sign(s.x) * 4.55, business: 'restaurant', area: 'alley', approachX: approach.x, approachZ: -25 });
+      if(index<2){const fallback=b.finish(m.signMaterial('bar',1));fallback.name='Yoto fallback '+index;this.authoredFallbacks.set('frontage-'+index,fallback);this.group.add(fallback);b=mainBatch;}
     }
     // NPCs continue visiting exterior thresholds; the shaft and underground room are player-only.
     district.colliders.push({...this.venue.npcReservation});
@@ -152,17 +158,22 @@ export class NightlifeStreet {
     for (let wire = 0; wire < 5; wire++) b.cable(new THREE.Vector3(-17.5 + wire * .18, 5.5 + wire * .08, -27.6), new THREE.Vector3(-10 + wire * .2, 5.2 + wire * .08, -22.4), .35);
     for (const x of [-21, -15, -9, 9, 15, 21]) for (const side of [-1, 1]) b.b(m.grille, x, .025, -25 + side * 1.98, .58, .028, .27);
     this.group.add(b.finish(m.signMaterial('bar', 1)),this.shindo.group);
-    this.assets = new NightlifeAssets(placements); this.group.add(this.assets.group);
-    const shindoAssets=new ShindoAssets(m);this.group.add(shindoAssets.group);
-    this.ready=Promise.all([this.assets.ready,shindoAssets.ready]).then(()=>{});
+    const authoredEnabled=new URLSearchParams(location.search).get('authored')!=='0';
+    const selected=placements.filter(p=>p.owner===0||p.owner===1);
+    this.assets = new NightlifeAssets(authoredEnabled?placements.filter(p=>!selected.includes(p)):placements); this.group.add(this.assets.group);
+    const shindoAssets=new ShindoAssets(m,asset=>!authoredEnabled||!migratedShindoAssets.has(asset));this.group.add(shindoAssets.group);
+    const legacyReady=Promise.all([this.assets.ready,shindoAssets.ready]).then(()=>{});
+    if(authoredEnabled){
+     const pilotAssets=new NightlifeAssets(selected);this.group.add(pilotAssets.group);this.authoredFallbacks.set('props',pilotAssets.group);
+     this.authored=new AuthoredEnvironments(m,this.group,this.venue,Object.fromEntries(FRONTAGES.slice(0,2).map((s,i)=>['frontage:'+i,{position:[s.x,0,-25+s.side*2.55] as [number,number,number],rotation:[0,s.side>0?Math.PI:0,0] as [number,number,number]}])),this.authoredFallbacks,Promise.all([legacyReady,pilotAssets.ready]).then(()=>{}),async()=>{const recovery=new ShindoAssets(m,a=>migratedShindoAssets.has(a),false);this.group.add(recovery.group);for(const [x,y,z,color,power,radius]of [[17.65,-.98,-36,0xffd1a0,1.4,2.7],[18,-.85,-40.2,0xffd5a4,2.3,3.8],[16.73,-1.35,-40.13,0xffdbb4,.36,1.5],[19.72,-1.35,-40.13,0xffdbb4,.36,1.5]])practical(x,y,z,color,power,radius);await recovery.ready;});
+     this.ready=this.authored.ready;
+    }else this.ready=legacyReady;
     const practical = (x: number, y: number, z: number, color: number, power: number, radius: number) => { const light = new THREE.PointLight(color, 0, radius, 2); light.position.set(x, y, z); this.group.add(light); this.lights.push({ light, power }); };
     practical(-7.9, 4.4, -26.25, 0xff6630, 16, 7); practical(-16, 3.4, -23.3, 0xffbc74, 14, 7); practical(-12.2, 3.5, -26.7, 0xffcb91, 12, 6); practical(13.2, 3.4, -23.2, 0x9bcaca, 13, 8);
     practical(16.57,-1.12,-35.6,0xffc38a,4.7,3.8);
     // Two low pools correspond to the west-wall stair fixtures, without lighting the whole shaft.
     practical(18.95,-.35,-29.0,0xe4b77c,2.5,3.2);practical(18.95,-2.05,-31.8,0xe4b77c,1.7,2.8);
-    practical(17.65,-.98,-36.0,0xffd1a0,1.4,2.7);
-    practical(18.0,-.85,-40.20,0xffd5a4,2.3,3.8);
-    practical(16.73,-1.35,-40.13,0xffdbb4,.36,1.5);practical(19.72,-1.35,-40.13,0xffdbb4,.36,1.5);
+    if(!authoredEnabled){practical(17.65,-.98,-36.0,0xffd1a0,1.4,2.7);practical(18.0,-.85,-40.20,0xffd5a4,2.3,3.8);practical(16.73,-1.35,-40.13,0xffdbb4,.36,1.5);practical(19.72,-1.35,-40.13,0xffdbb4,.36,1.5);}
     practical(17.175,-2.19,-39.325,0xffc58e,.65,1.7);
     scene.add(this.group);
   }
@@ -175,6 +186,6 @@ export class NightlifeStreet {
     if (bulbs) { for (const u of [-w / 2 - .05, w / 2 + .05]) for (let v = -h / 2; v <= h / 2; v += .17) { const p = point(u, v); b.part('sphere', edge, p.x, p.y, p.z, .035, .035, .035); } for (const v of [-h / 2 - .05, h / 2 + .05]) for (let u = -w / 2; u <= w / 2; u += .17) { const p = point(u, v); b.part('sphere', edge, p.x, p.y, p.z, .035, .035, .035); } }
     else { for (const u of [-w / 2 - .03, w / 2 + .03]) { const a = point(u, -h / 2), c = point(u, h / 2); b.rod(edge, a, c, .018); } }
   }
-  update(hour: number): void { const night = dayState(hour).night, open = businessOpen('restaurant', hour); this.materials.setNight(night, open); this.assets.setLighting(night, open); this.lights.forEach(({ light, power }) => { light.intensity = power * night * (open ? 1 : .04); }); }
+  update(hour: number): void { const night = dayState(hour).night, open = businessOpen('restaurant', hour); this.materials.setNight(night, open); this.assets.setLighting(night, open);this.authored?.setLighting(night,open); this.lights.forEach(({ light, power }) => { light.intensity = power * night * (open ? 1 : .04); }); }
   updateMusic(dt:number,state:ShindoPlayback){this.shindo.update(dt,state);}
 }

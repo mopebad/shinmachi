@@ -1,0 +1,243 @@
+{
+  "uiSaved": true,
+  "reloadFromDisk": true,
+  "revision": "ebf648a12074410e1516d96e5f51c7b3df9a140e4aeaf01b40b486237614daa8",
+  "editedNodes": [
+    {
+      "id": "speaker-0",
+      "label": "Listening monitor 1",
+      "position": [
+        16.455,
+        0.5625,
+        -40.685
+      ],
+      "rotation": [
+        0,
+        0.39269908169872414,
+        0
+      ],
+      "scale": [
+        2.2,
+        2.2,
+        1.42
+      ],
+      "parent": "room",
+      "asset": "speaker",
+      "edit": {
+        "min": [
+          16.439999999999998,
+          0.5625,
+          -40.690000000000005
+        ],
+        "max": [
+          16.46,
+          0.5625,
+          -40.68
+        ],
+        "rotationMin": [
+          -0.03,
+          0.350506377112365,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.41050637711236504,
+          0.03
+        ],
+        "scaleMin": [
+          2.2,
+          2.2,
+          1.42
+        ],
+        "scaleMax": [
+          2.2,
+          2.2,
+          1.42
+        ]
+      },
+      "collision": {
+        "reservation": "speaker-16.45"
+      },
+      "interaction": {
+        "binding": "shindo-speaker-0",
+        "point": [
+          -0.01603732466074539,
+          0.2352272727272727,
+          0.06211639833387298
+        ]
+      }
+    },
+    {
+      "id": "stool-0",
+      "label": "Bar stool 1",
+      "position": [
+        18.23,
+        0,
+        -34.55
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "prefab": "bar-stool",
+      "edit": {
+        "min": [
+          18.205,
+          0,
+          -34.565
+        ],
+        "max": [
+          18.235,
+          0,
+          -34.535
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      },
+      "collision": {
+        "reservation": "stool-0"
+      }
+    },
+    {
+      "id": "service-0",
+      "label": "Bar service 1",
+      "position": [
+        17.18,
+        1.105,
+        -34.92
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.02,
+        1.02,
+        1.02
+      ],
+      "parent": "room",
+      "prefab": "bar-service",
+      "edit": {
+        "min": [
+          17.15,
+          1.105,
+          -34.95
+        ],
+        "max": [
+          17.21,
+          1.105,
+          -34.89
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "scaleMax": [
+          1.1,
+          1.1,
+          1.1
+        ]
+      }
+    },
+    {
+      "id": "music-light",
+      "label": "music light",
+      "position": [
+        18,
+        2.095,
+        -40.2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "light": {
+        "color": "#ffd5a4",
+        "intensity": 2.35,
+        "distance": 3.8
+      },
+      "edit": {
+        "min": [
+          17.8,
+          1.9450000000000003,
+          -40.400000000000006
+        ],
+        "max": [
+          18.2,
+          2.245,
+          -40
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  ],
+  "fullBrowserReload": true,
+  "liveAudioAnchor": {
+    "x": 16.456158278236536,
+    "y": -1.8649999999999998,
+    "z": -40.590007061359664
+  }
+}

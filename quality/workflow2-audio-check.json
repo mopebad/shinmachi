@@ -1,0 +1,669 @@
+{
+  "transport": [
+    {
+      "action": "next",
+      "index": 1,
+      "ready": 4
+    },
+    {
+      "action": "previous",
+      "index": 0,
+      "ready": 4
+    }
+  ],
+  "motion": [
+    {
+      "time": 0.664671,
+      "playing": true,
+      "level": 0.42441183957281514,
+      "angle": -2.320139478504646,
+      "levels": {
+        "time": 0.668722,
+        "title": "Attention 2010 Ver (House)",
+        "playing": true,
+        "level": 0.048363395224612776,
+        "bands": [
+          0.9323529411764706,
+          0.4343891402714932,
+          0.016862745098039214
+        ]
+      }
+    },
+    {
+      "time": 0.763356,
+      "playing": true,
+      "level": 0.312376713779271,
+      "angle": -2.664615112970767,
+      "levels": {
+        "time": 0.769413,
+        "title": "Attention 2010 Ver (House)",
+        "playing": true,
+        "level": 0.351761671809107,
+        "bands": [
+          0.9127450980392157,
+          0.4211161387631976,
+          0.014901960784313726
+        ]
+      }
+    },
+    {
+      "time": 0.862041,
+      "playing": true,
+      "level": 0.5092737710019106,
+      "angle": -3.0090907474368875,
+      "levels": {
+        "time": 0.869257,
+        "title": "Attention 2010 Ver (House)",
+        "playing": true,
+        "level": 0.5654338603097699,
+        "bands": [
+          0.9313725490196079,
+          0.4,
+          0.009150326797385621
+        ]
+      }
+    },
+    {
+      "time": 0.972975,
+      "playing": true,
+      "level": 0.6631727174636163,
+      "angle": -3.3963234579183657,
+      "levels": {
+        "time": 0.983946,
+        "title": "Attention 2010 Ver (House)",
+        "playing": true,
+        "level": 0.6395854790575378,
+        "bands": [
+          0.9401960784313725,
+          0.497737556561086,
+          0.029281045751633986
+        ]
+      }
+    },
+    {
+      "time": 1.08263,
+      "playing": true,
+      "level": 0.5075349829847405,
+      "angle": -3.779091616173242,
+      "levels": {
+        "time": 1.08263,
+        "title": "Attention 2010 Ver (House)",
+        "playing": true,
+        "level": 0.5278949091083717,
+        "bands": [
+          0.9401960784313725,
+          0.47239819004524886,
+          0.024052287581699347
+        ]
+      }
+    },
+    {
+      "time": 1.192365,
+      "playing": true,
+      "level": 0.27397386624025344,
+      "angle": -4.162139027108437,
+      "levels": {
+        "time": 1.192925,
+        "title": "Attention 2010 Ver (House)",
+        "playing": true,
+        "level": 0.2332454876961186,
+        "bands": [
+          0.903921568627451,
+          0.4452488687782805,
+          0.01738562091503268
+        ]
+      }
+    },
+    {
+      "time": 1.29161,
+      "playing": true,
+      "level": 0.49728024875326904,
+      "angle": -4.508569430336792,
+      "levels": {
+        "time": 1.29161,
+        "title": "Attention 2010 Ver (House)",
+        "playing": true,
+        "level": 0.6006940450038897,
+        "bands": [
+          0.9225490196078432,
+          0.4407239819004525,
+          0.018169934640522876
+        ]
+      }
+    },
+    {
+      "time": 1.390295,
+      "playing": true,
+      "level": 0.6186594913629136,
+      "angle": -4.853045064802913,
+      "levels": {
+        "time": 1.399669,
+        "title": "Attention 2010 Ver (House)",
+        "playing": true,
+        "level": 0.4196426178301327,
+        "bands": [
+          0.9401960784313725,
+          0.46726998491704375,
+          0.021830065359477124
+        ]
+      }
+    },
+    {
+      "time": 1.491882,
+      "playing": true,
+      "level": 0.5863773674545117,
+      "angle": -5.207650590247608,
+      "levels": {
+        "time": 1.501746,
+        "title": "Attention 2010 Ver (House)",
+        "playing": true,
+        "level": 0.5624136761118077,
+        "bands": [
+          0.9627450980392157,
+          0.45852187028657615,
+          0.025098039215686273
+        ]
+      }
+    },
+    {
+      "time": 1.601575,
+      "playing": true,
+      "level": 0.33350775857533294,
+      "angle": -5.590551393525636,
+      "levels": {
+        "time": 1.602177,
+        "title": "Attention 2010 Ver (House)",
+        "playing": true,
+        "level": 0.024017334358141903,
+        "bands": [
+          0.9274509803921569,
+          0.42322775263951734,
+          0.018300653594771243
+        ]
+      }
+    },
+    {
+      "time": 1.703046,
+      "playing": true,
+      "level": 0.17139716580150569,
+      "angle": -5.94475200258387,
+      "levels": {
+        "time": 1.703764,
+        "title": "Attention 2010 Ver (House)",
+        "playing": true,
+        "level": 0.26156575756784123,
+        "bands": [
+          0.8960784313725491,
+          0.3806938159879336,
+          0.010849673202614379
+        ]
+      }
+    },
+    {
+      "time": 1.801992,
+      "playing": true,
+      "level": 0.5612239960891618,
+      "angle": -6.290138698919531,
+      "levels": {
+        "time": 1.802449,
+        "title": "Attention 2010 Ver (House)",
+        "playing": true,
+        "level": 0.9115909109297018,
+        "bands": [
+          0.942156862745098,
+          0.3568627450980392,
+          0.005490196078431373
+        ]
+      }
+    }
+  ],
+  "zones": [
+    {
+      "name": "street",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.9744445085525513,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 2.870567,
+            "duration": 149.63712,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.0019079976191278547,
+            "speakerGains": [
+              0.00026084555429406464,
+              0.00028139870846644044
+            ],
+            "roomReflections": 0.0006171152926981449,
+            "levels": {
+              "rms": 0.8940907265036081,
+              "bands": [
+                0.9627450980392157,
+                0.4883861236802413,
+                0.029019607843137254
+              ]
+            },
+            "gainOutside": 0.016798239201307297,
+            "cutoff": 2176.370361328125
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 4.893605,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.029372624214396435
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.022845374388975003
+          },
+          {
+            "kind": "refined",
+            "x": 1.8,
+            "z": -33,
+            "gain": 0.0004940892641737033
+          },
+          {
+            "kind": "ordinary",
+            "x": 1.8,
+            "z": -48,
+            "gain": 0.00018229914013680304
+          }
+        ],
+        "trafficAssignments": [
+          8,
+          4,
+          null,
+          null
+        ],
+        "trafficGain": 0.0006764864519936964,
+        "audible": true,
+        "rms": 0.002549053230669637
+      }
+    },
+    {
+      "name": "stairs",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.6459824442863464,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 3.89805,
+            "duration": 149.63712,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0.085,
+              "outside": 0.009,
+              "cutoff": 3975,
+              "zone": "stairwell",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.0842229500412941,
+            "speakerGains": [
+              0,
+              0
+            ],
+            "roomReflections": 0,
+            "levels": {
+              "rms": 0.9068865255997575,
+              "bands": [
+                0.9774509803921568,
+                0.5134238310708898,
+                0.049934640522875814
+              ]
+            },
+            "gainOutside": 0.009072448126971722,
+            "cutoff": 3964.53076171875
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 5.921088,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.029372624214396435
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.022845374388975003
+          },
+          {
+            "kind": "refined",
+            "x": 1.8,
+            "z": -33,
+            "gain": 0.0005301716327111755
+          },
+          {
+            "kind": "ordinary",
+            "x": 1.8,
+            "z": -48,
+            "gain": 0.00034128461324769695
+          }
+        ],
+        "trafficAssignments": [
+          8,
+          4,
+          null,
+          null
+        ],
+        "trafficGain": 0.0008713833231013268,
+        "audible": true,
+        "rms": 0.010389731502445668
+      }
+    },
+    {
+      "name": "inside",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.13859234750270844,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 4.905646,
+            "duration": 149.63712,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0.25,
+              "outside": 0,
+              "cutoff": 17500,
+              "zone": "basement",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.23590726405382156,
+            "speakerGains": [
+              0.03213244676589966,
+              0.03466375917196274
+            ],
+            "roomReflections": 0.020498596131801605,
+            "levels": {
+              "rms": 0.6151173033043094,
+              "bands": [
+                0.984313725490196,
+                0.7064856711915536,
+                0.3316339869281046
+              ]
+            },
+            "gainOutside": 0.00009515570127405226,
+            "cutoff": 17409.958984375
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 6.931235,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.029372624214396435
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.022845374388975003
+          },
+          {
+            "kind": "refined",
+            "x": 1.8,
+            "z": -33,
+            "gain": 0.0005350157069430565
+          },
+          {
+            "kind": "ordinary",
+            "x": 1.8,
+            "z": -48,
+            "gain": 0.0005704195145863622
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -63,
+            "gain": 0.00004711324063721435
+          }
+        ],
+        "trafficAssignments": [
+          8,
+          4,
+          0,
+          null
+        ],
+        "trafficGain": 0.0011524422588991001,
+        "audible": true,
+        "rms": 0.018454236961070947
+      }
+    },
+    {
+      "name": "leave",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.9692447185516357,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 5.907834,
+            "duration": 149.63712,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.002506372198695317,
+            "speakerGains": [
+              0.0003413872036617249,
+              0.0003682816750369966
+            ],
+            "roomReflections": 0.000732016924303025,
+            "levels": {
+              "rms": 1,
+              "bands": [
+                0.9892156862745098,
+                0.5731523378582202,
+                0.10248366013071895
+              ]
+            },
+            "gainOutside": 0.016755398362874985,
+            "cutoff": 2203.253662109375
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 7.930856,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.029372624214396435
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.022845374388975003
+          },
+          {
+            "kind": "refined",
+            "x": 1.8,
+            "z": -33,
+            "gain": 0.0004940892641737033
+          },
+          {
+            "kind": "ordinary",
+            "x": 1.8,
+            "z": -48,
+            "gain": 0.00018229914013680304
+          }
+        ],
+        "trafficAssignments": [
+          8,
+          4,
+          null,
+          null
+        ],
+        "trafficGain": 0.0006765236757928506,
+        "audible": true,
+        "rms": 0.0032881028796603786
+      }
+    }
+  ],
+  "pause": {
+    "angle": -6.290138698919531,
+    "level": 0.003775451981935551,
+    "survivesMute": true
+  }
+}

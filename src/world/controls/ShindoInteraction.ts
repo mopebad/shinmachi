@@ -6,6 +6,7 @@ import {YOTO_VENUE} from '../generation/YotoVenueLayout.ts';
 
 /** Proximity + actual mesh picking. Works with pointer lock, drag-look and a hidden HUD. */
 export class ShindoInteraction {
+ enabled=true;
  private readonly ray=new THREE.Raycaster();
  private readonly center=new THREE.Vector2();
  private readonly panel=new THREE.Vector3(18.94,YOTO_VENUE.floorY+.865,-40.012);
@@ -28,7 +29,7 @@ export class ShindoInteraction {
    const hit=this.pick(point);if(!hit)return;e.preventDefault();e.stopImmediatePropagation();canvas.focus();this.activate(hit);
   },true);
  }
- private nearby(){return this.isOpen()&&this.camera.position.distanceTo(this.panel)<2.65;}
+ private nearby(){return this.enabled&&this.isOpen()&&this.camera.position.distanceTo(this.panel)<2.65;}
  private pick(point:THREE.Vector2){
   if(!this.nearby())return null;
   this.scene.updateMatrixWorld(true);this.camera.updateMatrixWorld();this.ray.near=0;this.ray.far=SHINDO_PANEL.reach;this.ray.setFromCamera(point,this.camera);

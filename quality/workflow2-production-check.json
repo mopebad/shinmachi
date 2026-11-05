@@ -1,0 +1,40 @@
+{
+  "editorCodeAbsent": true,
+  "jsChunks": 3,
+  "get": {
+    "status": 200,
+    "contentType": "text/html"
+  },
+  "put": {
+    "status": 404,
+    "contentType": null
+  },
+  "browser": {
+    "editorAbsent": true,
+    "debugGlobalAbsent": true,
+    "canvas": [
+      1259,
+      597
+    ],
+    "webglError": 0,
+    "contextLost": false,
+    "pilotLoads": [
+      {
+        "name": "yoto-ramen.glb",
+        "bytes": 1009900,
+        "status": 200
+      },
+      {
+        "name": "yoto-izakaya.glb",
+        "bytes": 936836,
+        "status": 200
+      },
+      {
+        "name": "stool.glb",
+        "bytes": 344420,
+        "status": 200
+      }
+    ],
+    "screenshot": "captures/workflow2-production.png"
+  }
+}

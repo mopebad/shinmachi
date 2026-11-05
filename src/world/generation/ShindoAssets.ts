@@ -11,9 +11,9 @@ type Placement={asset:string;position:[number,number,number];scale:[number,numbe
 export class ShindoAssets{
  readonly group=new THREE.Group();readonly ready:Promise<void>;readonly errors:string[]=[];
  readonly inventory:{asset:string;instances:number;triangles:number;draws:number;bounds:number[]}[]=[];
- constructor(materials:NightlifeMaterials){
-  this.group.name='SHINDO / licensed and Blender-finished assets';this.group.add(equipmentGraphics());const f=YOTO_VENUE.floorY,placements:Placement[]=[];
-  const put=(asset:string,position:Placement['position'],scale:Placement['scale']=[1,1,1],yaw=0)=>placements.push({asset,position,scale,yaw});
+ constructor(materials:NightlifeMaterials,filter:(asset:string)=>boolean=()=>true,graphics=true){
+  this.group.name='SHINDO / licensed and Blender-finished assets';if(graphics)this.group.add(equipmentGraphics());const f=YOTO_VENUE.floorY,placements:Placement[]=[];
+  const put=(asset:string,position:Placement['position'],scale:Placement['scale']=[1,1,1],yaw=0)=>{if(filter(asset))placements.push({asset,position,scale,yaw});};
   put('turntable',[17.82,f+1.06,-40.48]);
   put('amplifier',[18.67,f+1.06,-40.5]);
   for(const x of [16.45,20])put('speaker',[x,f+.5625,-40.685],[2.2,2.2,1.42],Math.atan2(18.25-x,4.5));

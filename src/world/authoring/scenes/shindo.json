@@ -1,0 +1,759 @@
+{
+  "version": 1,
+  "id": "shindo",
+  "label": "Shindo authored interior pilot",
+  "coordinateSystem": "metres-y-up-radians",
+  "nodes": [
+    {
+      "id": "room",
+      "label": "Shindo authoritative floor",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "anchor": "shindo-floor"
+    },
+    {
+      "id": "turntable",
+      "label": "Turntable / playback binding",
+      "position": [
+        17.82,
+        1.06,
+        -40.48
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "asset": "turntable",
+      "interaction": {
+        "binding": "shindo-record"
+      }
+    },
+    {
+      "id": "amplifier",
+      "label": "Amplifier / meters",
+      "position": [
+        18.67,
+        1.06,
+        -40.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "asset": "amplifier",
+      "interaction": {
+        "binding": "shindo-meters"
+      }
+    },
+    {
+      "id": "speaker-0",
+      "label": "Listening monitor 1",
+      "position": [
+        16.455,
+        0.5625,
+        -40.685
+      ],
+      "rotation": [
+        0,
+        0.39269908169872414,
+        0
+      ],
+      "scale": [
+        2.2,
+        2.2,
+        1.42
+      ],
+      "parent": "room",
+      "asset": "speaker",
+      "edit": {
+        "min": [
+          16.439999999999998,
+          0.5625,
+          -40.690000000000005
+        ],
+        "max": [
+          16.46,
+          0.5625,
+          -40.68
+        ],
+        "rotationMin": [
+          -0.03,
+          0.350506377112365,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.41050637711236504,
+          0.03
+        ],
+        "scaleMin": [
+          2.2,
+          2.2,
+          1.42
+        ],
+        "scaleMax": [
+          2.2,
+          2.2,
+          1.42
+        ]
+      },
+      "collision": {
+        "reservation": "speaker-16.45"
+      },
+      "interaction": {
+        "binding": "shindo-speaker-0",
+        "point": [
+          -0.01603732466074539,
+          0.2352272727272727,
+          0.06211639833387298
+        ]
+      }
+    },
+    {
+      "id": "speaker-1",
+      "label": "Listening monitor 2",
+      "position": [
+        20,
+        0.5625,
+        -40.685
+      ],
+      "rotation": [
+        0,
+        -0.37089128881266237,
+        0
+      ],
+      "scale": [
+        2.2,
+        2.2,
+        1.42
+      ],
+      "parent": "room",
+      "asset": "speaker",
+      "edit": {
+        "min": [
+          19.99,
+          0.5625,
+          -40.690000000000005
+        ],
+        "max": [
+          20.01,
+          0.5625,
+          -40.68
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.40089128881266234,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          -0.3408912888126624,
+          0.03
+        ],
+        "scaleMin": [
+          2.2,
+          2.2,
+          1.42
+        ],
+        "scaleMax": [
+          2.2,
+          2.2,
+          1.42
+        ]
+      },
+      "collision": {
+        "reservation": "speaker-20"
+      },
+      "interaction": {
+        "binding": "shindo-speaker-1",
+        "point": [
+          0.015651088549872773,
+          0.2352272727272727,
+          0.06235242520874868
+        ]
+      }
+    },
+    {
+      "id": "stool-0",
+      "label": "Bar stool 1",
+      "position": [
+        18.23,
+        0,
+        -34.55
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "prefab": "bar-stool",
+      "edit": {
+        "min": [
+          18.205,
+          0,
+          -34.565
+        ],
+        "max": [
+          18.235,
+          0,
+          -34.535
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      },
+      "collision": {
+        "reservation": "stool-0"
+      }
+    },
+    {
+      "id": "stool-1",
+      "label": "Bar stool 2",
+      "position": [
+        18.22,
+        0,
+        -35.65
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "prefab": "bar-stool",
+      "edit": {
+        "min": [
+          18.205,
+          0,
+          -35.665
+        ],
+        "max": [
+          18.235,
+          0,
+          -35.635
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      },
+      "collision": {
+        "reservation": "stool-1"
+      }
+    },
+    {
+      "id": "stool-2",
+      "label": "Bar stool 3",
+      "position": [
+        18.22,
+        0,
+        -36.75
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "prefab": "bar-stool",
+      "edit": {
+        "min": [
+          18.205,
+          0,
+          -36.765
+        ],
+        "max": [
+          18.235,
+          0,
+          -36.735
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      },
+      "collision": {
+        "reservation": "stool-2"
+      }
+    },
+    {
+      "id": "service-0",
+      "label": "Bar service 1",
+      "position": [
+        17.18,
+        1.105,
+        -34.92
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.02,
+        1.02,
+        1.02
+      ],
+      "parent": "room",
+      "prefab": "bar-service",
+      "edit": {
+        "min": [
+          17.15,
+          1.105,
+          -34.95
+        ],
+        "max": [
+          17.21,
+          1.105,
+          -34.89
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "scaleMax": [
+          1.1,
+          1.1,
+          1.1
+        ]
+      }
+    },
+    {
+      "id": "service-1",
+      "label": "Bar service 2",
+      "position": [
+        17.16,
+        1.105,
+        -37.12
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "prefab": "bar-service",
+      "edit": {
+        "min": [
+          17.13,
+          1.105,
+          -37.15
+        ],
+        "max": [
+          17.19,
+          1.105,
+          -37.089999999999996
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "scaleMax": [
+          1.1,
+          1.1,
+          1.1
+        ]
+      }
+    },
+    {
+      "id": "rocks",
+      "label": "Whisky and ice",
+      "position": [
+        17.56,
+        1.1185,
+        -36.75
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "asset": "rocks",
+      "edit": {
+        "min": [
+          17.529999999999998,
+          1.1185,
+          -36.78
+        ],
+        "max": [
+          17.59,
+          1.1185,
+          -36.72
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "scaleMax": [
+          1.1,
+          1.1,
+          1.1
+        ]
+      }
+    },
+    {
+      "id": "bar-light",
+      "label": "bar light",
+      "position": [
+        17.65,
+        1.965,
+        -36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "light": {
+        "color": "#ffd1a0",
+        "intensity": 1.4,
+        "distance": 2.7
+      },
+      "edit": {
+        "min": [
+          17.45,
+          1.8150000000000002,
+          -36.2
+        ],
+        "max": [
+          17.849999999999998,
+          2.115,
+          -35.8
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "music-light",
+      "label": "music light",
+      "position": [
+        18,
+        2.095,
+        -40.2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "light": {
+        "color": "#ffd5a4",
+        "intensity": 2.35,
+        "distance": 3.8
+      },
+      "edit": {
+        "min": [
+          17.8,
+          1.9450000000000003,
+          -40.400000000000006
+        ],
+        "max": [
+          18.2,
+          2.245,
+          -40
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "left-speaker-light",
+      "label": "left speaker light",
+      "position": [
+        16.73,
+        1.595,
+        -40.13
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "light": {
+        "color": "#ffdbb4",
+        "intensity": 0.36,
+        "distance": 1.5
+      },
+      "edit": {
+        "min": [
+          16.53,
+          1.445,
+          -40.330000000000005
+        ],
+        "max": [
+          16.93,
+          1.7449999999999999,
+          -39.93
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "right-speaker-light",
+      "label": "right speaker light",
+      "position": [
+        19.72,
+        1.595,
+        -40.13
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "room",
+      "light": {
+        "color": "#ffdbb4",
+        "intensity": 0.36,
+        "distance": 1.5
+      },
+      "edit": {
+        "min": [
+          19.52,
+          1.445,
+          -40.330000000000005
+        ],
+        "max": [
+          19.919999999999998,
+          1.7449999999999999,
+          -39.93
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  ]
+}

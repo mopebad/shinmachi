@@ -1,0 +1,33 @@
+{
+  "unknown": 404,
+  "stale": {
+    "status": 409,
+    "body": {
+      "error": "Scene changed on disk; reload before saving"
+    }
+  },
+  "locked": {
+    "status": 400,
+    "body": {
+      "error": "Error: Locked node room"
+    }
+  },
+  "outsideBounds": {
+    "status": 400,
+    "body": {
+      "error": "Error: Outside edit envelope: stool-0"
+    }
+  },
+  "crossOrigin": {
+    "status": 403,
+    "body": {
+      "error": "Same-origin authoring only"
+    }
+  },
+  "nonJson": {
+    "status": 415,
+    "body": {
+      "error": "JSON required"
+    }
+  }
+}

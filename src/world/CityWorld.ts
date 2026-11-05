@@ -20,6 +20,7 @@ import { StreetAtmosphere } from './effects/StreetAtmosphere';
 import { ContactShading } from './effects/ContactShading';
 import { signEmission } from './generation/SignLayout';
 import { HERO_STREET_VIEW } from './generation/HeroStreet';
+import type {AuthoredScene} from './authoring/AuthoredScene';
 
 export const LOCATIONS = [
   { name: 'Shinmachi-dori', eye: [4.7, 1.82, 43], target: [-1, 5, -25], fov: 60 },
@@ -91,6 +92,7 @@ export class CityWorld {
     this.practical(new THREE.Vector3(18, 3.3, -47), 0xe6fff4, 45, 17);
     const streetColliderStart = this.district.colliders.length;
     this.nightlife = new NightlifeStreet(this.scene, this.district);
+    this.audio.speakerAt=i=>{const scene=this.nightlife.authored?.scenes.get('shindo'),node=scene?.document.nodes.find(n=>n.interaction?.binding==='shindo-speaker-'+i),object=node&&scene!.objects.get(node.id);return object&&node!.interaction?.point?object.localToWorld(new THREE.Vector3(...node!.interaction.point)):undefined;};
     // Preserve obstacles appended after generation in the separate station-aware player list.
     this.district.playerColliders?.push(...this.district.colliders.slice(streetColliderStart));
     this.assetsReady = this.nightlife.ready.then(() => { this.nightlife.update(this.time); this.renderer.shadowMap.needsUpdate = true; });
@@ -111,6 +113,15 @@ export class CityWorld {
   }
   private readSeed(): number { const value = Number(new URLSearchParams(location.search).get('seed') ?? 8412); return Number.isFinite(value) ? value >>> 0 : 8412; }
   get cameraMode(): CameraMode { return this.controller.mode; }
+  get authoredEnvironments(){return this.nightlife.authored;}
+  validateAuthoringPlacement(scene:AuthoredScene,id:string){
+    const n=scene.document.nodes.find(n=>n.id===id);if(!n?.collision)return;const reservation=this.nightlife.venue.boxes.find(b=>b.id===n.collision!.reservation);if(!reservation)throw Error('Unknown collision reservation');
+    scene.group.updateMatrixWorld(true);const box=new THREE.Box3(),p=new THREE.Vector3(),instance=new THREE.Matrix4(),matrix=new THREE.Matrix4();
+    for(const mesh of scene.meshes)for(let i=0;i<mesh.count;i++){if(mesh.userData.sceneOwners[i]!==id)continue;mesh.getMatrixAt(i,instance);matrix.multiplyMatrices(mesh.matrixWorld,instance);const positions=mesh.geometry.attributes.position;for(let j=0;j<positions.count;j++)box.expandByPoint(p.fromBufferAttribute(positions,j).applyMatrix4(matrix));}
+    if(box.min.x<reservation.minX-.001||box.max.x>reservation.maxX+.001||box.min.z<reservation.minZ-.001||box.max.z>reservation.maxZ+.001||box.min.y<this.nightlife.venue.floorY-.003)throw Error('Keep the object inside its existing collision reservation.');
+  }
+  private authoringReturn?:{eye:THREE.Vector3;target:THREE.Vector3};
+  setAuthoring(value:boolean){if(value&&!this.authoringReturn)this.authoringReturn={eye:this.camera.position.clone(),target:this.camera.getWorldDirection(new THREE.Vector3()).add(this.camera.position)};this.controller.setInputEnabled(!value);this.shindoInteraction.enabled=!value;if(!value&&this.authoringReturn){this.controller.teleport(this.authoringReturn.eye,this.authoringReturn.target);this.authoringReturn=undefined;}}
   get locationIndex(): number { return this.location; }
   get locationName(): string { const p=this.camera.position,r=this.nightlife.venue.room; if(p.y<-.5&&p.x>r.minX&&p.x<r.maxX&&p.z>r.minZ&&p.z<r.maxZ)return 'Shindo · B1 listening bar'; if (this.location === 8 && this.camera.position.distanceTo(new THREE.Vector3(...HERO_STREET_VIEW.eye)) < 3) return HERO_STREET_VIEW.name; if (this.location === 7 && Math.abs(this.camera.position.z + 25) < 3.1) return 'Yoto nightlife street'; if (this.location === 5 && this.camera.position.distanceTo(new THREE.Vector3(...LOCATIONS[5].eye)) < 3) return 'Akane tower avenue'; if (this.location === 6 && this.camera.position.z < -36) return 'Railway approach'; return this.camera.position.y > 15 ? 'District overview' : { commercial: 'Shinmachi-dori', alley: 'Lantern alley', station: 'Station square', residential: 'Residential lane' }[districtZone(this.camera.position)]; }
   get stats() { return { fps: Math.round(this.fps), drawCalls: this.renderer.info.render.calls, triangles: this.renderer.info.render.triangles, buildings: this.district.stats.buildings, ...this.activity.stats }; }

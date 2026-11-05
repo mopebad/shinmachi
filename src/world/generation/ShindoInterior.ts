@@ -48,10 +48,12 @@ export function buildShindoInterior(b:CityBatch,m:NightlifeMaterials,v:YotoVenue
  rod(m.metal,[16.15,f+1.16,-37.52],[16.29,f+1.16,-37.52],.016);
  b.b(m.metal,16.38,f+.44,-34.32,.025,.7,.62);b.b(m.brass,16.403,f+.64,-34.09,.022,.2,.025);
  for(const [i,z]of [-34.55,-35.65,-36.75].entries()){
+  b.section('shindo:stools');
   b.part('disc',m.leather,18.22,f+.69,z,.22,.1,.22);
   b.part('disc',m.metal,18.22,f+.34,z,.035,.63,.035);
   b.part('torus',m.brass,18.22,f+.23,z,.16,.16,.16,Math.PI/2);
   b.part('disc',m.acoustic,18.22,f+.035,z,.2,.055,.2);
+  b.section('yoto:venue');
   // A highball, water and rocks whisky; open glass rims, liquid and ice have distinct heights.
   b.part('disc',m.leather,17.56,f+1.114,z,.075,.009,.075);
   if(i===0){

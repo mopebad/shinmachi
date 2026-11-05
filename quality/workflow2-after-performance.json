@@ -1,0 +1,46 @@
+{
+  "frames": {
+    "frames": 432,
+    "elapsedMs": 3007.2999999999884,
+    "aggregateFps": 143.65045057027953,
+    "medianMs": 8.299999999988358,
+    "p95Ms": 8.400000000023283,
+    "p99Ms": 12.5,
+    "worstMs": 12.60000000000582,
+    "viewport": [
+      1259,
+      597
+    ],
+    "renderPixelRatio": 1,
+    "devicePixelRatio": 1,
+    "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.145.0 Chrome/150.0.7871.250 Electron/43.8.3 Safari/537.36",
+    "stats": {
+      "fps": 180,
+      "drawCalls": 729,
+      "triangles": 4220316,
+      "buildings": 77,
+      "pedestrians": 53,
+      "vehicles": 10
+    },
+    "note": "Browser frame intervals; does not isolate GPU execution time."
+  },
+  "cost": {
+    "viewport": [
+      1323,
+      804
+    ],
+    "pixelRatio": 1,
+    "medianMs": 5,
+    "p95Ms": 5.799999952316284,
+    "stats": {
+      "fps": 180,
+      "drawCalls": 716,
+      "triangles": 4219244,
+      "buildings": 77,
+      "pedestrians": 53,
+      "vehicles": 10
+    },
+    "method": "30 synchronous composite renders after 8 warmups, gl.finish; CPU+GPU composite wall time, not GPU-only"
+  }
+}

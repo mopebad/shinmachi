@@ -1,0 +1,62 @@
+{
+  "spatial": {
+    "contracts": {
+      "colliders": true,
+      "doors": true,
+      "station": true
+    },
+    "area": 37.42449999999998,
+    "rear": [
+      19.5,
+      -1.2399999999999998,
+      -39.4217504995245
+    ],
+    "lounge": [
+      18.352745695334,
+      -1.2399999999999998,
+      -39.624496194858516
+    ],
+    "returned": [
+      19.499999999999993,
+      1.82,
+      -26.103249500475705
+    ],
+    "samples": 66,
+    "shaderErrors": 0,
+    "assets": []
+  },
+  "scenes": [
+    {
+      "id": "shindo",
+      "errors": [],
+      "meshes": 27,
+      "instances": 44
+    },
+    {
+      "id": "yoto",
+      "errors": [],
+      "meshes": 46,
+      "instances": 50
+    }
+  ],
+  "sourceCount": 11,
+  "fallbacks": [
+    {
+      "id": "frontage-0",
+      "visible": false
+    },
+    {
+      "id": "frontage-1",
+      "visible": false
+    },
+    {
+      "id": "props",
+      "visible": false
+    }
+  ],
+  "audioAnchor": [
+    16.456158278236536,
+    -1.8649999999999998,
+    -40.590007061359664
+  ]
+}

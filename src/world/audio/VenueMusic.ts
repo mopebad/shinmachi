@@ -2,7 +2,7 @@ import {venueMusicMix} from './VenueMusicMix';
 import {ShindoPlayer} from './ShindoPlayer';
 import {shindoImpulse,shindoRoom,unit} from './ShindoAcoustics';
 import {YOTO_VENUE} from '../generation/YotoVenueLayout';
-interface MusicVoice {kind:'shindo'|'jazz';element:HTMLAudioElement;filter:BiquadFilterNode;inside:GainNode;outside:GainNode;panner:PannerNode;mix:ReturnType<typeof venueMusicMix>;starts:number;error?:string;speakers?:GainNode[];wet?:GainNode}
+interface MusicVoice {kind:'shindo'|'jazz';element:HTMLAudioElement;filter:BiquadFilterNode;inside:GainNode;outside:GainNode;panner:PannerNode;mix:ReturnType<typeof venueMusicMix>;starts:number;error?:string;speakers?:GainNode[];speakerPanners?:PannerNode[];wet?:GainNode}
 /** Local recorded stereo music. Streaming avoids allocating two long decoded PCM tracks. */
 export class VenueMusic {
  private readonly voices:MusicVoice[]=[];
@@ -11,7 +11,7 @@ export class VenueMusic {
  private readonly frequencies=new Uint8Array(128);
  private lastMeter=0;
  readonly levels={rms:0,bands:[0,0,0]};
- constructor(private readonly context:AudioContext,master:GainNode,private readonly player:ShindoPlayer){
+ constructor(private readonly context:AudioContext,master:GainNode,private readonly player:ShindoPlayer,private readonly speakerAt?:(i:number)=>{x:number;y:number;z:number}|undefined){
   for(const [kind,file]of [['shindo','edm-detection-mode.mp3'],['jazz','backbay-lounge.mp3']] as const){
    const element=kind==='shindo'?player.element:new Audio(`${import.meta.env.BASE_URL}assets/music/${file}`);element.loop=kind==='jazz';element.preload='auto';
    const source=context.createMediaElementSource(element),filter=context.createBiquadFilter(),inside=context.createGain(),outside=context.createGain(),panner=context.createPanner();
@@ -23,9 +23,9 @@ export class VenueMusic {
     this.meter=context.createAnalyser();this.meter.fftSize=256;this.meter.smoothingTimeConstant=.8;source.connect(this.meter);
     const bass=context.createBiquadFilter(),air=context.createBiquadFilter();bass.type='lowshelf';bass.frequency.value=145;bass.gain.value=1.2;air.type='highshelf';air.frequency.value=6000;air.gain.value=-1.3;
     filter.connect(bass).connect(air);air.connect(inside).connect(master);
-    const split=context.createChannelSplitter(2);air.connect(split);voice.speakers=YOTO_VENUE.soundSystem.speakers.map((point,i)=>{
+    const split=context.createChannelSplitter(2);air.connect(split);voice.speakerPanners=[];voice.speakers=YOTO_VENUE.soundSystem.speakers.map((point,i)=>{
      const gain=context.createGain(),speaker=context.createPanner();gain.gain.value=0;speaker.panningModel='HRTF';speaker.rolloffFactor=0;
-     speaker.positionX.value=point.x;speaker.positionY.value=point.y;speaker.positionZ.value=point.z;split.connect(gain,i);gain.connect(speaker).connect(master);return gain;
+     speaker.positionX.value=point.x;speaker.positionY.value=point.y;speaker.positionZ.value=point.z;voice.speakerPanners!.push(speaker);split.connect(gain,i);gain.connect(speaker).connect(master);return gain;
     });
     const reflections=context.createConvolver(),highpass=context.createBiquadFilter(),damping=context.createBiquadFilter();
     const channels=shindoImpulse(context.sampleRate),impulse=context.createBuffer(2,channels[0].length,context.sampleRate);channels.forEach((data,i)=>impulse.copyToChannel(data,i));reflections.buffer=impulse;
@@ -40,7 +40,7 @@ export class VenueMusic {
  update(p:{x:number;y:number;z:number},hour:number){const now=this.context.currentTime;for(const v of this.voices){
   const mix=v.mix=venueMusicMix(p,v.kind,hour),room=shindoRoom(p),speakerBlend=room.room?room.blend:0;
   v.inside.gain.setTargetAtTime(mix.inside*(1-speakerBlend*.32),now,.22);
-  v.speakers?.forEach((gain,i)=>{const s=YOTO_VENUE.soundSystem.speakers[i],distance=Math.hypot(p.x-s.x,p.y-s.y,p.z-s.z);gain.gain.setTargetAtTime(mix.inside*speakerBlend*.16/(1+(distance/7)**2),now,.22);});
+  v.speakers?.forEach((gain,i)=>{const s=this.speakerAt?.(i)??YOTO_VENUE.soundSystem.speakers[i],distance=Math.hypot(p.x-s.x,p.y-s.y,p.z-s.z);gain.gain.setTargetAtTime(mix.inside*speakerBlend*.16/(1+(distance/7)**2),now,.22);const speaker=v.speakerPanners?.[i];if(speaker){speaker.positionX.value=s.x;speaker.positionY.value=s.y;speaker.positionZ.value=s.z;}});
   v.wet?.gain.setTargetAtTime(mix.inside*speakerBlend*.085,now,.3);
   v.outside.gain.setTargetAtTime(mix.outside,now,.22);v.filter.frequency.setTargetAtTime(mix.cutoff,now,.2);v.panner.positionX.value=mix.portal.x;v.panner.positionY.value=mix.portal.y;v.panner.positionZ.value=mix.portal.z;
  }

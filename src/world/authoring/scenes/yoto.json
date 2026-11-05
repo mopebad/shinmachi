@@ -1,0 +1,352 @@
+{
+  "version": 1,
+  "id": "yoto",
+  "label": "Yoto two-storefront pilot",
+  "coordinateSystem": "metres-y-up-radians",
+  "nodes": [
+    {
+      "id": "frontage-0",
+      "label": "Generated ramen parcel",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "anchor": "frontage:0"
+    },
+    {
+      "id": "shell-0",
+      "label": "ramen facade module",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "frontage-0",
+      "prefab": "ramen-frontage"
+    },
+    {
+      "id": "lantern-0",
+      "label": "ramen lantern",
+      "position": [
+        -1.467,
+        2.07,
+        0.55
+      ],
+      "rotation": [
+        0,
+        0.017453292519943295,
+        0
+      ],
+      "scale": [
+        0.66,
+        0.66,
+        0.66
+      ],
+      "parent": "frontage-0",
+      "prefab": "lantern-mount",
+      "edit": {
+        "min": [
+          -1.492,
+          2.05,
+          0.53
+        ],
+        "max": [
+          -1.452,
+          2.09,
+          0.5700000000000001
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          0.66,
+          0.66,
+          0.66
+        ],
+        "scaleMax": [
+          0.66,
+          0.66,
+          0.66
+        ]
+      }
+    },
+    {
+      "id": "light-0",
+      "label": "ramen local warm light",
+      "position": [
+        -1.472,
+        2.45,
+        0.62
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "frontage-0",
+      "light": {
+        "color": "#ffbd83",
+        "intensity": 0.15,
+        "distance": 1.5
+      },
+      "edit": {
+        "min": [
+          -1.572,
+          2.35,
+          0.52
+        ],
+        "max": [
+          -1.3719999999999999,
+          2.5500000000000003,
+          0.72
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "ac-0",
+      "label": "Ramen condenser",
+      "position": [
+        1.3339999999999999,
+        4.04,
+        0.2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "frontage-0",
+      "asset": "ac-condenser"
+    },
+    {
+      "id": "wall-lamp-0",
+      "label": "Ramen wall lamp",
+      "position": [
+        -1.288,
+        4.05,
+        0.15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "frontage-0",
+      "asset": "twin-street-lamp"
+    },
+    {
+      "id": "frontage-1",
+      "label": "Generated izakaya parcel",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "anchor": "frontage:1"
+    },
+    {
+      "id": "shell-1",
+      "label": "izakaya facade module",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "frontage-1",
+      "prefab": "izakaya-frontage"
+    },
+    {
+      "id": "lantern-1",
+      "label": "izakaya lantern",
+      "position": [
+        -1.472,
+        2.07,
+        0.55
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.66,
+        0.66,
+        0.66
+      ],
+      "parent": "frontage-1",
+      "prefab": "lantern-mount",
+      "edit": {
+        "min": [
+          -1.492,
+          2.05,
+          0.53
+        ],
+        "max": [
+          -1.452,
+          2.09,
+          0.5700000000000001
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          0.66,
+          0.66,
+          0.66
+        ],
+        "scaleMax": [
+          0.66,
+          0.66,
+          0.66
+        ]
+      }
+    },
+    {
+      "id": "light-1",
+      "label": "izakaya local warm light",
+      "position": [
+        -1.472,
+        2.45,
+        0.62
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parent": "frontage-1",
+      "light": {
+        "color": "#ffbd83",
+        "intensity": 0.12,
+        "distance": 1.5
+      },
+      "edit": {
+        "min": [
+          -1.572,
+          2.35,
+          0.52
+        ],
+        "max": [
+          -1.3719999999999999,
+          2.5500000000000003,
+          0.72
+        ],
+        "rotationMin": [
+          -0.03,
+          -0.03,
+          -0.03
+        ],
+        "rotationMax": [
+          0.03,
+          0.03,
+          0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  ]
+}

@@ -1,10 +1,11 @@
-import { defineConfig } from 'vite';
+﻿import { defineConfig } from 'vite';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import {shindoTrackPlugin} from './tools/shindo-track-manifest.mjs';
+import {sceneAuthoringPlugin} from './tools/scene-authoring-plugin.mjs';
 
 export default defineConfig({
-  plugins: [shindoTrackPlugin(),{
+  plugins: [shindoTrackPlugin(),sceneAuthoringPlugin(),{
     name: 'local-visual-review',
     configureServer(server) {
       server.middlewares.use('/__review/capture', (request, response) => {
@@ -29,7 +30,7 @@ export default defineConfig({
     name: 'reload-scene-on-edit',
     // A scene owns GPU resources and document-level input. Reload atomically during edits
     // instead of mounting a second WebGL world via module hot replacement.
-    handleHotUpdate({ server, file }) { if (file.includes('/quality/') || file.includes('\\quality\\') || /\.md$/.test(file)) return []; server.ws.send({ type: 'full-reload' }); return []; },
+    handleHotUpdate({ server, file }) { if (/[\\/]assets-source[\\/]/.test(file) || file.includes('/quality/') || file.includes('\\quality\\') || /[\\/]authoring[\\/]scenes[\\/]/.test(file)||/\.json\.tmp$/.test(file)|| /\.md$/.test(file)) return []; server.ws.send({ type: 'full-reload' }); return []; },
   }],
   build: {
     rollupOptions: { output: { manualChunks(id) {

@@ -10,6 +10,7 @@ export class PlayerController {
   readonly camera: THREE.PerspectiveCamera;
   private readonly colliders: Bounds[];
   mode: CameraMode = 'walk';
+  inputEnabled=true;
   private readonly keys = new Set<string>();
   private readonly velocity = new THREE.Vector3();
   private readonly direction = new THREE.Vector3();
@@ -21,13 +22,15 @@ export class PlayerController {
   constructor(camera: THREE.PerspectiveCamera, canvas: HTMLCanvasElement, colliders: Bounds[] = [], station?: StationSpatial,venue?:YotoVenueSpatial) {
     this.camera = camera; this.colliders = colliders; this.station = station;this.venue=venue;
     canvas.tabIndex = 0; canvas.setAttribute('aria-label', 'City view. Click to look; WASD to walk, F to fly, V to walk, Escape to release.');
-    canvas.addEventListener('click', () => { canvas.focus(); if (document.pointerLockElement !== canvas) { const result = canvas.requestPointerLock(); if (result) result.catch(() => { /* Drag-to-look remains available. */ }); } });
-    canvas.addEventListener('pointerdown', () => { this.dragging = true; }); window.addEventListener('pointerup', () => { this.dragging = false; });
+    canvas.addEventListener('click', () => { if(!this.inputEnabled)return;canvas.focus(); if (document.pointerLockElement !== canvas) { const result = canvas.requestPointerLock(); if (result) result.catch(() => { /* Drag-to-look remains available. */ }); } });
+    canvas.addEventListener('pointerdown', () => { if(this.inputEnabled)this.dragging = true; }); window.addEventListener('pointerup', () => { this.dragging = false; });
     document.addEventListener('mousemove', e => {
+      if(!this.inputEnabled)return;
       if (document.pointerLockElement !== canvas && !this.dragging) return;
       this.yaw -= e.movementX * .002; this.pitch = THREE.MathUtils.clamp(this.pitch - e.movementY * .002, -1.48, 1.48);
     });
     window.addEventListener('keydown', e => {
+      if(!this.inputEnabled)return;
       if (e.target instanceof HTMLElement && e.target.matches('input,select,button,textarea')) return;
       const key = e.key.toLowerCase(); this.keys.add(key);
       if ([' ', 'arrowup', 'arrowdown'].includes(key)) e.preventDefault();
@@ -38,6 +41,7 @@ export class PlayerController {
     window.addEventListener('blur', () => { this.keys.clear(); this.velocity.set(0, 0, 0); this.dragging = false; });
     document.addEventListener('pointerlockchange', () => { this.dragging = false; if (!document.pointerLockElement) this.keys.clear(); });
   }
+  setInputEnabled(value:boolean){this.inputEnabled=value;this.keys.clear();this.velocity.set(0,0,0);this.dragging=false;if(!value&&document.pointerLockElement)document.exitPointerLock();}
   setMode(mode: CameraMode): void {
     this.mode = mode; this.velocity.set(0, 0, 0);
     if (mode === 'walk') {
@@ -59,6 +63,7 @@ export class PlayerController {
   }
   private support(x:number,z:number,previousY:number):number|null {const local=this.venue?venueSupport(this.venue,x,z,previousY):undefined;return local!==undefined?local:this.station?stationSupport(this.station,x,z,previousY):STATION.groundY;}
   update(dt: number): void {
+    if(this.inputEnabled===false)return;
     const forward = Number(this.keys.has('w')) - Number(this.keys.has('s')), strafe = Number(this.keys.has('d')) - Number(this.keys.has('a'));
     this.camera.rotation.set(this.pitch, this.yaw, 0, 'YXZ');
     this.direction.set(strafe, 0, -forward).normalize();

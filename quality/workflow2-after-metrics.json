@@ -1,0 +1,20 @@
+{
+  "cost": {
+    "viewport": [
+      1323,
+      804
+    ],
+    "pixelRatio": 1,
+    "medianMs": 6.599999904632568,
+    "p95Ms": 7.400000095367432,
+    "stats": {
+      "fps": 165,
+      "drawCalls": 716,
+      "triangles": 4219244,
+      "buildings": 77,
+      "pedestrians": 53,
+      "vehicles": 10
+    },
+    "method": "30 synchronous composite renders after 8 warmups, gl.finish; CPU+GPU composite wall time, not GPU-only"
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "version": 1,
+  "assets": {
+    "turntable": {
+      "path": "assets/shindo/turntable.glb",
+      "dimensions": [
+        0.454,
+        0.168,
+        0.365
+      ],
+      "source": "public/assets/shindo/CREDITS.md",
+      "license": "CC0-1.0"
+    },
+    "amplifier": {
+      "path": "assets/shindo/amplifier.glb",
+      "dimensions": [
+        0.434,
+        0.124,
+        0.341
+      ],
+      "source": "public/assets/shindo/CREDITS.md",
+      "license": "CC0-1.0"
+    },
+    "speaker": {
+      "path": "assets/shindo/speaker.glb",
+      "dimensions": [
+        0.205,
+        0.335,
+        0.276
+      ],
+      "source": "public/assets/shindo/CREDITS.md",
+      "license": "CC0-1.0",
+      "materials": {
+        "Satin walnut | longitudinal grain": {
+          "finish": "walnut",
+          "color": "#a28a72",
+          "roughness": 0.8
+        },
+        "Satin walnut | end grain": {
+          "finish": "walnut",
+          "color": "#a28a72",
+          "roughness": 0.8
+        }
+      }
+    },
+    "rocks": {
+      "path": "assets/shindo/rocks.glb",
+      "dimensions": [
+        0.09,
+        0.112,
+        0.09
+      ],
+      "source": "public/assets/shindo/CREDITS.md",
+      "license": "Project-original"
+    },
+    "bar-tools": {
+      "path": "assets/shindo/bar-tools.glb",
+      "dimensions": [
+        0.181,
+        0.217,
+        0.088
+      ],
+      "source": "public/assets/shindo/CREDITS.md",
+      "license": "Project-original"
+    },
+    "empty-glass": {
+      "path": "assets/shindo/empty-glass.glb",
+      "dimensions": [
+        0.076,
+        0.155,
+        0.076
+      ],
+      "source": "public/assets/shindo/CREDITS.md",
+      "license": "Project-original"
+    },
+    "stool": {
+      "path": "assets/workflow2/stool.glb",
+      "dimensions": [
+        0.4,
+        0.74,
+        0.4
+      ],
+      "source": "https://www.innerscene.com/tools/library/3d-parts/pivot-swivel-bar-stool-f2ac959b",
+      "license": "CC0-1.0",
+      "materials": {
+        "Textile | original woven or leather PBR": {
+          "finish": "leather",
+          "color": "#704b45",
+          "roughness": 0.65
+        },
+        "Upholstery | matching tailored cord": {
+          "color": "#322323"
+        }
+      }
+    },
+    "paper-lantern": {
+      "path": "assets/nightlife/paper-lantern.glb",
+      "dimensions": [
+        0.4620159864425659,
+        0.9799706772745121,
+        0.4620159864425659
+      ],
+      "source": "public/assets/nightlife/README.md",
+      "license": "Project-original"
+    },
+    "ac-condenser": {
+      "path": "assets/nightlife/ac-condenser.glb",
+      "dimensions": [
+        0.9817226231098175,
+        0.6595000119954347,
+        0.46050000343471764
+      ],
+      "source": "public/assets/nightlife/README.md",
+      "license": "Project-original"
+    },
+    "twin-street-lamp": {
+      "path": "assets/nightlife/twin-street-lamp.glb",
+      "dimensions": [
+        1.0957942008972168,
+        0.9679999994039535,
+        0.7778971183300019
+      ],
+      "source": "public/assets/nightlife/README.md",
+      "license": "Project-original"
+    },
+    "yoto-ramen": {
+      "path": "assets/workflow2/yoto-ramen.glb",
+      "dimensions": [
+        4.9,
+        8.228,
+        4.21
+      ],
+      "source": "assets-source/workflow2/yoto-ramen-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Yoto timber": {
+          "finish": "walnut",
+          "color": "#c6ad8a",
+          "roughness": 0.8
+        }
+      }
+    },
+    "yoto-izakaya": {
+      "path": "assets/workflow2/yoto-izakaya.glb",
+      "dimensions": [
+        4.9,
+        16.1,
+        4.21
+      ],
+      "source": "assets-source/workflow2/yoto-izakaya-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Yoto timber": {
+          "finish": "walnut",
+          "color": "#9d927a",
+          "roughness": 0.8
+        }
+      }
+    }
+  },
+  "prefabs": {
+    "bar-service": {
+      "nodes": [
+        {
+          "id": "tools",
+          "label": "Cobbler shaker and hollow jigger",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "asset": "bar-tools"
+        }
+      ]
+    },
+    "bar-stool": {
+      "nodes": [
+        {
+          "id": "stool",
+          "label": "Leather stool",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "asset": "stool"
+        }
+      ]
+    },
+    "lantern-mount": {
+      "nodes": [
+        {
+          "id": "lantern",
+          "label": "Ribbed paper lantern",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "asset": "paper-lantern"
+        }
+      ]
+    },
+    "ramen-frontage": {
+      "nodes": [
+        {
+          "id": "shell",
+          "label": "Ramen facade, signs, door and window",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "asset": "yoto-ramen"
+        }
+      ]
+    },
+    "izakaya-frontage": {
+      "nodes": [
+        {
+          "id": "shell",
+          "label": "Izakaya facade, signs, door and window",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "asset": "yoto-izakaya"
+        }
+      ]
+    }
+  }
+}

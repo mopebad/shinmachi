@@ -34,6 +34,7 @@ export class CitySoundscape {
   private seconds = 0;
   private audible = false;
   private music?:VenueMusic;
+  speakerAt?:(i:number)=>{x:number;y:number;z:number}|undefined;
   readonly venuePlayer=new ShindoPlayer();
   get venuePlayback(){const state=this.venuePlayer.state;return{time:state.time,title:state.title,playing:this.context?.state==='running'&&!state.paused&&businessOpen('restaurant',this.hour),level:this.music?.levels.rms??0,bands:this.music?.levels.bands??[0,0,0]};}
 
@@ -67,7 +68,7 @@ export class CitySoundscape {
     master.gain.value = 0; master.connect(compressor).connect(this.analyser).connect(ctx.destination);
     this.street=ctx.createGain();this.street.connect(master);
     this.recording=ctx.createMediaStreamDestination();this.analyser.connect(this.recording);
-    this.music=new VenueMusic(ctx,master,this.venuePlayer);
+    this.music=new VenueMusic(ctx,master,this.venuePlayer,i=>this.speakerAt?.(i));
     for(const [kind,harmonics] of Object.entries({kei:[0,1,.35,.18,.12,.04],diesel:[0,1,.48,.22,.18,.1],hybrid:[0,1,.025,.01],ordinary:[0,1,.22,.12,.05],refined:[0,1,.12,.025,.01],sport:[0,1,.38,.22,.12,.06]}))this.waves.set(kind,ctx.createPeriodicWave(new Float32Array(harmonics.length),new Float32Array(harmonics)));
     const buffer = this.noise = ctx.createBuffer(1, ctx.sampleRate * 4, ctx.sampleRate), samples = buffer.getChannelData(0), rng = seededRandom(5129);
     let brown = 0;
