@@ -6,6 +6,7 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { NeighborhoodGenerator } from './generation/NeighborhoodGenerator';
 import { PlayerController, CameraMode } from './controls/PlayerController';
+import {ShindoInteraction} from './controls/ShindoInteraction';
 import { CityActivity } from './simulation/CityActivity';
 import { District } from './types';
 import { CitySoundscape } from './audio/CitySoundscape';
@@ -38,6 +39,7 @@ export class CityWorld {
   readonly camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, .08, 2200);
   readonly renderer: THREE.WebGLRenderer;
   readonly controller: PlayerController;
+  private readonly shindoInteraction:ShindoInteraction;
   readonly activity: CityActivity;
   readonly audio = new CitySoundscape();
   private readonly atmosphere: StreetAtmosphere;
@@ -94,7 +96,8 @@ export class CityWorld {
     this.assetsReady = this.nightlife.ready.then(() => { this.nightlife.update(this.time); this.renderer.shadowMap.needsUpdate = true; });
     this.activity = new CityActivity(this.scene, this.district);
     this.atmosphere = new StreetAtmosphere(this.scene, this.district, this.nightlife.exhausts);
-    this.controller = new PlayerController(this.camera, this.renderer.domElement, this.district.playerColliders ?? this.district.colliders, this.district.station);
+    this.controller = new PlayerController(this.camera, this.renderer.domElement, this.district.playerColliders ?? this.district.colliders, this.district.station,this.nightlife.venue);
+    this.shindoInteraction=new ShindoInteraction(this.camera,this.scene,this.renderer.domElement,this.nightlife.shindo,action=>this.audio.controlVenueMusic(action),()=>businessOpen('restaurant',this.time));
     this.renderer.domElement.addEventListener('pointerdown', () => { if (this.audio.status === 'start') void this.audio.start().catch(() => {}); });
     this.teleport(Number(new URLSearchParams(location.search).get('view') ?? 7));
     const target = new THREE.WebGLRenderTarget(innerWidth, innerHeight, { type: THREE.HalfFloatType }); target.samples = 2;
@@ -109,7 +112,7 @@ export class CityWorld {
   private readSeed(): number { const value = Number(new URLSearchParams(location.search).get('seed') ?? 8412); return Number.isFinite(value) ? value >>> 0 : 8412; }
   get cameraMode(): CameraMode { return this.controller.mode; }
   get locationIndex(): number { return this.location; }
-  get locationName(): string { if (this.location === 8 && this.camera.position.distanceTo(new THREE.Vector3(...HERO_STREET_VIEW.eye)) < 3) return HERO_STREET_VIEW.name; if (this.location === 7 && Math.abs(this.camera.position.z + 25) < 3.1) return 'Yoto nightlife street'; if (this.location === 5 && this.camera.position.distanceTo(new THREE.Vector3(...LOCATIONS[5].eye)) < 3) return 'Akane tower avenue'; if (this.location === 6 && this.camera.position.z < -36) return 'Railway approach'; return this.camera.position.y > 15 ? 'District overview' : { commercial: 'Shinmachi-dori', alley: 'Lantern alley', station: 'Station square', residential: 'Residential lane' }[districtZone(this.camera.position)]; }
+  get locationName(): string { const p=this.camera.position,r=this.nightlife.venue.room; if(p.y<-.5&&p.x>r.minX&&p.x<r.maxX&&p.z>r.minZ&&p.z<r.maxZ)return 'Shindo · B1 listening bar'; if (this.location === 8 && this.camera.position.distanceTo(new THREE.Vector3(...HERO_STREET_VIEW.eye)) < 3) return HERO_STREET_VIEW.name; if (this.location === 7 && Math.abs(this.camera.position.z + 25) < 3.1) return 'Yoto nightlife street'; if (this.location === 5 && this.camera.position.distanceTo(new THREE.Vector3(...LOCATIONS[5].eye)) < 3) return 'Akane tower avenue'; if (this.location === 6 && this.camera.position.z < -36) return 'Railway approach'; return this.camera.position.y > 15 ? 'District overview' : { commercial: 'Shinmachi-dori', alley: 'Lantern alley', station: 'Station square', residential: 'Residential lane' }[districtZone(this.camera.position)]; }
   get stats() { return { fps: Math.round(this.fps), drawCalls: this.renderer.info.render.calls, triangles: this.renderer.info.render.triangles, buildings: this.district.stats.buildings, ...this.activity.stats }; }
   setPlaying(value: boolean): void { this.playing = value; }
   private reviewPaused = import.meta.env.DEV && new URLSearchParams(location.search).get('review') === '1';
@@ -230,7 +233,7 @@ export class CityWorld {
       this.controller.update(delta); this.activity.update(simulationDelta, this.time, this.camera.position, this.playing ? .06 : 0); this.atmosphere.update(delta, this.time, this.camera);
       if (this.playing) { this.time = this.activity.simulation.hour; this.lightingAccumulator += simulationDelta; if (this.lightingAccumulator > .2) { this.setTime(this.time); this.lightingAccumulator = 0; } }
       this.reflections.update(this.camera); this.finish.uniforms.seconds.value = now / 1000;
-      this.sky.position.copy(this.camera.position); this.camera.updateMatrixWorld(); this.audio.update(delta, this.time, this.camera, this.activity.simulation); this.renderer.info.reset(); this.composer.render(delta); requestAnimationFrame(tick);
+      this.sky.position.copy(this.camera.position); this.camera.updateMatrixWorld(); this.audio.update(delta, this.time, this.camera, this.activity.simulation);this.nightlife.updateMusic(delta,this.audio.venuePlayback);this.shindoInteraction.update(delta); this.renderer.info.reset(); this.composer.render(delta); requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
   }

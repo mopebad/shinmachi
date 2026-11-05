@@ -21,7 +21,14 @@ export class Hud {
           <div class="controls__row"><label for="reflections">Road reflections</label><input id="reflections" type="checkbox" checked /></div>
           <div class="controls__row"><label for="fov">Lens <span id="lens-value">48°</span></label><input id="fov" type="range" min="35" max="80" step="1" value="48"/></div>
           <div class="controls__row controls__audio"><button id="sound" aria-pressed="false">Enable sound</button><label for="volume" class="sr-only">Sound volume</label><input id="volume" type="range" min="0" max="1" step="0.01" value="0.3" /></div>
+          <details class="venue-player"><summary>SHINDO music</summary>
+            <label class="sr-only" for="venue-track">Shindo track</label><select id="venue-track"></select>
+            <div class="venue-player__transport"><button id="venue-previous" aria-label="Previous Shindo track">Previous</button><button id="venue-play">Play</button><button id="venue-next" aria-label="Next Shindo track">Next</button></div>
+            <div class="venue-player__status" id="venue-status"></div><button id="venue-refresh">Refresh tracks</button>
+            <p>Add files to <code>public/assets/audio/nightlife/shindo/</code></p>
+          </details>
           <div class="controls__footer"><button id="hud-mode" aria-label="Switch walk or fly mode">WALK</button><span id="stats"></span></div>
+          <a href="./assets/music/CREDITS.html" target="_blank" rel="noopener" style="font-size:10px;color:inherit;opacity:.65">Music: Kevin MacLeod · CC BY 4.0</a>
         </div></details>
         <div class="explore-hint"><span>Click to look · <kbd>WASD</kbd> to move · <kbd>ESC</kbd> to release</span><button id="photo">Hide controls <kbd>H</kbd></button></div>
       </div>`;
@@ -37,6 +44,11 @@ export class Hud {
     on('#play', 'click', () => world.setPlaying(!world.playing));
     on('#sound', 'click', () => world.audio.toggle());
     on('#volume', 'input', e => world.audio.setVolume(Number((e.target as HTMLInputElement).value)));
+    on('#venue-track','change',e=>void world.audio.controlVenueMusic('select',Number((e.target as HTMLSelectElement).value)));
+    on('#venue-play','click',()=>void world.audio.controlVenueMusic('toggle'));
+    on('#venue-next','click',()=>void world.audio.controlVenueMusic('next'));
+    on('#venue-previous','click',()=>void world.audio.controlVenueMusic('previous'));
+    on('#venue-refresh','click',()=>void world.audio.venuePlayer.refresh());
     on('#photo', 'click', () => this.togglePhoto()); this.restore.addEventListener('click', () => this.togglePhoto());
     this.root.querySelectorAll<HTMLButtonElement>('[data-hour]').forEach(button => button.addEventListener('click', () => { world.setPlaying(false); world.setTime(Number(button.dataset.hour)); }));
     window.addEventListener('keydown', e => {
@@ -58,6 +70,11 @@ export class Hud {
       q('#lens-value').textContent = `${Math.round(this.world.camera.fov)}°`;
       const play = q<HTMLButtonElement>('#play'); play.textContent = this.world.playing ? 'Ⅱ' : '▶'; play.setAttribute('aria-pressed', String(this.world.playing));
       const sound = q<HTMLButtonElement>('#sound'); sound.textContent = this.world.audio.status === 'start' ? 'Enable sound' : this.world.audio.status === 'on' ? 'Sound on · M' : 'Sound muted · M'; sound.setAttribute('aria-pressed', String(this.world.audio.status === 'on'));
+      const music=this.world.audio.venuePlayer.state,track=q<HTMLSelectElement>('#venue-track'),signature=JSON.stringify(music.tracks);
+      if(track.dataset.tracks!==signature){track.replaceChildren(...music.tracks.map((t,i)=>new Option(t.title,String(i))));track.dataset.tracks=signature;}
+      if(document.activeElement!==track)track.value=String(music.index);
+      q('#venue-play').textContent=music.paused?'Play':'Pause';q('#venue-play').setAttribute('aria-pressed',String(!music.paused));
+      q('#venue-status').textContent=music.error??(music.loading?'Reading track folder…':music.buffering?'Loading track…':`${music.index+1} / ${music.tracks.length} · ${music.paused?'Paused':this.world.audio.status==='muted'?'Playing · master muted':'Playing in venue'} · ${Math.floor(music.time/60)}:${String(Math.floor(music.time%60)).padStart(2,'0')}`);
       this.root.querySelectorAll<HTMLButtonElement>('[data-hour]').forEach(b => b.classList.toggle('active', Math.abs(Number(b.dataset.hour) - this.world.time) < .1));
       const s = this.world.stats; q('#stats').textContent = `${s.fps} fps · ${s.pedestrians} people`;
     };

@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import {shindoTrackPlugin} from './tools/shindo-track-manifest.mjs';
 
 export default defineConfig({
-  plugins: [{
+  plugins: [shindoTrackPlugin(),{
     name: 'local-visual-review',
     configureServer(server) {
       server.middlewares.use('/__review/capture', (request, response) => {

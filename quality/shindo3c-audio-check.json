@@ -1,0 +1,669 @@
+{
+  "transport": [
+    {
+      "action": "next",
+      "index": 0,
+      "ready": 4
+    },
+    {
+      "action": "previous",
+      "index": 3,
+      "ready": 4
+    }
+  ],
+  "motion": [
+    {
+      "time": 0.632744,
+      "playing": true,
+      "level": 0.6563307545934176,
+      "angle": -2.2086932244478,
+      "levels": {
+        "time": 0.632744,
+        "title": "The Weeknd - Coming Down (JJTBEATZ House Remix) [FREE DL]",
+        "playing": true,
+        "level": 1,
+        "bands": [
+          0.9205882352941176,
+          0.632579185520362,
+          0.5752941176470588
+        ]
+      }
+    },
+    {
+      "time": 0.731429,
+      "playing": true,
+      "level": 0.9307253042426995,
+      "angle": -2.5531688589139208,
+      "levels": {
+        "time": 0.731429,
+        "title": "The Weeknd - Coming Down (JJTBEATZ House Remix) [FREE DL]",
+        "playing": true,
+        "level": 1,
+        "bands": [
+          0.9137254901960784,
+          0.6096530920060332,
+          0.5394771241830065
+        ]
+      }
+    },
+    {
+      "time": 0.833016,
+      "playing": true,
+      "level": 0.39345016992142645,
+      "angle": -2.907774384358617,
+      "levels": {
+        "time": 0.833016,
+        "title": "The Weeknd - Coming Down (JJTBEATZ House Remix) [FREE DL]",
+        "playing": true,
+        "level": 0.23396323432592117,
+        "bands": [
+          0.9117647058823529,
+          0.5689291101055807,
+          0.4857516339869281
+        ]
+      }
+    },
+    {
+      "time": 0.931701,
+      "playing": true,
+      "level": 0.329262156826778,
+      "angle": -3.2522500188247374,
+      "levels": {
+        "time": 0.939032,
+        "title": "The Weeknd - Coming Down (JJTBEATZ House Remix) [FREE DL]",
+        "playing": true,
+        "level": 0.3023614580377645,
+        "bands": [
+          0.9127450980392157,
+          0.5966817496229261,
+          0.5792156862745098
+        ]
+      }
+    },
+    {
+      "time": 1.039093,
+      "playing": true,
+      "level": 0.37276041085480066,
+      "angle": -3.627118816885088,
+      "levels": {
+        "time": 1.039093,
+        "title": "The Weeknd - Coming Down (JJTBEATZ House Remix) [FREE DL]",
+        "playing": true,
+        "level": 1,
+        "bands": [
+          0.9362745098039216,
+          0.6328808446455505,
+          0.5206535947712418
+        ]
+      }
+    },
+    {
+      "time": 1.14068,
+      "playing": true,
+      "level": 0.8819712088509879,
+      "angle": -3.981724342329783,
+      "levels": {
+        "time": 1.146585,
+        "title": "The Weeknd - Coming Down (JJTBEATZ House Remix) [FREE DL]",
+        "playing": true,
+        "level": 1,
+        "bands": [
+          0.9303921568627451,
+          0.5867269984917044,
+          0.4666666666666667
+        ]
+      }
+    },
+    {
+      "time": 1.249866,
+      "playing": true,
+      "level": 0.6699167405893945,
+      "angle": -4.362855381746289,
+      "levels": {
+        "time": 1.250975,
+        "title": "The Weeknd - Coming Down (JJTBEATZ House Remix) [FREE DL]",
+        "playing": true,
+        "level": 0.35367476230675976,
+        "bands": [
+          0.9235294117647059,
+          0.604524886877828,
+          0.5708496732026144
+        ]
+      }
+    },
+    {
+      "time": 1.351091,
+      "playing": true,
+      "level": 0.5256858624028936,
+      "angle": -4.716197288812541,
+      "levels": {
+        "time": 1.352562,
+        "title": "The Weeknd - Coming Down (JJTBEATZ House Remix) [FREE DL]",
+        "playing": true,
+        "level": 0.4540100872085587,
+        "bands": [
+          0.9284313725490196,
+          0.6512820512820513,
+          0.6516339869281046
+        ]
+      }
+    },
+    {
+      "time": 1.451247,
+      "playing": true,
+      "level": 0.37570646062879803,
+      "angle": -5.065807681938029,
+      "levels": {
+        "time": 1.451247,
+        "title": "The Weeknd - Coming Down (JJTBEATZ House Remix) [FREE DL]",
+        "playing": true,
+        "level": 0.24812297992499024,
+        "bands": [
+          0.9117647058823529,
+          0.6159879336349925,
+          0.6098039215686275
+        ]
+      }
+    },
+    {
+      "time": 1.552834,
+      "playing": true,
+      "level": 0.45656750494318965,
+      "angle": -5.420413207382725,
+      "levels": {
+        "time": 1.552834,
+        "title": "The Weeknd - Coming Down (JJTBEATZ House Remix) [FREE DL]",
+        "playing": true,
+        "level": 1,
+        "bands": [
+          0.9117647058823529,
+          0.7116138763197587,
+          0.6394771241830065
+        ]
+      }
+    },
+    {
+      "time": 1.651519,
+      "playing": true,
+      "level": 0.8753800604766883,
+      "angle": -5.764888841848846,
+      "levels": {
+        "time": 1.651519,
+        "title": "The Weeknd - Coming Down (JJTBEATZ House Remix) [FREE DL]",
+        "playing": true,
+        "level": 0.935695091382436,
+        "bands": [
+          0.9176470588235294,
+          0.6708898944193061,
+          0.5866666666666667
+        ]
+      }
+    },
+    {
+      "time": 1.757216,
+      "playing": true,
+      "level": 0.6507339021760987,
+      "angle": -6.133840973744935,
+      "levels": {
+        "time": 1.758912,
+        "title": "The Weeknd - Coming Down (JJTBEATZ House Remix) [FREE DL]",
+        "playing": true,
+        "level": 0.7545247794321218,
+        "bands": [
+          0.9392156862745098,
+          0.6850678733031674,
+          0.6530718954248366
+        ]
+      }
+    }
+  ],
+  "zones": [
+    {
+      "name": "street",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.9694584608078003,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 2.76898,
+            "duration": 229.389932,
+            "starts": 0,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.0024595281574875116,
+            "speakerGains": [
+              0.0003325270372442901,
+              0.0003633808228187263
+            ],
+            "roomReflections": 0.0007442081696353853,
+            "levels": {
+              "rms": 0.6499885461981539,
+              "bands": [
+                0.9382352941176471,
+                0.7194570135746606,
+                0.6620915032679738
+              ]
+            },
+            "gainOutside": 0.01676076278090477,
+            "cutoff": 2201.17578125
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 4.902313,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.029372624214396435
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.022845374388975003
+          },
+          {
+            "kind": "refined",
+            "x": 1.8,
+            "z": -33,
+            "gain": 0.0004940892641737033
+          },
+          {
+            "kind": "ordinary",
+            "x": 1.8,
+            "z": -48,
+            "gain": 0.00018229914013680304
+          }
+        ],
+        "trafficAssignments": [
+          8,
+          4,
+          null,
+          null
+        ],
+        "trafficGain": 0.000676520008710213,
+        "audible": true,
+        "rms": 0.0008181605020298022
+      }
+    },
+    {
+      "name": "stairs",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.6466196775436401,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 3.774549,
+            "duration": 229.389932,
+            "starts": 0,
+            "error": null,
+            "mix": {
+              "inside": 0.085,
+              "outside": 0.009,
+              "cutoff": 3975,
+              "zone": "stairwell",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.08414746820926666,
+            "speakerGains": [
+              0,
+              0
+            ],
+            "roomReflections": 0,
+            "levels": {
+              "rms": 0.3781720749487723,
+              "bands": [
+                0.9411764705882353,
+                0.6935143288084464,
+                0.6631372549019607
+              ]
+            },
+            "gainOutside": 0.009079448878765106,
+            "cutoff": 3963.5078125
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 5.910732,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.029372624214396435
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.022845374388975003
+          },
+          {
+            "kind": "refined",
+            "x": 1.8,
+            "z": -33,
+            "gain": 0.0005301716327111755
+          },
+          {
+            "kind": "ordinary",
+            "x": 1.8,
+            "z": -48,
+            "gain": 0.00034128461324769695
+          }
+        ],
+        "trafficAssignments": [
+          8,
+          4,
+          null,
+          null
+        ],
+        "trafficGain": 0.0008713758725207299,
+        "audible": true,
+        "rms": 0.004186422750953548
+      }
+    },
+    {
+      "name": "inside",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.1387893408536911,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 4.777506,
+            "duration": 229.389932,
+            "starts": 0,
+            "error": null,
+            "mix": {
+              "inside": 0.25,
+              "outside": 0,
+              "cutoff": 17500,
+              "zone": "basement",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.2358509749174118,
+            "speakerGains": [
+              0.032108571380376816,
+              0.03465460613369942
+            ],
+            "roomReflections": 0.02049151621758938,
+            "levels": {
+              "rms": 0.35496723031974126,
+              "bands": [
+                0.9392156862745098,
+                0.6171945701357466,
+                0.5733333333333334
+              ]
+            },
+            "gainOutside": 0.00009639094059821218,
+            "cutoff": 17408.71484375
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 6.910839,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.029372624214396435
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.022845374388975003
+          },
+          {
+            "kind": "refined",
+            "x": 1.8,
+            "z": -33,
+            "gain": 0.0005350157069430565
+          },
+          {
+            "kind": "ordinary",
+            "x": 1.8,
+            "z": -48,
+            "gain": 0.0005704195145863622
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -63,
+            "gain": 0.00004711324063721435
+          }
+        ],
+        "trafficAssignments": [
+          8,
+          4,
+          0,
+          null
+        ],
+        "trafficGain": 0.0011524399742484093,
+        "audible": true,
+        "rms": 0.004379230961768119
+      }
+    },
+    {
+      "name": "leave",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.9692426323890686,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 5.775964,
+            "duration": 229.389932,
+            "starts": 0,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.0025072383868973702,
+            "speakerGains": [
+              0.0003413611266296357,
+              0.00036839384119957685
+            ],
+            "roomReflections": 0.0007317772833630443,
+            "levels": {
+              "rms": 1,
+              "bands": [
+                0.9186274509803921,
+                0.575867269984917,
+                0.5117647058823529
+              ]
+            },
+            "gainOutside": 0.016755282878875732,
+            "cutoff": 2203.311279296875
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 7.9122,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.029372624214396435
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.022845374388975003
+          },
+          {
+            "kind": "refined",
+            "x": 1.8,
+            "z": -33,
+            "gain": 0.0004940892641737033
+          },
+          {
+            "kind": "ordinary",
+            "x": 1.8,
+            "z": -48,
+            "gain": 0.00018229914013680304
+          }
+        ],
+        "trafficAssignments": [
+          8,
+          4,
+          null,
+          null
+        ],
+        "trafficGain": 0.0006765258440282196,
+        "audible": true,
+        "rms": 0.006460121886956136
+      }
+    }
+  ],
+  "pause": {
+    "angle": -6.133840973744935,
+    "level": 0.00048195757196678565,
+    "survivesMute": true
+  }
+}

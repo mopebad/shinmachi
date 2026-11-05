@@ -1,0 +1,538 @@
+{
+  "first": {
+    "tracks": [
+      {
+        "file": "01-validation-edm.mp3",
+        "title": "01-validation-edm",
+        "url": "/assets/audio/nightlife/shindo/01-validation-edm.mp3"
+      },
+      {
+        "file": "02-validation-jazz.mp3",
+        "title": "02-validation-jazz",
+        "url": "/assets/audio/nightlife/shindo/02-validation-jazz.mp3"
+      }
+    ],
+    "index": 0,
+    "title": "01-validation-edm",
+    "paused": false,
+    "wanted": true,
+    "loading": false,
+    "error": null,
+    "time": 0.902318,
+    "duration": 365.688188
+  },
+  "next": {
+    "tracks": [
+      {
+        "file": "01-validation-edm.mp3",
+        "title": "01-validation-edm",
+        "url": "/assets/audio/nightlife/shindo/01-validation-edm.mp3"
+      },
+      {
+        "file": "02-validation-jazz.mp3",
+        "title": "02-validation-jazz",
+        "url": "/assets/audio/nightlife/shindo/02-validation-jazz.mp3"
+      }
+    ],
+    "index": 1,
+    "title": "02-validation-jazz",
+    "paused": false,
+    "wanted": true,
+    "loading": false,
+    "error": null,
+    "time": 0.658894,
+    "duration": 266.5535
+  },
+  "previous": {
+    "tracks": [
+      {
+        "file": "01-validation-edm.mp3",
+        "title": "01-validation-edm",
+        "url": "/assets/audio/nightlife/shindo/01-validation-edm.mp3"
+      },
+      {
+        "file": "02-validation-jazz.mp3",
+        "title": "02-validation-jazz",
+        "url": "/assets/audio/nightlife/shindo/02-validation-jazz.mp3"
+      }
+    ],
+    "index": 0,
+    "title": "01-validation-edm",
+    "paused": false,
+    "wanted": true,
+    "loading": false,
+    "error": null,
+    "time": 0.406349,
+    "duration": 365.688188
+  },
+  "paused": {
+    "tracks": [
+      {
+        "file": "01-validation-edm.mp3",
+        "title": "01-validation-edm",
+        "url": "/assets/audio/nightlife/shindo/01-validation-edm.mp3"
+      },
+      {
+        "file": "02-validation-jazz.mp3",
+        "title": "02-validation-jazz",
+        "url": "/assets/audio/nightlife/shindo/02-validation-jazz.mp3"
+      }
+    ],
+    "index": 0,
+    "title": "01-validation-edm",
+    "paused": true,
+    "wanted": false,
+    "loading": false,
+    "error": null,
+    "time": 0.406349,
+    "duration": 365.688188
+  },
+  "unmuted": {
+    "tracks": [
+      {
+        "file": "01-validation-edm.mp3",
+        "title": "01-validation-edm",
+        "url": "/assets/audio/nightlife/shindo/01-validation-edm.mp3"
+      },
+      {
+        "file": "02-validation-jazz.mp3",
+        "title": "02-validation-jazz",
+        "url": "/assets/audio/nightlife/shindo/02-validation-jazz.mp3"
+      }
+    ],
+    "index": 0,
+    "title": "01-validation-edm",
+    "paused": true,
+    "wanted": false,
+    "loading": false,
+    "error": null,
+    "time": 0.406349,
+    "duration": 365.688188
+  },
+  "automatic": {
+    "tracks": [
+      {
+        "file": "01-validation-edm.mp3",
+        "title": "01-validation-edm",
+        "url": "/assets/audio/nightlife/shindo/01-validation-edm.mp3"
+      },
+      {
+        "file": "02-validation-jazz.mp3",
+        "title": "02-validation-jazz",
+        "url": "/assets/audio/nightlife/shindo/02-validation-jazz.mp3"
+      }
+    ],
+    "index": 1,
+    "title": "02-validation-jazz",
+    "paused": false,
+    "wanted": true,
+    "loading": false,
+    "error": null,
+    "time": 0.647185,
+    "duration": 266.5535
+  },
+  "zones": [
+    {
+      "name": "street",
+      "eye": [
+        19.5,
+        1.82,
+        -26.9
+      ],
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 1.497687,
+            "duration": 266.5535,
+            "starts": 0,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0,
+            "gainOutside": 0.01657952554523945,
+            "cutoff": 2074.664306640625
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 4.841361,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "gainOutside": 0.00016054927255026996,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.029372624214396435
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.022845374388975003
+          },
+          {
+            "kind": "refined",
+            "x": 1.8,
+            "z": -33,
+            "gain": 0.0004940892641737033
+          },
+          {
+            "kind": "ordinary",
+            "x": 1.8,
+            "z": -48,
+            "gain": 0.00018229914013680304
+          }
+        ],
+        "trafficAssignments": [
+          8,
+          4,
+          null,
+          null
+        ],
+        "trafficGain": 0.0006761395634384826,
+        "audible": true,
+        "rms": 0.002420230080619008
+      }
+    },
+    {
+      "name": "stairs",
+      "eye": [
+        19.5,
+        0.29000000000000004,
+        -30
+      ],
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 2.356825,
+            "duration": 266.5535,
+            "starts": 0,
+            "error": null,
+            "mix": {
+              "inside": 0.085,
+              "outside": 0.009,
+              "cutoff": 3975,
+              "zone": "stairwell",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.08328426629304886,
+            "gainOutside": 0.009152979589998722,
+            "cutoff": 3949.033935546875
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 5.700499,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.029372624214396435
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.022845374388975003
+          },
+          {
+            "kind": "refined",
+            "x": 1.8,
+            "z": -33,
+            "gain": 0.0005301716327111755
+          },
+          {
+            "kind": "ordinary",
+            "x": 1.8,
+            "z": -48,
+            "gain": 0.00034128461324769695
+          }
+        ],
+        "trafficAssignments": [
+          8,
+          4,
+          null,
+          null
+        ],
+        "trafficGain": 0.0008712889102753252,
+        "audible": true,
+        "rms": 0.001463683506796926
+      }
+    },
+    {
+      "name": "inside",
+      "eye": [
+        18.85,
+        -1.2399999999999998,
+        -38.3
+      ],
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 3.207256,
+            "duration": 266.5535,
+            "starts": 0,
+            "error": null,
+            "mix": {
+              "inside": 0.25,
+              "outside": 0,
+              "cutoff": 17500,
+              "zone": "basement",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.2465105950832367,
+            "gainOutside": 0.0001915713946800679,
+            "cutoff": 17307.322265625
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 6.55093,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.029372624214396435
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.022845374388975003
+          },
+          {
+            "kind": "refined",
+            "x": 1.8,
+            "z": -33,
+            "gain": 0.0005350157069430565
+          },
+          {
+            "kind": "ordinary",
+            "x": 1.8,
+            "z": -48,
+            "gain": 0.0005704195145863622
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -63,
+            "gain": 0.00004711324063721435
+          }
+        ],
+        "trafficAssignments": [
+          8,
+          4,
+          0,
+          null
+        ],
+        "trafficGain": 0.001152274457126623,
+        "audible": true,
+        "rms": 0.004938234810683821
+      }
+    },
+    {
+      "name": "leave",
+      "eye": [
+        19.5,
+        1.82,
+        -26.9
+      ],
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 4.065516,
+            "duration": 266.5535,
+            "starts": 0,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.004977114498615265,
+            "gainOutside": 0.01659626141190529,
+            "cutoff": 2307.830078125
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 7.409318,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.029372624214396435
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.022845374388975003
+          },
+          {
+            "kind": "refined",
+            "x": 1.8,
+            "z": -33,
+            "gain": 0.0004940892641737033
+          },
+          {
+            "kind": "ordinary",
+            "x": 1.8,
+            "z": -48,
+            "gain": 0.00018229914013680304
+          }
+        ],
+        "trafficAssignments": [
+          8,
+          4,
+          null,
+          null
+        ],
+        "trafficGain": 0.0006767333543393761,
+        "audible": true,
+        "rms": 0.0009678041747089852
+      }
+    }
+  ]
+}

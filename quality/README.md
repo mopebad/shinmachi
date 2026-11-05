@@ -1,5 +1,7 @@
 # Repeatable visual review
 
+The latest [Yoto After Dark](./NIGHTLIFE_DEVELOPMENT_3A.md) includes [matched comparisons and actual walk/audio recording](./YOTO_REVIEW.html), real basement/stair geometry, licensing and spatial validation. Use a fresh `?view=7&seed=8412&review=1` page and import the [Yoto helper](../tools/yoto-browser-checks.mjs): `audit()`, `captureSet('after')`, `validateCaptures()` and `simulationTest()`. Enable sound with the existing button, then run `playbackTest()` and `recordWalk()` in a visible tab. The walkthrough uses the real walking controller throughout; MP4 and PCM sidecar have adjacent position/audio state traces. Preserve original before captures. Ordinary play uses `?view=7&seed=8412`, 21:00, with the B1 entrance near X 19.5 / Z −27.5.
+
 The latest [City Development 2B](./CITY_DEVELOPMENT_2B.md) differentiates the existing commercial, station, residential and restaurant areas. Its [nine-pair comparison viewer](./NEIGHBORHOOD_REVIEW.html) includes day/night housing, Hero Street, station, restaurant alley, transition and overview views. From a fresh `?view=8&seed=8412&review=1` page, import the [neighborhood helper](../tools/neighborhood-browser-checks.mjs), then run `captureSet('after')`, `audit()`, `replayGeometry()`, `validateCaptures()` and `exercise()`. [Spatial validation](./neighborhood-geometry-audit.json), [two-load simulation results](./neighborhood-simulation-audit.json), [live frame timing](./neighborhood-frame-timing.json) and [research credits](./references/neighborhoods/README.md) are included. Preserve original before captures. Camera/render conditions match; actor routes can differ under revised district preferences.
 
 The preceding [Environment Development 1B](./ENVIRONMENT_DEVELOPMENT_1B.md) adds the railway/station district. Its [comparison viewer](./RAIL_DISTRICT_REVIEW.html) contains nine fixed before/after pairs plus actual arrival, service-lane, under-rail and forecourt close-ups. The [rail district helper](../tools/rail-district-browser-checks.mjs) runs `audit()`, `captureSet('after')`, `validateCaptures()`, `performanceReview()` and `exchange()` from a fresh `?view=2&seed=8412&review=1` page. [Spatial validation](./rail-district-geometry-audit.json), [two-load passenger closure results](./rail-district-passenger-audit.json), [performance](./rail-district-performance.json) and licensed [references](./references/rail-district/README.md) are included. Keep the tab visible while timing; preserve the original before captures.
@@ -127,3 +129,11 @@ await city.captureBenchmark('fixture-on', 'nightlife', 21, {
 ```
 
 An optional fourth capture argument supplies a study framing without changing any gameplay camera preset. The contact effect also has a URL opt-out, `?ao=0`. Existing road-reflection controls remain separate.
+
+[SHINDO 3B gallery](./SHINDO_REVIEW.html) contains three fixed-camera before/after pairs, seven final venue views and the real local-music controls. [Short notes and music setup](./SHINDO_3B.md).
+
+[SHINDO 3C listening-bar gallery](./SHINDO_3C_REVIEW.html) adds four comparisons, eight final views and a silent recording of actual playback-driven details. [Concise implementation and validation notes](./SHINDO_3C.md).
+
+[SHINDO 3D gallery](./SHINDO_3D_REVIEW.html): restrained signage, a single-deck selector, warmer bar details and real in-world music controls. [Short notes](./SHINDO_3D.md).
+
+[SHINDO 3E stair correction](./SHINDO_3E_REVIEW.html): four camera-matched comparisons, the geometry-only flicker fix and an actual walking-camera recording.

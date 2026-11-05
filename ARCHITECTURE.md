@@ -1,5 +1,11 @@
 # Architecture
 
+## Yoto After Dark
+
+[YotoVenueLayout.ts](./src/world/generation/YotoVenueLayout.ts) owns the basement surfaces, eighteen treads, retaining/furniture boxes and acoustic positions. [YotoArchitecture.ts](./src/world/generation/YotoArchitecture.ts) renders that contract inside the retained nightlife layer. The player controller delegates locally to these surfaces without changing station or NPC traversal. Both ground layers contain the actual shaft opening. A reserved rear service gap protects alternate-seed parcels without changing their legacy random draw counts.
+
+[VenueMusic.ts](./src/world/audio/VenueMusic.ts) streams two locally bundled CC BY 4.0 recordings into the existing master chain; [VenueMusicMix.ts](./src/world/audio/VenueMusicMix.ts) supplies shared room/stair/portal gain and filtering. Existing unlock, mute, business schedules, volume and recording controls remain. [The current report](./quality/NIGHTLIFE_DEVELOPMENT_3A.md) includes 87 passing tests, actual video/audio, measured rendering cost and limitations. Earlier statements that all shops are player-inaccessible describe historical milestones; the Yoto foyer and basement are now enterable, while private upper tenants remain offstage.
+
 ## Station Development 3C
 
 [RailPassengers.ts](./src/world/simulation/RailPassengers.ts) integrates real inbound/outbound journeys with the existing station visitor pool, six door queues, alighting priority, atomic transfer-path reservations and a twelve-position standing capacity. [RailPassengerGeometry.ts](./src/world/simulation/RailPassengerGeometry.ts) constrains movement to supported platform routes, real door anchors/sills and each carriage's floor. [StationTraffic.ts](./src/world/simulation/StationTraffic.ts) replaces timed platform returns with train-dependent boarding and reuses its gate/stair/exit routes for alighters and service-closure returns. Moving riders retain carriage-local positions until off-map destination completion.

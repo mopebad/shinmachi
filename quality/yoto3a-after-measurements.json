@@ -1,0 +1,588 @@
+{
+  "cost": {
+    "viewport": [
+      1323,
+      804
+    ],
+    "pixelRatio": 1,
+    "medianMs": 6.799999952316284,
+    "p95Ms": 7.300000190734863,
+    "stats": {
+      "fps": 109,
+      "drawCalls": 856,
+      "triangles": 4407636,
+      "buildings": 77,
+      "pedestrians": 53,
+      "vehicles": 10
+    },
+    "method": "30 synchronous composite renders after 8 warmups, gl.finish; CPU+GPU composite wall time, not GPU-only"
+  },
+  "clock": 300.000000000023,
+  "venue": {
+    "id": "shindo",
+    "name": "深度 / SHINDO",
+    "groundY": 0.115,
+    "floorY": -2.945,
+    "frontage": {
+      "x": 18.14,
+      "z": -27.55,
+      "width": 4.68,
+      "height": 9.9
+    },
+    "exteriorReservation": {
+      "minX": 15.8,
+      "maxX": 21.2,
+      "minZ": -30.35,
+      "maxZ": -27.6
+    },
+    "shaft": {
+      "minX": 18.6,
+      "maxX": 20.4,
+      "minZ": -32.64,
+      "maxZ": -27.5
+    },
+    "room": {
+      "minX": 17.5,
+      "maxX": 20.4,
+      "minZ": -39,
+      "maxZ": -32.64
+    },
+    "npcReservation": {
+      "minX": 18.45,
+      "maxX": 20.55,
+      "minZ": -39.15,
+      "maxZ": -30.35
+    },
+    "entry": {
+      "x": 19.5,
+      "y": 0.115,
+      "z": -27.35
+    },
+    "source": {
+      "x": 19.15,
+      "y": -1.6949999999999998,
+      "z": -37.9
+    },
+    "tenants": [
+      {
+        "floor": "B1",
+        "name": "深度",
+        "detail": "SHINDO · MUSIC BAR",
+        "enterable": true
+      },
+      {
+        "floor": "1F",
+        "name": "夜灯亭",
+        "detail": "FOYER / SMALL KITCHEN",
+        "enterable": true
+      },
+      {
+        "floor": "2F",
+        "name": "余白",
+        "detail": "LISTENING ROOM · OFFSTAGE",
+        "enterable": false
+      },
+      {
+        "floor": "3F",
+        "name": "音庭",
+        "detail": "KARAOKE · OFFSTAGE",
+        "enterable": false
+      }
+    ],
+    "surfaces": [
+      {
+        "id": "entrance",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -27.6,
+        "maxZ": -27.15,
+        "y": 0.115
+      },
+      {
+        "id": "foyer",
+        "minX": 15.98,
+        "maxX": 18.45,
+        "minZ": -30.22,
+        "maxZ": -27.5,
+        "y": 0.115
+      },
+      {
+        "id": "basement-floor",
+        "minX": 17.5,
+        "maxX": 20.4,
+        "minZ": -39,
+        "maxZ": -32.64,
+        "y": -2.945
+      },
+      {
+        "id": "tread-1",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -27.880000000000003,
+        "maxZ": -27.6,
+        "y": -0.05500000000000001
+      },
+      {
+        "id": "tread-2",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -28.16,
+        "maxZ": -27.880000000000003,
+        "y": -0.22500000000000003
+      },
+      {
+        "id": "tread-3",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -28.44,
+        "maxZ": -28.16,
+        "y": -0.395
+      },
+      {
+        "id": "tread-4",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -28.720000000000002,
+        "maxZ": -28.44,
+        "y": -0.5650000000000001
+      },
+      {
+        "id": "tread-5",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -29,
+        "maxZ": -28.720000000000002,
+        "y": -0.7350000000000001
+      },
+      {
+        "id": "tread-6",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -29.28,
+        "maxZ": -29,
+        "y": -0.905
+      },
+      {
+        "id": "tread-7",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -29.560000000000002,
+        "maxZ": -29.28,
+        "y": -1.0750000000000002
+      },
+      {
+        "id": "tread-8",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -29.840000000000003,
+        "maxZ": -29.560000000000002,
+        "y": -1.245
+      },
+      {
+        "id": "tread-9",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -30.12,
+        "maxZ": -29.840000000000003,
+        "y": -1.415
+      },
+      {
+        "id": "tread-10",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -30.400000000000002,
+        "maxZ": -30.12,
+        "y": -1.5850000000000002
+      },
+      {
+        "id": "tread-11",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -30.68,
+        "maxZ": -30.400000000000002,
+        "y": -1.7550000000000001
+      },
+      {
+        "id": "tread-12",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -30.96,
+        "maxZ": -30.68,
+        "y": -1.925
+      },
+      {
+        "id": "tread-13",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -31.240000000000002,
+        "maxZ": -30.96,
+        "y": -2.0949999999999998
+      },
+      {
+        "id": "tread-14",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -31.520000000000003,
+        "maxZ": -31.240000000000002,
+        "y": -2.265
+      },
+      {
+        "id": "tread-15",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -31.8,
+        "maxZ": -31.520000000000003,
+        "y": -2.435
+      },
+      {
+        "id": "tread-16",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -32.08,
+        "maxZ": -31.8,
+        "y": -2.605
+      },
+      {
+        "id": "tread-17",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -32.36,
+        "maxZ": -32.08,
+        "y": -2.775
+      },
+      {
+        "id": "tread-18",
+        "minX": 18.6,
+        "maxX": 20.4,
+        "minZ": -32.64,
+        "maxZ": -32.36,
+        "y": -2.945
+      }
+    ],
+    "boxes": [
+      {
+        "id": "shaft-west",
+        "minX": 18.43,
+        "maxX": 18.6,
+        "minZ": -32.67,
+        "maxZ": -27.6,
+        "minY": -3.145,
+        "maxY": 2.9,
+        "material": "wall",
+        "collision": true
+      },
+      {
+        "id": "shaft-east",
+        "minX": 20.4,
+        "maxX": 20.55,
+        "minZ": -32.67,
+        "maxZ": -27.6,
+        "minY": -3.145,
+        "maxY": 2.9,
+        "material": "wall",
+        "collision": true
+      },
+      {
+        "id": "room-west",
+        "minX": 17.34,
+        "maxX": 17.5,
+        "minZ": -39.15,
+        "maxZ": -32.64,
+        "minY": -3.145,
+        "maxY": -0.3,
+        "material": "wall",
+        "collision": true
+      },
+      {
+        "id": "room-east",
+        "minX": 20.4,
+        "maxX": 20.55,
+        "minZ": -39.15,
+        "maxZ": -32.64,
+        "minY": -3.145,
+        "maxY": -0.3,
+        "material": "wall",
+        "collision": true
+      },
+      {
+        "id": "room-back",
+        "minX": 17.34,
+        "maxX": 20.55,
+        "minZ": -39.15,
+        "maxZ": -39,
+        "minY": -3.145,
+        "maxY": -0.3,
+        "material": "wall",
+        "collision": true
+      },
+      {
+        "id": "room-entry-return",
+        "minX": 17.34,
+        "maxX": 18.6,
+        "minZ": -32.8,
+        "maxZ": -32.64,
+        "minY": -3.145,
+        "maxY": -0.3,
+        "material": "wall",
+        "collision": true
+      },
+      {
+        "id": "ceiling",
+        "minX": 17.34,
+        "maxX": 20.55,
+        "minZ": -39.15,
+        "maxZ": -32.67,
+        "minY": -0.42,
+        "maxY": -0.25,
+        "material": "ceiling",
+        "collision": true
+      },
+      {
+        "id": "foyer-back",
+        "minX": 15.8,
+        "maxX": 18.43,
+        "minZ": -30.4,
+        "maxZ": -30.22,
+        "minY": 0.115,
+        "maxY": 3.3,
+        "material": "wall",
+        "collision": true
+      },
+      {
+        "id": "foyer-west",
+        "minX": 15.8,
+        "maxX": 15.98,
+        "minZ": -30.22,
+        "maxZ": -27.55,
+        "minY": 0.115,
+        "maxY": 3.3,
+        "material": "wall",
+        "collision": true
+      },
+      {
+        "id": "foyer-front-left",
+        "minX": 15.98,
+        "maxX": 16.95,
+        "minZ": -27.65,
+        "maxZ": -27.52,
+        "minY": 0.115,
+        "maxY": 2.65,
+        "material": "wood",
+        "collision": true
+      },
+      {
+        "id": "foyer-front-right",
+        "minX": 18,
+        "maxX": 18.43,
+        "minZ": -27.65,
+        "maxZ": -27.52,
+        "minY": 0.115,
+        "maxY": 2.65,
+        "material": "wood",
+        "collision": true
+      },
+      {
+        "id": "foyer-counter",
+        "minX": 16.12,
+        "maxX": 17.48,
+        "minZ": -30.08,
+        "maxZ": -29.5,
+        "minY": 0.115,
+        "maxY": 1.165,
+        "material": "wood",
+        "collision": true
+      },
+      {
+        "id": "bar-counter",
+        "minX": 17.6,
+        "maxX": 18.2,
+        "minZ": -37.1,
+        "maxZ": -33.8,
+        "minY": -2.945,
+        "maxY": -1.9249999999999998,
+        "material": "wood",
+        "collision": true
+      },
+      {
+        "id": "stool-0",
+        "minX": 18.55,
+        "maxX": 18.98,
+        "minZ": -34.57,
+        "maxZ": -34.13,
+        "minY": -2.945,
+        "maxY": -2.2649999999999997,
+        "material": "wood",
+        "collision": true
+      },
+      {
+        "id": "stool-1",
+        "minX": 18.55,
+        "maxX": 18.98,
+        "minZ": -35.57,
+        "maxZ": -35.13,
+        "minY": -2.945,
+        "maxY": -2.2649999999999997,
+        "material": "wood",
+        "collision": true
+      },
+      {
+        "id": "stool-2",
+        "minX": 18.55,
+        "maxX": 18.98,
+        "minZ": -36.57,
+        "maxZ": -36.13,
+        "minY": -2.945,
+        "maxY": -2.2649999999999997,
+        "material": "wood",
+        "collision": true
+      },
+      {
+        "id": "listening-booth",
+        "minX": 18.65,
+        "maxX": 20.23,
+        "minZ": -38.83,
+        "maxZ": -38.22,
+        "minY": -2.945,
+        "maxY": -1.9449999999999998,
+        "material": "wood",
+        "collision": true
+      },
+      {
+        "id": "small-table",
+        "minX": 17.65,
+        "maxX": 18.25,
+        "minZ": -38.18,
+        "maxZ": -37.58,
+        "minY": -2.945,
+        "maxY": -2.255,
+        "material": "wood",
+        "collision": true
+      }
+    ],
+    "journey": [
+      {
+        "x": 19.5,
+        "y": 0.115,
+        "z": -26.9
+      },
+      {
+        "x": 19.5,
+        "y": 0.115,
+        "z": -27.35
+      },
+      {
+        "x": 19.5,
+        "y": -0.05500000000000001,
+        "z": -27.740000000000002
+      },
+      {
+        "x": 19.5,
+        "y": -0.22500000000000003,
+        "z": -28.020000000000003
+      },
+      {
+        "x": 19.5,
+        "y": -0.395,
+        "z": -28.3
+      },
+      {
+        "x": 19.5,
+        "y": -0.5650000000000001,
+        "z": -28.580000000000002
+      },
+      {
+        "x": 19.5,
+        "y": -0.7350000000000001,
+        "z": -28.86
+      },
+      {
+        "x": 19.5,
+        "y": -0.905,
+        "z": -29.14
+      },
+      {
+        "x": 19.5,
+        "y": -1.0750000000000002,
+        "z": -29.42
+      },
+      {
+        "x": 19.5,
+        "y": -1.245,
+        "z": -29.700000000000003
+      },
+      {
+        "x": 19.5,
+        "y": -1.415,
+        "z": -29.980000000000004
+      },
+      {
+        "x": 19.5,
+        "y": -1.5850000000000002,
+        "z": -30.26
+      },
+      {
+        "x": 19.5,
+        "y": -1.7550000000000001,
+        "z": -30.54
+      },
+      {
+        "x": 19.5,
+        "y": -1.925,
+        "z": -30.82
+      },
+      {
+        "x": 19.5,
+        "y": -2.0949999999999998,
+        "z": -31.1
+      },
+      {
+        "x": 19.5,
+        "y": -2.265,
+        "z": -31.380000000000003
+      },
+      {
+        "x": 19.5,
+        "y": -2.435,
+        "z": -31.660000000000004
+      },
+      {
+        "x": 19.5,
+        "y": -2.605,
+        "z": -31.939999999999998
+      },
+      {
+        "x": 19.5,
+        "y": -2.775,
+        "z": -32.22
+      },
+      {
+        "x": 19.5,
+        "y": -2.945,
+        "z": -32.5
+      },
+      {
+        "x": 19.5,
+        "y": -2.945,
+        "z": -33.25
+      },
+      {
+        "x": 19.6,
+        "y": -2.945,
+        "z": -37.65
+      }
+    ]
+  },
+  "views": [
+    "street",
+    "day",
+    "entertainment",
+    "bar-alley",
+    "facade",
+    "entrance",
+    "stair",
+    "interior",
+    "bar-counter",
+    "exit",
+    "overview"
+  ]
+}

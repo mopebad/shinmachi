@@ -1,0 +1,119 @@
+{
+  "images": [
+    {
+      "view": "street",
+      "decoded": 2
+    },
+    {
+      "view": "day",
+      "decoded": 2
+    },
+    {
+      "view": "entertainment",
+      "decoded": 1
+    },
+    {
+      "view": "bar-alley",
+      "decoded": 1
+    },
+    {
+      "view": "facade",
+      "decoded": 1
+    },
+    {
+      "view": "entrance",
+      "decoded": 1
+    },
+    {
+      "view": "stair",
+      "decoded": 1
+    },
+    {
+      "view": "interior",
+      "decoded": 1
+    },
+    {
+      "view": "bar-counter",
+      "decoded": 1
+    },
+    {
+      "view": "exit",
+      "decoded": 1
+    },
+    {
+      "view": "dry",
+      "decoded": 1
+    },
+    {
+      "view": "overview",
+      "decoded": 1
+    }
+  ],
+  "video": {
+    "duration": 15.620708,
+    "width": 1322,
+    "height": 776,
+    "frames": [
+      {
+        "name": "descent",
+        "time": 3.8,
+        "width": 1322,
+        "height": 776
+      },
+      {
+        "name": "bar",
+        "time": 7.2,
+        "width": 1322,
+        "height": 776
+      },
+      {
+        "name": "ascent",
+        "time": 12.8,
+        "width": 1322,
+        "height": 776
+      }
+    ]
+  },
+  "audio": {
+    "duration": 15.658667,
+    "readyState": 4
+  },
+  "links": [
+    {
+      "href": "./captures/yoto3a-walk-sequence.json",
+      "status": 200
+    },
+    {
+      "href": "./captures/yoto3a-walk-sequence.mp4",
+      "status": 200
+    },
+    {
+      "href": "/assets/music/CREDITS.html",
+      "status": 200
+    },
+    {
+      "href": "./NIGHTLIFE_DEVELOPMENT_3A.md",
+      "status": 200
+    },
+    {
+      "href": "./yoto3a-spatial-audit.json",
+      "status": 200
+    },
+    {
+      "href": "./yoto3a-simulation-audit.json",
+      "status": 200
+    },
+    {
+      "href": "./yoto3a-playback-test.json",
+      "status": 200
+    },
+    {
+      "href": "./references/yoto/README.md",
+      "status": 200
+    },
+    {
+      "href": "/?view=7&seed=8412",
+      "status": 200
+    }
+  ]
+}

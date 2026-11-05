@@ -1,0 +1,40 @@
+{
+  "result": [
+    {
+      "name": "street",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "hour": true,
+        "seed": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "renderConditions": true,
+        "people": true,
+        "vehicles": true,
+        "train": true
+      }
+    },
+    {
+      "name": "day",
+      "conditions": {
+        "eye": true,
+        "quaternion": true,
+        "fov": true,
+        "hour": true,
+        "seed": true,
+        "simulationClock": true,
+        "surface": true,
+        "reflections": true,
+        "contactShading": true,
+        "renderConditions": true,
+        "people": true,
+        "vehicles": true,
+        "train": true
+      }
+    }
+  ]
+}

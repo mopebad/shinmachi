@@ -11,6 +11,7 @@ import { onHeroStreet, heroStreetFamily, heroRoadDetails } from './HeroStreet';
 import { buildRailDistrict } from './RailDistrict';
 import { railPierObstacles } from './RailDistrictLayout';
 import {neighborhoodBuilding,neighborhoodParcel,neighborhoodFootprint,fitNeighborhoodParcel,NEIGHBORHOODS} from '../Neighborhoods';
+import {YOTO_VENUE,yotoParcelDepth} from './YotoVenueLayout';
 
 /** Metre-scale compact district. Each frontage uses the same local +Z kit convention. */
 export class NeighborhoodGenerator {
@@ -44,13 +45,15 @@ export class NeighborhoodGenerator {
       // Reserve a genuine forecourt for the station instead of overlapping the shop row.
       let cursor = side > 0 && start === -51 ? -35 : start;
       while (cursor < end - 3.8) {
-        const width = Math.min(4.6 + rng() * 3.1, end - cursor - .35), depth = 9 + rng() * 4;
+        const width = Math.min(4.6 + rng() * 3.1, end - cursor - .35);let depth = 9 + rng() * 4;
         const choice = Math.floor(rng() * 9);
         const kind: Archetype = choice < 3 ? 'izakaya' : choice < 5 ? 'retail' : choice < 7 ? 'apartment' : choice === 7 ? 'office' : 'convenience';
         const floors = kind === 'izakaya' ? 3 + Math.floor(rng() * 2) : kind === 'office' ? 6 + Math.floor(rng() * 3) : 3 + Math.floor(rng() * 4);
         const x = side * (6.25 + (kind === 'apartment' ? .7 : rng() * .3)), palette = Math.floor(rng() * 8), value = Math.floor(rng() * 16);
         const choices = kind === 'izakaya' ? [0, 1, 5, 9, 14] : [2, 6, 7, 8, 10, 11, 13, 20, 22];
-        add({ x, z: cursor + width / 2, rotation: -side * Math.PI / 2, width, depth, floors, kind, palette, shop: choices[value % choices.length] }, true);
+        // Keep the authored basement shaft clear on alternate seeds without shuffling later RNG draws.
+        const sourceDepth=depth;if(side>0)depth=yotoParcelDepth(x,cursor+width/2,width,depth);
+        add({ x, z: cursor + width / 2, rotation: -side * Math.PI / 2, width, depth, floors, kind, palette, shop: choices[value % choices.length],...(depth<sourceDepth?{rngDepth:sourceDepth}:{}) }, true);
         cursor += width + .45 + rng() * .65;
       }
     }
@@ -80,7 +83,10 @@ export class NeighborhoodGenerator {
     return { group, colliders, playerColliders, station: station.spatial, doors, shopfronts, lamps, materials: { signs: m.signs, windows: m.windows, warmWindows: m.warmWindows, lamps: m.lamps, shop: m.shop, lantern: m.lantern, businesses: m.businesses }, stats: { buildings:buildings+railDistrict.buildings, instances: b.instances+railDistrict.instances } };
   }
   private roads(b: CityBatch, m: Materials): void {
-    b.b(m.asphalt, 0, -.12, 0, 150, .2, 150);
+    // Actual opening through the ground slab for the authored basement stair, not stairs inside asphalt.
+    const cut=YOTO_VENUE.slabOpening;
+    for(const [x0,x1,z0,z1]of [[-75,cut.minX,-75,75],[cut.maxX,75,-75,75],[cut.minX,cut.maxX,-75,cut.minZ],[cut.minX,cut.maxX,cut.maxZ,75]])
+      b.b(m.asphalt,(x0+x1)/2,-.12,(z0+z1)/2,x1-x0,.2,z1-z0);
     for (const [a, c] of [[-67, 6.7], [17.3, 67]]) for (const side of [-1, 1]) {
       b.b(m.pavement, side * 4.8, .025, (a + c) / 2, 1.9, .18, c - a);
       b.b(m.cream, side * 3.8, .045, (a + c) / 2, .17, .23, c - a);

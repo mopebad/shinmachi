@@ -1,0 +1,56 @@
+{
+  "results": [
+    {
+      "seed": 8412,
+      "shaftConflicts": [],
+      "frontageConflicts": [],
+      "correctedParcels": [
+        {
+          "x": 6.536556715192273,
+          "z": -31.925,
+          "depth": 8.963443284807727,
+          "originalDepth": 10.601464552804828
+        }
+      ]
+    },
+    {
+      "seed": 1177,
+      "shaftConflicts": [],
+      "frontageConflicts": [],
+      "correctedParcels": [
+        {
+          "x": 6.463544240035117,
+          "z": -31.98828962900443,
+          "depth": 9.036455759964884,
+          "originalDepth": 11.730429897084832
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "shaftConflicts": [],
+      "frontageConflicts": [],
+      "correctedParcels": [
+        {
+          "x": 6.95,
+          "z": -31.925,
+          "depth": 8.55,
+          "originalDepth": 11.832966105081141
+        }
+      ]
+    },
+    {
+      "seed": 20001,
+      "shaftConflicts": [],
+      "frontageConflicts": [],
+      "correctedParcels": [
+        {
+          "x": 6.423221756448038,
+          "z": -31.925,
+          "depth": 9.076778243551962,
+          "originalDepth": 12.42652199883014
+        }
+      ]
+    }
+  ]
+}

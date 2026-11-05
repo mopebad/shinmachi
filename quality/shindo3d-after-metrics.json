@@ -1,0 +1,95 @@
+{
+  "cost": {
+    "viewport": [
+      1323,
+      804
+    ],
+    "pixelRatio": 1,
+    "medianMs": 1.5999999046325684,
+    "p95Ms": 2,
+    "stats": {
+      "fps": 168,
+      "drawCalls": 522,
+      "triangles": 2753273,
+      "buildings": 77,
+      "pedestrians": 53,
+      "vehicles": 10
+    },
+    "method": "30 synchronous composite renders after 8 warmups, gl.finish; CPU+GPU composite wall time, not GPU-only"
+  },
+  "comparisons": [
+    {
+      "name": "overview",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ]
+    },
+    {
+      "name": "bar",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ]
+    },
+    {
+      "name": "music",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ]
+    },
+    {
+      "name": "hero",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ]
+    }
+  ],
+  "clock": 300.000000000023
+}

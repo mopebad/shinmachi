@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {YOTO_VENUE} from './YotoVenueLayout.ts';
 import { seededRandom } from '../simulation/WorldRules.ts';
 import { AKANE_TOWER, skylineLayout, skylineRoads, SKYLINE_FAMILIES } from './SkylineLayout.ts';
 import type { SkylineBuilding } from './SkylineLayout.ts';
@@ -73,7 +74,10 @@ export class CityBackdrop {
     for(const m of [glass,this.office,this.residential,this.warm]){m.polygonOffset=true;m.polygonOffsetFactor=-1;m.polygonOffsetUnits=-4;}
     const layout=skylineLayout((seed^0x11c6f)>>>0),roads=skylineRoads(),b=new SceneryBatch();
     const ground=this.material(0x485052,.99),paving=this.material(0x777d79,.98),asphalt=this.material(0x303b42,.98),paint=this.material(0xa8ada4,.99);
-    b.box(ground,0,-.32,-580,3400,.12,3400);
+    // The skyline's underlying terrain shares the real basement shaft opening.
+    const cut=YOTO_VENUE.slabOpening;
+    for(const [x0,x1,z0,z1]of [[-1700,cut.minX,-2280,1120],[cut.maxX,1700,-2280,1120],[cut.minX,cut.maxX,-2280,cut.minZ],[cut.minX,cut.maxX,cut.maxZ,1120]])
+      b.box(ground,(x0+x1)/2,-.32,(z0+z1)/2,x1-x0,.12,z1-z0);
     for(const road of roads){
       b.section='road:'+road.id;
       const x=(road.minX+road.maxX)/2,z=(road.minZ+road.maxZ)/2,w=road.maxX-road.minX,d=road.maxZ-road.minZ;

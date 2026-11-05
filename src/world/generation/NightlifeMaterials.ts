@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { worldTexture } from './Materials';
 import { fittedRun, signDimensions, verticalRuns } from './SignLayout';
 import { drawRun, measureSignInk } from './SignTextures';
+import {drawShindoGraphic} from './ShindoGraphics';
 
 type Surface = 'brick' | 'plaster' | 'tile' | 'wood' | 'metal' | 'grille' | 'cloth';
 const hash = (x: number, y: number, seed: number) => { let h = Math.imul(x ^ seed, 374761393) ^ Math.imul(y, 668265263); h = Math.imul(h ^ h >>> 13, 1274126177); return ((h ^ h >>> 16) >>> 0) / 4294967295; };
@@ -27,7 +28,27 @@ function surface(kind: Surface): THREE.MeshStandardMaterial {
   const m = new THREE.MeshStandardMaterial({ map: texture(sources[0], true), bumpMap: texture(sources[1], false), roughnessMap: texture(sources[2], false), roughness: 1, bumpScale: kind === 'brick' ? .035 : .017, metalness: kind === 'metal' || kind === 'grille' ? .4 : 0 });
   worldTexture(m, .65); return m;
 }
+function shindoFinish(kind:'walnut'|'wall'){
+ const color=canvas(512),bump=canvas(512),p=color.getContext('2d')!,q=bump.getContext('2d')!,a=p.createImageData(512,512),b=q.createImageData(512,512);
+ const base=kind==='walnut'?[76,53,37]:[99,102,98];
+ for(let y=0;y<512;y++)for(let x=0;x<512;x++){
+  const grain=kind==='walnut'?Math.sin(x*.87+Math.sin(y*.008)*1.4)*1.7+Math.sin(x*.17+Math.sin(y*.004)*.7)*1.3:0;
+  const noise=(hash(x,y,951)-.5)*3+(hash(x>>5,y>>5,547)-.5)*2+grain,i=(y*512+x)*4;
+  for(let c=0;c<3;c++){a.data[i+c]=base[c]+noise;b.data[i+c]=128+noise*2;}a.data[i+3]=b.data[i+3]=255;
+ }
+ p.putImageData(a,0,0);q.putImageData(b,0,0);const material=new THREE.MeshStandardMaterial({map:texture(color,true),bumpMap:texture(bump,false),bumpScale:.003,roughness:kind==='walnut'?.48:.93});worldTexture(material,.65);return material;
+}
 const THEMES: Record<string, string[]> = {
+  shindo: ['深度','B1 · MUSIC BAR','SHINDO · ELECTRONIC SESSIONS','#192a2d','#b4c5b9'],
+  yototei: ['夜灯亭','1F · 小料理','YOTOTEI · KITCHEN & FOYER','#50362b','#dbc5a1'],
+  yohaku: ['余白','2F · LISTENING ROOM','会員制 · MEMBERS ONLY','#30362e','#d8c5a5'],
+  otoniwa: ['音庭','3F · カラオケ','予約制 · PRIVATE ROOMS','#432634','#cbb2bd'],
+  tsuki: ['月影','小さな酒場','TSUKIKAGE · SIX SEATS','#3b3025','#d9c3a3'],
+  service: ['関係者専用','SERVICE','換気・設備','#343c36','#bdb6a0'],
+  'shindo-menu': ['深度','HIGHBALL / COCKTAILS','WHISKY · BEER · COFFEE / ¥700–','#202a29','#d3bc8c'],
+  'shindo-sessions': ['深夜音楽','SHINDO SESSIONS','VINYL · ELECTRONIC · LISTENING','#23363a','#b7b5a3'],
+  'shindo-exit': ['出口','EXIT ↑','足元にご注意ください','#21392c','#c3d4b4'],
+  'stair-notice': ['地下','B1','深度 · 足元注意','#2a3634','#d9c6a4'],
   theatre: ['夜灯劇場', '名画・深夜上映', 'YOTO THEATRE · 1958', '#651d16', '#efbc56'],
   izakaya: ['新町', '居酒屋', '炭火・小料理', '#30291e', '#ddc798'],
   ramen: ['拉麺', '鶏白湯', 'らーめん・餃子', '#c2b08b', '#64231a'],
@@ -40,7 +61,13 @@ function signTexture(theme: string, ratio: number): THREE.CanvasTexture {
   const font = '"Yu Mincho", "MS PMincho", serif';
   const measure = (s: string, size: number) => measureSignInk(p, s, size, font);
   const text = (s: string, x: number, y: number, size: number, color: string, max = w * .85) => { p.save(); p.textAlign = 'left'; p.textBaseline = 'alphabetic'; p.fillStyle = color; drawRun(p, fittedRun(s, { x: x - max / 2, y: y - size * .65, width: max, height: size * 1.3 }, size, measure), font); p.restore(); };
-  if (theme === 'menu') {
+  if(theme==='shindo'||theme.startsWith('shindo-')){
+    drawShindoGraphic(p,w,h,theme);
+  }else if(theme==='directory'){
+    p.fillStyle='#252c2b';p.fillRect(0,0,w,h);text('夜灯ビル',w/2,h*.06,w*.16,'#d9cbae');
+    const rows=[['3F','音庭','カラオケ · 別受付'],['2F','余白','LISTENING · 別受付'],['1F','夜灯亭','小料理・入口'],['B1','深度','MUSIC BAR ↓']];
+    rows.forEach(([level,name,detail],i)=>{const y=h*(.15+i*.21);p.fillStyle=i===3?'#344445':'#3c3931';p.fillRect(w*.07,y,w*.86,h*.19);text(level,w/2,y+h*.04,w*.2,'#cab584');text(name,w/2,y+h*.10,w*.26,'#e4d2b0');text(detail,w/2,y+h*.16,w*.105,'#c1c7bc');});
+  }else if (theme === 'menu') {
     p.fillStyle = '#c6baa0'; p.fillRect(0, 0, w, h); text('夜灯の献立', w / 2, h * .12, Math.min(w * .14, h * .08), '#672f25');
     const items = [['拉麺', '¥850'], ['味噌拉麺', '¥950'], ['焼餃子', '¥480'], ['炭火焼鳥', '¥550'], ['冷奴', '¥350'], ['生麦酒', '¥580'], ['夜の定食', '¥980']];
     items.forEach(([name, price], i) => { const y = h * (.28 + i * .085); p.font = `600 ${Math.min(w * .07, h * .035)}px "Yu Gothic",sans-serif`; p.fillStyle = '#393a2d'; p.textAlign = 'left'; p.fillText(name, w * .09, y); p.textAlign = 'right'; p.fillText(price, w * .91, y); });
@@ -62,6 +89,23 @@ function signTexture(theme: string, ratio: number): THREE.CanvasTexture {
 export class NightlifeMaterials {
   readonly brick = surface('brick'); readonly plaster = surface('plaster'); readonly darkTile = surface('tile'); readonly wood = surface('wood'); readonly metal = surface('metal'); readonly grille = surface('grille'); readonly cloth = surface('cloth');
   readonly redPaint = new THREE.MeshStandardMaterial({ color: 0x8c3225, roughness: .62, metalness: .14 });
+  readonly bottleAmber = new THREE.MeshStandardMaterial({color:0x61502c,roughness:.2,metalness:.12});
+  readonly bottleGreen = new THREE.MeshStandardMaterial({color:0x34473a,roughness:.18,metalness:.12});
+  readonly acoustic = new THREE.MeshStandardMaterial({color:0x202c2e,roughness:.97});
+  readonly shindoCeiling = new THREE.MeshStandardMaterial({color:0x313939,roughness:.94});
+  readonly leather = new THREE.MeshStandardMaterial({color:0x412d2a,roughness:.63});
+  readonly brass = new THREE.MeshStandardMaterial({color:0x917144,roughness:.4,metalness:.72});
+  readonly walnut = shindoFinish('walnut');
+  readonly shindoWall = shindoFinish('wall');
+  readonly speakerCone = new THREE.MeshStandardMaterial({color:0x303332,roughness:.88,side:THREE.DoubleSide});
+  readonly shindoFloor = surface('tile');
+  readonly stairNosing = new THREE.MeshStandardMaterial({color:0xb8afa0,roughness:.82,metalness:.12});
+  readonly smokedSteel = new THREE.MeshStandardMaterial({color:0x282d2d,roughness:.43,metalness:.62});
+  readonly clearGlass = new THREE.MeshStandardMaterial({color:0xb2c3bd,transparent:true,opacity:.24,roughness:.12,metalness:.08,depthWrite:false});
+  readonly water = new THREE.MeshStandardMaterial({color:0xa3bdb2,transparent:true,opacity:.18,roughness:.09,depthWrite:false});
+  readonly whisky = new THREE.MeshStandardMaterial({color:0xb47626,transparent:true,opacity:.69,roughness:.15,depthWrite:false});
+  readonly citrus = new THREE.MeshStandardMaterial({color:0xb9a052,roughness:.64});
+  readonly citrusFlesh = new THREE.MeshStandardMaterial({color:0xe1cf8f,roughness:.72});
   readonly glass = new THREE.MeshStandardMaterial({ color: 0x536963, transparent: true, opacity: .18, roughness: .22, metalness: .18, depthWrite: false });
   readonly warmInterior = new THREE.MeshStandardMaterial({ color: 0x9f865a, emissive: 0xd1aa6b, roughness: .85 });
   readonly light = new THREE.MeshStandardMaterial({ color: 0xe4d0a2, emissive: 0xffdba4, roughness: .5 });
@@ -72,6 +116,7 @@ export class NightlifeMaterials {
   private readonly emission: { material: THREE.MeshStandardMaterial; strength: number; closed: number }[] = [];
   private night = 1; private open = true;
   constructor() {
+    this.shindoFloor.color.setHex(0x777171);this.shindoFloor.roughness=.75;this.shindoFloor.bumpScale=.005;
     this.cloth.side = THREE.DoubleSide; this.metal.color.setHex(0x737b70);
     for (const [material, strength, closed] of [[this.warmInterior, .35, .1], [this.light, 1.45, .4], [this.neonAmber, 1.65, .025], [this.neonRed, 1.15, .025], [this.neonCyan, .85, .025]] as const) this.emission.push({ material, strength, closed });
     this.setNight(1, true);
@@ -80,7 +125,7 @@ export class NightlifeMaterials {
     if (!Number.isFinite(ratio) || ratio <= 0) throw new RangeError('Positive sign ratio required');
     const r = ratio, key = `${theme}:${r.toFixed(5)}`, existing = this.signs.get(key); if (existing) return existing;
     const map = signTexture(theme, r), material = new THREE.MeshStandardMaterial({ map, emissiveMap: map, emissive: 0xffffff, roughness: .72, metalness: .02 });
-    const strength = ({ theatre: .62, izakaya: .46, ramen: .42, karaoke: .46, coffee: .34, bar: .4, menu: .015, posters: 0, stickers: 0 } as Record<string, number>)[theme] ?? .4;
+    const strength = theme.startsWith('shindo-')&&theme!=='shindo-exit'?.018:({ theatre: .62, izakaya: .46, ramen: .42, karaoke: .46, coffee: .34, bar: .4, menu: .015, posters: 0, stickers: 0 } as Record<string, number>)[theme] ?? .4;
     this.emission.push({ material, strength, closed: .025 }); this.signs.set(key, material); this.setNight(this.night, this.open); return material;
   }
   setNight(night: number, open: boolean): void { this.night = night; this.open = open; this.emission.forEach(({ material, strength, closed }) => { material.emissiveIntensity = strength * (.045 + night * .955) * (open ? 1 : closed); }); }

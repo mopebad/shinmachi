@@ -1,0 +1,1874 @@
+{
+  "name": "yoto3a-exterior-first",
+  "view": "nightlife",
+  "preset": 7,
+  "seed": 8412,
+  "hour": 21,
+  "simulationClock": 8,
+  "train": {
+    "state": "ACCELERATING",
+    "x": -130,
+    "velocity": 0,
+    "speed": 0,
+    "acceleration": 0,
+    "direction": 1,
+    "active": true,
+    "serviceOpen": true,
+    "service": "IN_SERVICE",
+    "motion": "accelerating",
+    "destination": "station",
+    "stateElapsed": 0,
+    "stopX": 34.75,
+    "stoppingError": -164.75,
+    "lastStopError": null,
+    "completedStops": 0,
+    "turnbacks": 0,
+    "doors": [
+      {
+        "id": "car-1-north-1",
+        "car": 0,
+        "door": 0,
+        "side": -1,
+        "localX": -16.7,
+        "state": "CLOSED",
+        "fraction": 0,
+        "leafSpeed": 0,
+        "obstructed": false,
+        "obstructionSources": [],
+        "closedConfirmed": true,
+        "platformSide": false,
+        "opening": {
+          "minX": -147.23,
+          "maxX": -146.17,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -58.445,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "width": 1.06
+        },
+        "clearOpening": {
+          "minX": -146.7,
+          "maxX": -146.7,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -58.445,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "width": 0
+        },
+        "boarding": {
+          "platformPoint": null,
+          "thresholdPoint": {
+            "x": -146.7,
+            "y": 7.455000000000001,
+            "z": -58.445
+          },
+          "interiorPoint": {
+            "x": -146.7,
+            "y": 7.455000000000001,
+            "z": -57.85
+          },
+          "aligned": false,
+          "doorPassable": false,
+          "platformBarrier": "NO_PLATFORM",
+          "passengerAccess": false,
+          "npcBoardingEnabled": false,
+          "approach": null
+        }
+      },
+      {
+        "id": "car-1-north-2",
+        "car": 0,
+        "door": 1,
+        "side": -1,
+        "localX": -9.5,
+        "state": "CLOSED",
+        "fraction": 0,
+        "leafSpeed": 0,
+        "obstructed": false,
+        "obstructionSources": [],
+        "closedConfirmed": true,
+        "platformSide": false,
+        "opening": {
+          "minX": -140.03,
+          "maxX": -138.97,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -58.445,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "width": 1.06
+        },
+        "clearOpening": {
+          "minX": -139.5,
+          "maxX": -139.5,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -58.445,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "width": 0
+        },
+        "boarding": {
+          "platformPoint": null,
+          "thresholdPoint": {
+            "x": -139.5,
+            "y": 7.455000000000001,
+            "z": -58.445
+          },
+          "interiorPoint": {
+            "x": -139.5,
+            "y": 7.455000000000001,
+            "z": -57.85
+          },
+          "aligned": false,
+          "doorPassable": false,
+          "platformBarrier": "NO_PLATFORM",
+          "passengerAccess": false,
+          "npcBoardingEnabled": false,
+          "approach": null
+        }
+      },
+      {
+        "id": "car-1-south-1",
+        "car": 0,
+        "door": 0,
+        "side": 1,
+        "localX": -16.7,
+        "state": "CLOSED",
+        "fraction": 0,
+        "leafSpeed": 0,
+        "obstructed": false,
+        "obstructionSources": [],
+        "closedConfirmed": true,
+        "platformSide": true,
+        "opening": {
+          "minX": -147.23,
+          "maxX": -146.17,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -55.555,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "width": 1.06
+        },
+        "clearOpening": {
+          "minX": -146.7,
+          "maxX": -146.7,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -55.555,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "width": 0
+        },
+        "boarding": {
+          "platformPoint": null,
+          "thresholdPoint": {
+            "x": -146.7,
+            "y": 7.455000000000001,
+            "z": -55.555
+          },
+          "interiorPoint": {
+            "x": -146.7,
+            "y": 7.455000000000001,
+            "z": -56.15
+          },
+          "aligned": false,
+          "doorPassable": false,
+          "platformBarrier": "OPEN_PLATFORM",
+          "passengerAccess": false,
+          "npcBoardingEnabled": false,
+          "approach": null
+        }
+      },
+      {
+        "id": "car-1-south-2",
+        "car": 0,
+        "door": 1,
+        "side": 1,
+        "localX": -9.5,
+        "state": "CLOSED",
+        "fraction": 0,
+        "leafSpeed": 0,
+        "obstructed": false,
+        "obstructionSources": [],
+        "closedConfirmed": true,
+        "platformSide": true,
+        "opening": {
+          "minX": -140.03,
+          "maxX": -138.97,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -55.555,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "width": 1.06
+        },
+        "clearOpening": {
+          "minX": -139.5,
+          "maxX": -139.5,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -55.555,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "width": 0
+        },
+        "boarding": {
+          "platformPoint": null,
+          "thresholdPoint": {
+            "x": -139.5,
+            "y": 7.455000000000001,
+            "z": -55.555
+          },
+          "interiorPoint": {
+            "x": -139.5,
+            "y": 7.455000000000001,
+            "z": -56.15
+          },
+          "aligned": false,
+          "doorPassable": false,
+          "platformBarrier": "OPEN_PLATFORM",
+          "passengerAccess": false,
+          "npcBoardingEnabled": false,
+          "approach": null
+        }
+      },
+      {
+        "id": "car-2-north-1",
+        "car": 1,
+        "door": 0,
+        "side": -1,
+        "localX": -3.6,
+        "state": "CLOSED",
+        "fraction": 0,
+        "leafSpeed": 0,
+        "obstructed": false,
+        "obstructionSources": [],
+        "closedConfirmed": true,
+        "platformSide": false,
+        "opening": {
+          "minX": -134.13,
+          "maxX": -133.07,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -58.445,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "width": 1.06
+        },
+        "clearOpening": {
+          "minX": -133.6,
+          "maxX": -133.6,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -58.445,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "width": 0
+        },
+        "boarding": {
+          "platformPoint": null,
+          "thresholdPoint": {
+            "x": -133.6,
+            "y": 7.455000000000001,
+            "z": -58.445
+          },
+          "interiorPoint": {
+            "x": -133.6,
+            "y": 7.455000000000001,
+            "z": -57.85
+          },
+          "aligned": false,
+          "doorPassable": false,
+          "platformBarrier": "NO_PLATFORM",
+          "passengerAccess": false,
+          "npcBoardingEnabled": false,
+          "approach": null
+        }
+      },
+      {
+        "id": "car-2-north-2",
+        "car": 1,
+        "door": 1,
+        "side": -1,
+        "localX": 3.6,
+        "state": "CLOSED",
+        "fraction": 0,
+        "leafSpeed": 0,
+        "obstructed": false,
+        "obstructionSources": [],
+        "closedConfirmed": true,
+        "platformSide": false,
+        "opening": {
+          "minX": -126.93,
+          "maxX": -125.87,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -58.445,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "width": 1.06
+        },
+        "clearOpening": {
+          "minX": -126.4,
+          "maxX": -126.4,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -58.445,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "width": 0
+        },
+        "boarding": {
+          "platformPoint": null,
+          "thresholdPoint": {
+            "x": -126.4,
+            "y": 7.455000000000001,
+            "z": -58.445
+          },
+          "interiorPoint": {
+            "x": -126.4,
+            "y": 7.455000000000001,
+            "z": -57.85
+          },
+          "aligned": false,
+          "doorPassable": false,
+          "platformBarrier": "NO_PLATFORM",
+          "passengerAccess": false,
+          "npcBoardingEnabled": false,
+          "approach": null
+        }
+      },
+      {
+        "id": "car-2-south-1",
+        "car": 1,
+        "door": 0,
+        "side": 1,
+        "localX": -3.6,
+        "state": "CLOSED",
+        "fraction": 0,
+        "leafSpeed": 0,
+        "obstructed": false,
+        "obstructionSources": [],
+        "closedConfirmed": true,
+        "platformSide": true,
+        "opening": {
+          "minX": -134.13,
+          "maxX": -133.07,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -55.555,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "width": 1.06
+        },
+        "clearOpening": {
+          "minX": -133.6,
+          "maxX": -133.6,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -55.555,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "width": 0
+        },
+        "boarding": {
+          "platformPoint": null,
+          "thresholdPoint": {
+            "x": -133.6,
+            "y": 7.455000000000001,
+            "z": -55.555
+          },
+          "interiorPoint": {
+            "x": -133.6,
+            "y": 7.455000000000001,
+            "z": -56.15
+          },
+          "aligned": false,
+          "doorPassable": false,
+          "platformBarrier": "OPEN_PLATFORM",
+          "passengerAccess": false,
+          "npcBoardingEnabled": false,
+          "approach": null
+        }
+      },
+      {
+        "id": "car-2-south-2",
+        "car": 1,
+        "door": 1,
+        "side": 1,
+        "localX": 3.6,
+        "state": "CLOSED",
+        "fraction": 0,
+        "leafSpeed": 0,
+        "obstructed": false,
+        "obstructionSources": [],
+        "closedConfirmed": true,
+        "platformSide": true,
+        "opening": {
+          "minX": -126.93,
+          "maxX": -125.87,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -55.555,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "width": 1.06
+        },
+        "clearOpening": {
+          "minX": -126.4,
+          "maxX": -126.4,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -55.555,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "width": 0
+        },
+        "boarding": {
+          "platformPoint": null,
+          "thresholdPoint": {
+            "x": -126.4,
+            "y": 7.455000000000001,
+            "z": -55.555
+          },
+          "interiorPoint": {
+            "x": -126.4,
+            "y": 7.455000000000001,
+            "z": -56.15
+          },
+          "aligned": false,
+          "doorPassable": false,
+          "platformBarrier": "OPEN_PLATFORM",
+          "passengerAccess": false,
+          "npcBoardingEnabled": false,
+          "approach": null
+        }
+      },
+      {
+        "id": "car-3-north-1",
+        "car": 2,
+        "door": 0,
+        "side": -1,
+        "localX": 9.5,
+        "state": "CLOSED",
+        "fraction": 0,
+        "leafSpeed": 0,
+        "obstructed": false,
+        "obstructionSources": [],
+        "closedConfirmed": true,
+        "platformSide": false,
+        "opening": {
+          "minX": -121.03,
+          "maxX": -119.97,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -58.445,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "width": 1.06
+        },
+        "clearOpening": {
+          "minX": -120.5,
+          "maxX": -120.5,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -58.445,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "width": 0
+        },
+        "boarding": {
+          "platformPoint": null,
+          "thresholdPoint": {
+            "x": -120.5,
+            "y": 7.455000000000001,
+            "z": -58.445
+          },
+          "interiorPoint": {
+            "x": -120.5,
+            "y": 7.455000000000001,
+            "z": -57.85
+          },
+          "aligned": false,
+          "doorPassable": false,
+          "platformBarrier": "NO_PLATFORM",
+          "passengerAccess": false,
+          "npcBoardingEnabled": false,
+          "approach": null
+        }
+      },
+      {
+        "id": "car-3-north-2",
+        "car": 2,
+        "door": 1,
+        "side": -1,
+        "localX": 16.7,
+        "state": "CLOSED",
+        "fraction": 0,
+        "leafSpeed": 0,
+        "obstructed": false,
+        "obstructionSources": [],
+        "closedConfirmed": true,
+        "platformSide": false,
+        "opening": {
+          "minX": -113.83,
+          "maxX": -112.77,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -58.445,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "width": 1.06
+        },
+        "clearOpening": {
+          "minX": -113.3,
+          "maxX": -113.3,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -58.445,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "width": 0
+        },
+        "boarding": {
+          "platformPoint": null,
+          "thresholdPoint": {
+            "x": -113.3,
+            "y": 7.455000000000001,
+            "z": -58.445
+          },
+          "interiorPoint": {
+            "x": -113.3,
+            "y": 7.455000000000001,
+            "z": -57.85
+          },
+          "aligned": false,
+          "doorPassable": false,
+          "platformBarrier": "NO_PLATFORM",
+          "passengerAccess": false,
+          "npcBoardingEnabled": false,
+          "approach": null
+        }
+      },
+      {
+        "id": "car-3-south-1",
+        "car": 2,
+        "door": 0,
+        "side": 1,
+        "localX": 9.5,
+        "state": "CLOSED",
+        "fraction": 0,
+        "leafSpeed": 0,
+        "obstructed": false,
+        "obstructionSources": [],
+        "closedConfirmed": true,
+        "platformSide": true,
+        "opening": {
+          "minX": -121.03,
+          "maxX": -119.97,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -55.555,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "width": 1.06
+        },
+        "clearOpening": {
+          "minX": -120.5,
+          "maxX": -120.5,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -55.555,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "width": 0
+        },
+        "boarding": {
+          "platformPoint": null,
+          "thresholdPoint": {
+            "x": -120.5,
+            "y": 7.455000000000001,
+            "z": -55.555
+          },
+          "interiorPoint": {
+            "x": -120.5,
+            "y": 7.455000000000001,
+            "z": -56.15
+          },
+          "aligned": false,
+          "doorPassable": false,
+          "platformBarrier": "OPEN_PLATFORM",
+          "passengerAccess": false,
+          "npcBoardingEnabled": false,
+          "approach": null
+        }
+      },
+      {
+        "id": "car-3-south-2",
+        "car": 2,
+        "door": 1,
+        "side": 1,
+        "localX": 16.7,
+        "state": "CLOSED",
+        "fraction": 0,
+        "leafSpeed": 0,
+        "obstructed": false,
+        "obstructionSources": [],
+        "closedConfirmed": true,
+        "platformSide": true,
+        "opening": {
+          "minX": -113.83,
+          "maxX": -112.77,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -55.555,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "width": 1.06
+        },
+        "clearOpening": {
+          "minX": -113.3,
+          "maxX": -113.3,
+          "bottomY": 7.455000000000001,
+          "topY": 9.305000000000001,
+          "z": -55.555,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "width": 0
+        },
+        "boarding": {
+          "platformPoint": null,
+          "thresholdPoint": {
+            "x": -113.3,
+            "y": 7.455000000000001,
+            "z": -55.555
+          },
+          "interiorPoint": {
+            "x": -113.3,
+            "y": 7.455000000000001,
+            "z": -56.15
+          },
+          "aligned": false,
+          "doorPassable": false,
+          "platformBarrier": "OPEN_PLATFORM",
+          "passengerAccess": false,
+          "npcBoardingEnabled": false,
+          "approach": null
+        }
+      }
+    ],
+    "allDoorsClosed": true,
+    "doorCycles": 0,
+    "doorReopenings": 0,
+    "passengerHolds": [],
+    "passengerExchangeBusy": false,
+    "warningLampOn": false
+  },
+  "renderConditions": {
+    "exposure": 1.05,
+    "fogDensity": 0.0035,
+    "wetness": 0.64,
+    "grainSeconds": 8,
+    "atmosphereSeconds": 8
+  },
+  "railPassengers": {
+    "capacity": 12,
+    "onboard": [],
+    "transfers": [],
+    "queues": {},
+    "metrics": {
+      "originated": 0,
+      "boarded": 0,
+      "alighted": 0,
+      "delivered": 0,
+      "maxOnboard": 0,
+      "maxTransfers": 0,
+      "invalidMoves": 0,
+      "unsafeCrossings": 0,
+      "capacityRefusals": 0,
+      "doorBoardings": {},
+      "doorAlightings": {}
+    },
+    "boardingUntil": 0,
+    "alightingDone": false
+  },
+  "stationPassengers": [],
+  "vehicles": [
+    {
+      "id": 0,
+      "spawn": 0,
+      "kind": "van",
+      "variant": 0,
+      "color": 11713720,
+      "x": 1.8,
+      "z": -63,
+      "yaw": 0,
+      "s": 7,
+      "speed": 0,
+      "braking": true,
+      "entry": "N",
+      "exit": "S"
+    },
+    {
+      "id": 1,
+      "spawn": 1,
+      "kind": "van",
+      "variant": 1,
+      "color": 12695968,
+      "x": -1.8,
+      "z": 63,
+      "yaw": 3.141592653589793,
+      "s": 7,
+      "speed": 0,
+      "braking": true,
+      "entry": "S",
+      "exit": "W"
+    },
+    {
+      "id": 2,
+      "spawn": 2,
+      "kind": "hybrid",
+      "variant": 2,
+      "color": 3688013,
+      "x": 63,
+      "z": 14.2,
+      "yaw": -1.5707963267948966,
+      "s": 7,
+      "speed": 0,
+      "braking": true,
+      "entry": "E",
+      "exit": "S"
+    },
+    {
+      "id": 3,
+      "spawn": 3,
+      "kind": "kei",
+      "variant": 0,
+      "color": 14212309,
+      "x": -63,
+      "z": 9.8,
+      "yaw": 1.5707963267948966,
+      "s": 7,
+      "speed": 0,
+      "braking": true,
+      "entry": "W",
+      "exit": "N"
+    },
+    {
+      "id": 4,
+      "spawn": 4,
+      "kind": "commuter",
+      "variant": 1,
+      "color": 3358021,
+      "x": 1.8,
+      "z": -48,
+      "yaw": 0,
+      "s": 22,
+      "speed": 0,
+      "braking": true,
+      "entry": "N",
+      "exit": "S"
+    },
+    {
+      "id": 5,
+      "spawn": 5,
+      "kind": "compact",
+      "variant": 2,
+      "color": 7355707,
+      "x": -1.8,
+      "z": 48,
+      "yaw": 3.141592653589793,
+      "s": 22,
+      "speed": 0,
+      "braking": true,
+      "entry": "S",
+      "exit": "N"
+    },
+    {
+      "id": 6,
+      "spawn": 6,
+      "kind": "coupe",
+      "variant": 0,
+      "color": 14278358,
+      "x": 48,
+      "z": 14.2,
+      "yaw": -1.5707963267948966,
+      "s": 22,
+      "speed": 0,
+      "braking": true,
+      "entry": "E",
+      "exit": "S"
+    },
+    {
+      "id": 7,
+      "spawn": 7,
+      "kind": "compact",
+      "variant": 1,
+      "color": 2505805,
+      "x": -48,
+      "z": 9.8,
+      "yaw": 1.5707963267948966,
+      "s": 22,
+      "speed": 0,
+      "braking": true,
+      "entry": "W",
+      "exit": "E"
+    },
+    {
+      "id": 8,
+      "spawn": 8,
+      "kind": "modern",
+      "variant": 2,
+      "color": 2438990,
+      "x": 1.8,
+      "z": -33,
+      "yaw": 0,
+      "s": 37,
+      "speed": 0,
+      "braking": true,
+      "entry": "N",
+      "exit": "E"
+    },
+    {
+      "id": 9,
+      "spawn": 9,
+      "kind": "kei",
+      "variant": 0,
+      "color": 12695968,
+      "x": -1.8,
+      "z": 33,
+      "yaw": 3.141592653589793,
+      "s": 37,
+      "speed": 0,
+      "braking": true,
+      "entry": "S",
+      "exit": "N"
+    },
+    {
+      "id": 10,
+      "spawn": 10,
+      "kind": "truck",
+      "variant": 1,
+      "color": 11978427,
+      "x": 33,
+      "z": 14.2,
+      "yaw": -1.5707963267948966,
+      "s": 37,
+      "speed": 0,
+      "braking": true,
+      "entry": "E",
+      "exit": "W"
+    },
+    {
+      "id": 11,
+      "spawn": 11,
+      "kind": "taxi",
+      "variant": 2,
+      "color": 13226955,
+      "x": -33,
+      "z": 9.8,
+      "yaw": 1.5707963267948966,
+      "s": 37,
+      "speed": 0,
+      "braking": true,
+      "entry": "W",
+      "exit": "E"
+    }
+  ],
+  "people": [
+    {
+      "id": 0,
+      "uid": 0,
+      "purpose": "student",
+      "x": -4.55,
+      "y": 0.115,
+      "z": 21.95077483622032,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 3.2086084670559907,
+      "footfalls": 0
+    },
+    {
+      "id": 1,
+      "uid": 1,
+      "purpose": "restaurant",
+      "x": 4.55,
+      "y": 0.115,
+      "z": 20.279226754419504,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 3.5693660066955633,
+      "footfalls": 0
+    },
+    {
+      "id": 2,
+      "uid": 2,
+      "purpose": "leisure",
+      "x": -4.55,
+      "y": 0.115,
+      "z": 58.83774467739103,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 0.5387157074201395,
+      "footfalls": 0
+    },
+    {
+      "id": 3,
+      "uid": 4,
+      "purpose": "restaurant",
+      "x": -4.55,
+      "y": 0.115,
+      "z": -18.126244221115485,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 2.544851156362598,
+      "footfalls": 0
+    },
+    {
+      "id": 4,
+      "uid": 5,
+      "purpose": "office",
+      "x": -4.55,
+      "y": 0.115,
+      "z": 25.59316275641322,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 2.8698015655428892,
+      "footfalls": 0
+    },
+    {
+      "id": 5,
+      "uid": 6,
+      "purpose": "station",
+      "x": -17.64529456107877,
+      "y": 0.012,
+      "z": -25,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 3.9992694241156337,
+      "footfalls": 0
+    },
+    {
+      "id": 6,
+      "uid": 7,
+      "purpose": "leisure",
+      "x": -6.538371333864052,
+      "y": 0.115,
+      "z": 18,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 2.9948764677574626,
+      "footfalls": 0
+    },
+    {
+      "id": 7,
+      "uid": 8,
+      "purpose": "commuter",
+      "x": 16.434994606708642,
+      "y": 0.012,
+      "z": -25,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 1.685636698014459,
+      "footfalls": 0
+    },
+    {
+      "id": 8,
+      "uid": 9,
+      "purpose": "office",
+      "x": 35.544688269961625,
+      "y": 0.115,
+      "z": 18,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 4.592559817133343,
+      "footfalls": 0
+    },
+    {
+      "id": 9,
+      "uid": 10,
+      "purpose": "leisure",
+      "x": 5.079417323647067,
+      "y": 0.115,
+      "z": 6,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 0.4118392932739347,
+      "footfalls": 0
+    },
+    {
+      "id": 10,
+      "uid": 11,
+      "purpose": "restaurant",
+      "x": 28.15,
+      "y": 0.012,
+      "z": -42.5975480733905,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 0.933042721431636,
+      "footfalls": 0
+    },
+    {
+      "id": 11,
+      "uid": 12,
+      "purpose": "shopper",
+      "x": 8.937023811833933,
+      "y": 0.115,
+      "z": 18,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 4.406071248221615,
+      "footfalls": 0
+    },
+    {
+      "id": 12,
+      "uid": 13,
+      "purpose": "student",
+      "x": -14.820460128884761,
+      "y": 0.012,
+      "z": -25,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 5.960817843715066,
+      "footfalls": 0
+    },
+    {
+      "id": 13,
+      "uid": 14,
+      "purpose": "leisure",
+      "x": -4.55,
+      "y": 0.115,
+      "z": 42.59522273321636,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 5.3003900438691645,
+      "footfalls": 0
+    },
+    {
+      "id": 14,
+      "uid": 15,
+      "purpose": "shopper",
+      "x": -18.694378639105707,
+      "y": 0.115,
+      "z": 6,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 5.996109239960519,
+      "footfalls": 0
+    },
+    {
+      "id": 15,
+      "uid": 16,
+      "purpose": "shopper",
+      "x": -4.55,
+      "y": 0.115,
+      "z": -8.820759309324618,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 0.9058247823923676,
+      "footfalls": 0
+    },
+    {
+      "id": 16,
+      "uid": 17,
+      "purpose": "restaurant",
+      "x": 4.55,
+      "y": 0.115,
+      "z": -26.225879413778895,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 5.364853747006866,
+      "footfalls": 0
+    },
+    {
+      "id": 17,
+      "uid": 18,
+      "purpose": "shopper",
+      "x": 14.074175178725273,
+      "y": 0.115,
+      "z": 18,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 2.941253136804775,
+      "footfalls": 0
+    },
+    {
+      "id": 18,
+      "uid": 19,
+      "purpose": "office",
+      "x": 4.55,
+      "y": 0.115,
+      "z": 44.111372233368456,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 3.1107946892223857,
+      "footfalls": 0
+    },
+    {
+      "id": 19,
+      "uid": 20,
+      "purpose": "leisure",
+      "x": -4.55,
+      "y": 0.115,
+      "z": -31.901423014700413,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 3.1973365018533952,
+      "footfalls": 0
+    },
+    {
+      "id": 20,
+      "uid": 21,
+      "purpose": "restaurant",
+      "x": 4.55,
+      "y": 0.115,
+      "z": -48.60472245863639,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 3.8321153130416805,
+      "footfalls": 0
+    },
+    {
+      "id": 21,
+      "uid": 22,
+      "purpose": "leisure",
+      "x": 52.4502899129875,
+      "y": 0.115,
+      "z": 18,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 2.0268332293966647,
+      "footfalls": 0
+    },
+    {
+      "id": 22,
+      "uid": 23,
+      "purpose": "restaurant",
+      "x": 54.812045386992395,
+      "y": 0.115,
+      "z": 6,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 0.05144716570095552,
+      "footfalls": 0
+    },
+    {
+      "id": 23,
+      "uid": 24,
+      "purpose": "leisure",
+      "x": 21.604364322323818,
+      "y": 0.012,
+      "z": -25,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 2.4680707172805496,
+      "footfalls": 0
+    },
+    {
+      "id": 24,
+      "uid": 25,
+      "purpose": "leisure",
+      "x": 4.55,
+      "y": 0.115,
+      "z": 42.691241714686036,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 6.154958523093624,
+      "footfalls": 0
+    },
+    {
+      "id": 25,
+      "uid": 26,
+      "purpose": "office",
+      "x": 18.980459020799024,
+      "y": 0.115,
+      "z": 18,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 4.111596999467162,
+      "footfalls": 0
+    },
+    {
+      "id": 26,
+      "uid": 27,
+      "purpose": "restaurant",
+      "x": -11.172286533471198,
+      "y": 0.115,
+      "z": 18,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 3.2704759733659587,
+      "footfalls": 0
+    },
+    {
+      "id": 27,
+      "uid": 28,
+      "purpose": "shopper",
+      "x": -4.55,
+      "y": 0.115,
+      "z": 30.460318743551433,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 4.817639086805515,
+      "footfalls": 0
+    },
+    {
+      "id": 28,
+      "uid": 30,
+      "purpose": "student",
+      "x": 28.15,
+      "y": 0.012,
+      "z": 41.45067161228508,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 1.6033087111919226,
+      "footfalls": 0
+    },
+    {
+      "id": 29,
+      "uid": 31,
+      "purpose": "station",
+      "x": 5.69019425836159,
+      "y": 0.115,
+      "z": -25,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 3.914706322294443,
+      "footfalls": 0
+    },
+    {
+      "id": 30,
+      "uid": 32,
+      "purpose": "leisure",
+      "x": 13.291558031797875,
+      "y": 0.012,
+      "z": -25,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 1.5684234678186528,
+      "footfalls": 0
+    },
+    {
+      "id": 31,
+      "uid": 33,
+      "purpose": "shopper",
+      "x": 4.55,
+      "y": 0.115,
+      "z": -39.94508964451961,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 4.385008241491411,
+      "footfalls": 0
+    },
+    {
+      "id": 32,
+      "uid": 35,
+      "purpose": "leisure",
+      "x": 4.55,
+      "y": 0.115,
+      "z": -42.05353648075834,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 0.817770795230362,
+      "footfalls": 0
+    },
+    {
+      "id": 33,
+      "uid": 38,
+      "purpose": "commuter",
+      "x": -4.55,
+      "y": 0.115,
+      "z": -7.269993131274834,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 4.106977532807834,
+      "footfalls": 0
+    },
+    {
+      "id": 34,
+      "uid": 39,
+      "purpose": "restaurant",
+      "x": -4.55,
+      "y": 0.115,
+      "z": -46.28552289167419,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 4.862409658239519,
+      "footfalls": 0
+    },
+    {
+      "id": 35,
+      "uid": 41,
+      "purpose": "student",
+      "x": 4.55,
+      "y": 0.115,
+      "z": -27.039183861407217,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 2.307274717356018,
+      "footfalls": 0
+    },
+    {
+      "id": 36,
+      "uid": 43,
+      "purpose": "student",
+      "x": 5.414299448323436,
+      "y": 0.115,
+      "z": 18,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 4.024951473258922,
+      "footfalls": 0
+    },
+    {
+      "id": 37,
+      "uid": 44,
+      "purpose": "commuter",
+      "x": 4.55,
+      "y": 0.115,
+      "z": 2.599327798630017,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 2.9374415081379985,
+      "footfalls": 0
+    },
+    {
+      "id": 38,
+      "uid": 45,
+      "purpose": "station",
+      "x": -4.55,
+      "y": 0.115,
+      "z": 54.057598379207775,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 3.6411090146455285,
+      "footfalls": 0
+    },
+    {
+      "id": 39,
+      "uid": 46,
+      "purpose": "station",
+      "x": -7.086647086514393,
+      "y": 0.012,
+      "z": -25,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 6.054851602152834,
+      "footfalls": 0
+    },
+    {
+      "id": 40,
+      "uid": 47,
+      "purpose": "leisure",
+      "x": 18.299123483730014,
+      "y": 0.012,
+      "z": -25,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 2.4729535808771317,
+      "footfalls": 0
+    },
+    {
+      "id": 41,
+      "uid": 48,
+      "purpose": "leisure",
+      "x": -4.55,
+      "y": 0.115,
+      "z": 27.48654029145837,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 4.393808978180276,
+      "footfalls": 0
+    },
+    {
+      "id": 42,
+      "uid": 49,
+      "purpose": "office",
+      "x": -5.753097992809489,
+      "y": 0.115,
+      "z": 18,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 2.1739626018113034,
+      "footfalls": 0
+    },
+    {
+      "id": 43,
+      "uid": 52,
+      "purpose": "restaurant",
+      "x": 16.023239022959025,
+      "y": 0.115,
+      "z": 6,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 3.810416772273219,
+      "footfalls": 0
+    },
+    {
+      "id": 44,
+      "uid": 54,
+      "purpose": "shopper",
+      "x": 4.55,
+      "y": 0.115,
+      "z": 3.9489932387601585,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 4.051575385634596,
+      "footfalls": 0
+    },
+    {
+      "id": 45,
+      "uid": 57,
+      "purpose": "station",
+      "x": 41.595649301074445,
+      "y": 0.115,
+      "z": 18,
+      "yaw": 0,
+      "speed": 0,
+      "phase": 0.2781519992215292,
+      "footfalls": 0
+    }
+  ],
+  "streetLife": {
+    "started": 0,
+    "completed": 0,
+    "cancelled": 0,
+    "pairs": 0,
+    "conversations": 0,
+    "maxActive": 0
+  },
+  "driverStates": [
+    {
+      "spawn": 0,
+      "driver": {
+        "uid": 0,
+        "preferredSpeed": 5.44195170044899,
+        "acceleration": 1.0008981029037387,
+        "braking": 2.0957875051535666,
+        "followingGap": 1.5286593397031538,
+        "headway": 1.0112944695167243,
+        "turnSpeed": 2.966014886344783,
+        "steeringRate": 0.6864779633283614,
+        "indicatorPhase": 0.5894535568077117,
+        "purpose": "delivery",
+        "engine": "diesel"
+      },
+      "acceleration": 0,
+      "steering": 0,
+      "lights": {
+        "indicator": "none",
+        "blink": false,
+        "brake": true,
+        "headlights": true,
+        "taillights": true,
+        "edges": 0
+      }
+    },
+    {
+      "spawn": 1,
+      "driver": {
+        "uid": 1,
+        "preferredSpeed": 5.794529742822051,
+        "acceleration": 1.0764627149421722,
+        "braking": 2.1423335181549192,
+        "followingGap": 1.4405145207419991,
+        "headway": 1.0293026475049556,
+        "turnSpeed": 3.083952391461935,
+        "steeringRate": 0.7540282745286822,
+        "indicatorPhase": 0.5784664778038859,
+        "purpose": "delivery",
+        "engine": "diesel"
+      },
+      "acceleration": 0,
+      "steering": 0,
+      "lights": {
+        "indicator": "none",
+        "blink": false,
+        "brake": true,
+        "headlights": true,
+        "taillights": true,
+        "edges": 0
+      }
+    },
+    {
+      "spawn": 2,
+      "driver": {
+        "uid": 2,
+        "preferredSpeed": 5.848922698125243,
+        "acceleration": 1.3989194220164791,
+        "braking": 2.327363846125081,
+        "followingGap": 1.2408311692997813,
+        "headway": 0.8568812072277069,
+        "turnSpeed": 3.3292408082517797,
+        "steeringRate": 1.0416601224895568,
+        "indicatorPhase": 0.679259188415017,
+        "purpose": "commute",
+        "engine": "hybrid"
+      },
+      "acceleration": 0,
+      "steering": 0,
+      "lights": {
+        "indicator": "none",
+        "blink": false,
+        "brake": true,
+        "headlights": true,
+        "taillights": true,
+        "edges": 0
+      }
+    },
+    {
+      "spawn": 3,
+      "driver": {
+        "uid": 3,
+        "preferredSpeed": 5.767675561383366,
+        "acceleration": 1.1284843539539726,
+        "braking": 2.1042004487942907,
+        "followingGap": 1.623644946049899,
+        "headway": 0.9626843495946378,
+        "turnSpeed": 2.9590753169031814,
+        "steeringRate": 0.614875432131812,
+        "indicatorPhase": 0.2648530947044492,
+        "purpose": "delivery",
+        "engine": "kei"
+      },
+      "acceleration": 0,
+      "steering": 0,
+      "lights": {
+        "indicator": "none",
+        "blink": false,
+        "brake": true,
+        "headlights": true,
+        "taillights": true,
+        "edges": 0
+      }
+    },
+    {
+      "spawn": 4,
+      "driver": {
+        "uid": 4,
+        "preferredSpeed": 5.748242079988122,
+        "acceleration": 1.3448173556244,
+        "braking": 2.540457678539678,
+        "followingGap": 1.2673758614808321,
+        "headway": 0.9107914597541094,
+        "turnSpeed": 3.382198923069518,
+        "steeringRate": 0.938428841661662,
+        "indicatorPhase": 0.1950936836656183,
+        "purpose": "commute",
+        "engine": "ordinary"
+      },
+      "acceleration": 0,
+      "steering": 0,
+      "lights": {
+        "indicator": "none",
+        "blink": false,
+        "brake": true,
+        "headlights": true,
+        "taillights": true,
+        "edges": 0
+      }
+    },
+    {
+      "spawn": 5,
+      "driver": {
+        "uid": 5,
+        "preferredSpeed": 5.78359458103776,
+        "acceleration": 1.2920897400006652,
+        "braking": 2.357784799532965,
+        "followingGap": 1.3771391836809925,
+        "headway": 0.8182710481248796,
+        "turnSpeed": 3.2639878402114846,
+        "steeringRate": 1.0018324268516154,
+        "indicatorPhase": 0.21131621359381825,
+        "purpose": "commute",
+        "engine": "ordinary"
+      },
+      "acceleration": 0,
+      "steering": 0,
+      "lights": {
+        "indicator": "none",
+        "blink": false,
+        "brake": true,
+        "headlights": true,
+        "taillights": true,
+        "edges": 0
+      }
+    },
+    {
+      "spawn": 6,
+      "driver": {
+        "uid": 6,
+        "preferredSpeed": 6.051660142168403,
+        "acceleration": 1.8971037855790929,
+        "braking": 2.424426962342113,
+        "followingGap": 1.375886857113801,
+        "headway": 0.8891132107004523,
+        "turnSpeed": 3.659368792246096,
+        "steeringRate": 1.0506387110240758,
+        "indicatorPhase": 0.45099459757329896,
+        "purpose": "leisure",
+        "engine": "sport"
+      },
+      "acceleration": 0,
+      "steering": 0,
+      "lights": {
+        "indicator": "none",
+        "blink": false,
+        "brake": true,
+        "headlights": true,
+        "taillights": true,
+        "edges": 0
+      }
+    },
+    {
+      "spawn": 7,
+      "driver": {
+        "uid": 7,
+        "preferredSpeed": 5.774416097849607,
+        "acceleration": 1.3878233116958292,
+        "braking": 2.447182220546529,
+        "followingGap": 1.3468270407058298,
+        "headway": 0.8982727867923677,
+        "turnSpeed": 3.2276345245190896,
+        "steeringRate": 1.107693644631654,
+        "indicatorPhase": 0.026970903505571187,
+        "purpose": "commute",
+        "engine": "ordinary"
+      },
+      "acceleration": 0,
+      "steering": 0,
+      "lights": {
+        "indicator": "none",
+        "blink": false,
+        "brake": true,
+        "headlights": true,
+        "taillights": true,
+        "edges": 0
+      }
+    },
+    {
+      "spawn": 8,
+      "driver": {
+        "uid": 8,
+        "preferredSpeed": 5.933086251318454,
+        "acceleration": 1.4307318497216328,
+        "braking": 2.37746294173412,
+        "followingGap": 1.4241597733576783,
+        "headway": 0.8692435128521174,
+        "turnSpeed": 3.323848847358022,
+        "steeringRate": 1.0687894729245455,
+        "indicatorPhase": 0.6501544357161038,
+        "purpose": "private",
+        "engine": "refined"
+      },
+      "acceleration": 0,
+      "steering": 0,
+      "lights": {
+        "indicator": "none",
+        "blink": false,
+        "brake": true,
+        "headlights": true,
+        "taillights": true,
+        "edges": 0
+      }
+    },
+    {
+      "spawn": 9,
+      "driver": {
+        "uid": 9,
+        "preferredSpeed": 5.32351548217237,
+        "acceleration": 0.9622235359624028,
+        "braking": 2.2754959693644197,
+        "followingGap": 1.5914898023242132,
+        "headway": 1.0407418174203484,
+        "turnSpeed": 2.9016247441875747,
+        "steeringRate": 0.7628281079418957,
+        "indicatorPhase": 0.5133090055896901,
+        "purpose": "delivery",
+        "engine": "kei"
+      },
+      "acceleration": 0,
+      "steering": 0,
+      "lights": {
+        "indicator": "none",
+        "blink": false,
+        "brake": true,
+        "headlights": true,
+        "taillights": true,
+        "edges": 0
+      }
+    },
+    {
+      "spawn": 10,
+      "driver": {
+        "uid": 10,
+        "preferredSpeed": 5.603033070489764,
+        "acceleration": 0.9886709420243278,
+        "braking": 1.9951420208904893,
+        "followingGap": 1.5028291344293394,
+        "headway": 0.9250386495143175,
+        "turnSpeed": 2.9936570299090817,
+        "steeringRate": 0.6239537327643483,
+        "indicatorPhase": 0.6104145054705441,
+        "purpose": "delivery",
+        "engine": "diesel"
+      },
+      "acceleration": 0,
+      "steering": 0,
+      "lights": {
+        "indicator": "none",
+        "blink": false,
+        "brake": true,
+        "headlights": true,
+        "taillights": true,
+        "edges": 0
+      }
+    },
+    {
+      "spawn": 11,
+      "driver": {
+        "uid": 11,
+        "preferredSpeed": 5.94615962266922,
+        "acceleration": 1.4213382874010132,
+        "braking": 2.4908966223243625,
+        "followingGap": 1.2820002221385949,
+        "headway": 0.8344376880396157,
+        "turnSpeed": 3.2430896095582287,
+        "steeringRate": 1.0428105116821826,
+        "indicatorPhase": 0.17408737196819857,
+        "purpose": "service",
+        "engine": "ordinary"
+      },
+      "acceleration": 0,
+      "steering": 0,
+      "lights": {
+        "indicator": "none",
+        "blink": false,
+        "brake": true,
+        "headlights": true,
+        "taillights": true,
+        "edges": 0
+      }
+    }
+  ],
+  "audio": {
+    "state": "not-started",
+    "enabled": true,
+    "volume": 0.3,
+    "voices": 0,
+    "footEvents": 0,
+    "indicatorEvents": 0,
+    "sources": [],
+    "trafficAssignments": [],
+    "trafficGain": 0,
+    "audible": false,
+    "rms": 0
+  },
+  "eye": [
+    12.5,
+    1.82,
+    -24.7
+  ],
+  "quaternion": [
+    0.16284571570790085,
+    -0.4979932333418303,
+    0.09581896449259557,
+    0.8463467011012081
+  ],
+  "fov": 66,
+  "width": 1920,
+  "height": 1080,
+  "pixelRatio": 1,
+  "surface": "damp",
+  "reflections": true,
+  "contactShading": true,
+  "stats": {
+    "fps": 116,
+    "drawCalls": 850,
+    "triangles": 4672609,
+    "buildings": 77,
+    "pedestrians": 46,
+    "vehicles": 12
+  },
+  "assets": {
+    "loaded": 3,
+    "errors": []
+  },
+  "capturedAt": "2026-11-04T22:09:43.969Z"
+}

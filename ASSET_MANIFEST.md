@@ -1,5 +1,9 @@
 # Asset manifest
 
+## Yoto After Dark / Nightlife 3A
+
+The new venue, retaining/stair geometry, acoustic panels, fixtures, deck/speaker details, shaped bottle profile and tenant sign layouts are original project code, reusing existing shared materials and three GLB families. [Yoto research and rights](./quality/references/yoto/README.md) records reference-only photographs/maps and two newly redistributed recordings: “EDM Detection Mode” and “Backbay Lounge” by Kevin MacLeod (incompetech.com), CC BY 4.0. Original local MP3s, author-source URLs, hashes, byte sizes, licence and modifications are recorded in [provenance.json](./public/assets/music/provenance.json). [Music credits](./public/assets/music/CREDITS.html) are linked in the game. No external runtime service or new dependency is required. Historical no-recording statements below predate this milestone.
+
 ## Station Development 2
 
 [StationNavigation.ts](./src/world/simulation/StationNavigation.ts), [StationTraffic.ts](./src/world/simulation/StationTraffic.ts) and [StationPose.ts](./src/world/simulation/StationPose.ts) add original traversal/reservation logic and procedural tread foot placement using the existing instanced character meshes. Station paving is represented by shared authored surfaces, including one small original apron joining the existing sidewalk. [The optional debug overlay](./src/world/simulation/StationNavigationDebug.ts) draws original lines, markers and state labels in development only. No downloaded asset, font, recording, new dependency or real light is introduced. [The handoff and actual scene evidence](./quality/STATION_DEVELOPMENT_2.md) record behavior and limits.

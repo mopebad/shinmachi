@@ -2,7 +2,11 @@
 
 # Quality report — production Pass 1
 
-## Delivery
+## Current delivery: Yoto After Dark
+
+[Nightlife Development 3A](./quality/NIGHTLIFE_DEVELOPMENT_3A.md) contains the current environment validation: a continuously walkable basement bar, coherent tenant floors, richer small-bar frontage, two licensed local music recordings and portal-based sound. [The current viewer](./quality/YOTO_REVIEW.html) includes matched actual WebGL comparisons, an approximately sixteen-second continuous walking video and PCM audio. TypeScript, 87 tests and production build pass; the actual-world closure run completes 36/36 station journeys without safety failures. Earlier milestone reports below retain their original boundaries and measurements.
+
+## Delivery (historical production Pass 1)
 
 Pass 1 materially changes the rendered nightlife street. It is a completed first environment pass, not a claim that all twenty sections of the production brief or all later passes are finished.
 

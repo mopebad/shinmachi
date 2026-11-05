@@ -1,0 +1,41 @@
+{
+  "start": {
+    "index": 5,
+    "paused": false,
+    "time": 13.658667,
+    "error": null
+  },
+  "pause": {
+    "index": 5,
+    "paused": true,
+    "time": 13.667947,
+    "error": null
+  },
+  "resume": {
+    "index": 5,
+    "paused": false,
+    "time": 13.978667,
+    "error": null
+  },
+  "next": {
+    "index": 6,
+    "paused": false,
+    "time": 0.488627,
+    "error": null
+  },
+  "mousePrevious": {
+    "index": 5,
+    "paused": false,
+    "time": 0.370667,
+    "error": null
+  },
+  "invalid": {
+    "obstruction": true,
+    "outOfReach": true,
+    "closedHours": true,
+    "keyRepeat": true,
+    "typingIgnored": true
+  },
+  "hudHidden": true,
+  "method": "Actual Playwright keyboard and projected in-world mouse click; real rendered occlusion and proximity checks"
+}

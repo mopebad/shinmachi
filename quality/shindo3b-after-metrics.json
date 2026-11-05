@@ -1,0 +1,77 @@
+{
+  "cost": {
+    "viewport": [
+      1323,
+      804
+    ],
+    "pixelRatio": 1,
+    "medianMs": 2.799999952316284,
+    "p95Ms": 3.299999952316284,
+    "stats": {
+      "fps": 60,
+      "drawCalls": 516,
+      "triangles": 2868089,
+      "buildings": 77,
+      "pedestrians": 53,
+      "vehicles": 9
+    },
+    "method": "30 synchronous composite renders after 8 warmups, gl.finish; CPU+GPU composite wall time, not GPU-only"
+  },
+  "comparisons": [
+    {
+      "name": "entrance",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ]
+    },
+    {
+      "name": "stairs",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ]
+    },
+    {
+      "name": "overview",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ]
+    }
+  ],
+  "clock": 744.7666666666466
+}

@@ -41,8 +41,8 @@ export async function generatedAudit(w){
 }
 
 export function frame(w,eye,target,fov=56){w.controller.teleport(new THREE.Vector3(...eye),new THREE.Vector3(...target));w.setFov(fov);w.camera.updateMatrixWorld();}
-const dataUrl=blob=>new Promise(resolve=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.readAsDataURL(blob);});
-function pcmCapture(audio){
+export const dataUrl=blob=>new Promise(resolve=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.readAsDataURL(blob);});
+export function pcmCapture(audio){
   const ctx=audio.context;if(!ctx)return ()=>null;
   // Dev-only, bounded PCM tap avoids the host browser's missing Opus decoder.
   const processor=ctx.createScriptProcessor(2048,2,1),sink=ctx.createGain(),chunks=[];sink.gain.value=0;

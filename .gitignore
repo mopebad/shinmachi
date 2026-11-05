@@ -6,3 +6,5 @@ desktop.ini
 .env
 .env.*
 !.env.example
+/public/assets/audio/nightlife/shindo/*
+!/public/assets/audio/nightlife/shindo/README.md

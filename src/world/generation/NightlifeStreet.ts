@@ -4,18 +4,22 @@ import { NightlifeMaterials } from './NightlifeMaterials';
 import { NightlifeAssets, type AssetPlacement, type NightlifeAsset } from './NightlifeAssets';
 import type { District } from '../types';
 import { businessOpen, dayState } from '../simulation/WorldRules';
+import {createYotoVenue} from './YotoVenueLayout';
+import {buildYotoVenue,yotoFacadeLayers} from './YotoArchitecture';
+import {ShindoPresentation} from './ShindoPresentation';
+import type {ShindoPlayback} from './ShindoPresentation';
 
 interface Frontage { x: number; side: number; width: number; height: number; theme: string; skin: 'brick' | 'plaster' | 'darkTile' }
 const FRONTAGES: Frontage[] = [
-  { x: -17.2, side: -1, width: 4.6, height: 11.2, theme: 'ramen', skin: 'brick' },
+  { x: -17.2, side: -1, width: 4.6, height: 6.6, theme: 'ramen', skin: 'brick' },
   { x: -12.3, side: -1, width: 4.6, height: 15.1, theme: 'izakaya', skin: 'plaster' },
   { x: -7.6, side: -1, width: 3.8, height: 12.8, theme: 'theatre', skin: 'darkTile' },
-  { x: -17, side: 1, width: 4.7, height: 13.5, theme: 'bar', skin: 'plaster' },
-  { x: -11.8, side: 1, width: 4.9, height: 10.1, theme: 'coffee', skin: 'darkTile' },
+  { x: -17, side: 1, width: 4.7, height: 6.9, theme: 'tsuki', skin: 'plaster' },
+  { x: -11.8, side: 1, width: 4.9, height: 6.4, theme: 'coffee', skin: 'darkTile' },
   { x: -7.4, side: 1, width: 3.5, height: 16.2, theme: 'karaoke', skin: 'brick' },
   { x: 8.3, side: -1, width: 3.5, height: 12.2, theme: 'bar', skin: 'brick' },
   { x: 12.9, side: -1, width: 5.1, height: 16.1, theme: 'ramen', skin: 'plaster' },
-  { x: 18.5, side: -1, width: 5.4, height: 11.5, theme: 'izakaya', skin: 'darkTile' },
+  { x: 18.5, side: -1, width: 5.4, height: 9.9, theme: 'yototei', skin: 'darkTile' },
   { x: 8.3, side: 1, width: 3.5, height: 15.2, theme: 'coffee', skin: 'plaster' },
   { x: 13.1, side: 1, width: 5.4, height: 10.8, theme: 'izakaya', skin: 'brick' },
   { x: 19, side: 1, width: 5.7, height: 14.3, theme: 'karaoke', skin: 'darkTile' },
@@ -28,16 +32,20 @@ export class NightlifeStreet {
   readonly assets: NightlifeAssets;
   readonly exhausts: THREE.Vector3[] = [];
   readonly ready: Promise<void>;
+  readonly venue=createYotoVenue();
+  readonly shindo=new ShindoPresentation();
   private readonly lights: { light: THREE.PointLight; power: number }[] = [];
   constructor(scene: THREE.Scene, district: District) {
     const b = new CityBatch(), m = this.materials, placements: AssetPlacement[] = [];
     this.group.name = 'Yoto nightlife street / authored facades and services';
-    this.group.userData.neighborhoods={district:'nightlife',frontages:FRONTAGES.map(s=>({...s,z:-25+s.side*2.55,business:'restaurant'}))};
+    this.group.userData.neighborhoods={district:'nightlife',frontages:FRONTAGES.map((s,i)=>({...s,...(i===8?{x:this.venue.frontage.x,width:this.venue.frontage.width}:{}),z:-25+s.side*2.55,business:'restaurant'}))};
     const putAsset = (asset: NightlifeAsset, x: number, y: number, z: number, yaw: number, scale: number) => placements.push({ asset, position: new THREE.Vector3(x, y, z), yaw, scale });
     for (const [index, s] of FRONTAGES.entries()) {
       const z = -25 + s.side * 2.55, yaw = s.side > 0 ? Math.PI : 0, w = s.width, h = s.height, facade = m[s.skin];
       const world = (x: number, y: number, zz: number) => new THREE.Vector3(x, y, zz).applyAxisAngle(THREE.Object3D.DEFAULT_UP, yaw).add(new THREE.Vector3(s.x, 0, z));
       b.origin(s.x, z, yaw);
+      if(index===8){buildYotoVenue(b,m,this.venue);this.exhausts.push(world(-w*.38,3.55,.27));}
+      else {
       // A building skin with different floor spacing, setbacks and upper-floor construction.
       b.b(facade, 0, (h + 3.3) / 2, -.75, w, h - 3.3, 1.5);
       b.b(m.wood, 0, 1.5, -2.8, w, 3, .18); b.b(m.wood, 0, .17, -1.1, w, .2, 3.7);
@@ -63,12 +71,13 @@ export class NightlifeStreet {
       b.rod(m.metal, new THREE.Vector3(w / 2 - .3, 2.4, .25), new THREE.Vector3(w / 2 - .9, 2.8, .25), .018);
       // Glass and timber divide a genuinely furnished shallow restaurant room.
       b.b(m.glass, -.4, 1.35, .075, w - 1.1, 2.15, .025);
-      for (let j = 0; j < 7; j++) b.b(m.wood, -w / 2 + .25 + j * (w - .5) / 6, 1.35, .15, .055, 2.45, .09);
-      b.b(m.wood, 0, .42, .15, w - .15, .62, .1);
+      const mullions=index===3||index===4?3:index===0?5:7;
+      for (let j = 0; j < mullions; j++) b.b(index===4?m.metal:m.wood, -w / 2 + .25 + j * (w - .5) / (mullions-1), 1.35, .15, .055, 2.45, .09);
+      b.b(index===4?m.darkTile:m.wood, 0, .42, .15, w - .15, .62, .1);
       b.b(m.wood, .85, 1.35, .16, .045, 2.4, .12); b.b(m.metal, .95, 1.16, .24, .025, .33, .065);
-      for (let j = 0; j < 4; j++) b.part('box', m.cloth, .35 + j * .28, 2.1, .22, .255, .55 + j % 2 * .04, .025, .035 * (j - 1));
+      if(index!==3&&index!==4)for (let j = 0; j < 4; j++) b.part('box', m.cloth, .35 + j * .28, 2.1, .22, .255, .55 + j % 2 * .04, .025, .035 * (j - 1));
       // Each business has its own furniture plan rather than a recoloured counter.
-      if (['ramen', 'izakaya', 'bar'].includes(s.theme)) {
+      if (['ramen', 'izakaya', 'bar','tsuki'].includes(s.theme)) {
         b.b(m.wood, -.35, .91, -1.65, w * .73, 1.13, .6); b.b(m.warmInterior, -.35, 1.51, -1.65, w * .76, .09, .76);
         for (let j = 0; j < 3; j++) {
           const x = -w * .29 + j * w * .21;
@@ -103,7 +112,8 @@ export class NightlifeStreet {
       this.sign(b, s.theme, 0, 3.04, .16, w - .25, .7);
       this.sign(b, 'menu', -w * .24, 1.93, -2.65, 1.2, .72);
       // Rain hood and individually aged shop signs; no identical striped awning row.
-      b.part('box', index % 3 === 1 ? m.redPaint : m.metal, 0, 2.7, .45, w + .18, .075, 1.15, .11);
+      const hoodDepth=index===3?.7:index===4?.55:1.15;
+      b.part('box', index===3?m.cloth:index % 3 === 1 ? m.redPaint : m.metal, 0, 2.7, hoodDepth/2-.12, w + .18, .075, hoodDepth, .11);
       if (index % 2 === 0) { b.b(m.wood, -w * .3, .62, .55, .52, 1.05, .08); this.sign(b, 'menu', -w * .3, .64, .605, .44, .87); }
       if (index < 6 || index % 2) {
         const p = world(-w * .32, 2.07, .55); putAsset('paper-lantern', p.x, p.y, p.z, yaw, .66);
@@ -114,19 +124,24 @@ export class NightlifeStreet {
       // Posters and decals occupy walls, not pedestrian circulation space.
       this.sign(b, 'posters', w * .34, 1.4, .22, .52, 1.5);
       if (index % 3 !== 0) this.sign(b, 'stickers', w * .34, .42, .23, .36, .45);
-      if (s.theme !== 'theatre') this.blade(b, s.theme, w * .34, 5.8 + index % 3 * .38, .72, .9, 3.2, index % 2 ? m.neonCyan : m.neonAmber, false);
+      if (s.theme !== 'theatre') this.blade(b, s.theme, w * .34, Math.min(5.8 + index % 3 * .38,h-1.65), .72, .9, 3.2, index % 2 ? m.neonCyan : m.neonAmber, false);
       else this.blade(b, 'theatre', -.15, 5.9, 1.12, 1.5, 6, m.neonAmber, true);
       if (index === 2 || index === 8) {
         b.part('cylinder', m.metal, -w * .38, 2.7, .27, .13, 1.6, .13); b.b(m.metal, -w * .38, 3.5, .27, .45, .1, .43);
         this.exhausts.push(world(-w * .38, 3.55, .27));
       }
+      yotoFacadeLayers(b,m,index,w,h);
+      }
       b.origin();
       // Collision and staff presentation share these exact facade positions.
       district.colliders.push({ minX: s.x - w / 2, maxX: s.x + w / 2, minZ: s.side < 0 ? z - 2.8 : z + .05, maxZ: s.side < 0 ? z - .05 : z + 2.8 });
-      district.shopfronts.push({ x: s.x, z, rotation: yaw, width: w, business: 'restaurant' });
+      district.shopfronts.push({ x: index===8?this.venue.frontage.x:s.x, z, rotation: yaw, width: index===8?this.venue.frontage.width:w, business: 'restaurant' });
       const threshold = world(w * .23, 0, .87), approach = world(w * .23, 0, 2.55);
       district.doors.push({ x: threshold.x, z: threshold.z, sidewalkX: Math.sign(s.x) * 4.55, business: 'restaurant', area: 'alley', approachX: approach.x, approachZ: -25 });
     }
+    // NPCs continue visiting exterior thresholds; the shaft and underground room are player-only.
+    district.colliders.push({...this.venue.npcReservation});
+    this.group.userData.venue=this.venue;
     // Coherent cable bundles connect wall risers and brackets at safe clearance heights.
     b.origin();
     for (const side of [-1, 1]) {
@@ -135,10 +150,16 @@ export class NightlifeStreet {
     }
     for (let wire = 0; wire < 5; wire++) b.cable(new THREE.Vector3(-17.5 + wire * .18, 5.5 + wire * .08, -27.6), new THREE.Vector3(-10 + wire * .2, 5.2 + wire * .08, -22.4), .35);
     for (const x of [-21, -15, -9, 9, 15, 21]) for (const side of [-1, 1]) b.b(m.grille, x, .025, -25 + side * 1.98, .58, .028, .27);
-    this.group.add(b.finish(m.signMaterial('bar', 1)));
+    this.group.add(b.finish(m.signMaterial('bar', 1)),this.shindo.group);
     this.assets = new NightlifeAssets(placements); this.group.add(this.assets.group); this.ready = this.assets.ready;
     const practical = (x: number, y: number, z: number, color: number, power: number, radius: number) => { const light = new THREE.PointLight(color, 0, radius, 2); light.position.set(x, y, z); this.group.add(light); this.lights.push({ light, power }); };
     practical(-7.9, 4.4, -26.25, 0xff6630, 16, 7); practical(-16, 3.4, -23.3, 0xffbc74, 14, 7); practical(-12.2, 3.5, -26.7, 0xffcb91, 12, 6); practical(13.2, 3.4, -23.2, 0x9bcaca, 13, 8);
+    practical(16.57,-1.12,-35.6,0xffc38a,4.7,3.8);
+    // Two low pools correspond to the west-wall stair fixtures, without lighting the whole shaft.
+    practical(18.95,-.35,-29.0,0xe4b77c,2.5,3.2);practical(18.95,-2.05,-31.8,0xe4b77c,1.7,2.8);
+    practical(17.65,-.98,-36.0,0xffd1a0,1.4,2.7);
+    practical(18.0,-.85,-40.20,0xffd5a4,2.3,3.8);
+    practical(17.175,-2.19,-39.325,0xffc58e,.65,1.7);
     scene.add(this.group);
   }
   private sign(b: CityBatch, theme: string, x: number, y: number, z: number, w: number, h: number, yaw = 0): void { b.panel(this.materials.signMaterial(theme, w / h), x, y, z, w, h, yaw); }
@@ -151,4 +172,5 @@ export class NightlifeStreet {
     else { for (const u of [-w / 2 - .03, w / 2 + .03]) { const a = point(u, -h / 2), c = point(u, h / 2); b.rod(edge, a, c, .018); } }
   }
   update(hour: number): void { const night = dayState(hour).night, open = businessOpen('restaurant', hour); this.materials.setNight(night, open); this.assets.setLighting(night, open); this.lights.forEach(({ light, power }) => { light.intensity = power * night * (open ? 1 : .04); }); }
+  updateMusic(dt:number,state:ShindoPlayback){this.shindo.update(dt,state);}
 }

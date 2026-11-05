@@ -1,0 +1,39 @@
+{
+  "retrieved": "2026-11-04T22:06:02.835Z",
+  "catalogSource": "https://incompetech.com/music/royalty-free/pieces.json",
+  "licenseVerification": "The artist catalog page generates CC BY 4.0 credits for these catalog entries; the licensing page offers the attribution-based Creative Commons option.",
+  "tracks": [
+    {
+      "title": "Backbay Lounge",
+      "author": "Kevin MacLeod",
+      "file": "backbay-lounge.mp3",
+      "source": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Backbay%20Lounge.mp3",
+      "trackPage": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1700068",
+      "isrc": "USUAN1700068",
+      "duration": "00:04:27",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licensePage": "https://incompetech.com/music/royalty-free/licenses/",
+      "attribution": "\"Backbay Lounge\" Kevin MacLeod (incompetech.com) — Licensed under Creative Commons: By Attribution 4.0 License. https://creativecommons.org/licenses/by/4.0/",
+      "modifications": "Original MP3 file unchanged; playback gain, filtering, spatialization and looping are applied in the game.",
+      "bytes": 8531962,
+      "sha256": "9567e71a213b0026341b2c0ecd226950e7653abd235cf520fb9aee4247d74d96"
+    },
+    {
+      "title": "EDM Detection Mode",
+      "author": "Kevin MacLeod",
+      "file": "edm-detection-mode.mp3",
+      "source": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/EDM%20Detection%20Mode.mp3",
+      "trackPage": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1500026",
+      "isrc": "USUAN1500026",
+      "duration": "00:06:06",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licensePage": "https://incompetech.com/music/royalty-free/licenses/",
+      "attribution": "\"EDM Detection Mode\" Kevin MacLeod (incompetech.com) — Licensed under Creative Commons: By Attribution 4.0 License. https://creativecommons.org/licenses/by/4.0/",
+      "modifications": "Original MP3 file unchanged; playback gain, filtering, spatialization and looping are applied in the game.",
+      "bytes": 11704283,
+      "sha256": "746f7b1d4dad9c949a67bc063e0ca79da34452c69cd98f4ab9c16a712e92e951"
+    }
+  ]
+}

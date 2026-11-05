@@ -1,0 +1,95 @@
+{
+  "cost": {
+    "viewport": [
+      1323,
+      804
+    ],
+    "pixelRatio": 1,
+    "medianMs": 2.1999998092651367,
+    "p95Ms": 2.4000000953674316,
+    "stats": {
+      "fps": 200,
+      "drawCalls": 518,
+      "triangles": 2785649,
+      "buildings": 77,
+      "pedestrians": 54,
+      "vehicles": 10
+    },
+    "method": "30 synchronous composite renders after 8 warmups, gl.finish; CPU+GPU composite wall time, not GPU-only"
+  },
+  "comparisons": [
+    {
+      "name": "stairs",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ]
+    },
+    {
+      "name": "overview",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ]
+    },
+    {
+      "name": "bar",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ]
+    },
+    {
+      "name": "music",
+      "identicalConditions": [
+        "eye",
+        "quaternion",
+        "fov",
+        "seed",
+        "hour",
+        "simulationClock",
+        "surface",
+        "reflections",
+        "contactShading",
+        "width",
+        "height",
+        "pixelRatio",
+        "renderConditions"
+      ]
+    }
+  ],
+  "clock": 376.5666666667506
+}

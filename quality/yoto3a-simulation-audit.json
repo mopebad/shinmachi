@@ -1,0 +1,109 @@
+{
+  "openSeconds": 600,
+  "drainSeconds": 600,
+  "ticks": 36000,
+  "arrivals": 4,
+  "departures": 4,
+  "boardingThresholdCrossings": 10,
+  "alightingThresholdCrossings": 20,
+  "movingRiderSamples": 44303,
+  "maxPositionStep": 0.13333333333335418,
+  "maxTransferStep": 0.0492429030778716,
+  "maxRiderOffsetError": 1.4210854715202004e-14,
+  "minimumSeparation": 0.5607010844100854,
+  "invalidPositions": 0,
+  "unsafeCrossings": 0,
+  "overlaps": 0,
+  "unsafeDepartures": 0,
+  "capacityViolations": 0,
+  "gateConflicts": 0,
+  "wallHits": 0,
+  "vehicleOverlaps": 0,
+  "vehicleExits": 130,
+  "trainCycles": [
+    {
+      "clock": 97.29999999999706,
+      "stop": 1,
+      "x": 34.75,
+      "allDoorsClosed": true,
+      "holds": []
+    },
+    {
+      "clock": 275.80000000000376,
+      "stop": 2,
+      "x": 34.75,
+      "allDoorsClosed": true,
+      "holds": []
+    },
+    {
+      "clock": 427.76666666679137,
+      "stop": 3,
+      "x": 34.75,
+      "allDoorsClosed": true,
+      "holds": []
+    },
+    {
+      "clock": 582.3666666667943,
+      "stop": 4,
+      "x": 34.75,
+      "allDoorsClosed": true,
+      "holds": []
+    }
+  ],
+  "ordinaryWallHits": 0,
+  "station": {
+    "started": 36,
+    "completed": 36,
+    "failures": 0,
+    "invalidMoves": 0,
+    "maxActive": 12,
+    "maxMovingWait": 12.833333333333298,
+    "maxGateWait": 9.866666666666642,
+    "maxStairWait": 6.999999999999985,
+    "maxVisitSeconds": 585.3666666667497,
+    "maxWaiting": 4,
+    "transitions": {
+      "riding": 30,
+      "approaching": 16,
+      "alighting": 20,
+      "returning": 21,
+      "descending": 21,
+      "entering": 11,
+      "gate-in": 11,
+      "paid": 32,
+      "ascending": 11,
+      "gate-out": 21,
+      "exiting": 21,
+      "platform": 11,
+      "waiting": 11,
+      "boarding": 10
+    }
+  },
+  "passengers": {
+    "originated": 20,
+    "boarded": 10,
+    "alighted": 20,
+    "delivered": 10,
+    "maxOnboard": 5,
+    "maxTransfers": 4,
+    "invalidMoves": 0,
+    "unsafeCrossings": 0,
+    "capacityRefusals": 0,
+    "doorBoardings": {
+      "car-2-south-1": 2,
+      "car-3-south-2": 5,
+      "car-2-south-2": 2,
+      "car-3-south-1": 1
+    },
+    "doorAlightings": {
+      "car-2-south-1": 4,
+      "car-2-south-2": 4,
+      "car-3-south-1": 4,
+      "car-1-south-1": 4,
+      "car-1-south-2": 4
+    }
+  },
+  "remaining": 0,
+  "reservations": 0,
+  "trainActive": false
+}

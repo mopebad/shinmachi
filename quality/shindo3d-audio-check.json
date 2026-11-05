@@ -1,0 +1,669 @@
+{
+  "transport": [
+    {
+      "action": "next",
+      "index": 6,
+      "ready": 4
+    },
+    {
+      "action": "previous",
+      "index": 5,
+      "ready": 4
+    }
+  ],
+  "motion": [
+    {
+      "time": 0.629333,
+      "playing": true,
+      "level": 0.8362789507923465,
+      "angle": -2.1967865882906947,
+      "levels": {
+        "time": 0.629333,
+        "title": "Nujabes - Luv(sic.) pt3 (feat. Shing02) [Official Audio] [Fwv2gnCFDOc]",
+        "playing": true,
+        "level": 0.8175343663533234,
+        "bands": [
+          0.846078431372549,
+          0.477526395173454,
+          0.42183006535947715
+        ]
+      }
+    },
+    {
+      "time": 0.728,
+      "playing": true,
+      "level": 0.7712470769987289,
+      "angle": -2.541199390903744,
+      "levels": {
+        "time": 0.728,
+        "title": "Nujabes - Luv(sic.) pt3 (feat. Shing02) [Official Audio] [Fwv2gnCFDOc]",
+        "playing": true,
+        "level": 0.8557050759048965,
+        "bands": [
+          0.8284313725490197,
+          0.5155354449472096,
+          0.4840522875816993
+        ]
+      }
+    },
+    {
+      "time": 0.829333,
+      "playing": true,
+      "level": 0.7568369019228598,
+      "angle": -2.894918289088426,
+      "levels": {
+        "time": 0.829333,
+        "title": "Nujabes - Luv(sic.) pt3 (feat. Shing02) [Official Audio] [Fwv2gnCFDOc]",
+        "playing": true,
+        "level": 0.8056586984526806,
+        "bands": [
+          0.8137254901960784,
+          0.46998491704374057,
+          0.4390849673202614
+        ]
+      }
+    },
+    {
+      "time": 0.93767,
+      "playing": true,
+      "level": 0.5084208496021232,
+      "angle": -3.273085759435046,
+      "levels": {
+        "time": 0.938667,
+        "title": "Nujabes - Luv(sic.) pt3 (feat. Shing02) [Official Audio] [Fwv2gnCFDOc]",
+        "playing": true,
+        "level": 0.4013073675846522,
+        "bands": [
+          0.8049019607843138,
+          0.40693815987933635,
+          0.37006535947712416
+        ]
+      }
+    },
+    {
+      "time": 1.039228,
+      "playing": true,
+      "level": 0.7333570109510092,
+      "angle": -3.6275900557831258,
+      "levels": {
+        "time": 1.04,
+        "title": "Nujabes - Luv(sic.) pt3 (feat. Shing02) [Official Audio] [Fwv2gnCFDOc]",
+        "playing": true,
+        "level": 0.42953802179545386,
+        "bands": [
+          0.9333333333333333,
+          0.7330316742081447,
+          0.6277124183006536
+        ]
+      }
+    },
+    {
+      "time": 1.13756,
+      "playing": true,
+      "level": 0.47139196738960315,
+      "angle": -3.970833487797339,
+      "levels": {
+        "time": 1.138667,
+        "title": "Nujabes - Luv(sic.) pt3 (feat. Shing02) [Official Audio] [Fwv2gnCFDOc]",
+        "playing": true,
+        "level": 0.7128987828338522,
+        "bands": [
+          0.9127450980392157,
+          0.6986425339366515,
+          0.589281045751634
+        ]
+      }
+    },
+    {
+      "time": 1.24,
+      "playing": true,
+      "level": 0.43877688056583397,
+      "angle": -4.328416544945937,
+      "levels": {
+        "time": 1.24,
+        "title": "Nujabes - Luv(sic.) pt3 (feat. Shing02) [Official Audio] [Fwv2gnCFDOc]",
+        "playing": true,
+        "level": 0.33459431906810405,
+        "bands": [
+          0.8970588235294118,
+          0.6597285067873303,
+          0.5390849673202615
+        ]
+      }
+    },
+    {
+      "time": 1.338667,
+      "playing": true,
+      "level": 0.49264425899960906,
+      "angle": -4.672829347558986,
+      "levels": {
+        "time": 1.338667,
+        "title": "Nujabes - Luv(sic.) pt3 (feat. Shing02) [Official Audio] [Fwv2gnCFDOc]",
+        "playing": true,
+        "level": 0.5072539661244012,
+        "bands": [
+          0.884313725490196,
+          0.6678733031674208,
+          0.6094117647058823
+        ]
+      }
+    },
+    {
+      "time": 1.44,
+      "playing": true,
+      "level": 0.4501243479908632,
+      "angle": -5.026548245743669,
+      "levels": {
+        "time": 1.44,
+        "title": "Nujabes - Luv(sic.) pt3 (feat. Shing02) [Official Audio] [Fwv2gnCFDOc]",
+        "playing": true,
+        "level": 0.4288560805306578,
+        "bands": [
+          0.8627450980392157,
+          0.6259426847662142,
+          0.558562091503268
+        ]
+      }
+    },
+    {
+      "time": 1.538667,
+      "playing": true,
+      "level": 0.5922930133701948,
+      "angle": -5.370961048356718,
+      "levels": {
+        "time": 1.538667,
+        "title": "Nujabes - Luv(sic.) pt3 (feat. Shing02) [Official Audio] [Fwv2gnCFDOc]",
+        "playing": true,
+        "level": 1,
+        "bands": [
+          0.8647058823529412,
+          0.5939668174962293,
+          0.5244444444444445
+        ]
+      }
+    },
+    {
+      "time": 1.64,
+      "playing": true,
+      "level": 0.6881200143559179,
+      "angle": -5.7246799465414,
+      "levels": {
+        "time": 1.64,
+        "title": "Nujabes - Luv(sic.) pt3 (feat. Shing02) [Official Audio] [Fwv2gnCFDOc]",
+        "playing": true,
+        "level": 1,
+        "bands": [
+          0.8539215686274509,
+          0.583710407239819,
+          0.5486274509803921
+        ]
+      }
+    },
+    {
+      "time": 1.738667,
+      "playing": true,
+      "level": 0.7407883643647938,
+      "angle": -6.06909274915445,
+      "levels": {
+        "time": 1.738909,
+        "title": "Nujabes - Luv(sic.) pt3 (feat. Shing02) [Official Audio] [Fwv2gnCFDOc]",
+        "playing": true,
+        "level": 0.15524191822737793,
+        "bands": [
+          0.8284313725490197,
+          0.551131221719457,
+          0.5036601307189542
+        ]
+      }
+    }
+  ],
+  "zones": [
+    {
+      "name": "street",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.9686572551727295,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 2.741333,
+            "duration": 336.062417,
+            "starts": 0,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.0025211371248587966,
+            "speakerGains": [
+              0.00034451441024430096,
+              0.00037197532947175205
+            ],
+            "roomReflections": 0.0007570616435259581,
+            "levels": {
+              "rms": 0.42010003222834996,
+              "bands": [
+                0.8578431372549019,
+                0.6120663650075415,
+                0.5074509803921569
+              ]
+            },
+            "gainOutside": 0.016754530370235443,
+            "cutoff": 2203.8017578125
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 6.591565,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -15.724178407724132,
+            "gain": 0.0010668317706347798
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739411945,
+            "gain": 0.0003985126786920364
+          },
+          {
+            "kind": "hybrid",
+            "x": 1.8,
+            "z": -2.930000000000149,
+            "gain": 0.000017485648967157847
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          48,
+          null
+        ],
+        "trafficGain": 0.00148252806502569,
+        "audible": true,
+        "rms": 0.0029884725353989455
+      }
+    },
+    {
+      "name": "stairs",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.646920919418335,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 3.744129,
+            "duration": 336.062417,
+            "starts": 0,
+            "error": null,
+            "mix": {
+              "inside": 0.085,
+              "outside": 0.009,
+              "cutoff": 3975,
+              "zone": "stairwell",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.08411583304405212,
+            "speakerGains": [
+              0,
+              0
+            ],
+            "roomReflections": 0,
+            "levels": {
+              "rms": 0.4302237843760658,
+              "bands": [
+                0.9107843137254902,
+                0.6690799396681749,
+                0.5499346405228758
+              ]
+            },
+            "gainOutside": 0.009082415141165257,
+            "cutoff": 3963.027587890625
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 7.593021,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -15.724178407724132,
+            "gain": 0.0009219776864044507
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739411945,
+            "gain": 0.00021724066370176312
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          null,
+          null
+        ],
+        "trafficGain": 0.0011393245949875563,
+        "audible": true,
+        "rms": 0.002544615853523924
+      }
+    },
+    {
+      "name": "inside",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.1386454552412033,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 4.749985,
+            "duration": 336.062417,
+            "starts": 0,
+            "error": null,
+            "mix": {
+              "inside": 0.25,
+              "outside": 0,
+              "cutoff": 17500,
+              "zone": "basement",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.23586418107151985,
+            "speakerGains": [
+              0.0321122482419014,
+              0.034654077142477036
+            ],
+            "roomReflections": 0.020490774884819984,
+            "levels": {
+              "rms": 0.3223611143751209,
+              "bands": [
+                0.8411764705882353,
+                0.5378582202111614,
+                0.4699346405228758
+              ]
+            },
+            "gainOutside": 0.0000953843627939932,
+            "cutoff": 17408.576171875
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 8.600705,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -15.724178407724132,
+            "gain": 0.00027617067138743724
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          null,
+          null,
+          null
+        ],
+        "trafficGain": 0.00027632682758849114,
+        "audible": true,
+        "rms": 0.009175005022856841
+      }
+    },
+    {
+      "name": "leave",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.9692294597625732,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 5.752,
+            "duration": 336.062417,
+            "starts": 0,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.002508524223230779,
+            "speakerGains": [
+              0.00034152838634327054,
+              0.00036856235237792134
+            ],
+            "roomReflections": 0.0007319525466300547,
+            "levels": {
+              "rms": 0.9018890496958735,
+              "bands": [
+                0.8205882352941176,
+                0.5402714932126697,
+                0.5423529411764706
+              ]
+            },
+            "gainOutside": 0.016755210235714912,
+            "cutoff": 2203.363525390625
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 9.601451,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -15.724178407724132,
+            "gain": 0.0010668317706347798
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739411945,
+            "gain": 0.0003985126786920364
+          },
+          {
+            "kind": "hybrid",
+            "x": 1.8,
+            "z": -2.930000000000149,
+            "gain": 0.000017485648967157847
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          48,
+          null
+        ],
+        "trafficGain": 0.0014825273538008332,
+        "audible": true,
+        "rms": 0.0014807254267716998
+      }
+    }
+  ],
+  "pause": {
+    "angle": -6.06909274915445,
+    "level": 0.0005129971324246784,
+    "survivesMute": true
+  }
+}

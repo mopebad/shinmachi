@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import type { Bounds } from '../types.ts';
 import { STATION, stationBodyBlocked, stationSupport } from '../generation/StationLayout.ts';
 import type { StationSpatial } from '../generation/StationLayout.ts';
+import {venueSupport,venueBodyBlocked,venueOwnsReservation} from '../generation/YotoVenueLayout.ts';
+import type {YotoVenueSpatial} from '../generation/YotoVenueLayout.ts';
 
 export type CameraMode = 'walk' | 'fly';
 export class PlayerController {
@@ -15,8 +17,9 @@ export class PlayerController {
   private yaw = 0; private pitch = 0; private dragging = false;
   private footY: number = STATION.groundY;
   private readonly station?: StationSpatial;
-  constructor(camera: THREE.PerspectiveCamera, canvas: HTMLCanvasElement, colliders: Bounds[] = [], station?: StationSpatial) {
-    this.camera = camera; this.colliders = colliders; this.station = station;
+  private readonly venue?:YotoVenueSpatial;
+  constructor(camera: THREE.PerspectiveCamera, canvas: HTMLCanvasElement, colliders: Bounds[] = [], station?: StationSpatial,venue?:YotoVenueSpatial) {
+    this.camera = camera; this.colliders = colliders; this.station = station;this.venue=venue;
     canvas.tabIndex = 0; canvas.setAttribute('aria-label', 'City view. Click to look; WASD to walk, F to fly, V to walk, Escape to release.');
     canvas.addEventListener('click', () => { canvas.focus(); if (document.pointerLockElement !== canvas) { const result = canvas.requestPointerLock(); if (result) result.catch(() => { /* Drag-to-look remains available. */ }); } });
     canvas.addEventListener('pointerdown', () => { this.dragging = true; }); window.addEventListener('pointerup', () => { this.dragging = false; });
@@ -38,7 +41,7 @@ export class PlayerController {
   setMode(mode: CameraMode): void {
     this.mode = mode; this.velocity.set(0, 0, 0);
     if (mode === 'walk') {
-      this.footY = this.station ? stationSupport(this.station,this.camera.position.x,this.camera.position.z,this.camera.position.y-1.705) ?? STATION.groundY : STATION.groundY;
+      this.footY = this.support(this.camera.position.x,this.camera.position.z,this.camera.position.y-1.705) ?? STATION.groundY;
       if (this.blocked(this.camera.position.x, this.camera.position.z)) { this.camera.position.copy(this.safe); this.footY=this.safe.y-1.705; }
       this.camera.position.y = this.footY + 1.705;
     }
@@ -50,10 +53,11 @@ export class PlayerController {
     if (!this.blocked(position.x, position.z) && this.mode === 'walk') this.safe.copy(position);
   }
   private blocked(x: number, z: number): boolean {
-    const support = this.station ? stationSupport(this.station,x,z,this.footY) : STATION.groundY;
-    if(support===null || this.station && stationBodyBlocked(this.station,x,z,support))return true;
-    return this.colliders.some(b => x > b.minX - .25 && x < b.maxX + .25 && z > b.minZ - .25 && z < b.maxZ + .25);
+    const support = this.support(x,z,this.footY);
+    if(support===null || this.station && stationBodyBlocked(this.station,x,z,support)||this.venue&&venueBodyBlocked(this.venue,x,z,support))return true;
+    return this.colliders.some(b => !(this.venue&&venueOwnsReservation(this.venue,b))&&x > b.minX - .25 && x < b.maxX + .25 && z > b.minZ - .25 && z < b.maxZ + .25);
   }
+  private support(x:number,z:number,previousY:number):number|null {const local=this.venue?venueSupport(this.venue,x,z,previousY):undefined;return local!==undefined?local:this.station?stationSupport(this.station,x,z,previousY):STATION.groundY;}
   update(dt: number): void {
     const forward = Number(this.keys.has('w')) - Number(this.keys.has('s')), strafe = Number(this.keys.has('d')) - Number(this.keys.has('a'));
     this.camera.rotation.set(this.pitch, this.yaw, 0, 'YXZ');
@@ -65,7 +69,7 @@ export class PlayerController {
     const p = this.camera.position, dx = this.velocity.x * dt, dz = this.velocity.z * dt;
     if (this.mode === 'fly' || !this.blocked(p.x + dx, p.z)) p.x += dx;
     if (this.mode === 'fly' || !this.blocked(p.x, p.z + dz)) p.z += dz;
-    if(this.mode==='walk') { this.footY=this.station ? stationSupport(this.station,p.x,p.z,this.footY) ?? this.footY : STATION.groundY; p.y=this.footY+1.705; }
+    if(this.mode==='walk') { this.footY=this.support(p.x,p.z,this.footY) ?? this.footY; p.y=this.footY+1.705; }
     else p.y=THREE.MathUtils.clamp(p.y+this.velocity.y*dt,.6,90);
     p.x = THREE.MathUtils.clamp(p.x, -66, 66); p.z = THREE.MathUtils.clamp(p.z, -66, 66);
     if (this.mode === 'walk' && !this.blocked(p.x, p.z)) this.safe.copy(p);

@@ -12,8 +12,12 @@ export class CityBatch {
   private readonly box = new THREE.BoxGeometry(1, 1, 1);
   private readonly plane = new THREE.PlaneGeometry(1, 1);
   private readonly cylinder = new THREE.CylinderGeometry(1, 1, 1, 10);
+  private readonly disc = new THREE.CylinderGeometry(1, 1, 1, 32);
+  private readonly tumbler = new THREE.LatheGeometry([[0,-.5],[.43,-.5],[.5,-.44],[.51,.5],[.46,.5],[.445,-.39],[0,-.39]].map(([x,y])=>new THREE.Vector2(x,y)),32);
+  private readonly woofer = new THREE.LatheGeometry([[0,.15],[.27,.15],[.87,-.12],[1,0]].map(([x,y])=>new THREE.Vector2(x,y)),32);
   private readonly sphere = new THREE.SphereGeometry(1, 8, 6);
   private readonly torus = new THREE.TorusGeometry(1, .055, 4, 16);
+  private readonly bottle = new THREE.LatheGeometry([[0,-.5],[.42,-.5],[.5,-.45],[.5,.08],[.44,.17],[.17,.27],[.17,.46],[.2,.47],[.2,.5],[0,.5]].map(([x,y])=>new THREE.Vector2(x,y)),16);
   private readonly triangle = new THREE.ShapeGeometry(new THREE.Shape([new THREE.Vector2(-.5, .4), new THREE.Vector2(0, -.5), new THREE.Vector2(.5, .4), new THREE.Vector2(-.5, .4)]));
   private readonly rice = new THREE.ExtrudeGeometry(new THREE.Shape([new THREE.Vector2(-.5, -.5), new THREE.Vector2(.5, -.5), new THREE.Vector2(0, .5), new THREE.Vector2(-.5, -.5)]), { depth: 1, bevelEnabled: false }).translate(0, 0, -.5);
   private readonly object = new THREE.Object3D();
@@ -32,7 +36,7 @@ export class CityBatch {
   origin(x = 0, z = 0, rotation = 0, y = 0): void {
     this.transform.compose(new THREE.Vector3(x, y, z), new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), rotation), new THREE.Vector3(1, 1, 1));
   }
-  part(shape: 'box' | 'plane' | 'rice' | 'cylinder' | 'sphere' | 'torus' | 'triangle', material: THREE.Material, x: number, y: number, z: number, sx: number, sy: number, sz: number, rx = 0, ry = 0, rz = 0, tint = 0xffffff): void {
+  part(shape: 'box' | 'plane' | 'rice' | 'cylinder' | 'disc' | 'tumbler' | 'woofer' | 'sphere' | 'torus' | 'triangle' | 'bottle', material: THREE.Material, x: number, y: number, z: number, sx: number, sy: number, sz: number, rx = 0, ry = 0, rz = 0, tint = 0xffffff): void {
     if(this.muted)return;
     const key = shape + material.uuid;
     let batch = this.batches.get(key);

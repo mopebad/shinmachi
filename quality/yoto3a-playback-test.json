@@ -1,0 +1,615 @@
+{
+  "result": [
+    {
+      "name": "outside",
+      "eye": [
+        19.5,
+        1.82,
+        -26.9
+      ],
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 80.671305,
+            "duration": 365.688188,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0,
+            "gainOutside": 0.016931844875216484,
+            "cutoff": 2100.29296875
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 80.671393,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.006614657153146805
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.006614657153146805
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -14.48090359039653,
+            "gain": 0.00048163395386976695
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739406907,
+            "gain": 0.0003985126786922137
+          },
+          {
+            "kind": "hybrid",
+            "x": 1.8,
+            "z": -2.930000000000149,
+            "gain": 0.000017485648967157847
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          48,
+          null
+        ],
+        "trafficGain": 0.0008976322806120152,
+        "audible": true,
+        "rms": 0.003812243154185793
+      }
+    },
+    {
+      "name": "through-wall",
+      "eye": [
+        17.8,
+        1.82,
+        -26.9
+      ],
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 81.470113,
+            "duration": 365.688188,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.002605430996788445,
+              "cutoff": 320,
+              "zone": "through-wall",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0,
+            "gainOutside": 0.00298351445235312,
+            "cutoff": 352.664794921875
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 81.470113,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.006614657153146805
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.006614657153146805
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -14.48090359039653,
+            "gain": 0.000539817913262728
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739406907,
+            "gain": 0.0004603030085314184
+          },
+          {
+            "kind": "hybrid",
+            "x": 1.8,
+            "z": -2.930000000000149,
+            "gain": 0.00003490625895672311
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          48,
+          null
+        ],
+        "trafficGain": 0.001034844677633373,
+        "audible": true,
+        "rms": 0.0012059955893625267
+      }
+    },
+    {
+      "name": "stairs",
+      "eye": [
+        19.5,
+        0.29000000000000004,
+        -30
+      ],
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 82.280474,
+            "duration": 365.688188,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0.085,
+              "outside": 0.009,
+              "cutoff": 3975,
+              "zone": "stairwell",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.08286360651254654,
+            "gainOutside": 0.008848775178194046,
+            "cutoff": 3912.004150390625
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 82.280581,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.006614657153146805
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.006614657153146805
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -14.48090359039653,
+            "gain": 0.0004141507606439729
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739406907,
+            "gain": 0.00021724066370168142
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          null,
+          null
+        ],
+        "trafficGain": 0.000631821239949204,
+        "audible": true,
+        "rms": 0.010102258928354164
+      }
+    },
+    {
+      "name": "inside",
+      "eye": [
+        19.6,
+        -1.2399999999999998,
+        -35
+      ],
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 83.080998,
+            "duration": 365.688188,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0.25,
+              "outside": 0,
+              "cutoff": 17500,
+              "zone": "basement",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.24558913707733154,
+            "gainOutside": 0.00023356739256996661,
+            "cutoff": 17250.6015625
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 83.080998,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.006614657153146805
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.006614657153146805
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -14.48090359039653,
+            "gain": 0.000208950469066627
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739406907,
+            "gain": 0.0000032532946204012673
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          null,
+          null
+        ],
+        "trafficGain": 0.00021273976403790584,
+        "audible": true,
+        "rms": 0.04932391162609428
+      }
+    },
+    {
+      "name": "outside-return",
+      "eye": [
+        19.5,
+        1.82,
+        -26.9
+      ],
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 83.882086,
+            "duration": 365.688188,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.00648120604455471,
+            "gainOutside": 0.01649349369108677,
+            "cutoff": 2378.043701171875
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 83.882086,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.006614657153146805
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.006614657153146805
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -14.48090359039653,
+            "gain": 0.00048163395386976695
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739406907,
+            "gain": 0.0003985126786922137
+          },
+          {
+            "kind": "hybrid",
+            "x": 1.8,
+            "z": -2.930000000000149,
+            "gain": 0.000017485648967157847
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          48,
+          null
+        ],
+        "trafficGain": 0.0008967574885900831,
+        "audible": true,
+        "rms": 0.0007224982358429803
+      }
+    }
+  ],
+  "muted": {
+    "state": "running",
+    "enabled": false,
+    "volume": 0.3,
+    "music": [
+      {
+        "kind": "shindo",
+        "readyState": 4,
+        "paused": false,
+        "time": 85.092426,
+        "duration": 365.688188,
+        "starts": 1,
+        "error": null,
+        "mix": {
+          "inside": 0,
+          "outside": 0.01693430313578606,
+          "cutoff": 2100,
+          "zone": "entrance",
+          "portal": {
+            "x": 19.5,
+            "y": 0.95,
+            "z": -27.4
+          }
+        },
+        "gainInside": 0,
+        "gainOutside": 0.016931844875216484,
+        "cutoff": 2100.696044921875
+      },
+      {
+        "kind": "jazz",
+        "readyState": 4,
+        "paused": false,
+        "time": 85.092426,
+        "duration": 266.5535,
+        "starts": 1,
+        "error": null,
+        "mix": {
+          "inside": 0,
+          "outside": 0,
+          "cutoff": 2300,
+          "zone": "jazz-frontage",
+          "portal": {
+            "x": -11.8,
+            "y": 1.35,
+            "z": -22.2
+          }
+        },
+        "gainInside": 0,
+        "gainOutside": 0,
+        "cutoff": 2299.70703125
+      }
+    ],
+    "voices": 23,
+    "footEvents": 0,
+    "indicatorEvents": 0,
+    "sources": [
+      {
+        "kind": "restaurant",
+        "x": 19.742,
+        "z": -26.68,
+        "gain": 0.006614657153146805
+      },
+      {
+        "kind": "restaurant",
+        "x": 17.689,
+        "z": -23.32,
+        "gain": 0.006614657153146805
+      },
+      {
+        "kind": "kei",
+        "x": 1.8,
+        "z": -14.48090359039653,
+        "gain": 0.00048163395386976695
+      },
+      {
+        "kind": "diesel",
+        "x": 1.8,
+        "z": -9.023235739406907,
+        "gain": 0.0003985126786922137
+      },
+      {
+        "kind": "hybrid",
+        "x": 1.8,
+        "z": -2.930000000000149,
+        "gain": 0.000017485648967157847
+      }
+    ],
+    "trafficAssignments": [
+      56,
+      52,
+      48,
+      null
+    ],
+    "trafficGain": 0.0008976322806120152,
+    "audible": false,
+    "rms": 7.638986362219075e-7
+  },
+  "actualDecodedStreams": true
+}

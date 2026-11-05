@@ -9,7 +9,7 @@ import {NeighborhoodArchitecture} from './NeighborhoodArchitecture';
 import {neighborhoodBuilding,neighborhoodParcel,parcelHash} from '../Neighborhoods';
 
 export type Archetype = 'izakaya' | 'retail' | 'apartment' | 'office' | 'convenience';
-export interface BuildingSpec { x: number; z: number; rotation: number; width: number; depth: number; floors: number; kind: Archetype; palette: number; shop: number; heroStore?: boolean; heroStreet?: number }
+export interface BuildingSpec { x: number; z: number; rotation: number; width: number; depth: number; floors: number; kind: Archetype; palette: number; shop: number; heroStore?: boolean; heroStreet?: number; rngDepth?:number }
 
 export class BuildingKit {
   private hero?: HeroStreetKit;
@@ -59,8 +59,8 @@ export class BuildingKit {
     if (hero) this.hero!.facade(s, occupied);
     // Side elevations are detailed too: alleys expose these, not only the street facade.
     for (const side of [-1, 1]) {
-      for (let f = 1; f < floors; f++) for (let j = 0; j < Math.floor(d / 3.1); j++) {
-        const upper = f * 2.85 + 1.3 > upperStart, fw = upper ? upperW : w, fd = upper ? upperD : d, front = upper ? upperFront : 0, z = upper ? front - (j + .5) * fd / Math.floor(d / 3.1) : -1.9 - j * 2.7;
+      for (let f = 1; f < floors; f++) for (let j = 0; j < Math.floor((s.rngDepth??d) / 3.1); j++) {
+        const upper = f * 2.85 + 1.3 > upperStart, fw = upper ? upperW : w, fd = upper ? upperD : d, front = upper ? upperFront : 0, z = upper ? front - (j + .5) * fd / Math.floor((s.rngDepth??d) / 3.1) : -1.9 - j * 2.7;
         b.b(m.dark, side * (fw / 2 + .01), f * 2.85 + 1.3, z, .09, 1.6, 1.1);
         b.b(this.rng() > .72 ? m.businesses[kind === 'apartment' ? 'residential' : 'office'].window : m.windows, side * (fw / 2 + .065), f * 2.85 + 1.3, z, .04, 1.4, .95);
         b.b(m.metal, side * (fw / 2 + .1), f * 2.85 + 1.3, z, .045, 1.43, .04);

@@ -3,6 +3,9 @@ import type { CitySimulation } from '../simulation/CitySimulation';
 import { trafficVoiceMix } from './AudioMix';
 import { businessOpen, dayState, railServiceOpen, seededRandom } from '../simulation/WorldRules';
 import {neighborhoodAt} from '../Neighborhoods';
+import {VenueMusic} from './VenueMusic';
+import {ShindoPlayer} from './ShindoPlayer';
+import {shindoRoom} from './ShindoAcoustics';
 
 interface Voice { gain: GainNode; panner?: PannerNode; filter: BiquadFilterNode; engine?: OscillatorNode; engineGain?: GainNode; source?: AudioBufferSourceNode; vehicleId?: number;engineClass?:string;tickGain?:GainNode;indicatorEdge?:number }
 interface FootVoice {gain:GainNode;panner:PannerNode;filter:BiquadFilterNode;until:number}
@@ -10,6 +13,8 @@ interface FootVoice {gain:GainNode;panner:PannerNode;filter:BiquadFilterNode;unt
 export class CitySoundscape {
   private context?: AudioContext;
   private master?: GainNode;
+  private street?:GainNode;
+  private hour=20.5;
   private analyser?: AnalyserNode;
   private noise?: AudioBuffer;
   private roadNoise?: AudioBuffer;
@@ -28,28 +33,41 @@ export class CitySoundscape {
   private lastBeep = -1;
   private seconds = 0;
   private audible = false;
+  private music?:VenueMusic;
+  readonly venuePlayer=new ShindoPlayer();
+  get venuePlayback(){const state=this.venuePlayer.state;return{time:state.time,title:state.title,playing:this.context?.state==='running'&&!state.paused&&businessOpen('restaurant',this.hour),level:this.music?.levels.rms??0,bands:this.music?.levels.bands??[0,0,0]};}
 
   get status(): 'start' | 'on' | 'muted' { return !this.enabled ? 'muted' : this.context?.state === 'running' ? 'on' : 'start'; }
   /** Own synthesized output only: never requests microphone permission. */
   get recordingStream():MediaStream|undefined{return this.recording?.stream;}
   get diagnostics() {
     const data = new Float32Array(256); this.analyser?.getFloatTimeDomainData(data);
-    return { state: this.context?.state ?? 'not-started', enabled: this.enabled, volume: this.volume, voices: this.voices.size + this.traffic.length+this.feet.length, footEvents:this.footEvents,indicatorEvents:this.indicatorEvents,sources:this.sources, trafficAssignments: this.traffic.map(v => v.vehicleId ?? null), trafficGain: this.traffic.reduce((total, v) => total + v.gain.gain.value + (v.engineGain?.gain.value ?? 0), 0), audible: this.audible, rms: Math.sqrt(data.reduce((sum, x) => sum + x * x, 0) / data.length) };
+    return { state: this.context?.state ?? 'not-started', enabled: this.enabled, volume: this.volume,ambientTransmission:this.street?.gain.value??1, music:this.music?.diagnostics??[],voices: this.voices.size + this.traffic.length+this.feet.length, footEvents:this.footEvents,indicatorEvents:this.indicatorEvents,sources:this.sources, trafficAssignments: this.traffic.map(v => v.vehicleId ?? null), trafficGain: this.traffic.reduce((total, v) => total + v.gain.gain.value + (v.engineGain?.gain.value ?? 0), 0), audible: this.audible, rms: Math.sqrt(data.reduce((sum, x) => sum + x * x, 0) / data.length) };
   }
   async start(): Promise<void> {
     this.enabled = true;
     if (!this.context) this.initialize();
     await this.context!.resume();
+    await this.music?.unlock();
   }
   toggle(): void { if (this.enabled && this.context?.state === 'running') this.enabled = false; else void this.start().catch(() => { this.enabled = false; }); }
   setVolume(value: number): void { this.volume = Math.max(0, Math.min(1, value)); }
+  async controlVenueMusic(action:'toggle'|'next'|'previous'|'select',index?:number){
+    this.enabled=true;if(!this.context)this.initialize();await this.context!.resume();
+    if(action==='toggle')await this.venuePlayer.toggle();
+    else if(action==='select')await this.venuePlayer.select(index??0);
+    else await this.venuePlayer.skip(action==='next'?1:-1);
+    await this.music?.unlock();
+  }
 
   private initialize(): void {
     const ctx = this.context = new AudioContext(), master = this.master = ctx.createGain();
     const compressor = ctx.createDynamicsCompressor(); compressor.threshold.value = -17; compressor.knee.value = 12; compressor.ratio.value = 3;
     this.analyser = ctx.createAnalyser(); this.analyser.fftSize = 256;
     master.gain.value = 0; master.connect(compressor).connect(this.analyser).connect(ctx.destination);
+    this.street=ctx.createGain();this.street.connect(master);
     this.recording=ctx.createMediaStreamDestination();this.analyser.connect(this.recording);
+    this.music=new VenueMusic(ctx,master,this.venuePlayer);
     for(const [kind,harmonics] of Object.entries({kei:[0,1,.35,.18,.12,.04],diesel:[0,1,.48,.22,.18,.1],hybrid:[0,1,.025,.01],ordinary:[0,1,.22,.12,.05],refined:[0,1,.12,.025,.01],sport:[0,1,.38,.22,.12,.06]}))this.waves.set(kind,ctx.createPeriodicWave(new Float32Array(harmonics.length),new Float32Array(harmonics)));
     const buffer = this.noise = ctx.createBuffer(1, ctx.sampleRate * 4, ctx.sampleRate), samples = buffer.getChannelData(0), rng = seededRandom(5129);
     let brown = 0;
@@ -86,7 +104,7 @@ export class CitySoundscape {
     for(let i=0;i<8;i++){
       const gain=ctx.createGain(),filter=ctx.createBiquadFilter(),panner=ctx.createPanner();filter.type='lowpass';gain.gain.value=0;
       panner.panningModel='HRTF';panner.refDistance=2;panner.rolloffFactor=1.5;
-      filter.connect(gain).connect(panner).connect(master);this.feet.push({gain,filter,panner,until:0});
+      filter.connect(gain).connect(panner).connect(this.street);this.feet.push({gain,filter,panner,until:0});
     }
   }
   private voice(frequency: number, type: BiquadFilterType, point?: { x: number; y: number; z: number }, engineHz?: number): Voice {
@@ -96,8 +114,8 @@ export class CitySoundscape {
     let panner: PannerNode | undefined;
     if (point) {
       panner = ctx.createPanner(); panner.panningModel = 'HRTF'; panner.distanceModel = 'inverse'; panner.refDistance = 4; panner.maxDistance = 100; panner.rolloffFactor = 1.5;
-      panner.positionX.value = point.x; panner.positionY.value = point.y; panner.positionZ.value = point.z; gain.connect(panner).connect(this.master!);
-    } else gain.connect(this.master!);
+      panner.positionX.value = point.x; panner.positionY.value = point.y; panner.positionZ.value = point.z; gain.connect(panner).connect(this.street!);
+    } else gain.connect(this.street!);
     let engine: OscillatorNode | undefined;
     if (engineHz) { engine = ctx.createOscillator(); engine.type = 'sine'; engine.frequency.value = engineHz; const trim = ctx.createGain(); trim.gain.value = .035; engine.connect(trim).connect(filter); engine.start(); }
     source.start(0, (this.voices.size * .317) % 3.8); return { gain, panner, filter, engine, source };
@@ -108,13 +126,14 @@ export class CitySoundscape {
     const filter = ctx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 1600; filter.Q.value = .4;
     const gain = ctx.createGain(), engineGain = ctx.createGain(), panner = ctx.createPanner(); gain.gain.value = engineGain.gain.value = 0;
     panner.panningModel = 'HRTF'; panner.rolloffFactor = 0; panner.positionY.value = .7;
-    source.connect(highpass).connect(filter).connect(gain).connect(panner).connect(this.master!);
+    source.connect(highpass).connect(filter).connect(gain).connect(panner).connect(this.street!);
     const engine = ctx.createOscillator(); engine.setPeriodicWave(ctx.createPeriodicWave(new Float32Array(5), new Float32Array([0, 1, .18, .07, .03]))); engine.frequency.value = 44 + index * 2;
     engine.connect(engineGain).connect(panner); engine.start(); source.start(0, index * .791);
     const tick=ctx.createOscillator(),tickGain=ctx.createGain();tick.type='triangle';tick.frequency.value=1250;tickGain.gain.value=0;tick.connect(tickGain).connect(panner);tick.start();
     return { gain, engineGain, panner, engine, filter, source,tickGain };
   }
   update(dt: number, hour: number, camera: THREE.Camera, sim: CitySimulation): void {
+    this.hour=hour;
     const ctx = this.context; if (!ctx || !this.master) return;
     this.seconds = sim.clock; const now = ctx.currentTime, listener = ctx.listener;
     // Camera matrix columns give a stable listener orientation in walk and free-flight modes.
@@ -122,6 +141,8 @@ export class CitySoundscape {
     listener.positionX.value = p.x; listener.positionY.value = p.y; listener.positionZ.value = p.z;
     listener.forwardX.value = -e[8]; listener.forwardY.value = -e[9]; listener.forwardZ.value = -e[10]; listener.upX.value = e[4]; listener.upY.value = e[5]; listener.upZ.value = e[6];
     const audible = this.enabled && !document.hidden;
+    this.music?.update(p,hour);
+    this.street!.gain.setTargetAtTime(shindoRoom(p).ambience,now,.3);
     this.master.gain.setTargetAtTime(audible ? this.volume : 0, now, .15); this.audible = audible && ctx.state === 'running';
     if (!audible) return;
     this.sources=[];
@@ -184,6 +205,6 @@ export class CitySoundscape {
     panner.panningModel = 'HRTF'; panner.refDistance = 2; panner.rolloffFactor = 1.6; panner.positionX.value = x; panner.positionY.value = 2.4; panner.positionZ.value = z;
     oscillator.type = 'sine'; oscillator.frequency.setValueAtTime(1650, now); oscillator.frequency.exponentialRampToValueAtTime(1050, now + .12); oscillator.frequency.setValueAtTime(1500, now + .16); oscillator.frequency.exponentialRampToValueAtTime(1100, now + .28);
     gain.gain.setValueAtTime(0, now); gain.gain.linearRampToValueAtTime(.055, now + .02); gain.gain.linearRampToValueAtTime(0, now + .14); gain.gain.linearRampToValueAtTime(.04, now + .18); gain.gain.linearRampToValueAtTime(0, now + .3);
-    oscillator.connect(gain).connect(panner).connect(this.master!); oscillator.start(now); oscillator.stop(now + .32); oscillator.onended = () => { oscillator.disconnect(); gain.disconnect(); panner.disconnect(); };
+    oscillator.connect(gain).connect(panner).connect(this.street!); oscillator.start(now); oscillator.stop(now + .32); oscillator.onended = () => { oscillator.disconnect(); gain.disconnect(); panner.disconnect(); };
   }
 }

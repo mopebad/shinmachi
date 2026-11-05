@@ -1,0 +1,54 @@
+{
+  "street": {
+    "frames": 663,
+    "elapsedMs": 5005.199999999997,
+    "aggregateFps": 132.46223927115807,
+    "medianMs": 8.30000000000291,
+    "p95Ms": 8.400000000008731,
+    "p99Ms": 12.5,
+    "worstMs": 12.700000000004366,
+    "viewport": [
+      1323,
+      777
+    ],
+    "renderPixelRatio": 1,
+    "devicePixelRatio": 1,
+    "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.145.0 Chrome/150.0.7871.250 Electron/43.8.3 Safari/537.36",
+    "stats": {
+      "fps": 147,
+      "drawCalls": 841,
+      "triangles": 4388424,
+      "buildings": 77,
+      "pedestrians": 53,
+      "vehicles": 10
+    },
+    "note": "Browser frame intervals; does not isolate GPU execution time."
+  },
+  "interior": {
+    "frames": 1199,
+    "elapsedMs": 5001,
+    "aggregateFps": 239.75204959008198,
+    "medianMs": 4.19999999999709,
+    "p95Ms": 4.30000000000291,
+    "p99Ms": 4.30000000000291,
+    "worstMs": 4.30000000000291,
+    "viewport": [
+      1323,
+      777
+    ],
+    "renderPixelRatio": 1,
+    "devicePixelRatio": 1,
+    "gpuLabel": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.145.0 Chrome/150.0.7871.250 Electron/43.8.3 Safari/537.36",
+    "stats": {
+      "fps": 240,
+      "drawCalls": 405,
+      "triangles": 2707053,
+      "buildings": 77,
+      "pedestrians": 52,
+      "vehicles": 10
+    },
+    "note": "Browser frame intervals; does not isolate GPU execution time."
+  }
+}

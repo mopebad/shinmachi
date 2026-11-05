@@ -2,9 +2,11 @@
 
 ## Direction
 
+The latest [Yoto After Dark / Nightlife 3A](./quality/NIGHTLIFE_DEVELOPMENT_3A.md) adds a physically enterable basement music bar, supported stairs, coherent tenant signage, more individual west-side small bars and licensed local recorded music with indoor/outdoor filtering. [Actual scene and walk/audio evidence](./quality/YOTO_REVIEW.html) accompanies 87 passing tests. Private upper floors, interactive acoustic doors, general sound propagation and further material/prop refinement remain future work. No NPC customer AI or city expansion was added.
+
 A compact, metre-scale, Tokyo-inspired neighborhood that rewards exploration at pedestrian eye level. Pursue the photographic Tokyo evening references through coherent construction, materials, light, audio, density and polish while retaining a compact real-time environment. This is a fictional district, not a geographically accurate reconstruction of Tokyo.
 
-## Latest bounded delivery: functional passenger boarding and alighting
+## Earlier bounded delivery: functional passenger boarding and alighting
 
 [Station Development 3C](./quality/STATION_DEVELOPMENT_3C.md) replaces timed platform visits with real outbound boarding/riding and inbound alighting/city reentry. Six doorway queues, alighting priority, twelve standing positions and passenger/external door interlocks keep physical transfers synchronized with the authoritative train. A generated-world run completes 24 boardings, 48 alightings and 80/80 journeys after closure, with no unsafe crossings/departures or collisions. Ten actual captures, 55 tests, TypeScript checks and the production build pass; empty/max-load services drain and frame-partition replay is exact.
 
