@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import {YOTO_VENUE} from './YotoVenueLayout.ts';
 import {SHINDO_CONTROLS,SHINDO_PANEL} from './ShindoConsole.ts';
 import type {ShindoAction} from './ShindoConsole.ts';
-export interface ShindoPlayback {time:number;title:string;playing:boolean;level:number;bands:number[]}
+import {shindoMarqueeOffset,shindoPlaybackProgress} from './ShindoDisplay.ts';
+export interface ShindoPlayback {time:number;title:string;playing:boolean;level:number;bands:number[];duration?:number}
 export const vinylAngle=(time:number)=>Number.isFinite(time)?time*Math.PI*10/9:0;
 
 /** Small playback-driven details; no independent animation timer, flashing lights or fabricated beat. */
@@ -15,7 +16,7 @@ export class ShindoPresentation {
  private readonly meters:THREE.InstancedMesh;
  private readonly object=new THREE.Object3D();
  private readonly color=new THREE.Color();
- private label='';private level=0;
+ private title='';private titleElapsed=0;private displayTime=0;private level=0;private lastPlaying=false;
  constructor(){
   const f=YOTO_VENUE.floorY;this.group.name='SHINDO / playback details';
   const vinyl=document.createElement('canvas');vinyl.width=vinyl.height=512;const p=vinyl.getContext('2d')!;
@@ -56,9 +57,27 @@ export class ShindoPresentation {
    this.meters.setColorAt(row*8+i,this.color.setHex(i/8<value?i>5?0xba8c4d:0x819b73:0x15201d));
   }
   this.meters.instanceColor!.needsUpdate=true;
-  const label=state.title+'|'+state.playing;if(label!==this.label){
-   this.label=label;const p=this.screen.getContext('2d')!;p.fillStyle='#121c1c';p.fillRect(0,0,1024,144);p.textAlign='left';p.fillStyle='#aa9c7f';p.font='23px Arial';p.fillText(state.playing?'NOW PLAYING / 選曲':'PAUSED / 一時停止',25,37);
-   p.font='37px "Yu Gothic",Arial';p.fillStyle='#c7d0c4';let title=state.title;while(title.length>1&&p.measureText(title).width>970)title=title.slice(0,-2)+'…';p.fillText(title,25,104);this.texture.needsUpdate=true;
+  // The display reveals complete track names rather than permanently truncating them.
+  // Limit canvas uploads to ~20 Hz; short titles and a paused static display cost almost nothing.
+  const changed=state.title!==this.title||state.playing!==this.lastPlaying;
+  if(state.title!==this.title){this.title=state.title;this.titleElapsed=0;}
+  else this.titleElapsed+=Math.max(0,dt);
+  this.lastPlaying=state.playing;this.displayTime+=Math.max(0,dt);
+  if(changed||this.displayTime>=.05){
+   this.displayTime=0;
+   const p=this.screen.getContext('2d')!;
+   p.fillStyle='#121c1c';p.fillRect(0,0,1024,144);p.textAlign='left';
+   p.fillStyle='#aa9c7f';p.font='23px Arial';p.fillText(state.playing?'NOW PLAYING / 選曲':'PAUSED / 一時停止',25,37);
+   p.font='37px "Yu Gothic",Arial';p.fillStyle='#c7d0c4';
+   const available=970,title=state.title||'Selected sound / 深度';
+   const offset=shindoMarqueeOffset(this.titleElapsed,p.measureText(title).width,available);
+   p.save();p.beginPath();p.rect(25,57,available,63);p.clip();p.fillText(title,25-offset,104);p.restore();
+   const progress=shindoPlaybackProgress(state.time,state.duration??NaN);
+   if(progress!==null){
+    p.fillStyle='#303e3a';p.fillRect(25,129,970,3);
+    p.fillStyle='#a68b62';p.fillRect(25,129,970*progress,3);
+   }
+   this.texture.needsUpdate=true;
   }
   this.group.userData.playback={time:state.time,playing:state.playing,level:this.level,angle:this.records[0].rotation.y};
  }
