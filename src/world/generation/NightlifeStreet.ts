@@ -165,14 +165,15 @@ export class NightlifeStreet {
     const legacyReady=Promise.all([this.assets.ready,shindoAssets.ready]).then(()=>{});
     if(authoredEnabled){
      const pilotAssets=new NightlifeAssets(selected);this.group.add(pilotAssets.group);this.authoredFallbacks.set('props',pilotAssets.group);
-     this.authored=new AuthoredEnvironments(m,this.group,this.venue,Object.fromEntries(FRONTAGES.slice(0,2).map((s,i)=>['frontage:'+i,{position:[s.x,0,-25+s.side*2.55] as [number,number,number],rotation:[0,s.side>0?Math.PI:0,0] as [number,number,number]}])),this.authoredFallbacks,Promise.all([legacyReady,pilotAssets.ready]).then(()=>{}),async()=>{const recovery=new ShindoAssets(m,a=>migratedShindoAssets.has(a),false);this.group.add(recovery.group);for(const [x,y,z,color,power,radius]of [[17.65,-.98,-36,0xffd1a0,1.4,2.7],[18,-.85,-40.2,0xffd5a4,2.3,3.8],[16.73,-1.35,-40.13,0xffdbb4,.36,1.5],[19.72,-1.35,-40.13,0xffdbb4,.36,1.5]])practical(x,y,z,color,power,radius);await recovery.ready;});
+     this.authored=new AuthoredEnvironments(m,this.group,this.venue,Object.fromEntries(FRONTAGES.slice(0,2).map((s,i)=>['frontage:'+i,{position:[s.x,0,-25+s.side*2.55] as [number,number,number],rotation:[0,s.side>0?Math.PI:0,0] as [number,number,number]}])),this.authoredFallbacks,Promise.all([legacyReady,pilotAssets.ready]).then(()=>{}),async()=>{const recovery=new ShindoAssets(m,a=>migratedShindoAssets.has(a),false);this.group.add(recovery.group);for(const [x,y,z,color,power,radius]of [[18.95,-.35,-29.0,0xe4b77c,2.5,3.2],[18.95,-2.05,-31.8,0xe4b77c,1.7,2.8],[16.57,-1.12,-35.6,0xffc38a,4.7,3.8],[17.65,-.98,-36,0xffd1a0,1.4,2.7],[18,-.85,-40.2,0xffd5a4,2.3,3.8],[16.73,-1.35,-40.13,0xffdbb4,.36,1.5],[19.72,-1.35,-40.13,0xffdbb4,.36,1.5]])practical(x,y,z,color,power,radius);await recovery.ready;});
      this.ready=this.authored.ready;
     }else this.ready=legacyReady;
     const practical = (x: number, y: number, z: number, color: number, power: number, radius: number) => { const light = new THREE.PointLight(color, 0, radius, 2); light.position.set(x, y, z); this.group.add(light); this.lights.push({ light, power }); };
     practical(-7.9, 4.4, -26.25, 0xff6630, 16, 7); practical(-16, 3.4, -23.3, 0xffbc74, 14, 7); practical(-12.2, 3.5, -26.7, 0xffcb91, 12, 6); practical(13.2, 3.4, -23.2, 0x9bcaca, 13, 8);
-    practical(16.57,-1.12,-35.6,0xffc38a,4.7,3.8);
+    // Authored scene distributes this wash over the shelving to avoid a central hotspot.
+    if(!authoredEnabled)practical(16.57,-1.12,-35.6,0xffc38a,4.7,3.8);
     // Two low pools correspond to the west-wall stair fixtures, without lighting the whole shaft.
-    practical(18.95,-.35,-29.0,0xe4b77c,2.5,3.2);practical(18.95,-2.05,-31.8,0xe4b77c,1.7,2.8);
+    if(!authoredEnabled){practical(18.95,-.35,-29.0,0xe4b77c,2.5,3.2);practical(18.95,-2.05,-31.8,0xe4b77c,1.7,2.8);}
     if(!authoredEnabled){practical(17.65,-.98,-36.0,0xffd1a0,1.4,2.7);practical(18.0,-.85,-40.20,0xffd5a4,2.3,3.8);practical(16.73,-1.35,-40.13,0xffdbb4,.36,1.5);practical(19.72,-1.35,-40.13,0xffdbb4,.36,1.5);}
     practical(17.175,-2.19,-39.325,0xffc58e,.65,1.7);
     scene.add(this.group);

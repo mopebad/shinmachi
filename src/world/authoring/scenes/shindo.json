@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "shindo",
-  "label": "Shindo authored interior pilot",
+  "label": "Shindo / fitted listening bar",
   "coordinateSystem": "metres-y-up-radians",
   "nodes": [
     {
@@ -210,7 +210,7 @@
       ],
       "rotation": [
         0,
-        0,
+        0.024,
         0
       ],
       "scale": [
@@ -266,7 +266,7 @@
       ],
       "rotation": [
         0,
-        0,
+        -0.023,
         0
       ],
       "scale": [
@@ -322,7 +322,7 @@
       ],
       "rotation": [
         0,
-        0,
+        0.015,
         0
       ],
       "scale": [
@@ -387,7 +387,7 @@
         1.02
       ],
       "parent": "room",
-      "prefab": "bar-service",
+      "prefab": "working-service",
       "edit": {
         "min": [
           17.15,
@@ -548,7 +548,7 @@
       "parent": "room",
       "light": {
         "color": "#ffd1a0",
-        "intensity": 1.4,
+        "intensity": 1.3,
         "distance": 2.7
       },
       "edit": {
@@ -742,6 +742,1401 @@
           0.03,
           0.03,
           0.03
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "solid-counter",
+      "label": "Solid walnut counter / eased nose",
+      "parent": "room",
+      "asset": "countertop",
+      "position": [
+        17.39,
+        1.06,
+        -35.85
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "service-cabinets",
+      "label": "Service cabinetry / refrigerator / toe vents",
+      "parent": "room",
+      "asset": "service-joinery",
+      "position": [
+        16.2,
+        0,
+        -35.84
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "sink-worktop",
+      "label": "Walnut work surface / basin aperture",
+      "parent": "room",
+      "asset": "service-worktop",
+      "position": [
+        16.19,
+        0.97,
+        -35.84
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "service-basin",
+      "label": "Inset sink and gooseneck mixer",
+      "parent": "room",
+      "asset": "service-sink",
+      "position": [
+        16.19,
+        0.0155,
+        -37.25
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "west-cushion-0",
+      "label": "West banquette / tailored cushion 1",
+      "parent": "room",
+      "asset": "banquette-cushion",
+      "position": [
+        16.3,
+        0,
+        -39.91
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "west-cushion-1",
+      "label": "West banquette / tailored cushion 2",
+      "parent": "room",
+      "asset": "banquette-cushion",
+      "position": [
+        16.3,
+        0,
+        -39.349999999999994
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "west-cushion-2",
+      "label": "West banquette / tailored cushion 3",
+      "parent": "room",
+      "asset": "banquette-cushion",
+      "position": [
+        16.3,
+        0,
+        -38.79
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "east-cushion-0",
+      "label": "East banquette / tailored cushion 1",
+      "parent": "room",
+      "asset": "banquette-cushion",
+      "position": [
+        20.07,
+        0,
+        -38.94
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "east-cushion-1",
+      "label": "East banquette / tailored cushion 2",
+      "parent": "room",
+      "asset": "banquette-cushion",
+      "position": [
+        20.07,
+        0,
+        -38.349999999999994
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "east-cushion-2",
+      "label": "East banquette / tailored cushion 3",
+      "parent": "room",
+      "asset": "banquette-cushion",
+      "position": [
+        20.07,
+        0,
+        -37.76
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "east-cushion-3",
+      "label": "East banquette / tailored cushion 4",
+      "parent": "room",
+      "asset": "banquette-cushion",
+      "position": [
+        20.07,
+        0,
+        -37.169999999999995
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "acoustic-cassette-0",
+      "label": "Framed fabric absorber / paired battens",
+      "parent": "room",
+      "asset": "acoustic-cassette",
+      "position": [
+        20.335,
+        1.76,
+        -34.41
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "acoustic-cassette-1",
+      "label": "Framed fabric absorber / paired battens",
+      "parent": "room",
+      "asset": "acoustic-cassette",
+      "position": [
+        20.335,
+        1.76,
+        -35.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "acoustic-cassette-2",
+      "label": "Framed fabric absorber / paired battens",
+      "parent": "room",
+      "asset": "acoustic-cassette",
+      "position": [
+        20.335,
+        1.76,
+        -37.35
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "acoustic-cassette-3",
+      "label": "Framed fabric absorber / paired battens",
+      "parent": "room",
+      "asset": "acoustic-cassette",
+      "position": [
+        20.335,
+        1.76,
+        -38.9
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "duct-collar-0",
+      "label": "Duct joint / service access panel",
+      "parent": "room",
+      "asset": "duct-joint",
+      "position": [
+        20.07,
+        2.375,
+        -34.42
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "duct-collar-1",
+      "label": "Duct joint / service access panel",
+      "parent": "room",
+      "asset": "duct-joint",
+      "position": [
+        20.07,
+        2.375,
+        -37.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "duct-collar-2",
+      "label": "Duct joint / service access panel",
+      "parent": "room",
+      "asset": "duct-joint",
+      "position": [
+        20.07,
+        2.375,
+        -40.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "bar-towel",
+      "label": "Folded oshibori / service station",
+      "parent": "room",
+      "asset": "folded-oshibori",
+      "position": [
+        17.36,
+        1.11,
+        -37.22
+      ],
+      "rotation": [
+        0,
+        -0.16,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "edit": {
+        "min": [
+          17.34,
+          1.11,
+          -37.24
+        ],
+        "max": [
+          17.38,
+          1.11,
+          -37.199999999999996
+        ],
+        "rotationMin": [
+          0,
+          -0.36,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0.04000000000000001,
+          0
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "guest-towel",
+      "label": "Folded oshibori / recently served place",
+      "parent": "room",
+      "asset": "folded-oshibori",
+      "position": [
+        17.56,
+        1.11,
+        -34.35
+      ],
+      "rotation": [
+        0,
+        0.12,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "edit": {
+        "min": [
+          17.54,
+          1.11,
+          -34.36000000000001
+        ],
+        "max": [
+          17.58,
+          1.11,
+          -34.32
+        ],
+        "rotationMin": [
+          0,
+          -0.08000000000000002,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0.32,
+          0
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "selected-records",
+      "label": "Selected sleeves / velvet record brush",
+      "parent": "room",
+      "asset": "record-selection",
+      "position": [
+        17.37,
+        1.065,
+        -40.47
+      ],
+      "rotation": [
+        0,
+        -0.12,
+        0
+      ],
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "edit": {
+        "min": [
+          17.35,
+          1.065,
+          -40.49
+        ],
+        "max": [
+          17.39,
+          1.065,
+          -40.449999999999996
+        ],
+        "rotationMin": [
+          0,
+          -0.32,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0.08000000000000002,
+          0
+        ],
+        "scaleMin": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "scaleMax": [
+          0.9,
+          0.9,
+          0.9
+        ]
+      }
+    },
+    {
+      "id": "lounge-water",
+      "label": "Water service / listening table",
+      "parent": "room",
+      "position": [
+        17.25,
+        0.642,
+        -39.49
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "prefab": "water-service",
+      "edit": {
+        "min": [
+          17.23,
+          0.642,
+          -39.510000000000005
+        ],
+        "max": [
+          17.27,
+          0.642,
+          -39.47
+        ],
+        "rotationMin": [
+          0,
+          -0.2,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0.2,
+          0
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "shelf-wash-0",
+      "label": "Warm concealed shelf wash 1",
+      "parent": "room",
+      "position": [
+        16.46,
+        1.82,
+        -34.28
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": "#ffe0b6",
+        "intensity": 0.83,
+        "distance": 1.85
+      },
+      "edit": {
+        "min": [
+          16.44,
+          1.7,
+          -34.36
+        ],
+        "max": [
+          16.5,
+          1.9,
+          -34.2
+        ],
+        "rotationMin": [
+          0,
+          0,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0,
+          0
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "shelf-wash-1",
+      "label": "Warm concealed shelf wash 2",
+      "parent": "room",
+      "position": [
+        16.46,
+        1.82,
+        -35.72
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": "#ffe0b6",
+        "intensity": 0.83,
+        "distance": 1.85
+      },
+      "edit": {
+        "min": [
+          16.44,
+          1.7,
+          -35.8
+        ],
+        "max": [
+          16.5,
+          1.9,
+          -35.64
+        ],
+        "rotationMin": [
+          0,
+          0,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0,
+          0
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "shelf-wash-2",
+      "label": "Warm concealed shelf wash 3",
+      "parent": "room",
+      "position": [
+        16.46,
+        1.82,
+        -37.12
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": "#ffe0b6",
+        "intensity": 0.83,
+        "distance": 1.85
+      },
+      "edit": {
+        "min": [
+          16.44,
+          1.7,
+          -37.199999999999996
+        ],
+        "max": [
+          16.5,
+          1.9,
+          -37.04
+        ],
+        "rotationMin": [
+          0,
+          0,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0,
+          0
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "front-pendant-light",
+      "label": "Front pendant / focused counter pool",
+      "parent": "room",
+      "position": [
+        17.65,
+        1.965,
+        -34.7
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": "#ffdab0",
+        "intensity": 1.05,
+        "distance": 1.9
+      }
+    },
+    {
+      "id": "guest-otsumami",
+      "label": "Small otsumami serving / highball place",
+      "parent": "room",
+      "asset": "otsumami-bowl",
+      "position": [
+        17.56,
+        1.109,
+        -34.79
+      ],
+      "rotation": [
+        0,
+        0.08,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "street-portal",
+      "label": "Shindo street portal / rebated walnut surround",
+      "parent": "room",
+      "asset": "entry-portal",
+      "position": [
+        19.5,
+        3.06,
+        -27.52
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "street-saddle",
+      "label": "Basalt entry saddle and recessed drainage",
+      "parent": "room",
+      "asset": "entry-threshold",
+      "position": [
+        19.5,
+        3.06,
+        -27.19
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "acoustic-threshold",
+      "label": "Public exit / held-open acoustic door / hinge and free-end pull",
+      "parent": "room",
+      "asset": "acoustic-entry",
+      "position": [
+        19.5,
+        0,
+        -32.87
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "landing-return",
+      "label": "Walnut return / mounted house notice / quiet downlight",
+      "parent": "room",
+      "asset": "landing-return",
+      "position": [
+        17.27,
+        0,
+        -32.81
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "stair-dado",
+      "label": "Jointed basalt stair dado and sloped bronze cap",
+      "parent": "room",
+      "asset": "stair-dado",
+      "position": [
+        19.5,
+        3.06,
+        -27.6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "stair-lamp-0",
+      "label": "Shielded stair downlight 1",
+      "parent": "room",
+      "asset": "stair-downlight",
+      "position": [
+        18.6,
+        2.98,
+        -28.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "stair-light-0",
+      "label": "Localized stair illumination 1",
+      "parent": "room",
+      "position": [
+        18.78,
+        2.94,
+        -28.3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": "#ffdbad",
+        "intensity": 1,
+        "distance": 1.9
+      },
+      "edit": {
+        "min": [
+          18.75,
+          2.9,
+          -28.330000000000002
+        ],
+        "max": [
+          18.810000000000002,
+          2.98,
+          -28.27
+        ],
+        "rotationMin": [
+          0,
+          0,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0,
+          0
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "stair-lamp-1",
+      "label": "Shielded stair downlight 2",
+      "parent": "room",
+      "asset": "stair-downlight",
+      "position": [
+        18.6,
+        2.13,
+        -29.700000000000003
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "stair-light-1",
+      "label": "Localized stair illumination 2",
+      "parent": "room",
+      "position": [
+        18.78,
+        2.09,
+        -29.700000000000003
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": "#ffdbad",
+        "intensity": 1,
+        "distance": 1.9
+      },
+      "edit": {
+        "min": [
+          18.75,
+          2.05,
+          -29.730000000000004
+        ],
+        "max": [
+          18.810000000000002,
+          2.13,
+          -29.67
+        ],
+        "rotationMin": [
+          0,
+          0,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0,
+          0
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "stair-lamp-2",
+      "label": "Shielded stair downlight 3",
+      "parent": "room",
+      "asset": "stair-downlight",
+      "position": [
+        18.6,
+        1.28,
+        -31.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "stair-light-2",
+      "label": "Localized stair illumination 3",
+      "parent": "room",
+      "position": [
+        18.78,
+        1.24,
+        -31.1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": "#ffdbad",
+        "intensity": 1,
+        "distance": 1.9
+      },
+      "edit": {
+        "min": [
+          18.75,
+          1.2,
+          -31.130000000000003
+        ],
+        "max": [
+          18.810000000000002,
+          1.28,
+          -31.07
+        ],
+        "rotationMin": [
+          0,
+          0,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0,
+          0
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "stair-lamp-3",
+      "label": "Shielded stair downlight 4",
+      "parent": "room",
+      "asset": "stair-downlight",
+      "position": [
+        18.6,
+        0.43,
+        -32.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "stair-light-3",
+      "label": "Localized stair illumination 4",
+      "parent": "room",
+      "position": [
+        18.78,
+        0.39,
+        -32.5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": "#ffdbad",
+        "intensity": 1,
+        "distance": 1.9
+      },
+      "edit": {
+        "min": [
+          18.75,
+          0.35000000000000003,
+          -32.53
+        ],
+        "max": [
+          18.810000000000002,
+          0.43,
+          -32.47
+        ],
+        "rotationMin": [
+          0,
+          0,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0,
+          0
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "street-entry-light",
+      "label": "Entry hood / invitation down to B1",
+      "parent": "room",
+      "position": [
+        19.5,
+        5.19,
+        -27.26
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": "#ffdbad",
+        "intensity": 1.3,
+        "distance": 2.35
+      },
+      "edit": {
+        "min": [
+          19.47,
+          5.15,
+          -27.290000000000003
+        ],
+        "max": [
+          19.53,
+          5.23,
+          -27.23
+        ],
+        "rotationMin": [
+          0,
+          0,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0,
+          0
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "landing-light",
+      "label": "Warm acoustic threshold / reflected light",
+      "parent": "room",
+      "position": [
+        19.35,
+        2.05,
+        -33.2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": "#ffdbad",
+        "intensity": 0.65,
+        "distance": 2.05
+      },
+      "edit": {
+        "min": [
+          19.32,
+          2.01,
+          -33.23
+        ],
+        "max": [
+          19.38,
+          2.09,
+          -33.17
+        ],
+        "rotationMin": [
+          0,
+          0,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0,
+          0
+        ],
+        "scaleMin": [
+          1,
+          1,
+          1
+        ],
+        "scaleMax": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "house-notice-light",
+      "label": "Quiet downlight on mounted house notice",
+      "parent": "room",
+      "position": [
+        17.27,
+        1.86,
+        -33.04
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": "#ffdbad",
+        "intensity": 0.35,
+        "distance": 1.5
+      },
+      "edit": {
+        "min": [
+          17.24,
+          1.82,
+          -33.07
+        ],
+        "max": [
+          17.3,
+          1.9000000000000001,
+          -33.01
+        ],
+        "rotationMin": [
+          0,
+          0,
+          0
+        ],
+        "rotationMax": [
+          0,
+          0,
+          0
         ],
         "scaleMin": [
           1,

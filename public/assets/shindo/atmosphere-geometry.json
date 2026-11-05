@@ -1,0 +1,110 @@
+[
+  {
+    "asset": "countertop",
+    "dimensions": [
+      0.842,
+      0.101,
+      4.06
+    ],
+    "bytes": 49208
+  },
+  {
+    "asset": "service-worktop",
+    "dimensions": [
+      0.4,
+      0.065,
+      3.98
+    ],
+    "bytes": 61788
+  },
+  {
+    "asset": "banquette-cushion",
+    "dimensions": [
+      0.5034,
+      0.683,
+      0.54799
+    ],
+    "bytes": 91788
+  },
+  {
+    "asset": "service-joinery",
+    "dimensions": [
+      0.08924,
+      0.859,
+      3.964
+    ],
+    "bytes": 515336
+  },
+  {
+    "asset": "service-sink",
+    "dimensions": [
+      0.326,
+      0.39941,
+      0.54641
+    ],
+    "bytes": 153072
+  },
+  {
+    "asset": "folded-oshibori",
+    "dimensions": [
+      0.2,
+      0.02057,
+      0.15
+    ],
+    "bytes": 138772
+  },
+  {
+    "asset": "service-tray",
+    "dimensions": [
+      0.31,
+      0.0215,
+      0.23
+    ],
+    "bytes": 250808
+  },
+  {
+    "asset": "otsumami-bowl",
+    "dimensions": [
+      0.15,
+      0.043,
+      0.15
+    ],
+    "bytes": 132376
+  },
+  {
+    "asset": "water-carafe",
+    "dimensions": [
+      0.108,
+      0.21,
+      0.108
+    ],
+    "bytes": 26488
+  },
+  {
+    "asset": "record-selection",
+    "dimensions": [
+      0.36872,
+      0.0567,
+      0.35044
+    ],
+    "bytes": 164900
+  },
+  {
+    "asset": "acoustic-cassette",
+    "dimensions": [
+      0.123,
+      1.05,
+      1.24
+    ],
+    "bytes": 283720
+  },
+  {
+    "asset": "duct-joint",
+    "dimensions": [
+      0.329,
+      0.309,
+      1.218
+    ],
+    "bytes": 202408
+  }
+]

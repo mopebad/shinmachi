@@ -9,7 +9,7 @@ export function buildYotoVenue(b:CityBatch,m:NightlifeMaterials,v:YotoVenueSpati
  b.origin();b.section('yoto:venue');
  const sign=(theme:string,x:number,y:number,z:number,w:number,h:number,ry=0)=>b.panel(m.signMaterial(theme,w/h),x,y,z,w,h,ry);
  for(const s of v.surfaces){
-  if(s.id.startsWith('tread')){const h=s.y-v.floorY+.16;b.b(m.shindoFloor,(s.minX+s.maxX)/2,s.y-h/2,(s.minZ+s.maxZ)/2,s.maxX-s.minX,h,s.maxZ-s.minZ);b.b(m.stairNosing,(s.minX+s.maxX)/2,s.y+.002,s.maxZ-.021,s.maxX-s.minX-.08,.004,.042);}
+  if(s.id.startsWith('tread')){const h=s.y-v.floorY+.16;b.b(m.shindoStair,(s.minX+s.maxX)/2,s.y-h/2,(s.minZ+s.maxZ)/2,s.maxX-s.minX,h,s.maxZ-s.minZ);b.b(m.shindoNosing,(s.minX+s.maxX)/2,s.y+.002,s.maxZ-.021,s.maxX-s.minX-.08,.004,.042);}
   else b.b(s.id==='basement-floor'?m.shindoFloor:m.darkTile,(s.minX+s.maxX)/2,s.y-.065,(s.minZ+s.maxZ)/2,s.maxX-s.minX,.13,s.maxZ-s.minZ);
  }
  for(const o of v.boxes){
@@ -26,9 +26,8 @@ export function buildYotoVenue(b:CityBatch,m:NightlifeMaterials,v:YotoVenueSpati
  b.b(m.wood,16.8,1.22,-29.55,1.45,.08,.7);
  for(const x of [16.35,16.8,17.25]){b.part('cylinder',m.metal,x,1.28,-29.6,.055,.1,.055);b.b(m.light,x,2.6,-29.7,.18,.025,.09);}
  sign('yototei',16.95,2.86,-27.43,2.45,.48);
- sign('shindo',19.5,2.84,-27.41,1.65,.52);
+ sign('shindo-entry',19.5,v.groundY+2.42,-27.35,.96,.29);
  sign('directory',18.2,1.65,-27.38,.4,2.15);
- sign('stair-notice',20.49,1.65,-27.36,.22,.95);
  b.b(m.metal,18.14,3.37,-27.15,4.8,.13,1.0);
  b.b(m.redPaint,18.14,3.29,-26.67,4.8,.19,.06);
  // Ground floor plus two upper levels: 1F / 2F / 3F, with private offstage upper rooms.
@@ -63,11 +62,12 @@ export function buildYotoVenue(b:CityBatch,m:NightlifeMaterials,v:YotoVenueSpati
   sign(theme,x-.095,y,-27.03,.78,1.78,-Math.PI/2);sign(theme,x+.095,y,-27.03,.78,1.78,Math.PI/2);
  }
  // Fixtures embed their backing plates into the wall; lenses stand clear of the housing face.
- b.section('shindo:stair-fittings');
+ b.section('shindo:stair-lamps');
  for(const i of [2,7,12,17]){const s=v.surfaces.find(s=>s.id==='tread-'+(i+1))!,z=(s.minZ+s.maxZ)/2;
   b.b(m.smokedSteel,18.6375,s.y+.42,z,.08,.18,.22);b.b(m.light,18.6835,s.y+.42,z,.008,.075,.13);
  }
  // Exactly one continuous grip per side, with closed returns and real L-shaped wall brackets.
+ b.section('shindo:stair-fittings');
  const z0=-27.6,z1=v.shaft.minZ,railY=(z:number)=>v.groundY+.82+(v.floorY-v.groundY)*(z-z0)/(z1-z0);
  for(const [x,wall,plate]of [[18.72,18.598,18.606],[20.28,20.402,20.394]]){
   b.rod(m.brass,new THREE.Vector3(x,railY(z0),z0),new THREE.Vector3(x,railY(z1),z1),.022);
@@ -83,6 +83,7 @@ export function buildYotoVenue(b:CityBatch,m:NightlifeMaterials,v:YotoVenueSpati
  b.part('box',m.shindoCeiling,19.5,1.27,-30.12,1.84,.18,Math.hypot(5.04,3.06),-Math.atan2(3.06,5.04));
  b.b(m.metal,19.5,2.96,-31.5,2.18,.12,2.5);
  // A shallow saddle joins the same-height stair landing and listening-room floor.
+ b.section('shindo:entry-door');
  b.b(m.brass,19.5,v.floorY+.002,-32.94,1.6,.004,.06);
  b.section('yoto:venue');
  buildShindoInterior(b,m,v);

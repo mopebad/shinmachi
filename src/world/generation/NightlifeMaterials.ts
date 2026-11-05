@@ -33,7 +33,8 @@ function shindoFinish(kind:'walnut'|'wall'){
  const base=kind==='walnut'?[76,53,37]:[99,102,98];
  for(let y=0;y<512;y++)for(let x=0;x<512;x++){
   const grain=kind==='walnut'?Math.sin(x*.87+Math.sin(y*.008)*1.4)*1.7+Math.sin(x*.17+Math.sin(y*.004)*.7)*1.3:0;
-  const noise=(hash(x,y,951)-.5)*3+(hash(x>>5,y>>5,547)-.5)*2+grain,i=(y*512+x)*4;
+  const trowel=kind==='wall'?Math.sin(x*.023+Math.sin(y*.031)*1.4)*Math.cos(y*.019)*3.2:0;
+  const noise=(hash(x,y,951)-.5)*3+(hash(x>>5,y>>5,547)-.5)*2+grain+trowel,i=(y*512+x)*4;
   for(let c=0;c<3;c++){a.data[i+c]=base[c]+noise;b.data[i+c]=128+noise*2;}a.data[i+3]=b.data[i+3]=255;
  }
  p.putImageData(a,0,0);q.putImageData(b,0,0);const material=new THREE.MeshStandardMaterial({map:texture(color,true),bumpMap:texture(bump,false),bumpScale:.003,roughness:kind==='walnut'?.48:.93});worldTexture(material,.65);return material;
@@ -56,6 +57,15 @@ const THEMES: Record<string, string[]> = {
   coffee: ['珈琲', '喫茶 新月', 'COFFEE · OPEN LATE', '#293a30', '#d5c9a7'],
   bar: ['夜灯', 'BAR', '小さな夜の店', '#292b27', '#d4c1a0'],
 };
+function shindoStone(){
+ const c=canvas(512),p=c.getContext('2d')!,pixels=p.createImageData(512,512);
+ for(let y=0;y<512;y++)for(let x=0;x<512;x++){
+  const n=hash(x,y,483),v=58+(n-.5)*7+(n>.995?18:0),i=(y*512+x)*4;
+  pixels.data[i]=v;pixels.data[i+1]=v+2;pixels.data[i+2]=v+1;pixels.data[i+3]=255;
+ }
+ p.putImageData(pixels,0,0);const map=texture(c,true),bump=texture(c,false);
+ const m=new THREE.MeshStandardMaterial({map,bumpMap:bump,bumpScale:.0015,roughness:.86});worldTexture(m,1.2);return m;
+}
 function signTexture(theme: string, ratio: number): THREE.CanvasTexture {
   const size = signDimensions(ratio * 3, 3), c = canvas(size.width, size.height), p = c.getContext('2d')!, w = c.width, h = c.height;
   const font = '"Yu Mincho", "MS PMincho", serif';
@@ -99,6 +109,8 @@ export class NightlifeMaterials {
   readonly shindoWall = shindoFinish('wall');
   readonly speakerCone = new THREE.MeshStandardMaterial({color:0x303332,roughness:.88,side:THREE.DoubleSide});
   readonly shindoFloor = surface('tile');
+  readonly shindoStair = shindoStone();
+  readonly shindoNosing = new THREE.MeshStandardMaterial({color:0x8d8878,roughness:.78,metalness:.24});
   readonly stairNosing = new THREE.MeshStandardMaterial({color:0xb8afa0,roughness:.82,metalness:.12});
   readonly smokedSteel = new THREE.MeshStandardMaterial({color:0x282d2d,roughness:.43,metalness:.62});
   readonly clearGlass = new THREE.MeshStandardMaterial({color:0xb2c3bd,transparent:true,opacity:.24,roughness:.12,metalness:.08,depthWrite:false});
@@ -109,6 +121,8 @@ export class NightlifeMaterials {
   readonly glass = new THREE.MeshStandardMaterial({ color: 0x536963, transparent: true, opacity: .18, roughness: .22, metalness: .18, depthWrite: false });
   readonly warmInterior = new THREE.MeshStandardMaterial({ color: 0x9f865a, emissive: 0xd1aa6b, roughness: .85 });
   readonly light = new THREE.MeshStandardMaterial({ color: 0xe4d0a2, emissive: 0xffdba4, roughness: .5 });
+  readonly shindoShelfLight = new THREE.MeshStandardMaterial({color:0xc4b69c,emissive:0xffd5a0,roughness:.65});
+  readonly shindoShelfBacking = new THREE.MeshStandardMaterial({color:0x454944,roughness:.67,metalness:.2});
   readonly neonAmber = new THREE.MeshStandardMaterial({ color: 0xd69a46, emissive: 0xe9a453, roughness: .36 });
   readonly neonRed = new THREE.MeshStandardMaterial({ color: 0xa93926, emissive: 0xe84125, roughness: .37 });
   readonly neonCyan = new THREE.MeshStandardMaterial({ color: 0x719b95, emissive: 0x91c7bc, roughness: .38 });
@@ -119,12 +133,14 @@ export class NightlifeMaterials {
     this.shindoFloor.color.setHex(0x777171);this.shindoFloor.roughness=.75;this.shindoFloor.bumpScale=.005;
     this.cloth.side = THREE.DoubleSide; this.metal.color.setHex(0x737b70);
     for (const [material, strength, closed] of [[this.warmInterior, .35, .1], [this.light, 1.45, .4], [this.neonAmber, 1.65, .025], [this.neonRed, 1.15, .025], [this.neonCyan, .85, .025]] as const) this.emission.push({ material, strength, closed });
+    this.emission.push({material:this.shindoShelfLight,strength:.58,closed:.04});
     this.setNight(1, true);
   }
   signMaterial(theme: string, ratio: number): THREE.MeshStandardMaterial {
     if (!Number.isFinite(ratio) || ratio <= 0) throw new RangeError('Positive sign ratio required');
     const r = ratio, key = `${theme}:${r.toFixed(5)}`, existing = this.signs.get(key); if (existing) return existing;
     const map = signTexture(theme, r), material = new THREE.MeshStandardMaterial({ map, emissiveMap: map, emissive: 0xffffff, roughness: .72, metalness: .02 });
+    material.name='Sign / '+theme;material.userData.signTheme=theme;
     const strength = theme.startsWith('shindo-')&&theme!=='shindo-exit'?.018:({ theatre: .62, izakaya: .46, ramen: .42, karaoke: .46, coffee: .34, bar: .4, menu: .015, posters: 0, stickers: 0 } as Record<string, number>)[theme] ?? .4;
     this.emission.push({ material, strength, closed: .025 }); this.signs.set(key, material); this.setNight(this.night, this.open); return material;
   }

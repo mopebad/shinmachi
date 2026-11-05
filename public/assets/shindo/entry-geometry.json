@@ -1,0 +1,56 @@
+[
+  {
+    "asset": "entry-portal",
+    "dimensions": [
+      2.005,
+      2.755,
+      0.529
+    ],
+    "bytes": 202104
+  },
+  {
+    "asset": "acoustic-entry",
+    "dimensions": [
+      1.805,
+      2.525,
+      0.922
+    ],
+    "bytes": 209516
+  },
+  {
+    "asset": "landing-return",
+    "dimensions": [
+      2.54,
+      1.955,
+      0.1095
+    ],
+    "bytes": 117780
+  },
+  {
+    "asset": "stair-dado",
+    "dimensions": [
+      1.79,
+      3.74044,
+      5.04934
+    ],
+    "bytes": 14896
+  },
+  {
+    "asset": "stair-downlight",
+    "dimensions": [
+      0.078,
+      0.14,
+      0.2
+    ],
+    "bytes": 62804
+  },
+  {
+    "asset": "entry-threshold",
+    "dimensions": [
+      1.74,
+      0.026,
+      0.729
+    ],
+    "bytes": 447492
+  }
+]

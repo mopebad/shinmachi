@@ -10,8 +10,22 @@ export function drawShindoGraphic(p:CanvasRenderingContext2D,w:number,h:number,t
  const line=(x:number,y:number,xx:number,yy:number,color=accent)=>{p.strokeStyle=color;p.lineWidth=Math.max(1,Math.min(w,h)*.002);p.beginPath();p.moveTo(x,y);p.lineTo(xx,yy);p.stroke();};
  const contours=(x:number,y:number,r:number)=>{p.save();p.beginPath();p.rect(w*.04,h*.04,w*.92,h*.92);p.clip();p.strokeStyle=accent;p.lineWidth=Math.max(1,h*.002);for(let i=0;i<9;i++){p.globalAlpha=.15+i*.035;p.beginPath();p.ellipse(x,y,r*(.2+i*.115),r*(.12+i*.06),-.42,0,Math.PI*2);p.stroke();}p.restore();};
  p.fillStyle='#182122';p.fillRect(0,0,w,h);
+ if(theme==='shindo-entry'){
+  p.fillStyle='#232927';p.fillRect(0,0,w,h);
+  label('深度 / SHINDO',w*.065,h*.14,w*.71,h*.28);
+  label('B1 ↓',w*.79,h*.16,w*.16,h*.25,accent);
+  line(w*.065,h*.64,w*.935,h*.64,'#5a6257');
+  label('ELECTRONIC LISTENING BAR',w*.065,h*.75,w*.87,h*.09,muted);return;
+ }
+ if(theme==='shindo-arrival'){
+  p.fillStyle='#242b28';p.fillRect(0,0,w,h);
+  label('深度 / SHINDO',w*.08,h*.2,w*.68,h*.4);
+  label('B1',w*.83,h*.23,w*.1,h*.32,accent);return;
+ }
  if(theme==='shindo-exit'){
-  label('EXIT  ↑',w*.08,h*.12,w*.5,h*.42,'#d4dbc8');label('出口',w*.69,h*.15,w*.22,h*.35,'#d4dbc8');return;
+  p.fillStyle='#242b28';p.fillRect(0,0,w,h);
+  label('出口 / EXIT',w*.065,h*.2,w*.57,h*.4,'#d4dbc8');
+  label('↑ STREET',w*.70,h*.25,w*.24,h*.27,muted);return;
  }
  if(theme==='shindo-plaque'){
   p.fillStyle='#252a28';p.fillRect(0,0,w,h);

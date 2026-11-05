@@ -1,0 +1,681 @@
+{
+  "transport": [
+    {
+      "action": "next",
+      "index": 3,
+      "ready": 4
+    },
+    {
+      "action": "previous",
+      "index": 2,
+      "ready": 4
+    }
+  ],
+  "motion": [
+    {
+      "time": 0.650122,
+      "playing": true,
+      "level": 0.8730813177636007,
+      "angle": -2.2693538879301145,
+      "levels": {
+        "time": 0.650667,
+        "duration": 455.59875,
+        "title": "Kolter - Hey Everybody [Extended] [fQ ngKj4lVQ]",
+        "playing": true,
+        "level": 1,
+        "bands": [
+          0.8235294117647058,
+          0.6733031674208145,
+          0.6922875816993465
+        ]
+      }
+    },
+    {
+      "time": 0.751772,
+      "playing": true,
+      "level": 0.8759318954163495,
+      "angle": -2.624179324860562,
+      "levels": {
+        "time": 0.752,
+        "duration": 455.59875,
+        "title": "Kolter - Hey Everybody [Extended] [fQ ngKj4lVQ]",
+        "playing": true,
+        "level": 0.8198934102754936,
+        "bands": [
+          0.803921568627451,
+          0.7315233785822021,
+          0.7168627450980393
+        ]
+      }
+    },
+    {
+      "time": 0.850148,
+      "playing": true,
+      "level": 0.5948334486546484,
+      "angle": -2.96757634584895,
+      "levels": {
+        "time": 0.850667,
+        "duration": 455.59875,
+        "title": "Kolter - Hey Everybody [Extended] [fQ ngKj4lVQ]",
+        "playing": true,
+        "level": 0.18163345208059514,
+        "bands": [
+          0.7764705882352941,
+          0.6929110105580694,
+          0.7003921568627451
+        ]
+      }
+    },
+    {
+      "time": 0.952,
+      "playing": true,
+      "level": 0.16905420795051715,
+      "angle": -3.3231068957972036,
+      "levels": {
+        "time": 0.959266,
+        "duration": 455.59875,
+        "title": "Kolter - Hey Everybody [Extended] [fQ ngKj4lVQ]",
+        "playing": true,
+        "level": 0.017208022680705412,
+        "bands": [
+          0.734313725490196,
+          0.6437405731523379,
+          0.6528104575163398
+        ]
+      }
+    },
+    {
+      "time": 1.060222,
+      "playing": true,
+      "level": 0.6671157844344127,
+      "angle": -3.7008729404158647,
+      "levels": {
+        "time": 1.061333,
+        "duration": 455.59875,
+        "title": "Kolter - Hey Everybody [Extended] [fQ ngKj4lVQ]",
+        "playing": true,
+        "level": 1,
+        "bands": [
+          0.8137254901960784,
+          0.5981900452488688,
+          0.6020915032679739
+        ]
+      }
+    },
+    {
+      "time": 1.16,
+      "playing": true,
+      "level": 0.9317428700186523,
+      "angle": -4.049163864626845,
+      "levels": {
+        "time": 1.16,
+        "duration": 455.59875,
+        "title": "Kolter - Hey Everybody [Extended] [fQ ngKj4lVQ]",
+        "playing": true,
+        "level": 0.9832643428006387,
+        "bands": [
+          0.7901960784313725,
+          0.5493212669683258,
+          0.5516339869281046
+        ]
+      }
+    },
+    {
+      "time": 1.261333,
+      "playing": true,
+      "level": 0.7969267616183051,
+      "angle": -4.402882762811528,
+      "levels": {
+        "time": 1.270358,
+        "duration": 455.59875,
+        "title": "Kolter - Hey Everybody [Extended] [fQ ngKj4lVQ]",
+        "playing": true,
+        "level": 0.49718896729017514,
+        "bands": [
+          0.7843137254901961,
+          0.6962292609351433,
+          0.6972549019607843
+        ]
+      }
+    },
+    {
+      "time": 1.36,
+      "playing": true,
+      "level": 0.24848797482679783,
+      "angle": -4.747295565424577,
+      "levels": {
+        "time": 1.370266,
+        "duration": 455.59875,
+        "title": "Kolter - Hey Everybody [Extended] [fQ ngKj4lVQ]",
+        "playing": true,
+        "level": 0.03466367308145586,
+        "bands": [
+          0.746078431372549,
+          0.6524886877828054,
+          0.6538562091503268
+        ]
+      }
+    },
+    {
+      "time": 1.472,
+      "playing": true,
+      "level": 0.5693853350401051,
+      "angle": -5.138249317871306,
+      "levels": {
+        "time": 1.472,
+        "duration": 455.59875,
+        "title": "Kolter - Hey Everybody [Extended] [fQ ngKj4lVQ]",
+        "playing": true,
+        "level": 1,
+        "bands": [
+          0.8705882352941177,
+          0.6253393665158371,
+          0.6027450980392157
+        ]
+      }
+    },
+    {
+      "time": 1.5706,
+      "playing": true,
+      "level": 0.9133381606154741,
+      "angle": -5.482428246364588,
+      "levels": {
+        "time": 1.570667,
+        "duration": 455.59875,
+        "title": "Kolter - Hey Everybody [Extended] [fQ ngKj4lVQ]",
+        "playing": true,
+        "level": 1,
+        "bands": [
+          0.8588235294117647,
+          0.5770739064856711,
+          0.550326797385621
+        ]
+      }
+    },
+    {
+      "time": 1.672,
+      "playing": true,
+      "level": 0.6713128202629881,
+      "angle": -5.836381018669038,
+      "levels": {
+        "time": 1.678464,
+        "duration": 455.59875,
+        "title": "Kolter - Hey Everybody [Extended] [fQ ngKj4lVQ]",
+        "playing": true,
+        "level": 0.48548822841062944,
+        "bands": [
+          0.8245098039215686,
+          0.5282051282051282,
+          0.4996078431372549
+        ]
+      }
+    },
+    {
+      "time": 1.771129,
+      "playing": true,
+      "level": 0.4193007208149868,
+      "angle": -6.182406505510929,
+      "levels": {
+        "time": 1.781076,
+        "duration": 455.59875,
+        "title": "Kolter - Hey Everybody [Extended] [fQ ngKj4lVQ]",
+        "playing": true,
+        "level": 0.24580214726069374,
+        "bands": [
+          0.792156862745098,
+          0.609049773755656,
+          0.6083660130718954
+        ]
+      }
+    }
+  ],
+  "zones": [
+    {
+      "name": "street",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.9686367511749268,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 2.781333,
+            "duration": 455.59875,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.0025228884478565305,
+            "speakerGains": [
+              0.00034490987309254706,
+              0.00037208624416962266
+            ],
+            "roomReflections": 0.0007573891780339181,
+            "levels": {
+              "rms": 0.015053681601915326,
+              "bands": [
+                0.7607843137254902,
+                0.5969834087481146,
+                0.5858823529411765
+              ]
+            },
+            "gainOutside": 0.016754353418946266,
+            "cutoff": 2203.8662109375
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 4.93424,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -15.724178407724132,
+            "gain": 0.0010668317706347798
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739411945,
+            "gain": 0.0003985126786920364
+          },
+          {
+            "kind": "hybrid",
+            "x": 1.8,
+            "z": -2.930000000000149,
+            "gain": 0.000017485648967157847
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          48,
+          null
+        ],
+        "trafficGain": 0.0014825279413344106,
+        "audible": true,
+        "rms": 0.001295492647855026
+      }
+    },
+    {
+      "name": "stairs",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.6469029784202576,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 3.781333,
+            "duration": 455.59875,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0.085,
+              "outside": 0.009,
+              "cutoff": 3975,
+              "zone": "stairwell",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.08411678671836853,
+            "speakerGains": [
+              0,
+              0
+            ],
+            "roomReflections": 0,
+            "levels": {
+              "rms": 1,
+              "bands": [
+                0.8137254901960784,
+                0.5520361990950227,
+                0.547843137254902
+              ]
+            },
+            "gainOutside": 0.009082319214940071,
+            "cutoff": 3963.06396484375
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 5.932698,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -15.724178407724132,
+            "gain": 0.0009219776864044507
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739411945,
+            "gain": 0.00021724066370176312
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          null,
+          null
+        ],
+        "trafficGain": 0.00113932546810247,
+        "audible": true,
+        "rms": 0.02322197182339705
+      }
+    },
+    {
+      "name": "inside",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.13830341398715973,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 4.789503,
+            "duration": 455.59875,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0.25,
+              "outside": 0,
+              "cutoff": 17500,
+              "zone": "basement",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.23594364151358604,
+            "speakerGains": [
+              0.032140471041202545,
+              0.0346723236143589
+            ],
+            "roomReflections": 0.0205181036144495,
+            "levels": {
+              "rms": 1,
+              "bands": [
+                0.8392156862745098,
+                0.5327300150829563,
+                0.492156862745098
+              ]
+            },
+            "gainOutside": 0.0000919097728910856,
+            "cutoff": 17413.46875
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 6.939955,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -15.724178407724132,
+            "gain": 0.00027617067138743724
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          null,
+          null,
+          null
+        ],
+        "trafficGain": 0.0002763133670669049,
+        "audible": true,
+        "rms": 0.02331330889134238
+      }
+    },
+    {
+      "name": "leave",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.9692276120185852,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 5.792,
+            "duration": 455.59875,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.00250723899807781,
+            "speakerGains": [
+              0.0003415383107494563,
+              0.0003684435796458274
+            ],
+            "roomReflections": 0.0007325709448195994,
+            "levels": {
+              "rms": 0.6491149711059945,
+              "bands": [
+                0.8274509803921568,
+                0.6235294117647059,
+                0.6030065359477124
+              ]
+            },
+            "gainOutside": 0.016755305230617523,
+            "cutoff": 2203.31201171875
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 7.944127,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -15.724178407724132,
+            "gain": 0.0010668317706347798
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739411945,
+            "gain": 0.0003985126786920364
+          },
+          {
+            "kind": "hybrid",
+            "x": 1.8,
+            "z": -2.930000000000149,
+            "gain": 0.000017485648967157847
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          48,
+          null
+        ],
+        "trafficGain": 0.0014825277048657881,
+        "audible": true,
+        "rms": 0.0015598288206543113
+      }
+    }
+  ],
+  "pause": {
+    "angle": -6.182406505510929,
+    "level": 0.00029083138092929047,
+    "survivesMute": true
+  }
+}

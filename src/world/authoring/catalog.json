@@ -156,6 +156,388 @@
           "roughness": 0.8
         }
       }
+    },
+    "countertop": {
+      "path": "assets/shindo/countertop.glb",
+      "dimensions": [
+        0.842,
+        0.101,
+        4.06
+      ],
+      "source": "assets-source/shindo/countertop-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Joinery | oiled walnut": {
+          "finish": "walnut",
+          "color": "#b8a087",
+          "roughness": 0.58
+        },
+        "Upholstery | oxblood hide": {
+          "finish": "leather",
+          "color": "#91695b",
+          "roughness": 0.73
+        }
+      }
+    },
+    "service-worktop": {
+      "path": "assets/shindo/service-worktop.glb",
+      "dimensions": [
+        0.4,
+        0.065,
+        3.98
+      ],
+      "source": "assets-source/shindo/service-worktop-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Joinery | oiled walnut": {
+          "finish": "walnut",
+          "color": "#b8a087",
+          "roughness": 0.58
+        },
+        "Upholstery | oxblood hide": {
+          "finish": "leather",
+          "color": "#91695b",
+          "roughness": 0.73
+        }
+      }
+    },
+    "banquette-cushion": {
+      "path": "assets/shindo/banquette-cushion.glb",
+      "dimensions": [
+        0.5034,
+        0.683,
+        0.54799
+      ],
+      "source": "assets-source/shindo/banquette-cushion-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Joinery | oiled walnut": {
+          "finish": "walnut",
+          "color": "#b8a087",
+          "roughness": 0.58
+        },
+        "Upholstery | oxblood hide": {
+          "finish": "leather",
+          "color": "#91695b",
+          "roughness": 0.73
+        }
+      }
+    },
+    "service-joinery": {
+      "path": "assets/shindo/service-joinery.glb",
+      "dimensions": [
+        0.08924,
+        0.859,
+        3.964
+      ],
+      "source": "assets-source/shindo/service-joinery-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Joinery | oiled walnut": {
+          "finish": "walnut",
+          "color": "#b8a087",
+          "roughness": 0.58
+        },
+        "Upholstery | oxblood hide": {
+          "finish": "leather",
+          "color": "#91695b",
+          "roughness": 0.73
+        }
+      }
+    },
+    "service-sink": {
+      "path": "assets/shindo/service-sink.glb",
+      "dimensions": [
+        0.326,
+        0.39941,
+        0.54641
+      ],
+      "source": "assets-source/shindo/service-sink-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Joinery | oiled walnut": {
+          "finish": "walnut",
+          "color": "#b8a087",
+          "roughness": 0.58
+        },
+        "Upholstery | oxblood hide": {
+          "finish": "leather",
+          "color": "#91695b",
+          "roughness": 0.73
+        }
+      }
+    },
+    "folded-oshibori": {
+      "path": "assets/shindo/folded-oshibori.glb",
+      "dimensions": [
+        0.2,
+        0.02057,
+        0.15
+      ],
+      "source": "assets-source/shindo/folded-oshibori-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Joinery | oiled walnut": {
+          "finish": "walnut",
+          "color": "#b8a087",
+          "roughness": 0.58
+        },
+        "Upholstery | oxblood hide": {
+          "finish": "leather",
+          "color": "#91695b",
+          "roughness": 0.73
+        }
+      }
+    },
+    "service-tray": {
+      "path": "assets/shindo/service-tray.glb",
+      "dimensions": [
+        0.31,
+        0.0215,
+        0.23
+      ],
+      "source": "assets-source/shindo/service-tray-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Joinery | oiled walnut": {
+          "finish": "walnut",
+          "color": "#b8a087",
+          "roughness": 0.58
+        },
+        "Upholstery | oxblood hide": {
+          "finish": "leather",
+          "color": "#91695b",
+          "roughness": 0.73
+        }
+      }
+    },
+    "water-carafe": {
+      "path": "assets/shindo/water-carafe.glb",
+      "dimensions": [
+        0.108,
+        0.21,
+        0.108
+      ],
+      "source": "assets-source/shindo/water-carafe-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Joinery | oiled walnut": {
+          "finish": "walnut",
+          "color": "#b8a087",
+          "roughness": 0.58
+        },
+        "Upholstery | oxblood hide": {
+          "finish": "leather",
+          "color": "#91695b",
+          "roughness": 0.73
+        }
+      }
+    },
+    "record-selection": {
+      "path": "assets/shindo/record-selection.glb",
+      "dimensions": [
+        0.36872,
+        0.0567,
+        0.35044
+      ],
+      "source": "assets-source/shindo/record-selection-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Joinery | oiled walnut": {
+          "finish": "walnut",
+          "color": "#b8a087",
+          "roughness": 0.58
+        },
+        "Upholstery | oxblood hide": {
+          "finish": "leather",
+          "color": "#91695b",
+          "roughness": 0.73
+        }
+      }
+    },
+    "acoustic-cassette": {
+      "path": "assets/shindo/acoustic-cassette.glb",
+      "dimensions": [
+        0.123,
+        1.05,
+        1.24
+      ],
+      "source": "assets-source/shindo/acoustic-cassette-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Joinery | oiled walnut": {
+          "finish": "walnut",
+          "color": "#b8a087",
+          "roughness": 0.58
+        },
+        "Upholstery | oxblood hide": {
+          "finish": "leather",
+          "color": "#91695b",
+          "roughness": 0.73
+        }
+      }
+    },
+    "duct-joint": {
+      "path": "assets/shindo/duct-joint.glb",
+      "dimensions": [
+        0.329,
+        0.309,
+        1.218
+      ],
+      "source": "assets-source/shindo/duct-joint-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Joinery | oiled walnut": {
+          "finish": "walnut",
+          "color": "#b8a087",
+          "roughness": 0.58
+        },
+        "Upholstery | oxblood hide": {
+          "finish": "leather",
+          "color": "#91695b",
+          "roughness": 0.73
+        }
+      }
+    },
+    "water-glass": {
+      "path": "assets/shindo/water-glass.glb",
+      "dimensions": [
+        0.076,
+        0.155,
+        0.076
+      ],
+      "source": "public/assets/shindo/CREDITS.md",
+      "license": "Project-original"
+    },
+    "otsumami-bowl": {
+      "path": "assets/shindo/otsumami-bowl.glb",
+      "dimensions": [
+        0.15,
+        0.043,
+        0.15
+      ],
+      "source": "assets-source/shindo/otsumami-bowl-editable.blend",
+      "license": "Project-original"
+    },
+    "entry-portal": {
+      "path": "assets/shindo/entry-portal.glb",
+      "dimensions": [
+        2.005,
+        2.755,
+        0.529
+      ],
+      "source": "assets-source/shindo/entry-portal-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Entry | smoked walnut": {
+          "finish": "walnut",
+          "color": "#9c8b74",
+          "roughness": 0.65
+        },
+        "Entry | warm recessed diffuser": {
+          "emissiveIntensity": 0.58
+        }
+      }
+    },
+    "acoustic-entry": {
+      "path": "assets/shindo/acoustic-entry.glb",
+      "dimensions": [
+        1.805,
+        2.525,
+        0.922
+      ],
+      "source": "assets-source/shindo/acoustic-entry-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Entry | smoked walnut": {
+          "finish": "walnut",
+          "color": "#9c8b74",
+          "roughness": 0.65
+        },
+        "Entry | warm recessed diffuser": {
+          "emissiveIntensity": 0.58
+        }
+      }
+    },
+    "landing-return": {
+      "path": "assets/shindo/landing-return.glb",
+      "dimensions": [
+        2.54,
+        1.955,
+        0.1095
+      ],
+      "source": "assets-source/shindo/landing-return-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Entry | smoked walnut": {
+          "finish": "walnut",
+          "color": "#9c8b74",
+          "roughness": 0.65
+        },
+        "Entry | warm recessed diffuser": {
+          "emissiveIntensity": 0.58
+        }
+      }
+    },
+    "stair-dado": {
+      "path": "assets/shindo/stair-dado.glb",
+      "dimensions": [
+        1.79,
+        3.74044,
+        5.04934
+      ],
+      "source": "assets-source/shindo/stair-dado-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Entry | smoked walnut": {
+          "finish": "walnut",
+          "color": "#9c8b74",
+          "roughness": 0.65
+        },
+        "Entry | warm recessed diffuser": {
+          "emissiveIntensity": 0.58
+        }
+      }
+    },
+    "stair-downlight": {
+      "path": "assets/shindo/stair-downlight.glb",
+      "dimensions": [
+        0.078,
+        0.14,
+        0.2
+      ],
+      "source": "assets-source/shindo/stair-downlight-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Entry | smoked walnut": {
+          "finish": "walnut",
+          "color": "#9c8b74",
+          "roughness": 0.65
+        },
+        "Entry | warm recessed diffuser": {
+          "emissiveIntensity": 0.58
+        }
+      }
+    },
+    "entry-threshold": {
+      "path": "assets/shindo/entry-threshold.glb",
+      "dimensions": [
+        1.74,
+        0.026,
+        0.729
+      ],
+      "source": "assets-source/shindo/entry-threshold-editable.blend",
+      "license": "Project-original",
+      "materials": {
+        "Entry | smoked walnut": {
+          "finish": "walnut",
+          "color": "#9c8b74",
+          "roughness": 0.65
+        },
+        "Entry | warm recessed diffuser": {
+          "emissiveIntensity": 0.58
+        }
+      }
     }
   },
   "prefabs": {
@@ -276,6 +658,94 @@
             1
           ],
           "asset": "yoto-izakaya"
+        }
+      ]
+    },
+    "working-service": {
+      "nodes": [
+        {
+          "id": "tray",
+          "label": "Ribbed rubber draining mat",
+          "asset": "service-tray",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "Cobbler shaker and hollow measure",
+          "asset": "bar-tools",
+          "position": [
+            -0.065,
+            0.024,
+            -0.01
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    "water-service": {
+      "nodes": [
+        {
+          "id": "carafe",
+          "label": "Ceramic water carafe",
+          "asset": "water-carafe",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "id": "glass",
+          "label": "Guest water glass",
+          "asset": "water-glass",
+          "position": [
+            0.115,
+            0,
+            0.025
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
         }
       ]
     }

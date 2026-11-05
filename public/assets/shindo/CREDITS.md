@@ -1,5 +1,26 @@
 # Shindo asset sources
 
+Shindo 4C adds six project-original fitted assemblies: `entry-portal`,
+`acoustic-entry`, `landing-return`, `stair-dado`, `stair-downlight` and
+`entry-threshold`. Their packed editable Blender sources are retained alongside
+the 4A fittings. Export with `blender --background --python tools/build-shindo-entry.py`;
+existing sources remain authoritative unless `-- --from-design` is supplied.
+The existing CC0 walnut finish is assigned through the local catalog. No additional
+third-party models, textures or dependencies were introduced.
+
+Shindo 4A adds twelve **project-original** Blender models: solid counter, service worktop,
+service cabinet fronts, inset basin/mixer, piped banquette cushions, folded oshibori,
+rubber draining mat, otsumami bowl, ceramic water carafe, selected records/brush,
+framed acoustic cassette and duct joint/access cover. No third-party geometry was
+used for these additions. Their named walnut/leather slots reuse the existing CC0
+Poly Haven finishes below through the local asset catalog.
+
+Packed editable sources: `assets-source/shindo/*-editable.blend`. Re-export with
+`blender --background --python tools/build-shindo-atmosphere.py`; existing Blender
+sources remain authoritative. `-- --from-design` deliberately recreates those twelve
+sources from their original design recipes. Dimensions and byte counts are in
+[atmosphere-geometry.json](atmosphere-geometry.json).
+
 Licenses checked against the linked publisher pages on 2026-11-05. All imported models and textures below are **CC0 1.0**; modification, commercial use and redistribution are permitted. Runtime files are local. Powered by Poly Haven (asset discovery/download API).
 
 | Runtime asset | Creator and original source | Changes |

@@ -13,8 +13,10 @@ export class AuthoredEnvironments{
  readonly registry:AssetRegistry;readonly scenes=new Map<string,AuthoredScene>();readonly ready:Promise<void>;
  constructor(materials:NightlifeMaterials,parent:THREE.Group,venue:YotoVenueSpatial,anchors:Record<string,{position:[number,number,number];rotation?:[number,number,number]}>,fallbacks:Map<string,THREE.Group>,legacyReady:Promise<void>,onShindoFailure:()=>Promise<void>){
   this.registry=new AssetRegistry(catalog as unknown as AssetCatalog,{walnut:materials.walnut,leather:materials.leather});
-  // Hide only the four stool primitives tagged in the existing shared batch.
-  const hidden:{mesh:THREE.InstancedMesh;index:number;matrix:THREE.Matrix4}[]=[];parent.traverse(o=>{if(!(o instanceof THREE.InstancedMesh))return;o.userData.sections?.forEach((section:string,i:number)=>{if(section==='shindo:stools'){const matrix=new THREE.Matrix4();o.getMatrixAt(i,matrix);hidden.push({mesh:o,index:i,matrix});}});});
+  // Replace only tagged visual fittings after the complete authored scene loads.
+  // Collision carcasses, stairs and playback equipment keep their shared contracts.
+  const replacements=new Set(['shindo:stools','shindo:countertop','shindo:upholstery','shindo:service-fixtures','shindo:acoustic-cassettes','shindo:lower-shelf','shindo:entry-door','shindo:stair-lamps']);
+  const hidden:{mesh:THREE.InstancedMesh;index:number;matrix:THREE.Matrix4}[]=[];parent.traverse(o=>{if(!(o instanceof THREE.InstancedMesh))return;o.userData.sections?.forEach((section:string,i:number)=>{if(replacements.has(section)){const matrix=new THREE.Matrix4();o.getMatrixAt(i,matrix);hidden.push({mesh:o,index:i,matrix});}});});
   const stools=(show:boolean)=>{for(const h of hidden){h.mesh.setMatrixAt(h.index,show?h.matrix:new THREE.Matrix4().makeScale(0,0,0));h.mesh.instanceMatrix.needsUpdate=true;h.mesh.computeBoundingSphere();}};
   this.ready=legacyReady.then(async()=>{
    const a=new AuthoredScene(shindo as SceneDocument,this.registry,{'shindo-floor':{position:[0,venue.floorY,0]}},()=>{stools(true);return onShindoFailure();},()=>stools(false));

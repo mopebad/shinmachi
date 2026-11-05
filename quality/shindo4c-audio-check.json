@@ -1,0 +1,201 @@
+{
+  "method": "Real media/audio with explicit normal update calls; hidden tab suspends requestAnimationFrame",
+  "transport": [
+    {
+      "action": "next",
+      "before": 4,
+      "after": 5
+    },
+    {
+      "action": "previous",
+      "before": 5,
+      "after": 4
+    }
+  ],
+  "zones": [
+    {
+      "name": "inside",
+      "diagnostics": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.11999999731779099,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 2.968247,
+            "duration": 167.090794,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0.25,
+              "outside": 0,
+              "cutoff": 17500,
+              "zone": "basement",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.2374957762658596,
+            "speakerGains": [
+              0.032469019293785095,
+              0.035026755183935165
+            ],
+            "roomReflections": 0.021250000223517418,
+            "levels": {
+              "rms": 1,
+              "bands": [
+                0.8970588235294118,
+                0.7206636500754148,
+                0.5772549019607843
+              ]
+            },
+            "gainOutside": 0,
+            "cutoff": 17500
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 243.510567,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2300
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [],
+        "trafficAssignments": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "trafficGain": 0,
+        "audible": false,
+        "rms": 0
+      }
+    },
+    {
+      "name": "street",
+      "diagnostics": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.9680397510528564,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 3.959002,
+            "duration": 167.090794,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.0026147126336582005,
+            "speakerGains": [
+              0.0003574680886231363,
+              0.00038562656845897436
+            ],
+            "roomReflections": 0.0007786133210174739,
+            "levels": {
+              "rms": 0.6279955662780025,
+              "bands": [
+                0.9127450980392157,
+                0.7143288084464555,
+                0.5737254901960784
+              ]
+            },
+            "gainOutside": 0.01675010472536087,
+            "cutoff": 2206.59033203125
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 244.503545,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2300
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [],
+        "trafficAssignments": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "trafficGain": 0,
+        "audible": false,
+        "rms": 0
+      }
+    }
+  ],
+  "motion": {
+    "a": {
+      "time": 0.983492,
+      "playing": true,
+      "level": 0.10045112839101222,
+      "angle": -3.4330347134048145
+    },
+    "b": {
+      "time": 1.981631,
+      "playing": true,
+      "level": 0.4113880942844133,
+      "angle": -6.917197101917551
+    }
+  },
+  "pause": true,
+  "tracks": 10
+}
