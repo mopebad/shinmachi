@@ -25,8 +25,8 @@ export class ShindoPresentation {
   p.fillStyle='#d1c6a9';p.font='17px Arial';p.textAlign='center';p.fillText('SHINDO',256,241);p.font='10px Arial';p.fillText('DEPTH STUDIES / A',256,278);p.fillRect(245,204,22,4);p.fillStyle='#151e1e';p.beginPath();p.arc(256,256,5,0,Math.PI*2);p.fill();
   const map=new THREE.CanvasTexture(vinyl);map.colorSpace=THREE.SRGBColorSpace;
   const material=new THREE.MeshStandardMaterial({map,roughness:.38,metalness:.12});
-  for(const x of [17.76]){
-   const record=new THREE.Group(),face=new THREE.Mesh(new THREE.CircleGeometry(.187,48),material);face.rotation.x=-Math.PI/2;record.position.set(x,f+1.183,-40.47);record.add(face);this.records.push(record);this.group.add(record);
+  for(const x of [17.757]){
+   const record=new THREE.Group(),face=new THREE.Mesh(new THREE.CircleGeometry(.145,96),material);face.rotation.x=-Math.PI/2;record.position.set(x,f+1.192,-40.48);record.add(face);this.records.push(record);this.group.add(record);
   }
   this.screen.width=1024;this.screen.height=144;this.texture=new THREE.CanvasTexture(this.screen);this.texture.colorSpace=THREE.SRGBColorSpace;
   const panel=new THREE.Mesh(new THREE.PlaneGeometry(.68,.096),new THREE.MeshStandardMaterial({map:this.texture,emissiveMap:this.texture,emissive:0xffffff,emissiveIntensity:.24,roughness:.66}));panel.position.set(18.94,f+.938,-40.029);this.group.add(panel);
@@ -42,7 +42,7 @@ export class ShindoPresentation {
   }
   this.meters=new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshStandardMaterial({color:0xffffff,emissive:0x694522,emissiveIntensity:0,roughness:.55}),16);
   for(let row=0;row<2;row++)for(let i=0;i<8;i++){
-   this.object.position.set(18.57+i*.019,f+1.119+row*.024,-40.305);this.object.scale.set(.013,.009,.003);this.object.updateMatrix();this.meters.setMatrixAt(row*8+i,this.object.matrix);this.meters.setColorAt(row*8+i,this.color.setHex(0x1b2926));
+   this.object.position.set(18.615+i*.01,f+1.15+row*.009,-40.324);this.object.scale.set(.007,.004,.002);this.object.updateMatrix();this.meters.setMatrixAt(row*8+i,this.object.matrix);this.meters.setColorAt(row*8+i,this.color.setHex(0x1b2926));
   }
   this.meters.computeBoundingSphere();this.group.add(this.meters);this.update(0,{time:0,title:'Selected sound / 深度',playing:false,level:0,bands:[0,0,0]});
  }

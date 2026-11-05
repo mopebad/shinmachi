@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {ShindoAssets} from './ShindoAssets';
 import { CityBatch } from './CityBatch';
 import { NightlifeMaterials } from './NightlifeMaterials';
 import { NightlifeAssets, type AssetPlacement, type NightlifeAsset } from './NightlifeAssets';
@@ -151,7 +152,9 @@ export class NightlifeStreet {
     for (let wire = 0; wire < 5; wire++) b.cable(new THREE.Vector3(-17.5 + wire * .18, 5.5 + wire * .08, -27.6), new THREE.Vector3(-10 + wire * .2, 5.2 + wire * .08, -22.4), .35);
     for (const x of [-21, -15, -9, 9, 15, 21]) for (const side of [-1, 1]) b.b(m.grille, x, .025, -25 + side * 1.98, .58, .028, .27);
     this.group.add(b.finish(m.signMaterial('bar', 1)),this.shindo.group);
-    this.assets = new NightlifeAssets(placements); this.group.add(this.assets.group); this.ready = this.assets.ready;
+    this.assets = new NightlifeAssets(placements); this.group.add(this.assets.group);
+    const shindoAssets=new ShindoAssets(m);this.group.add(shindoAssets.group);
+    this.ready=Promise.all([this.assets.ready,shindoAssets.ready]).then(()=>{});
     const practical = (x: number, y: number, z: number, color: number, power: number, radius: number) => { const light = new THREE.PointLight(color, 0, radius, 2); light.position.set(x, y, z); this.group.add(light); this.lights.push({ light, power }); };
     practical(-7.9, 4.4, -26.25, 0xff6630, 16, 7); practical(-16, 3.4, -23.3, 0xffbc74, 14, 7); practical(-12.2, 3.5, -26.7, 0xffcb91, 12, 6); practical(13.2, 3.4, -23.2, 0x9bcaca, 13, 8);
     practical(16.57,-1.12,-35.6,0xffc38a,4.7,3.8);
@@ -159,6 +162,7 @@ export class NightlifeStreet {
     practical(18.95,-.35,-29.0,0xe4b77c,2.5,3.2);practical(18.95,-2.05,-31.8,0xe4b77c,1.7,2.8);
     practical(17.65,-.98,-36.0,0xffd1a0,1.4,2.7);
     practical(18.0,-.85,-40.20,0xffd5a4,2.3,3.8);
+    practical(16.73,-1.35,-40.13,0xffdbb4,.36,1.5);practical(19.72,-1.35,-40.13,0xffdbb4,.36,1.5);
     practical(17.175,-2.19,-39.325,0xffc58e,.65,1.7);
     scene.add(this.group);
   }

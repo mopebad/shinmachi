@@ -34,23 +34,14 @@ export function buildShindoInterior(b:CityBatch,m:NightlifeMaterials,v:YotoVenue
  // Recessed backbar: mirrored panels, illuminated shelves, original unbranded bottles.
  b.b(m.smokedSteel,15.995,f+1.63,-35.84,.035,1.35,3.96);
  for(const z of [-34.4,-35.35,-36.3,-37.25])b.b(m.glass,16.022,f+1.67,z,.02,1.19,.84);
- const bottleRows=[[-34.15,-34.4,-34.9,-35.12,-35.37,-35.95,-36.2,-36.46],[-34.08,-34.34,-34.6,-35.18,-35.42,-35.68,-36.2,-36.46,-37.15,-37.43],[-34.3,-34.58,-35.2,-35.48,-36.2,-36.46,-37.12]];
- for(const [row,height]of [.97,1.52,2.04].entries()){
+ for(const height of [.97,1.52,2.04]){
   const y=f+height;
   b.b(m.walnut,16.19,y,-35.84,.4,.065,3.98);
   b.b(m.smokedSteel,16.12,y-.044,-35.84,.2,.025,3.83);
   b.b(m.light,16.19,y-.059,-35.84,.06,.009,3.79);
-  for(const [i,z]of bottleRows[row].entries()){
-   const family=(i+row)%4,h=[.23,.32,.285,.25][family],width=[.13,.075,.09,.105][family],x=16.18+(i%2)*.025;
-   b.part('bottle',family===2?m.bottleGreen:m.bottleAmber,x,y+.04+h/2,z,width,h,width);
-   b.part('disc',family===1?m.smokedSteel:m.brass,x,y+.05+h,z,width*.17,.018,width*.17);
-   b.b(family===3?m.acoustic:m.cloth,x+width*.48,y+.125,z,.008,family===1?.09:.058,width*.57);
-   b.b(m.brass,x+width*.53,y+.145,z,.004,.006,width*.46);
-  }
  }
  // A draining tray keeps clean glasses together, clear of the basin and bottle groupings.
  b.b(m.smokedSteel,16.23,f+1.012,-36.78,.23,.018,.48);
- for(const z of [-36.64,-36.8,-36.96])b.part('tumbler',m.clearGlass,16.22,f+1.105,z,.085,.16,.085,Math.PI);
  // Sink, taps, under-counter refrigerator and practical bar tools have an actual work side.
  b.b(m.metal,16.16,f+.9,-37.25,.29,.025,.6);b.b(m.grille,16.16,f+.916,-37.25,.22,.012,.43);
  rod(m.metal,[16.15,f+.94,-37.52],[16.15,f+1.16,-37.52],.016);
@@ -62,12 +53,9 @@ export function buildShindoInterior(b:CityBatch,m:NightlifeMaterials,v:YotoVenue
   b.part('torus',m.brass,18.22,f+.23,z,.16,.16,.16,Math.PI/2);
   b.part('disc',m.acoustic,18.22,f+.035,z,.2,.055,.2);
   // A highball, water and rocks whisky; open glass rims, liquid and ice have distinct heights.
-  const h=[.235,.16,.115][i],w=[.075,.08,.1][i],bottom=f+1.12,liquid=[.16,.105,.046][i];
   b.part('disc',m.leather,17.56,f+1.114,z,.075,.009,.075);
-  b.part('tumbler',m.clearGlass,17.56,bottom+h/2,z,w,h,w);
-  b.part('disc',i===1?m.water:m.whisky,17.56,bottom+.014+liquid/2,z,w*.43,liquid,w*.43);
-  for(const [j,dz]of [-.014,.013].entries())b.b(m.clearGlass,17.56+(j===0?-.01:.013),bottom+liquid-.004,z+dz,.025,.028,.026,.3+j*.5);
   if(i===0){
+   const bottom=f+1.12,h=.225;
    b.part('torus',m.citrus,17.578,bottom+h-.024,z-.018,.024,.024,.024,.6);
    b.part('disc',m.citrusFlesh,17.578,bottom+h-.024,z-.018,.0225,.002,.0225,Math.PI/2+.6);
    rod(m.brass,[17.586,bottom+.04,z],[17.586,bottom+h+.025,z],.002);
@@ -75,7 +63,7 @@ export function buildShindoInterior(b:CityBatch,m:NightlifeMaterials,v:YotoVenue
   if(i!==1){b.b(m.cloth,17.58,f+1.113,z+.19,.13,.008,.15,.08);b.b(m.acoustic,17.58,f+1.118,z+.19,.085,.002,.06,.08);}
  }
  for(const [x,z]of [[17.18,-34.92],[17.16,-37.12]]){
-  b.part('bottle',m.metal,x,f+1.22,z,.09,.21,.09);b.b(m.cloth,x+.18,f+1.117,z,.2,.012,.22);
+  b.b(m.cloth,x+.18,f+1.117,z,.2,.012,.22);
   b.part('disc',m.smokedSteel,x,f+1.115,z+.16,.09,.013,.09);
  }
  b.b(m.smokedSteel,17.28,f+1.115,-37.48,.28,.018,.2);
@@ -102,24 +90,7 @@ export function buildShindoInterior(b:CityBatch,m:NightlifeMaterials,v:YotoVenue
  // A front-operated selector console: one deck, a small integrated amplifier and headphones.
  // No implied operator aisle behind the cabinet, no duplicated players for the single source.
  b.b(m.walnut,18.35,f+1.025,-40.48,2.5,.07,.79);
- for(const x of [17.82]){
-  b.b(m.walnut,x,f+1.103,-40.48,.65,.1,.47);
-  b.b(m.smokedSteel,x,f+1.157,-40.48,.61,.012,.44);
-  b.part('disc',m.acoustic,x-.06,f+1.168,-40.47,.19,.028,.19);
-  b.part('disc',m.cloth,x-.06,f+1.186,-40.47,.052,.008,.052);
-  rod(m.brass,[x+.2,f+1.21,-40.64],[x+.07,f+1.21,-40.42],.009);
-  b.part('disc',m.smokedSteel,x+.2,f+1.18,-40.64,.033,.07,.033);
-  b.b(m.smokedSteel,x+.07,f+1.2,-40.42,.018,.02,.028);
-  b.part('disc',m.brass,x+.24,f+1.167,-40.31,.009,.008,.009);
- }
- b.b(m.smokedSteel,18.67,f+1.135,-40.5,.58,.15,.35);
- b.b(m.metal,18.67,f+1.135,-40.316,.57,.136,.016);
- for(let i=0;i<12;i++)b.b(m.acoustic,18.45+i*.037,f+1.214,-40.52,.018,.006,.21);
- // Face-mounted volume/source knobs and fine tick marks, not a bank of unexplained faders.
- for(const [x,r]of [[18.81,.036],[18.49,.021]]){
-  b.part('disc',m.smokedSteel,x,f+1.139,-40.296,r,.025,r,Math.PI/2);
-  b.b(m.cloth,x,f+1.139+r*.5,-40.282,.003,.013,.002);
- }
+ // Metre-scale imported hi-fi occupies these same counter positions (ShindoAssets).
  b.part('torus',m.metal,19.2,f+1.25,-40.51,.11,.11,.11,0,Math.PI/2);
  for(const z of [-40.6,-40.42])b.b(m.leather,19.2,f+1.2,z,.1,.13,.06);
  b.b(m.smokedSteel,19.2,f+1.074,-40.51,.14,.02,.2);
@@ -127,18 +98,11 @@ export function buildShindoInterior(b:CityBatch,m:NightlifeMaterials,v:YotoVenue
  rod(m.smokedSteel,[19.16,f+1.34,-40.51],[19.24,f+1.34,-40.51],.012);
  rod(m.acoustic,[19.19,f+1.1,-40.73],[19.19,f+.4,-40.8],.008);
  // Visible rubber feet support the equipment, with a rear cable chase within the cabinet.
- for(const x of [17.57,18.07,18.46,18.88])for(const z of [-40.65,-40.34])b.b(m.acoustic,x,f+1.065,z,.035,.02,.035);
  b.b(m.smokedSteel,18.35,f+1.065,-40.82,2.18,.02,.055);
  // Compact walnut monitors on steel stands, toed into the listening area.
  for(const x of [16.45,20.0]){
   b.origin(x,-40.72,Math.atan2(18.25-x,4.5));
   b.b(m.smokedSteel,0,f+.045,0,.46,.06,.4);b.b(m.smokedSteel,0,f+.29,0,.09,.5,.09);b.b(m.smokedSteel,0,f+.545,0,.43,.035,.35);
-  b.b(m.walnut,0,f+.99,0,.52,.85,.41);b.b(m.acoustic,0,f+.99,.215,.46,.78,.025);
-  b.part('torus',m.smokedSteel,0,f+.89,.245,.178,.178,.178);
-  b.part('woofer',m.speakerCone,0,f+.89,.244,.166,.08,.166,Math.PI/2);
-  b.part('sphere',m.acoustic,0,f+.89,.265,.063,.063,.024);
-  b.b(m.smokedSteel,0,f+1.255,.24,.28,.12,.04);b.b(m.acoustic,0,f+1.255,.264,.22,.073,.009);
-  b.b(m.brass,.15,f+.64,.239,.052,.012,.009);
  }
  b.origin();
  // A quiet acoustic wall with a small identity plaque and one framed sleeve. Architecture first.

@@ -1,0 +1,38 @@
+{
+  "verifiedOn": "2026-11-05",
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sources": [
+    {
+      "file": "turntable.glb",
+      "creator": "Innerscene",
+      "url": "https://www.innerscene.com/tools/library/3d-parts/direct-spin-dj-turntable-ae143e16",
+      "license": "CC0-1.0",
+      "sha256": "ce8f47213163e2af5d67a35c630390fb68dc70b9ac825ab9e09d84d7d0917bd6"
+    },
+    {
+      "file": "amplifier.glb",
+      "creator": "Innerscene",
+      "url": "https://www.innerscene.com/tools/library/3d-parts/two-channel-stereo-amplifier-251d0295",
+      "license": "CC0-1.0",
+      "sha256": "5983b3e223ca3193ef8478ddf7a72d1eabcfbbcab03205617b453528526f232b"
+    },
+    {
+      "file": "speaker.glb",
+      "creator": "Innerscene",
+      "url": "https://www.innerscene.com/tools/library/3d-parts/studio-two-bookshelf-speaker-41658b0e",
+      "license": "CC0-1.0",
+      "sha256": "6dadf4f2a70bd33d39b8d506e22c50d1b6c56a7eee481d696f3c3ebf7ce8b694"
+    },
+    {
+      "file": "wine/wine.gltf",
+      "creator": "Poly Haven",
+      "url": "https://polyhaven.com/a/wine_bottles_01",
+      "license": "CC0-1.0",
+      "sha256": "70a8a5eabeac24cf298774aca78bbcf39145ca6bf5ebdf2f296edab73fbce039"
+    }
+  ],
+  "textureSourceUrls": [
+    "https://polyhaven.com/a/black_walnut_veneer_01",
+    "https://polyhaven.com/a/brown_leather"
+  ]
+}

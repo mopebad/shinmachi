@@ -31,6 +31,9 @@ export function worldTexture(material: THREE.MeshStandardMaterial, scale = .5): 
         else if(textureNormal.x > .5) surfaceUv = textureWorld.zy * ${scale.toFixed(3)};
         else surfaceUv = textureWorld.xy * ${scale.toFixed(3)};
         vMapUv = surfaceUv;
+        #ifdef USE_NORMALMAP
+          vNormalMapUv = surfaceUv;
+        #endif
         #ifdef USE_BUMPMAP
           vBumpMapUv = surfaceUv;
         #endif

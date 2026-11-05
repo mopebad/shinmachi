@@ -1,0 +1,146 @@
+[
+  {
+    "asset": "turntable",
+    "bytes": 532852,
+    "triangles": 15656,
+    "meshes": 6,
+    "dimensions": [
+      0.454,
+      0.365,
+      0.168
+    ],
+    "blenderAxes": "X right, Z up, front -Y; GLB +Y up, front +Z"
+  },
+  {
+    "asset": "amplifier",
+    "bytes": 332772,
+    "triangles": 9244,
+    "meshes": 5,
+    "dimensions": [
+      0.434,
+      0.3406,
+      0.12375
+    ],
+    "blenderAxes": "X right, Z up, front -Y; GLB +Y up, front +Z"
+  },
+  {
+    "asset": "speaker",
+    "bytes": 1000892,
+    "triangles": 10648,
+    "meshes": 8,
+    "dimensions": [
+      0.205,
+      0.2757,
+      0.335
+    ],
+    "blenderAxes": "X right, Z up, front -Y; GLB +Y up, front +Z"
+  },
+  {
+    "asset": "bottle-0",
+    "bytes": 675760,
+    "triangles": 6520,
+    "meshes": 1,
+    "dimensions": [
+      0.07453,
+      0.07453,
+      0.29804
+    ],
+    "blenderAxes": "X right, Z up, front -Y; GLB +Y up, front +Z"
+  },
+  {
+    "asset": "bottle-1",
+    "bytes": 518796,
+    "triangles": 7720,
+    "meshes": 1,
+    "dimensions": [
+      0.07206,
+      0.07206,
+      0.33137
+    ],
+    "blenderAxes": "X right, Z up, front -Y; GLB +Y up, front +Z"
+  },
+  {
+    "asset": "bottle-2",
+    "bytes": 525156,
+    "triangles": 6408,
+    "meshes": 1,
+    "dimensions": [
+      0.08015,
+      0.08015,
+      0.30603
+    ],
+    "blenderAxes": "X right, Z up, front -Y; GLB +Y up, front +Z"
+  },
+  {
+    "asset": "bottle-3",
+    "bytes": 706380,
+    "triangles": 8200,
+    "meshes": 1,
+    "dimensions": [
+      0.08059,
+      0.08056,
+      0.31553
+    ],
+    "blenderAxes": "X right, Z up, front -Y; GLB +Y up, front +Z"
+  },
+  {
+    "asset": "rocks",
+    "bytes": 89272,
+    "triangles": 3832,
+    "meshes": 3,
+    "dimensions": [
+      0.0902,
+      0.0902,
+      0.111
+    ],
+    "blenderAxes": "X right, Z up, front -Y; GLB +Y up, front +Z"
+  },
+  {
+    "asset": "empty-glass",
+    "bytes": 52116,
+    "triangles": 2688,
+    "meshes": 1,
+    "dimensions": [
+      0.076,
+      0.076,
+      0.154
+    ],
+    "blenderAxes": "X right, Z up, front -Y; GLB +Y up, front +Z"
+  },
+  {
+    "asset": "water-glass",
+    "bytes": 69296,
+    "triangles": 3456,
+    "meshes": 2,
+    "dimensions": [
+      0.076,
+      0.076,
+      0.154
+    ],
+    "blenderAxes": "X right, Z up, front -Y; GLB +Y up, front +Z"
+  },
+  {
+    "asset": "highball",
+    "bytes": 106412,
+    "triangles": 4208,
+    "meshes": 3,
+    "dimensions": [
+      0.11781,
+      0.0732,
+      0.224
+    ],
+    "blenderAxes": "X right, Z up, front -Y; GLB +Y up, front +Z"
+  },
+  {
+    "asset": "bar-tools",
+    "bytes": 101408,
+    "triangles": 5184,
+    "meshes": 1,
+    "dimensions": [
+      0.181,
+      0.088,
+      0.217
+    ],
+    "blenderAxes": "X right, Z up, front -Y; GLB +Y up, front +Z"
+  }
+]

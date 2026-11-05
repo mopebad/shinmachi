@@ -1,0 +1,669 @@
+{
+  "transport": [
+    {
+      "action": "next",
+      "index": 2,
+      "ready": 4
+    },
+    {
+      "action": "previous",
+      "index": 1,
+      "ready": 4
+    }
+  ],
+  "motion": [
+    {
+      "time": 0.64,
+      "playing": true,
+      "level": 0.00010026264123024609,
+      "angle": -2.234021442552742,
+      "levels": {
+        "time": 0.64,
+        "title": "KiiiKiii - Delulu",
+        "playing": true,
+        "level": 0.0000807432203695202,
+        "bands": [
+          0.5558823529411765,
+          0.3200603318250377,
+          0.35908496732026146
+        ]
+      }
+    },
+    {
+      "time": 0.741333,
+      "playing": true,
+      "level": 0.00008517914074088476,
+      "angle": -2.5877403407374246,
+      "levels": {
+        "time": 0.741333,
+        "title": "KiiiKiii - Delulu",
+        "playing": true,
+        "level": 0.00008199496880128114,
+        "bands": [
+          0.5009803921568627,
+          0.265158371040724,
+          0.30392156862745096
+        ]
+      }
+    },
+    {
+      "time": 0.84,
+      "playing": true,
+      "level": 0.00008450576955449981,
+      "angle": -2.9321531433504733,
+      "levels": {
+        "time": 0.84,
+        "title": "KiiiKiii - Delulu",
+        "playing": true,
+        "level": 0.0000848728021930292,
+        "bands": [
+          0.44607843137254904,
+          0.21025641025641026,
+          0.24888888888888888
+        ]
+      }
+    },
+    {
+      "time": 0.941333,
+      "playing": true,
+      "level": 0.00008371679668758764,
+      "angle": -3.285872041535156,
+      "levels": {
+        "time": 0.947092,
+        "title": "KiiiKiii - Delulu",
+        "playing": true,
+        "level": 0.00008487310044428639,
+        "bands": [
+          0.39019607843137255,
+          0.15565610859728507,
+          0.19424836601307188
+        ]
+      }
+    },
+    {
+      "time": 1.040196,
+      "playing": true,
+      "level": 0.17373499179172489,
+      "angle": -3.6309690132149868,
+      "levels": {
+        "time": 1.048861,
+        "title": "KiiiKiii - Delulu",
+        "playing": true,
+        "level": 0.31543610083987395,
+        "bands": [
+          0.7098039215686275,
+          0.4205128205128205,
+          0.1776470588235294
+        ]
+      }
+    },
+    {
+      "time": 1.149333,
+      "playing": true,
+      "level": 0.5890395319018229,
+      "angle": -4.011929010364797,
+      "levels": {
+        "time": 1.149333,
+        "title": "KiiiKiii - Delulu",
+        "playing": true,
+        "level": 0.7498616305408697,
+        "bands": [
+          0.9029411764705882,
+          0.7016591251885369,
+          0.16862745098039217
+        ]
+      }
+    },
+    {
+      "time": 1.250667,
+      "playing": true,
+      "level": 0.776461868785831,
+      "angle": -4.365651399207985,
+      "levels": {
+        "time": 1.250667,
+        "title": "KiiiKiii - Delulu",
+        "playing": true,
+        "level": 0.10244007241316601,
+        "bands": [
+          0.9009803921568628,
+          0.7306184012066365,
+          0.14888888888888888
+        ]
+      }
+    },
+    {
+      "time": 1.349333,
+      "playing": true,
+      "level": 0.5520888102725742,
+      "angle": -4.710060711162529,
+      "levels": {
+        "time": 1.352166,
+        "title": "KiiiKiii - Delulu",
+        "playing": true,
+        "level": 0.5974214917895156,
+        "bands": [
+          0.9274509803921569,
+          0.7722473604826546,
+          0.15633986928104576
+        ]
+      }
+    },
+    {
+      "time": 1.450667,
+      "playing": true,
+      "level": 0.5898754527561676,
+      "angle": -5.063783100005716,
+      "levels": {
+        "time": 1.453564,
+        "title": "KiiiKiii - Delulu",
+        "playing": true,
+        "level": 0.5988161902950836,
+        "bands": [
+          0.9294117647058824,
+          0.7903469079939668,
+          0.15620915032679739
+        ]
+      }
+    },
+    {
+      "time": 1.559405,
+      "playing": true,
+      "level": 0.3343958900218173,
+      "angle": -5.4433503244124335,
+      "levels": {
+        "time": 1.56,
+        "title": "KiiiKiii - Delulu",
+        "playing": true,
+        "level": 0.20719741486248291,
+        "bands": [
+          0.9029411764705882,
+          0.7535444947209653,
+          0.1362091503267974
+        ]
+      }
+    },
+    {
+      "time": 1.660646,
+      "playing": true,
+      "level": 0.4096036968559693,
+      "angle": -5.7967480820147514,
+      "levels": {
+        "time": 1.661333,
+        "title": "KiiiKiii - Delulu",
+        "playing": true,
+        "level": 0.5457588745319732,
+        "bands": [
+          0.9245098039215687,
+          0.7493212669683258,
+          0.12980392156862744
+        ]
+      }
+    },
+    {
+      "time": 1.76,
+      "playing": true,
+      "level": 0.5708246735795176,
+      "angle": -6.14355896702004,
+      "levels": {
+        "time": 1.76,
+        "title": "KiiiKiii - Delulu",
+        "playing": true,
+        "level": 0.5632950990000849,
+        "bands": [
+          0.9352941176470588,
+          0.7650075414781297,
+          0.12274509803921568
+        ]
+      }
+    }
+  ],
+  "zones": [
+    {
+      "name": "street",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.9697314500808716,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 2.775149,
+            "duration": 144.106667,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.0024036906543187797,
+            "speakerGains": [
+              0.0003284578851889819,
+              0.0003545090730767697
+            ],
+            "roomReflections": 0.000730960862711072,
+            "levels": {
+              "rms": 0.9749433877309417,
+              "bands": [
+                0.946078431372549,
+                0.6645550527903469,
+                0.40405228758169937
+              ]
+            },
+            "gainOutside": 0.016762860119342804,
+            "cutoff": 2198.4609375
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 4.880849,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -15.724178407724132,
+            "gain": 0.0010668317706347798
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739411945,
+            "gain": 0.0003985126786920364
+          },
+          {
+            "kind": "hybrid",
+            "x": 1.8,
+            "z": -2.930000000000149,
+            "gain": 0.000017485648967157847
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          48,
+          null
+        ],
+        "trafficGain": 0.001482550715081743,
+        "audible": true,
+        "rms": 0.002419434408834011
+      }
+    },
+    {
+      "name": "stairs",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.6469424366950989,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 3.775264,
+            "duration": 144.106667,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0.085,
+              "outside": 0.009,
+              "cutoff": 3975,
+              "zone": "stairwell",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.08411576598882675,
+            "speakerGains": [
+              0,
+              0
+            ],
+            "roomReflections": 0,
+            "levels": {
+              "rms": 1,
+              "bands": [
+                0.996078431372549,
+                0.8027149321266969,
+                0.18849673202614378
+              ]
+            },
+            "gainOutside": 0.009082415141165257,
+            "cutoff": 3963.026123046875
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 5.88233,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -15.724178407724132,
+            "gain": 0.0009219776864044507
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739411945,
+            "gain": 0.00021724066370176312
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          null,
+          null
+        ],
+        "trafficGain": 0.00113932546810247,
+        "audible": true,
+        "rms": 0.01275057694240684
+      }
+    },
+    {
+      "name": "inside",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.13880090415477753,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 4.776,
+            "duration": 144.106667,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0.25,
+              "outside": 0,
+              "cutoff": 17500,
+              "zone": "basement",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.23585089296102524,
+            "speakerGains": [
+              0.032108571380376816,
+              0.0346548967063427
+            ],
+            "roomReflections": 0.02049151435494423,
+            "levels": {
+              "rms": 0.6658047171894689,
+              "bands": [
+                0.9588235294117647,
+                0.6135746606334842,
+                0.12954248366013071
+              ]
+            },
+            "gainOutside": 0.00009648578270571306,
+            "cutoff": 17408.703125
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 6.881814,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "restaurant",
+            "x": 14.073,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -15.724178407724132,
+            "gain": 0.00027617067138743724
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          null,
+          null,
+          null
+        ],
+        "trafficGain": 0.00027632647834252566,
+        "audible": true,
+        "rms": 0.013457809898760631
+      }
+    },
+    {
+      "name": "leave",
+      "audio": {
+        "state": "running",
+        "enabled": true,
+        "volume": 0.3,
+        "ambientTransmission": 0.9692493081092834,
+        "music": [
+          {
+            "kind": "shindo",
+            "readyState": 4,
+            "paused": false,
+            "time": 5.776,
+            "duration": 144.106667,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0.01693430313578606,
+              "cutoff": 2100,
+              "zone": "entrance",
+              "portal": {
+                "x": 19.5,
+                "y": 0.95,
+                "z": -27.4
+              }
+            },
+            "gainInside": 0.0025074105942621827,
+            "speakerGains": [
+              0.0003412636579014361,
+              0.00036832847399637103
+            ],
+            "roomReflections": 0.0007318782736547291,
+            "levels": {
+              "rms": 0.7370844055997113,
+              "bands": [
+                0.9794117647058823,
+                0.7520361990950226,
+                0.2962091503267974
+              ]
+            },
+            "gainOutside": 0.016755269840359688,
+            "cutoff": 2203.33251953125
+          },
+          {
+            "kind": "jazz",
+            "readyState": 4,
+            "paused": false,
+            "time": 7.883175,
+            "duration": 266.5535,
+            "starts": 1,
+            "error": null,
+            "mix": {
+              "inside": 0,
+              "outside": 0,
+              "cutoff": 2300,
+              "zone": "jazz-frontage",
+              "portal": {
+                "x": -11.8,
+                "y": 1.35,
+                "z": -22.2
+              }
+            },
+            "gainInside": 0,
+            "roomReflections": 0,
+            "gainOutside": 0,
+            "cutoff": 2299.70703125
+          }
+        ],
+        "voices": 23,
+        "footEvents": 0,
+        "indicatorEvents": 0,
+        "sources": [
+          {
+            "kind": "restaurant",
+            "x": 19.742,
+            "z": -26.68,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "restaurant",
+            "x": 17.689,
+            "z": -23.32,
+            "gain": 0.009279487685323034
+          },
+          {
+            "kind": "kei",
+            "x": 1.8,
+            "z": -15.724178407724132,
+            "gain": 0.0010668317706347798
+          },
+          {
+            "kind": "diesel",
+            "x": 1.8,
+            "z": -9.023235739411945,
+            "gain": 0.0003985126786920364
+          },
+          {
+            "kind": "hybrid",
+            "x": 1.8,
+            "z": -2.930000000000149,
+            "gain": 0.000017485648967157847
+          }
+        ],
+        "trafficAssignments": [
+          56,
+          52,
+          48,
+          null
+        ],
+        "trafficGain": 0.0014825274738541339,
+        "audible": true,
+        "rms": 0.0024782456260028537
+      }
+    }
+  ],
+  "pause": {
+    "angle": -6.14355896702004,
+    "level": 0.0004227738446961485,
+    "survivesMute": true
+  }
+}
