@@ -372,9 +372,9 @@
       "id": "service-0",
       "label": "Bar service 1",
       "position": [
-        17.18,
+        17.15371611777654,
         1.105,
-        -34.92
+        -34.948854429488065
       ],
       "rotation": [
         0,
@@ -645,9 +645,9 @@
       "id": "left-speaker-light",
       "label": "left speaker light",
       "position": [
-        16.73,
+        16.782261618639968,
         1.595,
-        -40.13
+        -40.060130210967124
       ],
       "rotation": [
         0,
