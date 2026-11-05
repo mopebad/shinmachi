@@ -36,7 +36,7 @@ export class CitySoundscape {
   private music?:VenueMusic;
   speakerAt?:(i:number)=>{x:number;y:number;z:number}|undefined;
   readonly venuePlayer=new ShindoPlayer();
-  get venuePlayback(){const state=this.venuePlayer.state;return{time:state.time,title:state.title,playing:this.context?.state==='running'&&!state.paused&&businessOpen('restaurant',this.hour),level:this.music?.levels.rms??0,bands:this.music?.levels.bands??[0,0,0]};}
+  get venuePlayback(){const state=this.venuePlayer.state;return{time:state.time,duration:state.duration,title:state.title,playing:this.context?.state==='running'&&!state.paused&&businessOpen('restaurant',this.hour),level:this.music?.levels.rms??0,bands:this.music?.levels.bands??[0,0,0]};}
 
   get status(): 'start' | 'on' | 'muted' { return !this.enabled ? 'muted' : this.context?.state === 'running' ? 'on' : 'start'; }
   /** Own synthesized output only: never requests microphone permission. */
