@@ -7,6 +7,7 @@ import {shindoTrackManifest,trackFolder,shindoTrackPlugin} from '../tools/shindo
 import {shindoRoom,shindoImpulse} from '../src/world/audio/ShindoAcoustics.ts';
 import {venueMusicMix} from '../src/world/audio/VenueMusicMix.ts';
 import {vinylAngle} from '../src/world/generation/ShindoPresentation.ts';
+import {shindoMarqueeOffset,shindoPlaybackProgress,SHINDO_MARQUEE} from '../src/world/generation/ShindoDisplay.ts';
 import {createYotoVenue,venueBodyBlocked} from '../src/world/generation/YotoVenueLayout.ts';
 import {SHINDO_CONTROLS,SHINDO_PANEL,canUseShindoControl} from '../src/world/generation/ShindoConsole.ts';
 
@@ -46,4 +47,25 @@ test('physical music controls are reachable from a clear standing position and r
  }
  assert.ok(canUseShindoControl(SHINDO_PANEL.reach));
  for(const distance of [-1,NaN,Infinity,SHINDO_PANEL.reach+.001])assert.equal(canUseShindoControl(distance),false);
+});
+
+test('Shindo physical display scrolls long names, pauses at each end and keeps short titles static',()=>{
+ const width=1400,visible=900,travel=(width-visible)/SHINDO_MARQUEE.pixelsPerSecond;
+ assert.equal(shindoMarqueeOffset(0,width,visible),0);
+ assert.equal(shindoMarqueeOffset(1,width,visible),0);
+ assert.ok(Math.abs(shindoMarqueeOffset(SHINDO_MARQUEE.startHold+travel/2,width,visible)-250)<1e-8);
+ assert.equal(shindoMarqueeOffset(SHINDO_MARQUEE.startHold+travel+.2,width,visible),500);
+ const cycle=SHINDO_MARQUEE.startHold+travel+SHINDO_MARQUEE.endHold;
+ assert.equal(shindoMarqueeOffset(cycle,width,visible),0);
+ assert.equal(shindoMarqueeOffset(100,600,visible),0);
+ assert.equal(shindoMarqueeOffset(NaN,width,visible),0);
+ assert.equal(shindoMarqueeOffset(4,Infinity,visible),0);
+});
+test('Shindo music progress handles finite files and unavailable duration safely',()=>{
+ assert.equal(shindoPlaybackProgress(35,140),.25);
+ assert.equal(shindoPlaybackProgress(-5,140),0);
+ assert.equal(shindoPlaybackProgress(200,140),1);
+ assert.equal(shindoPlaybackProgress(0,Infinity),null);
+ assert.equal(shindoPlaybackProgress(10,0),null);
+ assert.equal(shindoPlaybackProgress(NaN,100),null);
 });
